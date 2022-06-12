@@ -1,0 +1,9 @@
+.keyword {
+  background-color: var(--main-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
+  padding: 7px;
+  border-radius: 6px;
+}

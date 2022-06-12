@@ -22,34 +22,43 @@
       <header class="header">
         <nav class="header__nav">
           <i class="fas fa-bars"></i>
+          <i class="fas fa-times unvisible"></i>
 
-          <ul class="list-nav">
-            <li class="list-nav__item">소주</li>
-            <li class="list-nav__item">맥주</li>
-            <li class="list-nav__item">와인</li>
+          <ul class="list-nav unvisible">
+            <li class="list-nav__item">
+              <a href="./productListPage.html">소주</a>
+            </li>
+            <li class="list-nav__item">
+              <a href="./productListPage.html">맥주</a>
+            </li>
+            <li class="list-nav__item">
+              <a href="./productListPage.html">와인</a>
+            </li>
           </ul>
         </nav>
 
         <div class="header__logo">
-          <img
-            src="../image/components/pyeonsool-logo.svg"
-            alt="편술 로고"
-            class="logo"
-            width="85px"
-            height="32px"
-          />
+          <a href="./mainPage.html" class="logo-link">
+            <img
+              src="../image/components/pyeonsool-logo.svg"
+              alt="편술 로고"
+              class="logo"
+            />
+          </a>
         </div>
 
         <div class="header__profile">
           <i class="far fa-user-circle"></i>
 
-          <div class="header-profile">
+          <div class="header-profile unvisible">
             <div class="header-profile__triangle"></div>
 
             <div class="header-profile__content">
-              <a class="header-profile__mypage-link">마이 페이지</a>
-              <div class="header-profile__divider"></div>
-              <span class="header-profile__logout">로그아웃</span>
+              <div class="header-profile__link">
+                <a class="header-profile__mypage">마이페이지</a>
+                <div class="header-profile__divider"></div>
+                <span class="header-profile__logout">로그아웃</span>
+              </div>
 
               <div class="header-profile__keywords">
                 <span class="keyword">#달콤함</span>
@@ -57,9 +66,11 @@
                 <span class="keyword">#묵직함</span>
               </div>
 
-              <span class="header-profile__select-again-keyword"
-                >다시 고르기</span
-              >
+              <div class="header-profile__select-again-keyword-wrap">
+                <span class="header-profile__select-again-keyword"
+                  >다시 고르기</span
+                >
+              </div>
             </div>
           </div>
         </div>
