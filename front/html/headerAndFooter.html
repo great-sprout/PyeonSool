@@ -19,7 +19,51 @@
   </head>
   <body>
     <div id="wrap">
-      <header></header>
+      <header class="header">
+        <nav class="header__nav">
+          <i class="fas fa-bars"></i>
+
+          <ul class="list-nav">
+            <li class="list-nav__item">소주</li>
+            <li class="list-nav__item">맥주</li>
+            <li class="list-nav__item">와인</li>
+          </ul>
+        </nav>
+
+        <div class="header__logo">
+          <img
+            src="../image/components/pyeonsool-logo.svg"
+            alt="편술 로고"
+            class="logo"
+            width="85px"
+            height="32px"
+          />
+        </div>
+
+        <div class="header__profile">
+          <i class="far fa-user-circle"></i>
+
+          <div class="header-profile">
+            <div class="header-profile__triangle"></div>
+
+            <div class="header-profile__content">
+              <a class="header-profile__mypage-link">마이 페이지</a>
+              <div class="header-profile__divider"></div>
+              <span class="header-profile__logout">로그아웃</span>
+
+              <div class="header-profile__keywords">
+                <span class="keyword">#달콤함</span>
+                <span class="keyword">#깔끔함</span>
+                <span class="keyword">#묵직함</span>
+              </div>
+
+              <span class="header-profile__select-again-keyword"
+                >다시 고르기</span
+              >
+            </div>
+          </div>
+        </div>
+      </header>
 
       <div id="container">
         <main>
@@ -35,5 +79,10 @@
 
       <footer></footer>
     </div>
+
+    <script
+      src="https://kit.fontawesome.com/b17793764c.js"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
