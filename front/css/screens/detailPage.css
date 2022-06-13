@@ -163,8 +163,8 @@ main {
   gap: 15px;
 }
 
-.alcohol-info__buttons > button:active {
-  opacity: 0.7;
+.alcohol-info__buttons > button:hover {
+  opacity: 0.8;
 }
 
 .alcohol-info__like-button {
@@ -194,3 +194,65 @@ main {
 }
 /* alcohol-info 끝 */
 /* alcohol-info__right-column 끝 */
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* alcohol-recommendation 시작 */
+.alcohol-recommendation {
+  position: relative;
+}
+
+.alcohol-recommendation__title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+.slide-button {
+  position: absolute;
+  font-size: 30px;
+  color: var(--main-color);
+  font-weight: 900;
+  top: 51%;
+  cursor: pointer;
+}
+
+.slide-button--left {
+  left: -40px;
+}
+
+.slide-button--right {
+  right: -40px;
+}
+.alcohol-recommendation__items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  width: 1160px;
+}
+
+.alcohol-recommendation__item {
+  width: 208px;
+  height: 208px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid var(--light-gray);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.alcohol-recommendation__item:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+
+.alcohol-recommendation__image {
+  width: 50px;
+  height: 150px;
+}
+/* alcohol-recommendation 끝 */
