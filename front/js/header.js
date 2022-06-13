@@ -18,5 +18,11 @@ function addHeaderNavEvent() {
   });
 }
 
+function addHeaderProfileEvent() {
+  document.querySelector(".header__profile").addEventListener("click", function() {
+    document.querySelector(".header-profile").classList.toggle(UNVISIBLE);
+  });
+}
 
 addHeaderNavEvent();
+addHeaderProfileEvent();
