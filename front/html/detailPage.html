@@ -78,11 +78,161 @@
 
       <div id="container">
         <main>
-          <article></article>
+          <article class="alcohol-info">
+            <div class="alcohol-info__left-column">
+              <img
+                src="../image/alcohol/chamisul.png"
+                alt="술 이미지"
+                class="alcohol-info__image"
+              />
+            </div>
+
+            <div class="alcohol-info__right-column">
+              <h1 class="alcohol-info__name">참이슬 360mL</h1>
+
+              <div class="alcohol-info__contents">
+                <div class="alcohol-info__price">
+                  <span class="alcohol-info__price-key">가격</span>
+                  <span class="alcohol-info__price-value">1,190원</span>
+                </div>
+
+                <div class="alcohol-info__content">
+                  <span class="alcohol-info__content-key">도수</span>
+                  <span class="alcohol-info__content-value">17.8도</span>
+                </div>
+
+                <div class="alcohol-info__taste">
+                  <div class="alcohol-info__sugar">
+                    <span class="alcohol-info__sugar-key">당도</span>
+
+                    <span class="alcohol-info__sugar-values">
+                      <div class="alcohol-info__sugar-value"></div>
+                      <div class="alcohol-info__sugar-value"></div>
+                      <div class="alcohol-info__sugar-value"></div>
+                      <div class="alcohol-info__sugar-value"></div>
+                      <div class="alcohol-info__sugar-value"></div
+                    ></span>
+                  </div>
+
+                  <!-- 와인인 경우만 표시 -->
+                  <div class="alcohol-info__body">
+                    <span class="alcohol-info__body-key">바디</span>
+
+                    <span class="alcohol-info__body-values">
+                      <div class="alcohol-info__body-value"></div>
+                      <div class="alcohol-info__body-value"></div>
+                      <div class="alcohol-info__body-value"></div>
+                      <div class="alcohol-info__body-value"></div>
+                      <div class="alcohol-info__body-value"></div
+                    ></span>
+                  </div>
+                </div>
+
+                <div class="alcohol-info__rating">
+                  <span class="alcohol-info__rating-key">별점</span>
+                  <span class="alcohol-info__rating-value">4.3</span>
+                </div>
+
+                <div class="alcohol-info__vendor">
+                  <span class="alcohol-info__vendor-key">판매처</span>
+                  <span class="alcohol-info__vendor-values">
+                    <img
+                      src="../image/components/cu-logo.png"
+                      alt="cu"
+                      class="alcohol-info__vendor-value--cu"
+                      width="50px"
+                      height="25px"
+                    />
+
+                    <img
+                      src="../image/components/gs25-logo.png"
+                      alt="gs25"
+                      class="alcohol-info__vendor-value--gs25"
+                      width="50px"
+                      height="25px"
+                    />
+
+                    <img
+                      src="../image/components/7eleven-logo.png"
+                      alt="7-eleven"
+                      class="alcohol-info__vendor-value--7eleven"
+                      width="50px"
+                      height="25px"
+                    />
+                  </span>
+                </div>
+
+                <div class="alcohol-info__manufacturer">
+                  <span class="alcohol-info__manufacturer-key">제조사</span>
+                  <span class="alcohol-info__manufacturer-value">(주)쌍용</span>
+                </div>
+
+                <div class="alcohol-info__origin">
+                  <span class="alcohol-info__origin-key">원산지</span>
+                  <span class="alcohol-info__origin-value">대한민국</span>
+                </div>
+
+                <div class="alcohol-info__keywords">
+                  <span class="alcohol-info__keyword">#달콤함</span>
+                  <span class="alcohol-info__keyword">#깔끔함</span>
+                  <span class="alcohol-info__keyword">#light</span>
+                </div>
+              </div>
+
+              <div class="alcohol-info__buttons">
+                <button class="alcohol-info__like-button">
+                  <span class="alcohol-info__like-text">Like</span>
+                  <i class="fas fa-heart"></i>
+                  <i class="far fa-heart unvisible"></i>
+                </button>
+
+                <button class="alcohol-info__share-button">
+                  <span class="alcohol-info__share-text">공유하기</span>
+                  <i class="fas fa-comment"></i>
+                </button>
+              </div>
+            </div>
+          </article>
         </main>
 
         <section>
-          <article></article>
+          <article class="alcohol-recommendation">
+            <h2 class="alcohol-recommendation__title">관련 추천</h2>
+
+            <div class="slide-button slide-button--left">&lt;</div>
+            <div class="slide-button slide-button--right">&gt;</div>
+
+            <ul class="alcohol-recommendation__items">
+              <li class="alcohol-recommendation__item">
+                <img
+                  src="../image/alcohol/chamisul.png"
+                  alt="alcohol"
+                  class="alcohol-recommendation__image"
+                  onclick="location.href='#'"
+                  width="70px"
+                  height="70px"
+                />
+              </li>
+            </ul>
+          </article>
+
+          <article class="alcohol-review">
+            <h2 class="alcohol-review__title">
+              한줄 리뷰 <span>(<span>143</span>개)</span>
+            </h2>
+
+            <form action="" method="post" class="review-form">
+              <div></div>
+
+              <input type="text" />
+
+              <div>
+                <input type="submit" value="등록" />
+              </div>
+            </form>
+
+            <div class="reviews"></div>
+          </article>
         </section>
 
         <aside></aside>
