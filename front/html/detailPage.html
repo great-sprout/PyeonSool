@@ -250,24 +250,80 @@
 
           <article class="alcohol-review">
             <h2 class="alcohol-review__title">
-              한줄 리뷰 <span>(<span>143</span>개)</span>
+              한줄 리뷰
+              <span class="alcohol-review__count-wrap"
+                >(<span class="alcohol-review__count">143</span>개)</span
+              >
             </h2>
 
             <form action="" method="post" class="review-form">
-              <div></div>
+              <div class="stars review-form__stars">
+                <input
+                  type="radio"
+                  id="5-stars"
+                  name="grade"
+                  value="5"
+                  class="stars__radio"
+                />
+                <label for="5-stars" class="stars__star review-form__star"
+                  >★</label
+                >
 
-              <input type="text" />
+                <input
+                  type="radio"
+                  id="4-stars"
+                  name="grade"
+                  value="4"
+                  class="stars__radio"
+                />
+                <label for="4-stars" class="stars__star review-form__star"
+                  >★</label
+                >
 
-              <div>
-                <input type="submit" value="등록" />
+                <input
+                  type="radio"
+                  id="3-stars"
+                  name="grade"
+                  value="3"
+                  class="stars__radio"
+                />
+                <label for="3-stars" class="stars__star review-form__star"
+                  >★</label
+                >
+
+                <input
+                  type="radio"
+                  id="2-stars"
+                  name="grade"
+                  value="2"
+                  class="stars__radio"
+                />
+                <label for="2-stars" class="stars__star review-form__star"
+                  >★</label
+                >
+
+                <input
+                  type="radio"
+                  id="1-star"
+                  name="grade"
+                  value="1"
+                  class="stars__radio"
+                />
+                <label for="1-star" class="stars__star review-form__star"
+                  >★</label
+                >
+              </div>
+
+              <textarea class="review-form__textarea"></textarea>
+
+              <div class="review-form__submit-wrap">
+                <input type="submit" value="등록" class="review-form__submit" />
               </div>
             </form>
 
             <div class="reviews"></div>
           </article>
         </section>
-
-        <aside></aside>
       </div>
 
       <footer class="footer">

@@ -1,0 +1,17 @@
+.stars {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.stars__star {
+  cursor: pointer;
+  color: var(--light-gray);
+}
+
+.stars__radio {
+  display: none;
+}
+
+.stars__radio:checked ~ .stars__star {
+  color: rgb(232, 232, 0);
+}

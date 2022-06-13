@@ -1,3 +1,5 @@
+@import url('../components/stars.css');
+
 #container {
   padding: 100px 120px 50px 120px;
   width: 1500px;
@@ -164,7 +166,7 @@ main {
 }
 
 .alcohol-info__buttons > button:hover {
-  opacity: 0.8;
+  opacity: 0.7;
 }
 
 .alcohol-info__like-button {
@@ -256,3 +258,52 @@ section {
   height: 150px;
 }
 /* alcohol-recommendation 끝 */
+/* alcohol-review 시작 */
+.alcohol-review {
+  width: 1160px;
+  margin-top: 70px;
+}
+
+.alcohol-review__title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.review-form__stars {
+  gap: 5px;
+  justify-content: flex-end;
+  margin: 20px 0 10px 0;
+}
+
+.review-form__star {
+  font-size: 26px;
+}
+
+.review-form__textarea {
+  width: 100%;
+  height: 92px;
+  border-radius: 7px;
+  outline: none;
+  resize: none;
+  padding: 5px;
+}
+
+.review-form__submit-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.review-form__submit {
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  width: 74px;
+  height: 29px;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* alcohol-review 끝 */
