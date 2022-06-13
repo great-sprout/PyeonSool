@@ -323,9 +323,9 @@
 
             <div class="review-area">
               <div class="review-area__order">
-                <a class="review-area__latest-order">최신순</a>
+                <a href="#" class="review-area__latest-order">최신순</a>
                 <div class="review-area__order-divider"></div>
-                <a class="review-area__recommended-order">추천순</a>
+                <a href="#" class="review-area__recommended-order">추천순</a>
               </div>
 
               <ul class="reviews">
@@ -398,13 +398,108 @@
                       </div>
                     </div>
 
-                    <div class="review__row">
-                      <textarea class="review__textarea">
-                        역시 소주는 참이슬이죠ㅎㅎ</textarea
-                      >
+                    <textarea class="review__textarea">
+역시 소주는 참이슬이죠ㅎㅎ</textarea
+                    >
+                  </div>
 
-                      <span>(수정됨)</span>
+                  <div class="review__right-column">
+                    <span class="review__last-updated-date">2022.01.29</span>
+
+                    <div class="review__preference">
+                      <div class="recommendation">
+                        <i class="far fa-thumbs-up recommendation__icon"></i>
+                        <i
+                          class="fas fa-thumbs-up recommendation__icon-clicked unvisible"
+                        ></i>
+                        <span class="recommendation__count">40</span>
+                      </div>
+
+                      <div class="no-recommendation">
+                        <i
+                          class="far fa-thumbs-down no-recommendation__icon"
+                        ></i>
+                        <i
+                          class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
+                        ></i>
+                        <span class="no-recommendation__count">15</span>
+                      </div>
                     </div>
+                  </div>
+                </li>
+
+                <li class="review">
+                  <div class="review__left-column">
+                    <div class="review__row">
+                      <span class="review__nickname">알코홀릭</span>
+
+                      <div class="stars review__stars">
+                        <input
+                          type="radio"
+                          id="5-stars"
+                          name="grade"
+                          value="5"
+                          class="stars__radio"
+                        />
+                        <label for="5-stars" class="stars__star review__star"
+                          >★</label
+                        >
+
+                        <input
+                          type="radio"
+                          id="4-stars"
+                          name="grade"
+                          value="4"
+                          class="stars__radio"
+                        />
+                        <label for="4-stars" class="stars__star review__star"
+                          >★</label
+                        >
+
+                        <input
+                          type="radio"
+                          id="3-stars"
+                          name="grade"
+                          value="3"
+                          class="stars__radio"
+                        />
+                        <label for="3-stars" class="stars__star review__star"
+                          >★</label
+                        >
+
+                        <input
+                          type="radio"
+                          id="2-stars"
+                          name="grade"
+                          value="2"
+                          class="stars__radio"
+                        />
+                        <label for="2-stars" class="stars__star review__star"
+                          >★</label
+                        >
+
+                        <input
+                          type="radio"
+                          id="1-star"
+                          name="grade"
+                          value="1"
+                          class="stars__radio"
+                        />
+                        <label for="1-star" class="stars__star review__star"
+                          >★</label
+                        >
+                      </div>
+
+                      <div class="review__buttons">
+                        <span class="review__edit-status">수정</span>
+                        <div class="review__divider"></div>
+                        <span class="review__delete">삭제</span>
+                      </div>
+                    </div>
+
+                    <textarea class="review__textarea">
+역시 소주는 참이슬이죠ㅎㅎ</textarea
+                    >
                   </div>
 
                   <div class="review__right-column">
@@ -432,6 +527,18 @@
                   </div>
                 </li>
               </ul>
+
+              <div class="review-area__page">
+                <div class="page">
+                  <a href="#" class="page__left">&lt;</a>
+                  <a href="#" class="page__number page__number--clicked">1</a>
+                  <a href="#" class="page__number">2</a>
+                  <a href="#" class="page__number">3</a>
+                  <a href="#" class="page__number">4</a>
+                  <a href="#" class="page__number">5</a>
+                  <a href="#" class="page__right">&gt;</a>
+                </div>
+              </div>
             </div>
           </article>
         </section>

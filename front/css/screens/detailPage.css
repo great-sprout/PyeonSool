@@ -1,4 +1,5 @@
 @import url('../components/stars.css');
+@import url('../components/page.css');
 
 #container {
   padding: 100px 120px 50px 120px;
@@ -306,4 +307,101 @@ section {
   font-weight: bold;
   cursor: pointer;
 }
+
+.review-area {
+  margin-top: 20px;
+}
+
+.review-area__order {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.review-area__order-divider {
+  width: 1px;
+  height: 20px;
+  background-color: black;
+}
+
+.reviews {
+  border-bottom: 0.5px solid rgb(153, 153, 153);
+  margin-top: 15px;
+}
+
+.review {
+  border-top: 0.5px solid rgb(153, 153, 153);
+  padding: 15px 0 15px 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.review__row:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 5px;
+}
+
+.review__nickname,
+.review__buttons {
+  font-size: 13px;
+  color: rgb(102, 102, 102);
+  font-weight: bold;
+}
+
+.review__buttons {
+  display: flex;
+  gap: 5px;
+}
+
+.review__divider {
+  width: 0.5px;
+  height: 13px;
+  background-color: rgb(102, 102, 102);;
+}
+
+.review__textarea {
+  width: 1050px;
+  resize: none;
+  border: none;
+  outline: none;
+  margin: 17px 0 0 2px;
+  overflow-y: hidden;
+  height: 17px;
+  font-weight: bold;
+}
+
+.review__last-updated-date {
+  color: rgb(102, 102, 102);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.review__right-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.review__preference {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+}
+
+.recommendation,
+.no-recommendation {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.review-area__page {
+  margin-top: 70px;
+}
 /* alcohol-review 끝 */
+/* onclick="return(false);" */

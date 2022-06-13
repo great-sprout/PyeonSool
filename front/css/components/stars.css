@@ -13,5 +13,5 @@
 }
 
 .stars__radio:checked ~ .stars__star {
-  color: rgb(232, 232, 0);
+  color: rgb(252, 238, 33);
 }
