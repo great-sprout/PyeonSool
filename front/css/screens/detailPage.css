@@ -166,8 +166,8 @@ main {
   gap: 15px;
 }
 
-.alcohol-info__buttons > button:hover {
-  opacity: 0.7;
+.alcohol-info__buttons > button:active {
+  opacity: 0.8;
 }
 
 .alcohol-info__like-button {
@@ -180,9 +180,18 @@ main {
   cursor: pointer;
 }
 
-.alcohol-info__like-button > i {
+.alcohol-info__like-button .fas {
   font-size: 20px;
   color: var(--heart-color);
+}
+
+.alcohol-info__like-button--liked {
+  background-color: var(--heart-color);
+  color: white;
+}
+
+.alcohol-info__like-button--liked > .fas {
+  color: white;
 }
 
 .alcohol-info__share-button {
