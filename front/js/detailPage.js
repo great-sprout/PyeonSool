@@ -16,4 +16,13 @@ function addRecommendationSlidingEvent() {
   });
 }
 
+function addLikeClickEvent() {
+  const alcoholInfoLikeButton = document.querySelector(".alcohol-info__like-button");
+
+  alcoholInfoLikeButton.addEventListener("click", function(event) {
+    alcoholInfoLikeButton.classList.toggle("alcohol-info__like-button--liked");
+  })
+}
+
+addLikeClickEvent();
 addRecommendationSlidingEvent();
