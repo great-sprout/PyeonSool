@@ -230,12 +230,23 @@ section {
 .slide-button--right {
   right: -40px;
 }
+
+.alcohol-recommendation__body {
+  width: 1180px;
+  height: 230px;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 10px 0 10px;
+}
+
 .alcohol-recommendation__items {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 30px;
-  width: 1160px;
+  position: absolute;
+  left: 10px;
+  transition: left 0.2s ease-in-out;
 }
 
 .alcohol-recommendation__item {
