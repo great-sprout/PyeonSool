@@ -338,6 +338,7 @@
                     <div class="review__row">
                       <span class="review__nickname">알코홀릭</span>
 
+                      <!-- 수정 상태인 경우 onclick="return(false); 추가 -->
                       <div class="stars review__stars">
                         <input
                           type="radio"
@@ -400,9 +401,18 @@
                         <div class="review__divider"></div>
                         <span class="review__delete">삭제</span>
                       </div>
+
+                      <div class="review__editor unvisible">
+                        <span class="review__edit">등록</span>
+                        <div class="review__divider"></div>
+                        <span class="review__cancel">취소</span>
+                      </div>
                     </div>
 
-                    <textarea class="review__textarea">
+                    <!-- 수정 상태인 경우 review__textarea--editing 클래스 추가 -->
+                    <textarea
+                      class="review__textarea review__textarea--editing"
+                    >
 역시 소주는 참이슬이죠ㅎㅎ</textarea
                     >
                   </div>
@@ -444,6 +454,7 @@
                           name="grade"
                           value="5"
                           class="stars__radio"
+                          onclick="return(false);"
                         />
                         <label for="5-stars" class="stars__star review__star"
                           >★</label
@@ -455,6 +466,7 @@
                           name="grade"
                           value="4"
                           class="stars__radio"
+                          onclick="return(false);"
                         />
                         <label for="4-stars" class="stars__star review__star"
                           >★</label
@@ -466,6 +478,7 @@
                           name="grade"
                           value="3"
                           class="stars__radio"
+                          onclick="return(false);"
                         />
                         <label for="3-stars" class="stars__star review__star"
                           >★</label
@@ -477,6 +490,7 @@
                           name="grade"
                           value="2"
                           class="stars__radio"
+                          onclick="return(false);"
                         />
                         <label for="2-stars" class="stars__star review__star"
                           >★</label
@@ -488,6 +502,7 @@
                           name="grade"
                           value="1"
                           class="stars__radio"
+                          onclick="return(false);"
                         />
                         <label for="1-star" class="stars__star review__star"
                           >★</label
@@ -501,7 +516,7 @@
                       </div>
                     </div>
 
-                    <textarea class="review__textarea">
+                    <textarea class="review__textarea" readonly>
 역시 소주는 참이슬이죠ㅎㅎ</textarea
                     >
                   </div>

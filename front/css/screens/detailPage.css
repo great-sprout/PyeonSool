@@ -351,15 +351,24 @@ section {
 }
 
 .review__nickname,
-.review__buttons {
+.review__buttons,
+.review__editor {
   font-size: 13px;
   color: rgb(102, 102, 102);
   font-weight: bold;
 }
 
-.review__buttons {
+.review__buttons,
+.review__editor {
   display: flex;
   gap: 5px;
+}
+
+.review__edit-status,
+.review__delete,
+.review__edit,
+.review__cancel {
+  cursor: pointer;
 }
 
 .review__divider {
@@ -377,6 +386,14 @@ section {
   overflow-y: hidden;
   height: 17px;
   font-weight: bold;
+}
+
+.review__textarea--editing {
+  border: 0.5px solid black;
+  height: 100px;
+  border-radius: 5px;
+  padding: 5px;
+
 }
 
 .review__last-updated-date {
@@ -408,4 +425,3 @@ section {
   margin-top: 70px;
 }
 /* alcohol-review 끝 */
-/* onclick="return(false);" */
