@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="../image/components/pyeonsool-icon.svg"
+      rel="icon"
+      type="image/x-icon"
+    />
+    <title>회원가입</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../css/screens/signUp.css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="container">
+        <main>
+          <article class="sign-up">
+            <h1 class="sign-up__title">
+              <img
+                class="sign-up__logo"
+                src="../image/components/pyeonsool-logo.svg"
+                alt="pyeonsool-logo"
+              />
+            </h1>
+
+            <form action="" method="post" class="sign-up__form">
+              <div class="sign-up__nickname-wrap">
+                <h2 class="sign-up__nickname">닉네임</h2>
+
+                <input
+                  type="text"
+                  placeholder="닉네임"
+                  class="sign-up__nickname-input"
+                />
+              </div>
+
+              <div class="sign-up__id-wrap">
+                <h2 class="sign-up__id">아이디</h2>
+
+                <input
+                  type="text"
+                  placeholder="아이디"
+                  class="sign-up__id-input"
+                />
+              </div>
+
+              <div class="sign-up__password-wrap">
+                <h2 class="sign-up__password">비밀번호</h2>
+
+                <input
+                  type="password"
+                  placeholder="비밀번호"
+                  class="sign-up__password-input"
+                />
+              </div>
+
+              <div class="sign-up__password-confirm-wrap">
+                <h2 class="sign-up__password-confirm">비밀번호 확인</h2>
+
+                <input
+                  type="password"
+                  placeholder="비밀번호 확인"
+                  class="sign-up__password-confirm-input"
+                />
+              </div>
+
+              <div class="sign-up__phone-number-wrap">
+                <h2 class="sign-up__phone-number">전화번호</h2>
+
+                <input
+                  type="text"
+                  placeholder="전화번호"
+                  class="sign-up__phone-number-input"
+                />
+              </div>
+
+              <input type="submit" value="회원가입" class="sign-up__submit" />
+            </form>
+
+            <div class="sign-up__confirm-account">
+              <span class="sign-up__account-question"
+                >이미 계정이 있으신가요?</span
+              >
+
+              <a href="./signIn.html" class="sign-up__sign-in-link">로그인</a>
+            </div>
+          </article>
+        </main>
+      </div>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/b17793764c.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

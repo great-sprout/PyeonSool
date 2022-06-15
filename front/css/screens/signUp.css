@@ -1,0 +1,83 @@
+.sign-up {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-up__title {
+  margin-bottom: 30px;
+}
+
+.sign-up__logo {
+  width: 125px;
+  height: 47px;
+}
+
+.sign-up__form {
+  width: 452px;
+}
+
+.sign-up__nickname,
+.sign-up__id,
+.sign-up__password,
+.sign-up__password-confirm,
+.sign-up__phone-number {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.sign-up__nickname-input,
+.sign-up__id-input,
+.sign-up__password-input,
+.sign-up__password-confirm-input,
+.sign-up__phone-number-input {
+  width: 452px;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid rgb(34, 36, 51);
+  font-size: 15px;
+  padding: 0 10px;
+}
+
+.sign-up__nickname-input:focus,
+.sign-up__id-input:focus,
+.sign-up__password-input:focus,
+.sign-up__password-confirm-input:focus,
+.sign-up__phone-number-input:focus {
+  outline: 2px solid var(--main-color);
+  background-color: rgba(117, 59, 252, 0.07);
+}
+
+.sign-up__nickname-wrap,
+.sign-up__id-wrap,
+.sign-up__password-wrap,
+.sign-up__password-confirm-wrap {
+  margin-bottom: 30px;
+}
+
+.sign-up__phone-number-wrap {
+  margin-bottom: 45px;
+}
+
+.sign-up__submit {
+  width: 452px;
+  height: 45px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-bottom: 60px;
+  cursor: pointer;
+}
+
+.sign-up__confirm-account {
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+}
