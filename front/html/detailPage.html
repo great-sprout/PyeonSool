@@ -388,12 +388,13 @@
               </div>
 
               <ul class="reviews">
-                <li class="review">
+                <li class="review" num="1">
                   <div class="review__left-column">
                     <div class="review__row">
                       <span class="review__nickname">알코홀릭</span>
 
                       <!-- 수정 상태인 경우 onclick="return(false); 추가 -->
+                      <!-- 리뷰마다 id, for 값 다름에 유의 -->
                       <div class="stars review__stars">
                         <input
                           type="radio"
@@ -489,7 +490,7 @@
                       <div class="recommendation">
                         <i class="far fa-thumbs-up recommendation__icon"></i>
                         <i
-                          class="fas fa-thumbs-up recommendation__icon-clicked unvisible"
+                          class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
                         ></i>
                         <span class="recommendation__count">40</span>
                       </div>
@@ -603,7 +604,7 @@
                       <div class="recommendation">
                         <i class="far fa-thumbs-up recommendation__icon"></i>
                         <i
-                          class="fas fa-thumbs-up recommendation__icon-clicked unvisible"
+                          class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
                         ></i>
                         <span class="recommendation__count">40</span>
                       </div>
