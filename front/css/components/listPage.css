@@ -1,3 +1,5 @@
+
+
 .bestAlcohol-title{
     font-size:  34px;
    text-align: center;
@@ -54,7 +56,7 @@
     display: inline-block;
     width: 90%;
     height: 280px;
-    margin-left: 10px;//가운데 정렬로 바꿔야함
+    margin-left: 10px;/*가운데 정렬로 바꿔야함*/
     object-fit: cover;
 }
 .AlcoholList-text{
@@ -74,10 +76,7 @@
     height: 28px;
     border-radius: 7px;
     border: 0px solid ;
-    outline: none; //제대로 안되는것 같음
-}
-.AlcoholSortlist-find__button{
-
+    outline: none; /*제대로 안되는것 같음*/
 }
 .AlcoholSortlist-keyword button{
     height: 28px;
@@ -98,40 +97,75 @@
     -moz-text-align-last: center;
     font-size: 12.5px;
 }
-.AlcoholList-mark img{
-    width: 30px;
-    height: 20px;
+.AlcoholList-list{
+    padding-top: 20px;
+    padding-left: 70px;
+    padding-right: 70px;
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+.AlcoholList-card{
+    padding-bottom: 50px;
+    padding-right: 10px;
+}
+.AlcoholList-box{
+    position: relative;
+}
+.AlcoholList-vendor{
 
+    width: 31px;
+    position: absolute;
+    padding-left: 10px;
+    padding-top: 10px;
+    
+    z-index: 1;
+}
+.AlcoholList-vendor img{
+    width: 25px;
+    height:20px;
+    padding-bottom: 3px;
 }
 .AlcoholList-image{
     width: 255px;
     height: 255px;
     border: 0.5px solid rgb(204, 204, 204);
-    border-radius: 5px;
+    border-radius: 15px;
+    
 }
-.AlcoholList-image img{
-    display: inline;
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-}
-.AlcoholList__like{
+.AlcoholList__like p{
     border: 1px solid gray;
     font-size: 15px;
     font-weight: 700;
     width: 50px;
-    text-align: right;
+    height: 20px;
+    padding-top: 3px;;
+    text-align: center;
     border-radius: 7px;
+    bottom: 8px;
+    right: 15px;
+    position:absolute;  
+    
 }
+.AlcoholList-image img{
+
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    
+}
+
 .AlcoholList-info p{
     margin-top: 7px;
     margin-bottom: 7px;
 }
 .AlcoholList__name{
     font-size: 17px;
+    font-weight: 800;
 }
 .AlcoholList__cost{
-    font-size: 15px;;
+    font-size: 15px;
+    font-weight:600;
 }
 .AlcoholList__level{
     font-size: 13px;
