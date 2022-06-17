@@ -64,13 +64,11 @@ function addReviewRecommendationEvent() {
 
 function addReviewEditStateEvent() {
   document.querySelector(".reviews").addEventListener("click", function(event) {
-  
-    if (event.target.classList.contains("readonly")) {
-      event.preventDefault();
+    const review = event.target.closest(".review");
+    if (review === null) {
       return;
     }
-  
-    const review = event.target.closest(".review");
+    
     const reviewContent = review.querySelector(".review__content");
     const reviewTextarea = review.querySelector(".review__textarea");
     const reviewButtons = review.querySelector(".review__buttons");
@@ -79,7 +77,7 @@ function addReviewEditStateEvent() {
     const revieStars = review.querySelector(".review__stars");
     
     if (event.target.classList.contains("review__edit-status")) {
-    // 수정 가능 상태
+      // 수정 가능 상태
       reviewTextarea.textContent = reviewContent.innerText;
 
       fixedStars.classList.add("unvisible");
