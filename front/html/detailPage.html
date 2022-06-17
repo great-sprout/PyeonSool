@@ -387,20 +387,40 @@
                 <a href="#" class="review-area__recommended-order">추천순</a>
               </div>
 
-              <ul class="reviews">
-                <li class="review" num="1">
+              <div class="reviews">
+                <form class="review" num="1">
                   <div class="review__left-column">
                     <div class="review__row">
                       <span class="review__nickname">알코홀릭</span>
 
+                      <div class="review__fixed-stars">
+                        <span
+                          class="review__fixed-star review__fixed-star--selected"
+                          >★</span
+                        >
+                        <span
+                          class="review__fixed-star review__fixed-star--selected"
+                          >★</span
+                        >
+                        <span
+                          class="review__fixed-star review__fixed-star--selected"
+                          >★</span
+                        >
+                        <span
+                          class="review__fixed-star review__fixed-star--selected"
+                          >★</span
+                        >
+                        <span class="review__fixed-star">★</span>
+                      </div>
+
                       <!-- 리뷰마다 id, for 값 다름에 유의 -->
-                      <div class="stars review__stars">
+                      <div class="stars review__stars unvisible">
                         <input
                           type="radio"
                           id="5-star--id-1"
                           name="grade"
                           value="5"
-                          class="stars__radio readonly"
+                          class="stars__radio"
                         />
                         <label
                           for="5-star--id-1"
@@ -413,7 +433,7 @@
                           id="4-star--id-1"
                           name="grade"
                           value="4"
-                          class="stars__radio readonly"
+                          class="stars__radio"
                         />
                         <label
                           for="4-star--id-1"
@@ -426,7 +446,7 @@
                           id="3-star--id-1"
                           name="grade"
                           value="3"
-                          class="stars__radio readonly"
+                          class="stars__radio"
                         />
                         <label
                           for="3-star--id-1"
@@ -439,7 +459,7 @@
                           id="2-star--id-1"
                           name="grade"
                           value="2"
-                          class="stars__radio readonly"
+                          class="stars__radio"
                         />
                         <label
                           for="2-star--id-1"
@@ -452,7 +472,7 @@
                           id="1-star--id-1"
                           name="grade"
                           value="1"
-                          class="stars__radio readonly"
+                          class="stars__radio"
                         />
                         <label
                           for="1-star--id-1"
@@ -468,18 +488,30 @@
                       </div>
 
                       <div class="review__editor unvisible">
-                        <span class="review__edit">등록</span>
+                        <input
+                          type="submit"
+                          value="등록"
+                          class="review__edit"
+                        />
                         <div class="review__divider"></div>
                         <span class="review__cancel">취소</span>
                       </div>
                     </div>
 
-                    <!-- 수정 상태인 경우 review__textarea--editing 클래스 추가 -->
-                    <textarea
-                      class="review__textarea review__textarea--editing"
-                    >
-역시 소주는 참이슬이죠ㅎㅎ</textarea
-                    >
+                    <div class="review__content">
+                      역시 소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시
+                      소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                    </div>
+
+                    <textarea class="review__textarea unvisible"></textarea>
                   </div>
 
                   <div class="review__right-column">
@@ -505,21 +537,38 @@
                       </div>
                     </div>
                   </div>
-                </li>
+                </form>
 
-                <li class="review">
+                <form class="review" num="2">
                   <div class="review__left-column">
                     <div class="review__row">
                       <span class="review__nickname">알코홀릭</span>
 
-                      <div class="stars review__stars">
+                      <div class="review__fixed-stars">
+                        <span
+                          class="review__fixed-star review__fixed-star--selected"
+                          >★</span
+                        >
+                        <span
+                          class="review__fixed-star review__fixed-star--selected"
+                          >★</span
+                        >
+                        <span
+                          class="review__fixed-star review__fixed-star--selected"
+                          >★</span
+                        >
+                        <span class="review__fixed-star">★</span>
+                        <span class="review__fixed-star">★</span>
+                      </div>
+
+                      <!-- 리뷰마다 id, for 값 다름에 유의 -->
+                      <div class="stars review__stars unvisible">
                         <input
                           type="radio"
                           id="5-star--id-2"
                           name="grade"
                           value="5"
                           class="stars__radio"
-                          onclick="return(false);"
                         />
                         <label
                           for="5-star--id-2"
@@ -533,7 +582,6 @@
                           name="grade"
                           value="4"
                           class="stars__radio"
-                          onclick="return(false);"
                         />
                         <label
                           for="4-star--id-2"
@@ -547,7 +595,6 @@
                           name="grade"
                           value="3"
                           class="stars__radio"
-                          onclick="return(false);"
                         />
                         <label
                           for="3-star--id-2"
@@ -561,7 +608,6 @@
                           name="grade"
                           value="2"
                           class="stars__radio"
-                          onclick="return(false);"
                         />
                         <label
                           for="2-star--id-2"
@@ -575,7 +621,6 @@
                           name="grade"
                           value="1"
                           class="stars__radio"
-                          onclick="return(false);"
                         />
                         <label
                           for="1-star--id-2"
@@ -589,11 +634,23 @@
                         <div class="review__divider"></div>
                         <span class="review__delete">삭제</span>
                       </div>
+
+                      <div class="review__editor unvisible">
+                        <input
+                          type="submit"
+                          value="등록"
+                          class="review__edit"
+                        />
+                        <div class="review__divider"></div>
+                        <span class="review__cancel">취소</span>
+                      </div>
                     </div>
 
-                    <textarea class="review__textarea" readonly>
-역시 소주는 참이슬이죠ㅎㅎ</textarea
-                    >
+                    <div class="review__content">
+                      역시 소주는 참이슬이죠ㅎㅎ
+                    </div>
+
+                    <textarea class="review__textarea unvisible"></textarea>
                   </div>
 
                   <div class="review__right-column">
@@ -619,8 +676,8 @@
                       </div>
                     </div>
                   </div>
-                </li>
-              </ul>
+                </form>
+              </div>
 
               <div class="review-area__page">
                 <div class="page">

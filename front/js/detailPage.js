@@ -62,13 +62,51 @@ function addReviewRecommendationEvent() {
   }
 }
 
-document.querySelector(".reviews").addEventListener("click", function(event) {
+function addReviewEditStateEvent() {
+  document.querySelector(".reviews").addEventListener("click", function(event) {
   
-  if (event.target.classList.contains("readonly")) {
-    event.preventDefault();
-  }
-})
+    if (event.target.classList.contains("readonly")) {
+      event.preventDefault();
+      return;
+    }
+  
+    const review = event.target.closest(".review");
+    const reviewContent = review.querySelector(".review__content");
+    const reviewTextarea = review.querySelector(".review__textarea");
+    const reviewButtons = review.querySelector(".review__buttons");
+    const reviewEditor = review.querySelector(".review__editor");
+    const fixedStars = review.querySelector(".review__fixed-stars");
+    const revieStars = review.querySelector(".review__stars");
+    
+    if (event.target.classList.contains("review__edit-status")) {
+    // 수정 가능 상태
+      reviewTextarea.textContent = reviewContent.innerText;
+
+      fixedStars.classList.add("unvisible");
+      revieStars.classList.remove("unvisible");
+      reviewContent.classList.add("unvisible");
+      reviewTextarea.classList.remove("unvisible");
+      reviewButtons.classList.add("unvisible");
+      reviewEditor.classList.remove("unvisible");
+  
+    } else if (event.target.classList.contains("review__cancel")) {
+      // 수정 불가능 상태
+      fixedStars.classList.remove("unvisible");
+      revieStars.classList.add("unvisible");
+      reviewContent.classList.remove("unvisible");
+      reviewTextarea.classList.add("unvisible");
+      reviewButtons.classList.remove("unvisible");
+      reviewEditor.classList.add("unvisible");
+    }
+  
+  });
+}
+
+
+
+
 
 addLikeClickEvent();
 addReviewRecommendationEvent();
 addRecommendationSlidingEvent();
+addReviewEditStateEvent();
