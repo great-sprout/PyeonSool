@@ -81,3 +81,8 @@
   gap: 30px;
   font-size: 14px;
 }
+
+.errors {
+  margin-top: 10px;
+  color: rgb(209, 3, 3);
+}
