@@ -1,23 +1,27 @@
 
-
-.bestAlcohol-title{
-    font-size:  34px;
-   text-align: center;
-   font-weight:600 ;
-   padding-top: 20px;;
+#container{
+    padding: 100px 150px 50px 150px; /*상 우 하 좌*/
+    width: 1500px;
+    margin:auto;
 }
-
+.alcohol-title{
+    font-size: 34px;
+    margin-left: -60px;
+    padding-bottom: 100px;
+    text-align: center;
+    font-weight:800 ;
+}/* 주류 종류 title*/
 .bestAlcohol-text{
     font-size: 20px;
-    font-weight: 450;
-    align: start;
+    font-weight: 500;
+    align-items: start;
     width:90%;
     display:inline-block;
-}
+}/**/
 .bestAlcohol-buttons{   
     width: 10%;
     display: inline-block;
-}
+}/*베스트 버튼 묶음*/
 .bestAlcohol__move{
     background-color: white ;
     color: rgb(117, 59, 252);
@@ -27,21 +31,27 @@
     text-align: center;
     border-radius: 50%;
     outline: none;
-}
-.bestAlcoholList{
-    width:90%;
-    height: 330px;
+}/* 베스트 움직임 버튼*/
+.bestAlcoholList-list{
+    height: 350px;
     overflow: hidden;
-    margin-left: 30px;
     margin-top: 20px;
-}
-.bestAlcoholList-box{
-    display: inline-block;
+    display: flex;
+    flex-direction:  row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-content:center;
+}/*베스트 리스트 묶음*/
+.bestAlcoholList-card{
+    position: relative;
+}/*베스트 리스트 하나의 카드*/
+.bestAlcohol-image{
+    position: absolute;
     width:272px;
     height: 323.5px;
     border: 1px solid rgb(204,204,204);
     border-radius: 30px;
-}
+}/*베스트 리스트 카드 안 이미지*/
 .bestAlcohol-mark{
     background-color: black;
     color: white;
@@ -51,25 +61,26 @@
     padding-top: 3px;
     margin-left: 20px;
     margin-top: 3px;
-}
-.bestAlcohol-image img{
-    display: inline-block;
-    width: 90%;
-    height: 280px;
-    margin-left: 10px;/*가운데 정렬로 바꿔야함*/
-    object-fit: cover;
-}
+    position: absolute;
+    z-index: 1;
+}/*베스트 리스트 카드 안 베스트 마크*/
+
 .AlcoholList-text{
     font-size: 20px;
     font-weight: 450;
-    align: start;
     margin-bottom: 20px;
+    margin-top: 20px;
 }
 .AlcoholSortList{
-    padding-top: 20px;
-}
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+}/*알콜 리스트 정렬에 관련된 기능 묶음*/
 
-.AlcoholSortlist-find input{
+
+.AlcoholSortList-find input{
     background-color: rgb(117, 59, 252);
     opacity: 33%;
     width: 186px;
@@ -77,16 +88,20 @@
     border-radius: 7px;
     border: 0px solid ;
     outline: none; /*제대로 안되는것 같음*/
-}
-.AlcoholSortlist-keyword button{
+}/*알콜 검색 창*/
+.AlcoholSortList-keyword{
+    width: 63%;
+    margin-left: 1%;
+}/*알콜 키워드 묶음 */
+.AlcoholSortList-keyword button{
     height: 28px;
     background-color: white;
     border:1px solid rgb(117, 59, 252);
     color:rgb(117, 59, 252);
     border-radius: 5px;
-}
+}/*알콜 키워드 버튼 */
 
-.AlcoholSortlist-sort select{
+.AlcoholSortList-sort select{
     height: 34px;
     width: 80px;
     border-radius: 5px;
@@ -96,43 +111,39 @@
     -ms-text-align-last: center;
     -moz-text-align-last: center;
     font-size: 12.5px;
-}
+}/*알콜 키워드 정렬 셀렉트 박스*/
+
+
 .AlcoholList-list{
     padding-top: 20px;
-    padding-left: 70px;
-    padding-right: 70px;
     display: inline-flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
-}
+} /*알콜 리스트 */
 .AlcoholList-card{
-    padding-bottom: 50px;
-    padding-right: 10px;
-}
+    margin-right: 30px;
+    margin-top: 30px;
+}/*알콜 리스트 카드*/
 .AlcoholList-box{
     position: relative;
-}
+}/*알콜 리스트 카드 안 박스*/
 .AlcoholList-vendor{
-
     width: 31px;
     position: absolute;
-    padding-left: 10px;
     padding-top: 10px;
-    
     z-index: 1;
-}
+}/*알콜 리스트 카드안 편의점 박스*/
 .AlcoholList-vendor img{
     width: 25px;
     height:20px;
     padding-bottom: 3px;
-}
+}/*알콜 리스트 편의점 박스 이미지 크기*/
 .AlcoholList-image{
     width: 255px;
     height: 255px;
     border: 0.5px solid rgb(204, 204, 204);
     border-radius: 15px;
-    
-}
+}/*알콜 리스트 이미지 밖 div*/
 .AlcoholList__like p{
     border: 1px solid gray;
     font-size: 15px;
@@ -146,18 +157,18 @@
     right: 15px;
     position:absolute;  
     
-}
+}/*알콜 리스트 이미지 안 좋아요*/
 .AlcoholList-image img{
-
     width: 250px;
     height: 250px;
     object-fit: cover;
     
-}
+}/*알콜 리스트 이미지 */
 
 .AlcoholList-info p{
     margin-top: 7px;
     margin-bottom: 7px;
+    padding-left: 10px;
 }
 .AlcoholList__name{
     font-size: 17px;

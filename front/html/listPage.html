@@ -22,7 +22,7 @@
     <link
       rel="stylesheet"
       type="text/css"
-      href="../css/components/listPage.css"
+      href="../css/screens/listPage.css"
     />
     <title>상품 목록</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css" />
@@ -90,28 +90,38 @@
       <div id="container">
         <main>
           <article class="bestAlcohol">
-
-            <h1 class="bestAlcohol-title">맥주</h1>
+            <h1 class="alcohol-title">맥주</h1>
             <div class="bestAlcohol-group">
                 <span class="bestAlcohol-text">추천베스트</span>
                 <span clas="bestAlcohol-buttons">
                   <button class="bestAlcohol__move"><</button>
                   <button class="bestAlcohol__move">></button>
                 </span>
-                
             </div>
           </article>
-          <article class="bestAlcoholList">
-            <ul>
-              <c:forEach var="i" begin="0" end="3" step="1">
-                <li><c:out value="${i}"/>
-                  <span class="bestAlcoholList-box">
-                      <div class="bestAlcohol-mark">best</div>
-                      <div class="bestAlcohol-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
-                  </span>
-                 </li> 
-                <br>
-              </c:forEach>
+          
+          <article class="bestAlcoholList" >
+            <ul class="bestAlcoholList-list">
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
             </ul>
           </article>
         </main>
@@ -119,25 +129,25 @@
         <section>
           <h2 class="AlcoholList-text">상품 목록</h2>
           <article class="AlcoholList">
-            <div class="AlcoholSortlist">
-              <span class="AlcoholSortlist-find">
+            <div class="AlcoholSortList">
+              <span class="AlcoholSortList-find">
                 <input  type="text">
-                <button class="AlcoholSortlist-find__button"></button>
+                <button class="AlcoholSortList-find__button"></button>
               </span>
-              <span class="AlcoholSortlist-keyword">
+              <span class="AlcoholSortList-keyword">
                 <button>달콤함</button>
                 <button>sweet</button>
                 <button>시원함</button>
                 <button>흑맥주</button>
                 <button>더보기</button>
               </span>
-              <span class="AlcoholSortlist-sort">
-                <select class="cvlist">
+              <span class="AlcoholSortList-sort">
+                <select class="VendorList">
                   <option value="cu" data-image="/image/components/cu-logo.png">cu</option>
                   <option value="gs25" data-image="../image/components/cu-logo.png">gs25</option>
                   <option value="7-11" data-image="../image/components/cu-logo.png">711</option>
                 </select>
-                <select class="sortlist">
+                <select class="SortList">
                   <option value="좋아요순">좋아요순</option>
                   <option value="낮은 가격순">낮은 가격순 </option>
                   <option value="높은 가격순">높은 가격순</option>
