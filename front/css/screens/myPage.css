@@ -74,12 +74,48 @@
     height: 150px;
 }
 
-/*이미지에 마우스 올릴시 약간 커지는 효과  */
+/*이미지에 마우스 올릴시 약간 커지는 효과 */
 .mypage-like__item:hover {
     opacity: 0.8;
     transform: scale(1.1);
-
 }
+
+.mypage-like__delete{
+  position: absolute;
+  margin-top: -190px;
+  margin-left: 190px;
+  z-index: 1;
+}
+
+.mypage-like__delete-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.mypage-like__delete-icon{
+  visibility: hidden;
+  border: none;
+  font-size: 20px;
+  color: rgb(117, 59, 252);
+  cursor: pointer;
+}
+
+.mypage-like__delete-icon:hover{
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/*이미지에 마우스 올릴시 x버튼 표시 */
+.mypage-like__item:hover i{
+  visibility: visible;
+  
+}
+
+
+
 
 /*내 Like 리스트 끝*/
 
