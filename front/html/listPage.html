@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+    <link
+      href="../image/components/pyeonsool-icon.svg"
+      rel="icon"
+      type="image/x-icon"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/components/header.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../css/screens/listPage.css"
+    />
+    <title>상품 목록</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../css/screens/myPage.css" />
+  </head>
+  <body>
+    <div id="wrap">
+        <header class="header">
+            <nav class="header__nav">
+              <i class="fas fa-bars"></i>
+              <i class="fas fa-times unvisible"></i>
+    
+              <ul class="list-nav unvisible">
+                <li class="list-nav__item">
+                  <a href="./productListPage.html">소주</a>
+                </li>
+                <li class="list-nav__item">
+                  <a href="./productListPage.html">맥주</a>
+                </li>
+                <li class="list-nav__item">
+                  <a href="./productListPage.html">와인</a>
+                </li>
+              </ul>
+            </nav>
+    
+            <div class="header__logo">
+              <a href="./mainPage.html" class="logo-link">
+                <img
+                  src="../image/components/pyeonsool-logo.svg"
+                  alt="편술 로고"
+                  class="logo"
+                />
+              </a>
+            </div>
+    
+            <div class="header__profile">
+              <i class="far fa-user-circle"></i>
+    
+              <div class="header-profile unvisible">
+                <div class="header-profile__triangle"></div>
+    
+                <div class="header-profile__content">
+                  <div class="header-profile__link">
+                    <a class="header-profile__mypage">마이페이지</a>
+                    <div class="header-profile__divider"></div>
+                    <span class="header-profile__logout">로그아웃</span>
+                  </div>
+    
+                  <div class="header-profile__keywords">
+                    <span class="keyword">#달콤함</span>
+                    <span class="keyword">#깔끔함</span>
+                    <span class="keyword">#묵직함</span>
+                  </div>
+    
+                  <div class="header-profile__select-again-keyword-wrap">
+                    <span class="header-profile__select-again-keyword"
+                      >다시 고르기</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </header>
+
+      <div id="container">
+        <main>
+          <article class="bestAlcohol">
+            <h1 class="alcohol-title">맥주</h1>
+            <div class="bestAlcohol-group">
+                <span class="bestAlcohol-text">추천베스트</span>
+                <span clas="bestAlcohol-buttons">
+                  <button class="bestAlcohol__move"><</button>
+                  <button class="bestAlcohol__move">></button>
+                </span>
+            </div>
+          </article>
+          
+          <article class="bestAlcoholList" >
+            <ul class="bestAlcoholList-list">
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+              <li class="bestAlcoholList-card" >
+                <p class="bestAlcohol-mark">best</p>
+                <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+              </li>
+            </ul>
+          </article>
+        </main>
+
+        <section>
+          <h2 class="AlcoholList-text">상품 목록</h2>
+          <article class="AlcoholList">
+            <div class="AlcoholSortList">
+              <span class="AlcoholSortList-find">
+                <input  type="text">
+                <button class="AlcoholSortList-find__button"></button>
+              </span>
+              <span class="AlcoholSortList-keyword">
+                <button>달콤함</button>
+                <button>sweet</button>
+                <button>시원함</button>
+                <button>흑맥주</button>
+                <button>더보기</button>
+              </span>
+              <span class="AlcoholSortList-sort">
+                <select class="VendorList">
+                  <option value="cu" data-image="/image/components/cu-logo.png">cu</option>
+                  <option value="gs25" data-image="../image/components/cu-logo.png">gs25</option>
+                  <option value="7-11" data-image="../image/components/cu-logo.png">711</option>
+                </select>
+                <select class="SortList">
+                  <option value="좋아요순">좋아요순</option>
+                  <option value="낮은 가격순">낮은 가격순 </option>
+                  <option value="높은 가격순">높은 가격순</option>
+                  <option value="낮은 도수순">낮은 도수순</option>
+                  <option value="높은 도수순">높은 도수순</option>
+                </select>
+              </span>
+            </div>
+           
+          </article>
+
+          <article class="AlcoholList-list">
+            <span class="AlcoholList-card">
+              <div class="AlcoholList-vendor">
+                <img src="../image/components/cu-logo.png">
+                <img src="../image/components/7eleven-logo.png">
+                <img src="../image/components/gs25-logo.png">
+              </div>
+              <div class="AlcoholList-box">
+                <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                <div class="AlcoholList__like">
+                   <p>345</p>
+                </div>
+                </div>
+                  <div class="AlcoholList-info">
+                    <p class="AlcoholList__name">테라 500mL</p>
+                    <p class="AlcoholList__cost">4,400원</p>
+                    <p class="AlcoholList__abv">5도</p>
+                </div>
+                <div class="AlcoholList-keyword">
+                  <button>heavy</button>
+                  <button>sweet</button>
+                  <button>시원함</button>
+                </div>
+            </span>
+            <span class="AlcoholList-card">
+              <div class="AlcoholList-vendor">
+                <img src="../image/components/cu-logo.png">
+                <img src="../image/components/7eleven-logo.png">
+                <img src="../image/components/gs25-logo.png">
+              </div>
+              <div class="AlcoholList-box">
+                <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                <div class="AlcoholList__like">
+                   <p>345</p>
+                </div>
+                </div>
+                  <div class="AlcoholList-info">
+                    <p class="AlcoholList__name">테라 500mL</p>
+                    <p class="AlcoholList__cost">4,400원</p>
+                    <p class="AlcoholList__abv">5도</p>
+                </div>
+                <div class="AlcoholList-keyword">
+                  <button>heavy</button>
+                  <button>sweet</button>
+                  <button>시원함</button>
+                </div>
+            </span>
+            <span class="AlcoholList-card">
+              <div class="AlcoholList-vendor">
+                <img src="../image/components/cu-logo.png">
+                <img src="../image/components/7eleven-logo.png">
+                <img src="../image/components/gs25-logo.png">
+              </div>
+              <div class="AlcoholList-box">
+                <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                <div class="AlcoholList__like">
+                   <p>345</p>
+                </div>
+                </div>
+                  <div class="AlcoholList-info">
+                    <p class="AlcoholList__name">테라 500mL</p>
+                    <p class="AlcoholList__cost">4,400원</p>
+                    <p class="AlcoholList__abv">5도</p>
+                </div>
+                <div class="AlcoholList-keyword">
+                  <button>heavy</button>
+                  <button>sweet</button>
+                  <button>시원함</button>
+                </div>
+            </span>
+            <span class="AlcoholList-card">
+              <div class="AlcoholList-vendor">
+                <img src="../image/components/cu-logo.png">
+                <img src="../image/components/7eleven-logo.png">
+                <img src="../image/components/gs25-logo.png">
+              </div>
+              <div class="AlcoholList-box">
+                <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                <div class="AlcoholList__like">
+                   <p>345</p>
+                </div>
+                </div>
+                  <div class="AlcoholList-info">
+                    <p class="AlcoholList__name">테라 500mL</p>
+                    <p class="AlcoholList__cost">4,400원</p>
+                    <p class="AlcoholList__abv">5도</p>
+                </div>
+                <div class="AlcoholList-keyword">
+                  <button>heavy</button>
+                  <button>sweet</button>
+                  <button>시원함</button>
+                </div>
+            </span>
+            <span class="AlcoholList-card">
+              <div class="AlcoholList-vendor">
+                <img src="../image/components/cu-logo.png">
+                <img src="../image/components/7eleven-logo.png">
+                <img src="../image/components/gs25-logo.png">
+              </div>
+              <div class="AlcoholList-box">
+                <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                <div class="AlcoholList__like">
+                   <p>345</p>
+                </div>
+                </div>
+                  <div class="AlcoholList-info">
+                    <p class="AlcoholList__name">테라 500mL</p>
+                    <p class="AlcoholList__cost">4,400원</p>
+                    <p class="AlcoholList__abv">5도</p>
+                </div>
+                <div class="AlcoholList-keyword">
+                  <button>heavy</button>
+                  <button>sweet</button>
+                  <button>시원함</button>
+                </div>
+            </span>
+            <span class="AlcoholList-card">
+              <div class="AlcoholList-vendor">
+                <img src="../image/components/cu-logo.png">
+                <img src="../image/components/7eleven-logo.png">
+                <img src="../image/components/gs25-logo.png">
+              </div>
+              <div class="AlcoholList-box">
+                <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                <div class="AlcoholList__like">
+                   <p>345</p>
+                </div>
+                </div>
+                  <div class="AlcoholList-info">
+                    <p class="AlcoholList__name">테라 500mL</p>
+                    <p class="AlcoholList__cost">4,400원</p>
+                    <p class="AlcoholList__abv">5도</p>
+                </div>
+                <div class="AlcoholList-keyword">
+                  <button>heavy</button>
+                  <button>sweet</button>
+                  <button>시원함</button>
+                </div>
+            </span>
+            <span class="AlcoholList-card">
+              <div class="AlcoholList-vendor">
+                <img src="../image/components/cu-logo.png">
+                <img src="../image/components/7eleven-logo.png">
+                <img src="../image/components/gs25-logo.png">
+              </div>
+              <div class="AlcoholList-box">
+                <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                <div class="AlcoholList__like">
+                   <p>345</p>
+                </div>
+                </div>
+                  <div class="AlcoholList-info">
+                    <p class="AlcoholList__name">테라 500mL</p>
+                    <p class="AlcoholList__cost">4,400원</p>
+                    <p class="AlcoholList__abv">5도</p>
+                </div>
+                <div class="AlcoholList-keyword">
+                  <button>heavy</button>
+                  <button>sweet</button>
+                  <button>시원함</button>
+                </div>
+            </span>
+            <span class="AlcoholList-card">
+              <div class="AlcoholList-vendor">
+                <img src="../image/components/cu-logo.png">
+                <img src="../image/components/7eleven-logo.png">
+                <img src="../image/components/gs25-logo.png">
+              </div>
+              <div class="AlcoholList-box">
+                <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                <div class="AlcoholList__like">
+                   <p>345</p>
+                </div>
+                </div>
+                  <div class="AlcoholList-info">
+                    <p class="AlcoholList__name">테라 500mL</p>
+                    <p class="AlcoholList__cost">4,400원</p>
+                    <p class="AlcoholList__abv">5도</p>
+                </div>
+                <div class="AlcoholList-keyword">
+                  <button>heavy</button>
+                  <button>sweet</button>
+                  <button>시원함</button>
+                </div>
+            </span>
+          </article>
+        </section>
+
+        <aside></aside>
+      </div>
+
+      <footer></footer>
+    </div>
+  </body>
+</html>
