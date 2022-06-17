@@ -62,7 +62,12 @@ function addReviewRecommendationEvent() {
   }
 }
 
-
+document.querySelector(".reviews").addEventListener("click", function(event) {
+  
+  if (event.target.classList.contains("readonly")) {
+    event.preventDefault();
+  }
+})
 
 addLikeClickEvent();
 addReviewRecommendationEvent();
