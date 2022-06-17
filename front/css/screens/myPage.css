@@ -101,6 +101,7 @@
       position: relative;
       width: 1180px;
       height: 230px;
+      overflow: hidden;
       padding: 10px 10px 0 10px;
       margin-top: 15px;
       margin-left:-5px;
@@ -142,7 +143,29 @@
 
 }
 
-  /*취향저격 편술 끝*/
+/*슬라이드 버튼*/
+.slide-button {
+  position: absolute;
+  font-size: 30px;
+  color: var(--main-color);
+  font-weight: 900;
+  top: 51%;
+  cursor: pointer;
+}
+
+.slide-button--left {
+  left: -40px;
+}
+
+.slide-button--right {
+  right: -40px;
+}
+
+.mypage-mystyle__item:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+/*취향저격 편술 끝*/
 
 
 /*내리뷰 리스트 시작*/
