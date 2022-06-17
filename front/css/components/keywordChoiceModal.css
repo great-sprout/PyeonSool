@@ -1,0 +1,80 @@
+.keyword-choice {
+  width: 964px;
+  height: 651px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.keyword-choice__title {
+  display: flex;
+  align-items: center;
+  margin: 50px 0 50px 0;
+}
+
+.keyword-choice__logo {
+  width: 125px;
+  height: 47px;
+}
+
+.keyword-choice__title-text {
+  font-size: 32px;
+  font-weight: bold;
+  margin: 3px 0 0 5px;
+}
+
+.keyword-choice__description {
+  font-size: 26px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 70px;
+  color: var(--gray);
+}
+
+.keyword-choice__keywords {
+  width: 630px;
+  height: 170px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.keyword-choice__keyword-input {
+  display: none;
+}
+
+.keyword-choice__keyword-label {
+  width: 70px;
+  height: 37px;
+  border: 0.5px solid rgba(117, 59, 252, 0.53);
+  font-size: 16px;
+  font-weight: bolder;
+  color: rgba(117, 59, 252, 0.53);
+  padding: 12px;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.keyword-choice__keyword-label--selected {
+  background-color: var(--main-color);
+  color: white;
+  border: none;
+}
+
+.keyword-choice__confirm {
+  background-color: var(--main-color);
+  border: none;
+  cursor: pointer;
+  width: 147px;
+  height: 44px;
+  font-weight: bold;
+  color: white;
+  border-radius: 8px;
+}
