@@ -62,10 +62,9 @@
   cursor: pointer;
 }
 
-.keyword-choice__keyword-label--selected {
+.keyword-choice__keyword-input:checked + .keyword-choice__keyword-label {
   background-color: var(--main-color);
   color: white;
-  border: none;
 }
 
 .keyword-choice__confirm {
