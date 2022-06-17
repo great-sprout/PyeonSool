@@ -100,10 +100,6 @@ function addReviewEditStateEvent() {
   });
 }
 
-
-
-
-
 addLikeClickEvent();
 addReviewRecommendationEvent();
 addRecommendationSlidingEvent();
