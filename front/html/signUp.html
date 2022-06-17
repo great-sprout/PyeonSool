@@ -77,7 +77,46 @@
                 />
               </div>
 
-              <input type="submit" value="회원가입" class="sign-up__submit" />
+              <input type="button" value="회원가입" class="sign-up__submit" />
+
+              <div class="modal">
+                <div class="keyword-choice modal-body">
+                  <div class="keyword-choice__title">
+                    <img
+                      src="../image/components/pyeonsool-logo.svg"
+                      alt="편술"
+                      class="keyword-choice__logo"
+                    />
+
+                    <span class="keyword-choice__title-text"
+                      >에 오신 것을 환영합니다</span
+                    >
+                  </div>
+
+                  <div class="keyword-choice__description">
+                    <span>당신만을 위한 편술,</span>
+                    <span>본인의 취향을 3가지 선택해주세요</span>
+                  </div>
+
+                  <div class="keyword-choice__keywords">
+                    <input
+                      id="keyword-1"
+                      type="checkbox"
+                      value="heavy"
+                      class="keyword-choice__keyword-input"
+                    />
+                    <label for="keyword-1" class="keyword-choice__keyword-label"
+                      >heavy</label
+                    >
+                  </div>
+
+                  <input
+                    type="submit"
+                    value="확인"
+                    class="keyword-choice__confirm"
+                  />
+                </div>
+              </div>
             </form>
 
             <div class="sign-up__confirm-account">
