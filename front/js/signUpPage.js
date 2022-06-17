@@ -1,6 +1,16 @@
 function addKeywordChoiceModalEvent() {
   const UNVISIBLE = "unvisible";
   document.querySelector(".sign-up__submit").addEventListener("click", function() {
+    const password = document.querySelector(".sign-up__password-input").value;
+    const passwordConfirm = document.querySelector(".sign-up__password-confirm-input").value;
+
+    if (password !== passwordConfirm) {
+      document.querySelector(".sign-up__password-confirm-wrap .errors").classList.remove("unvisible");
+      return;
+    } else {
+      document.querySelector(".sign-up__password-confirm-wrap .errors").classList.add("unvisible");
+    }
+
     document.querySelector(".modal").classList.remove(UNVISIBLE);
   });
 

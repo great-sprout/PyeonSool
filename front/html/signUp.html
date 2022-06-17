@@ -34,6 +34,8 @@
                   type="text"
                   placeholder="닉네임"
                   class="sign-up__nickname-input"
+                  required
+                  maxlength="20"
                 />
               </div>
 
@@ -44,6 +46,8 @@
                   type="text"
                   placeholder="아이디"
                   class="sign-up__id-input"
+                  required
+                  maxlength="20"
                 />
               </div>
 
@@ -54,6 +58,9 @@
                   type="password"
                   placeholder="비밀번호"
                   class="sign-up__password-input"
+                  required
+                  minlength="4"
+                  maxlength="20"
                 />
               </div>
 
@@ -64,16 +71,24 @@
                   type="password"
                   placeholder="비밀번호 확인"
                   class="sign-up__password-confirm-input"
+                  required
+                  maxlength="20"
                 />
+
+                <div class="errors unvisible">
+                  <span class="error">비밀번호가 일치하지 않습니다.</span>
+                </div>
               </div>
 
               <div class="sign-up__phone-number-wrap">
                 <h2 class="sign-up__phone-number">전화번호</h2>
 
                 <input
-                  type="text"
+                  type="number"
                   placeholder="전화번호"
                   class="sign-up__phone-number-input"
+                  required
+                  maxlength="14"
                 />
               </div>
 
