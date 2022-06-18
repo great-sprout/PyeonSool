@@ -14,23 +14,15 @@ function addMystyleSlidingEvent() {
     const rightSlideButton = document.querySelector(".slide-button--right");
     
     //객체 생성
-    const  mystyleSlideController = new MyPageSildeController(10, mypageMystyleItems, IMAGE_COUNT, SLIDE_DISTANCE, leftSlideButton, rightSlideButton);
-                                                    //initLeft, imageBox, imageCount, slideDistance, prevButton, nextButton
-                                                    //this.index += (selectedButton === this.prevButton) ? -1 : 1;
-                                                    //this.imageBox.style.left = 10 -( 0* 1190) + "px"; //초기상태 10px
-                                                    //this.imageBox.style.left = 10 -( 1* 1190) + "px"; //nextButton클릭시 -1180px
-    //addEventListener메소드
-    //ex)leftSlideButton.addEventListener 해석하면
-    //leftSlideButton라는 문서 객체의 click 이벤트가 발생했을 때,
-    //매개변수로 지정한 콜백 함수를 실행해라는 의미
-    //즉 click은 이벤트명이다. function(event)은 함수이다.
+    const recommendationSlideController = new SlideController(10, mypageMystyleItems, IMAGE_COUNT, 5,  SLIDE_DISTANCE, leftSlideButton, rightSlideButton);
+    recommendationSlideController.controlButtons();
+   
     leftSlideButton.addEventListener("click", function(event) {
-       //event.target은 이벤트가 발생한 요소를 반환해줌
-        mystyleSlideController.slide(event.target);
+        recommendationSlideController.controlButtonSlide(event.target);
     });
     
     rightSlideButton.addEventListener("click", function(event) {
-        mystyleSlideController.slide(event.target);
+        recommendationSlideController.controlButtonSlide(event.target);
     });
   }
 

@@ -1,9 +1,6 @@
-
 <!DOCTYPE html>
 
-
 <html lang="ko" xmlns:th="http://www.thymeleaf.org/">
-
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,125 +16,148 @@
       type="text/css"
       href="../css/components/header.css"
     />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../css/screens/listPage.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../css/screens/listPage.css" />
     <title>상품 목록</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css" />
     <link rel="stylesheet" type="text/css" href="../css/screens/myPage.css" />
   </head>
   <body>
     <div id="wrap">
-        <header class="header">
-            <nav class="header__nav">
-              <i class="fas fa-bars"></i>
-              <i class="fas fa-times unvisible"></i>
-    
-              <ul class="list-nav unvisible">
-                <li class="list-nav__item">
-                  <a href="./productListPage.html">소주</a>
-                </li>
-                <li class="list-nav__item">
-                  <a href="./productListPage.html">맥주</a>
-                </li>
-                <li class="list-nav__item">
-                  <a href="./productListPage.html">와인</a>
-                </li>
-              </ul>
-            </nav>
-    
-            <div class="header__logo">
-              <a href="./mainPage.html" class="logo-link">
-                <img
-                  src="../image/components/pyeonsool-logo.svg"
-                  alt="편술 로고"
-                  class="logo"
-                />
-              </a>
-            </div>
-    
-            <div class="header__profile">
-              <i class="far fa-user-circle"></i>
-    
-              <div class="header-profile unvisible">
-                <div class="header-profile__triangle"></div>
-    
-                <div class="header-profile__content">
-                  <div class="header-profile__link">
-                    <a class="header-profile__mypage">마이페이지</a>
-                    <div class="header-profile__divider"></div>
-                    <span class="header-profile__logout">로그아웃</span>
-                  </div>
-    
-                  <div class="header-profile__keywords">
-                    <span class="keyword">#달콤함</span>
-                    <span class="keyword">#깔끔함</span>
-                    <span class="keyword">#묵직함</span>
-                  </div>
-    
-                  <div class="header-profile__select-again-keyword-wrap">
-                    <span class="header-profile__select-again-keyword"
-                      >다시 고르기</span
-                    >
-                  </div>
-                </div>
+      <header class="header">
+        <nav class="header__nav">
+          <i class="fas fa-bars"></i>
+          <i class="fas fa-times unvisible"></i>
+
+          <ul class="list-nav unvisible">
+            <li class="list-nav__item">
+              <a href="./productListPage.html">소주</a>
+            </li>
+            <li class="list-nav__item">
+              <a href="./productListPage.html">맥주</a>
+            </li>
+            <li class="list-nav__item">
+              <a href="./productListPage.html">와인</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="header__logo">
+          <a href="./mainPage.html" class="logo-link">
+            <img
+              src="../image/components/pyeonsool-logo.svg"
+              alt="편술 로고"
+              class="logo"
+            />
+          </a>
+        </div>
+
+        <div class="header__profile">
+          <i class="far fa-user-circle"></i>
+
+          <div class="header-profile unvisible">
+            <div class="header-profile__triangle"></div>
+
+            <div class="header-profile__content">
+              <div class="header-profile__link">
+                <a class="header-profile__mypage">마이페이지</a>
+                <div class="header-profile__divider"></div>
+                <span class="header-profile__logout">로그아웃</span>
+              </div>
+
+              <div class="header-profile__keywords">
+                <span class="keyword">#달콤함</span>
+                <span class="keyword">#깔끔함</span>
+                <span class="keyword">#묵직함</span>
+              </div>
+
+              <div class="header-profile__select-again-keyword-wrap">
+                <span class="header-profile__select-again-keyword"
+                  >다시 고르기</span
+                >
               </div>
             </div>
-          </header>
+          </div>
+        </div>
+      </header>
 
       <div id="container">
         <main>
           <article class="bestAlcohol">
             <h1 class="alcohol-title">맥주</h1>
             <div class="bestAlcohol-group">
-                <span class="bestAlcohol-text">추천베스트</span>
-                <span clas="bestAlcohol-buttons">
-                  <button class="bestAlcohol__leftmove"><</button>
-                  <button class="bestAlcohol__rightmove">></button>
-                </span>
+              <span class="bestAlcohol-text">추천베스트</span>
+              <span clas="bestAlcohol-buttons">
+                <button class="bestAlcohol__leftmove"><</button>
+                <button class="bestAlcohol__rightmove">></button>
+              </span>
             </div>
           </article>
-          
-          <article >
+
+          <article class="best-alcohol-list-wrap">
             <div class="bestAlcoholList">
               <ul class="bestAlcoholList-list">
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/cass.png">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/cass.png"
+                  />
                 </li>
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/calsberg.jpg">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/calsberg.jpg"
+                  />
                 </li>
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/jinlo.png">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/jinlo.png"
+                  />
                 </li>
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/guinness.png">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/guinness.png"
+                  />
                 </li>
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/gyeongbokgung.jpeg">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/gyeongbokgung.jpeg"
+                  />
                 </li>
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/heineken.jpg">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/heineken.jpg"
+                  />
                 </li>
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/surfing-high.png">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/surfing-high.png"
+                  />
                 </li>
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/gyeongbokgung.jpeg">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/gyeongbokgung.jpeg"
+                  />
                 </li>
-                <li class="bestAlcoholList-card" >
+                <li class="bestAlcoholList-card">
                   <p class="bestAlcohol-mark">best</p>
-                  <img class="bestAlcohol-image" src="../image/alcohol/somersby-apple.png">
+                  <img
+                    class="bestAlcohol-image"
+                    src="../image/alcohol/somersby-apple.png"
+                  />
                 </li>
               </ul>
             </div>
@@ -149,7 +169,7 @@
           <article class="AlcoholList">
             <div class="AlcoholSortList">
               <span class="AlcoholSortList-find">
-                <input  type="text">
+                <input type="text" />
                 <button class="AlcoholSortList-find__button"></button>
               </span>
               <span class="AlcoholSortList-keyword">
@@ -161,35 +181,48 @@
               </span>
               <span class="AlcoholSortList-sort">
                 <select class="VendorList">
-                  <option value="cu" data-image="/image/components/cu-logo.png">cu</option>
-                  <option value="gs25" data-image="../image/components/cu-logo.png">gs25</option>
-                  <option value="7-11" data-image="../image/components/cu-logo.png">711</option>
+                  <option value="cu" data-image="/image/components/cu-logo.png">
+                    cu
+                  </option>
+                  <option
+                    value="gs25"
+                    data-image="../image/components/cu-logo.png"
+                  >
+                    gs25
+                  </option>
+                  <option
+                    value="7-11"
+                    data-image="../image/components/cu-logo.png"
+                  >
+                    711
+                  </option>
                 </select>
                 <select class="SortList">
                   <option value="좋아요순">좋아요순</option>
-                  <option value="낮은 가격순">낮은 가격순 </option>
+                  <option value="낮은 가격순">낮은 가격순</option>
                   <option value="높은 가격순">높은 가격순</option>
                   <option value="낮은 도수순">낮은 도수순</option>
                   <option value="높은 도수순">높은 도수순</option>
                 </select>
               </span>
             </div>
-           
           </article>
 
-          <article >
+          <article>
             <ul class="AlcoholList-list">
               <li>
                 <div class="AlcoholList-card">
                   <div class="AlcoholList-vendor">
-                    <img src="../image/components/cu-logo.png">
-                    <img src="../image/components/7eleven-logo.png">
-                    <img src="../image/components/gs25-logo.png">
+                    <img src="../image/components/cu-logo.png" />
+                    <img src="../image/components/7eleven-logo.png" />
+                    <img src="../image/components/gs25-logo.png" />
                   </div>
                   <div class="AlcoholList-box">
-                    <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                    <div class="AlcoholList-image">
+                      <img src="../image/alcohol/calsberg.jpg" alt="i" />
+                    </div>
                     <div class="AlcoholList__like">
-                       <p>345</p>
+                      <p>345</p>
                     </div>
                   </div>
                   <div class="AlcoholList-info">
@@ -207,14 +240,16 @@
               <li>
                 <div class="AlcoholList-card">
                   <div class="AlcoholList-vendor">
-                    <img src="../image/components/cu-logo.png">
-                    <img src="../image/components/7eleven-logo.png">
-                    <img src="../image/components/gs25-logo.png">
+                    <img src="../image/components/cu-logo.png" />
+                    <img src="../image/components/7eleven-logo.png" />
+                    <img src="../image/components/gs25-logo.png" />
                   </div>
                   <div class="AlcoholList-box">
-                    <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                    <div class="AlcoholList-image">
+                      <img src="../image/alcohol/calsberg.jpg" alt="i" />
+                    </div>
                     <div class="AlcoholList__like">
-                       <p>345</p>
+                      <p>345</p>
                     </div>
                   </div>
                   <div class="AlcoholList-info">
@@ -232,14 +267,16 @@
               <li>
                 <div class="AlcoholList-card">
                   <div class="AlcoholList-vendor">
-                    <img src="../image/components/cu-logo.png">
-                    <img src="../image/components/7eleven-logo.png">
-                    <img src="../image/components/gs25-logo.png">
+                    <img src="../image/components/cu-logo.png" />
+                    <img src="../image/components/7eleven-logo.png" />
+                    <img src="../image/components/gs25-logo.png" />
                   </div>
                   <div class="AlcoholList-box">
-                    <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                    <div class="AlcoholList-image">
+                      <img src="../image/alcohol/calsberg.jpg" alt="i" />
+                    </div>
                     <div class="AlcoholList__like">
-                       <p>345</p>
+                      <p>345</p>
                     </div>
                   </div>
                   <div class="AlcoholList-info">
@@ -257,14 +294,16 @@
               <li>
                 <div class="AlcoholList-card">
                   <div class="AlcoholList-vendor">
-                    <img src="../image/components/cu-logo.png">
-                    <img src="../image/components/7eleven-logo.png">
-                    <img src="../image/components/gs25-logo.png">
+                    <img src="../image/components/cu-logo.png" />
+                    <img src="../image/components/7eleven-logo.png" />
+                    <img src="../image/components/gs25-logo.png" />
                   </div>
                   <div class="AlcoholList-box">
-                    <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                    <div class="AlcoholList-image">
+                      <img src="../image/alcohol/calsberg.jpg" alt="i" />
+                    </div>
                     <div class="AlcoholList__like">
-                       <p>345</p>
+                      <p>345</p>
                     </div>
                   </div>
                   <div class="AlcoholList-info">
@@ -282,14 +321,16 @@
               <li>
                 <div class="AlcoholList-card">
                   <div class="AlcoholList-vendor">
-                    <img src="../image/components/cu-logo.png">
-                    <img src="../image/components/7eleven-logo.png">
-                    <img src="../image/components/gs25-logo.png">
+                    <img src="../image/components/cu-logo.png" />
+                    <img src="../image/components/7eleven-logo.png" />
+                    <img src="../image/components/gs25-logo.png" />
                   </div>
                   <div class="AlcoholList-box">
-                    <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                    <div class="AlcoholList-image">
+                      <img src="../image/alcohol/calsberg.jpg" alt="i" />
+                    </div>
                     <div class="AlcoholList__like">
-                       <p>345</p>
+                      <p>345</p>
                     </div>
                   </div>
                   <div class="AlcoholList-info">
@@ -307,14 +348,16 @@
               <li>
                 <div class="AlcoholList-card">
                   <div class="AlcoholList-vendor">
-                    <img src="../image/components/cu-logo.png">
-                    <img src="../image/components/7eleven-logo.png">
-                    <img src="../image/components/gs25-logo.png">
+                    <img src="../image/components/cu-logo.png" />
+                    <img src="../image/components/7eleven-logo.png" />
+                    <img src="../image/components/gs25-logo.png" />
                   </div>
                   <div class="AlcoholList-box">
-                    <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                    <div class="AlcoholList-image">
+                      <img src="../image/alcohol/calsberg.jpg" alt="i" />
+                    </div>
                     <div class="AlcoholList__like">
-                       <p>345</p>
+                      <p>345</p>
                     </div>
                   </div>
                   <div class="AlcoholList-info">
@@ -332,14 +375,16 @@
               <li>
                 <div class="AlcoholList-card">
                   <div class="AlcoholList-vendor">
-                    <img src="../image/components/cu-logo.png">
-                    <img src="../image/components/7eleven-logo.png">
-                    <img src="../image/components/gs25-logo.png">
+                    <img src="../image/components/cu-logo.png" />
+                    <img src="../image/components/7eleven-logo.png" />
+                    <img src="../image/components/gs25-logo.png" />
                   </div>
                   <div class="AlcoholList-box">
-                    <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                    <div class="AlcoholList-image">
+                      <img src="../image/alcohol/calsberg.jpg" alt="i" />
+                    </div>
                     <div class="AlcoholList__like">
-                       <p>345</p>
+                      <p>345</p>
                     </div>
                   </div>
                   <div class="AlcoholList-info">
@@ -357,14 +402,25 @@
               <li>
                 <div class="AlcoholList-card">
                   <div class="AlcoholList-vendor">
-                    <img class ="AlcoholList-vendor_cu" src="../image/components/cu-logo.png">
-                    <img class ="AlcoholList-vendor_7-11" src="../image/components/7eleven-logo.png">
-                    <img class ="AlcoholList-vendor_gs25" src="../image/components/gs25-logo.png">
+                    <img
+                      class="AlcoholList-vendor_cu"
+                      src="../image/components/cu-logo.png"
+                    />
+                    <img
+                      class="AlcoholList-vendor_7-11"
+                      src="../image/components/7eleven-logo.png"
+                    />
+                    <img
+                      class="AlcoholList-vendor_gs25"
+                      src="../image/components/gs25-logo.png"
+                    />
                   </div>
                   <div class="AlcoholList-box">
-                    <div class="AlcoholList-image"><img src="../image/alcohol/calsberg.jpg" alt="i"></div>
+                    <div class="AlcoholList-image">
+                      <img src="../image/alcohol/calsberg.jpg" alt="i" />
+                    </div>
                     <div class="AlcoholList__like">
-                       <p>345</p>
+                      <p>345</p>
                     </div>
                   </div>
                   <div class="AlcoholList-info">
@@ -379,11 +435,7 @@
                   </div>
                 </div>
               </li>
-             
-
             </ul>
-           
-            
           </article>
         </section>
 

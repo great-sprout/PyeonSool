@@ -2,7 +2,13 @@
 #container{
     padding: 100px 150px 50px 150px; /*상 우 하 좌*/
     width: 1500px;
-    margin:auto;
+    /* margin:auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+main {
+    width: 1300px;
 }
 .alcohol-title{
     font-size: 34px;
@@ -10,7 +16,13 @@
     padding-bottom: 100px;
     text-align: center;
     font-weight:800 ;
-}/* 주류 종류 title*/
+}
+
+.bestAlcohol-group {
+    padding: 0 52px 0 52px;
+}
+
+/* 주류 종류 title*/
 .bestAlcohol-text{
     font-size: 20px;
     font-weight: 500;
@@ -34,9 +46,15 @@
     margin-right: 10px;
     outline: none;
 }/* 베스트 움직임 버튼*/
+
+.best-alcohol-list-wrap {
+    display: flex;
+    justify-content: center;
+}
+
 .bestAlcoholList{
     height: 350px;
-    width: 1180px;
+    width: 1200px;
     overflow: hidden;
     margin-top: 20px;
     position: relative;
@@ -45,9 +63,9 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    gap: 30px;
+    gap: 33px;
     position: absolute;
-
+    /* left: 40px; */
 }/*베스트 리스트 ul*/
 .bestAlcoholList-card{
     width: 272px;

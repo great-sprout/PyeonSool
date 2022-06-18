@@ -9,15 +9,25 @@ class SlideController {
       this.prevButton = prevButton;
       this.nextButton = nextButton;
       this.imageBox = imageBox;
-      this.UNVISIBLE_CLASS = "unvisible";
-    
-      this.controlButtons();
+      this.UNVISIBLE_CLASS = "unvisible";    
   }
 
-  slide(selectedButton) {
+  controlButtonSlide(selectedButton) {
       this.index += (selectedButton === this.prevButton) ? -1 : 1;
       this.imageBox.style.left = this.initLeft -(this.index * this.slideDistance) + "px";
       this.controlButtons();
+  }
+
+  slide(selectedButton, exposedImageCount) {
+    this.index += (selectedButton === this.prevButton) ? -1 : 1;
+
+    if (this.index < 0) {
+        this.index = 0;
+    } else if (this.index >= this.imageCount - exposedImageCount) {
+        this.index = this.imageCount - exposedImageCount;
+    }
+
+    this.imageBox.style.left = this.initLeft -(this.index * this.slideDistance) + "px";
   }
 
   controlButtons() {
