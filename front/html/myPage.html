@@ -1,646 +1,710 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org/">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="../image/components/pyeonsool-icon.svg" rel="icon" type="image/x-icon" />
+    <link
+      href="../image/components/pyeonsool-icon.svg"
+      rel="icon"
+      type="image/x-icon"
+    />
     <title>마이페이지</title>
     <link rel="stylesheet" type="text/css" href="../css/styles.css" />
     <link rel="stylesheet" type="text/css" href="../css/screens/myPage.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="wrap">
-        <header>
-        </header>
+      <header></header>
 
-        <div id="container">
-
-            <section>
-                
-                <!--유저 환영-->
-                <article class="mypage-hello">
-                    <div class="mypage-hello__user">
-                        <h2 class="mypage-hello__hi"> 
-                        <span class="mypage-hello__user-nickname">알콜홀릭</span>
-                        님 안녕하세요.
-                        </h2>
-                    </div>
-                </article>
-
-                <!--내 Like 리스트-->
-                <article class="mypage-like">
-                    <div class="mypage-like__title">
-                        <h1 class="mypage-like__title-name">내 Like 리스트</h1>
-                    </div>
-
-                    <div class="mypage-like__body">
-                        <ul class="mypage-like__items">
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/calsberg.jpg" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                    <!--이미지위에 x버튼-->
-                                    <div class="mypage-like__delete">  
-                                        <div class="mypage-like__delete-button">
-                                        <i class="fa fa-x mypage-like__delete-icon"></i>
-                                        </div>
-                                    </div>  
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                   <!--이미지위에 x버튼-->
-                                    <div class="mypage-like__delete">  
-                                        <div class="mypage-like__delete-button">
-                                        <i class="fa fa-x mypage-like__delete-icon"></i>
-                                        </div>
-                                    </div> 
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/jinlo.png" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                   <!--이미지위에 x버튼-->
-                                   <div class="mypage-like__delete">  
-                                    <div class="mypage-like__delete-button">
-                                    <i class="fa fa-x mypage-like__delete-icon"></i>
-                                    </div>
-                                </div> 
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/wine.png" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                    <!--이미지위에 x버튼-->
-                                    <div class="mypage-like__delete">  
-                                        <div class="mypage-like__delete-button">
-                                        <i class="fa fa-x mypage-like__delete-icon"></i>
-                                        </div>
-                                    </div> 
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/chamisul.png" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                    <!--이미지위에 x버튼-->
-                                    <div class="mypage-like__delete">  
-                                        <div class="mypage-like__delete-button">
-                                        <i class="fa fa-x mypage-like__delete-icon"></i>
-                                        </div>
-                                    </div> 
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/heineken.jpg" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                    <!--이미지위에 x버튼-->
-                                    <div class="mypage-like__delete">  
-                                        <div class="mypage-like__delete-button">
-                                        <i class="fa fa-x mypage-like__delete-icon"></i>
-                                        </div>
-                                    </div> 
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/kloud.jpg" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                   <!--이미지위에 x버튼-->
-                                   <div class="mypage-like__delete">  
-                                    <div class="mypage-like__delete-button">
-                                    <i class="fa fa-x mypage-like__delete-icon"></i>
-                                    </div>
-                                </div> 
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/guinness.png" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                    <!--이미지위에 x버튼-->
-                                    <div class="mypage-like__delete">  
-                                        <div class="mypage-like__delete-button">
-                                        <i class="fa fa-x mypage-like__delete-icon"></i>
-                                        </div>
-                                    </div> 
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/stella-artois.png" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                    <!--이미지위에 x버튼-->
-                                    <div class="mypage-like__delete">  
-                                        <div class="mypage-like__delete-button">
-                                        <i class="fa fa-x mypage-like__delete-icon"></i>
-                                        </div>
-                                    </div> 
-                            </li>
-
-                            <li class="mypage-like__item">
-                                <img src="../image/alcohol/warka.png" alt="" class="mypage-like__item-image"
-                                    onclick="location.href='#'" />
-
-                                   <!--이미지위에 x버튼-->
-                                   <div class="mypage-like__delete">  
-                                    <div class="mypage-like__delete-button">
-                                    <i class="fa fa-x mypage-like__delete-icon"></i>
-                                    </div>
-                                </div> 
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-
-                <!--취향저격 편술-->
-                <article class="mypage-mystyle">
-                    <div class="mypage-mystyle__title">
-                        <h1 class="mypage-mystyle__title-name">취향저격 편술</h1>
-                    </div>
-
-                    
-
-                     <!--슬라이드 버튼-->
-                     <div class="slide-button slide-button--left">&lt;</div>
-                     <div class="slide-button slide-button--right">&gt;</div>
-                    <div class="mypage-mystyle__body">
-                       
-                        
-                        <!--취향저격 편술 이미지-->
-                        <ul class="mypage-mystyle__items">
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/chamisul.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/cass.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/guinness.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/warka.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-
-                            <li class="mypage-mystyle__item">
-                                <img src="../image/alcohol/surfing-high.png" alt="" class="mypage-mystyle__item-image"
-                                    onclick="location.href='#'" />
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-
-                <!--내 리뷰 리스트 -->
-                <article class="mypage-review">
-                    <h2 class="mypage-review__title">내 리뷰 리스트</h2>
-                    
-                    
-                    <!--내 리뷰 리스트 이미지-->
-                    <div class="mypage-review__item">
-                        <div class="mypage-review__images">
-                            <img 
-                                src="../image/alcohol/chamisul.png" 
-                                alt="" 
-                                class="mypage-review__image"
-                                onclick="location.href='#'" />
-                        </div>
-                    
-                      
-                    <div class="mypage-info">
-                    <!--내 리뷰 리스트 정보-->
-                        <!--날짜-->
-                        <div class="mypage-review__date">
-                            <h2 class="mypage-review__edite-date">2022.01.29</h2>
-                        </div>
-
-                        <!--별점-->
-                        <div class="mypage-review__start">
-                            <input
-                            type="radio"
-                            id="5-star--id-1"
-                            name="grade"
-                            value="5"
-                            class="stars__radio"
-                            />
-                            <label
-                            for="5-star--id-1"
-                            class="stars__star review__star"
-                            >★</label
-                            >
-
-                            <input
-                            type="radio"
-                            id="4-star--id-1"
-                            name="grade"
-                            value="4"
-                            class="stars__radio"
-                            />
-                            <label
-                            for="4-star--id-1"
-                            class="stars__star review__star"
-                            >★</label
-                            >
-
-                            <input
-                            type="radio"
-                            id="3-star--id-1"
-                            name="grade"
-                            value="3"
-                            class="stars__radio"
-                            />
-                            <label
-                            for="3-star--id-1"
-                            class="stars__star review__star"
-                            >★</label
-                            >
-
-                            <input
-                            type="radio"
-                            id="2-star--id-1"
-                            name="grade"
-                            value="2"
-                            class="stars__radio"
-                            />
-                            <label
-                            for="2-star--id-1"
-                            class="stars__star review__star"
-                            >★</label
-                            >
-
-                            <input
-                            type="radio"
-                            id="1-star--id-1"
-                            name="grade"
-                            value="1"
-                            class="stars__radio"
-                            />
-                            <label
-                            for="1-star--id-1"
-                            class="stars__star review__star"
-                            >★</label
-                            >
-                        </div>
-                        
-                        <!--내용-->
-                        <div class="mypage-review__content">
-                            <textarea class="mypage-review__content-textarea" readonly>역시 소주는 참이슬이죠ㅎㅎ</textarea>
-                        </div>
-
-                        <!--추천,비추천-->
-                        
-                        <div class="mypage-review__preference">
-                            <div class="mypage-recommendation">
-                                
-                                <i class="far fa-thumbs-up recommendation__icon"></i>
-                                <i
-                                  class="fas fa-thumbs-up recommendation__icon--clicked unvisible">
-                                </i>
-                                <span class="recommendation__count">40</span>
-                              </div>
-        
-                              <div class="mypage-norecommendation">
-                                <i
-                                  class="far fa-thumbs-down no-recommendation__icon"
-                                ></i>
-                                <i
-                                  class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
-                                ></i>
-                                <span class="no-recommendation__count">15</span>
-                             </div>
-                        </div>
-                    </div>
-
-                    <!--수정,삭제-->
-                    
-                         <div class="mypage-review__buttons">
-                            <span class="mypage-review__edit-status">수정</span>
-                            <div class="mypage-review__divider"></div>
-                            <span class="mypage-review__delete">삭제</span>
-                         </div>
-                </div>
-
-                <!--내 리뷰 리스트 이미지-->
-                <div class="mypage-review__item">
-                    <div class="mypage-review__images">
-                        <img 
-                            src="../image/alcohol/guinness.png" 
-                            alt="" 
-                            class="mypage-review__image"
-                            onclick="location.href='#'" />
-                    </div>
-                
-                  
-                <div class="mypage-info">
-                <!--내 리뷰 리스트 정보-->
-                    <!--날짜-->
-                    <div class="mypage-review__date">
-                        <h2 class="mypage-review__edite-date">2022.01.29</h2>
-                    </div>
-
-                    <!--별점-->
-                    <div class="mypage-review__start">
-                        <input
-                        type="radio"
-                        id="5-star--id-1"
-                        name="grade"
-                        value="5"
-                        class="stars__radio"
-                        />
-                        <label
-                        for="5-star--id-1"
-                        class="stars__star review__star"
-                        >★</label
-                        >
-
-                        <input
-                        type="radio"
-                        id="4-star--id-1"
-                        name="grade"
-                        value="4"
-                        class="stars__radio"
-                        />
-                        <label
-                        for="4-star--id-1"
-                        class="stars__star review__star"
-                        >★</label
-                        >
-
-                        <input
-                        type="radio"
-                        id="3-star--id-1"
-                        name="grade"
-                        value="3"
-                        class="stars__radio"
-                        />
-                        <label
-                        for="3-star--id-1"
-                        class="stars__star review__star"
-                        >★</label
-                        >
-
-                        <input
-                        type="radio"
-                        id="2-star--id-1"
-                        name="grade"
-                        value="2"
-                        class="stars__radio"
-                        />
-                        <label
-                        for="2-star--id-1"
-                        class="stars__star review__star"
-                        >★</label
-                        >
-
-                        <input
-                        type="radio"
-                        id="1-star--id-1"
-                        name="grade"
-                        value="1"
-                        class="stars__radio"
-                        />
-                        <label
-                        for="1-star--id-1"
-                        class="stars__star review__star"
-                        >★</label
-                        >
-                    </div>
-                    
-                    <!--내용-->
-                    <div class="mypage-review__content">
-                        <textarea class="mypage-review__content-textarea" readonly>역시 소주는 참이슬이죠ㅎㅎ</textarea>
-                    </div>
-
-                    <!--추천,비추천-->
-                    
-                    <div class="mypage-review__preference">
-                        <div class="mypage-recommendation">
-                            <i class="far fa-thumbs-up recommendation__icon"></i>
-                            <i
-                              class="fas fa-thumbs-up recommendation__icon--clicked unvisible">
-                            </i>
-                            <span class="recommendation__count">40</span>
-                          </div>
-    
-                          <div class="mypage-norecommendation">
-                            <i
-                              class="far fa-thumbs-down no-recommendation__icon"
-                            ></i>
-                            <i
-                              class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
-                            ></i>
-                            <span class="no-recommendation__count">15</span>
-                         </div>
-                    </div>
-                </div>
-
-                <!--수정,삭제-->
-                
-                     <div class="mypage-review__buttons">
-                        <span class="mypage-review__edit-status">수정</span>
-                        <div class="mypage-review__divider"></div>
-                        <span class="mypage-review__delete">삭제</span>
-                     </div>
+      <div id="container">
+        <section>
+          <!--유저 환영-->
+          <article class="mypage-hello">
+            <div class="mypage-hello__user">
+              <h2 class="mypage-hello__hi">
+                <span class="mypage-hello__user-nickname">알콜홀릭</span>
+                님 안녕하세요.
+              </h2>
             </div>
+          </article>
+
+          <!--내 Like 리스트-->
+          <article class="mypage-like">
+            <div class="mypage-like__title">
+              <h1 class="mypage-like__title-name">내 Like 리스트</h1>
+            </div>
+
+            <div class="mypage-like__body">
+              <ul class="mypage-like__items">
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/calsberg.jpg"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/jinlo.png"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/wine.png"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/chamisul.png"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/heineken.jpg"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/kloud.jpg"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/guinness.png"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/stella-artois.png"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="mypage-like__item">
+                  <img
+                    src="../image/alcohol/warka.png"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!--취향저격 편술-->
+          <article class="mypage-mystyle">
+            <div class="mypage-mystyle__title">
+              <h1 class="mypage-mystyle__title-name">취향저격 편술</h1>
+            </div>
+
+            <!--슬라이드 버튼-->
+            <div class="slide-button slide-button--left">&lt;</div>
+            <div class="slide-button slide-button--right">&gt;</div>
+            <div class="mypage-mystyle__body">
+              <!--취향저격 편술 이미지-->
+              <ul class="mypage-mystyle__items">
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/chamisul.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/cass.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/guinness.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/warka.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="../image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+              </ul>
+            </div>
+          </article>
+
+          <!--내 리뷰 리스트 -->
+          <article class="mypage-review">
+            <h2 class="mypage-review__title">내 리뷰 리스트</h2>
+
             <!--내 리뷰 리스트 이미지-->
             <div class="mypage-review__item">
-                <div class="mypage-review__images">
-                    <img 
-                        src="../image/alcohol/warka.png" 
-                        alt="" 
-                        class="mypage-review__image"
-                        onclick="location.href='#'" />
-                </div>
-            
-              
-            <div class="mypage-info">
-            <!--내 리뷰 리스트 정보-->
+              <div class="mypage-review__images">
+                <img
+                  src="../image/alcohol/chamisul.png"
+                  alt=""
+                  class="mypage-review__image"
+                  onclick="location.href='#'"
+                />
+              </div>
+
+              <div class="mypage-info">
+                <!--내 리뷰 리스트 정보-->
                 <!--날짜-->
                 <div class="mypage-review__date">
-                    <h2 class="mypage-review__edite-date">2022.01.29</h2>
+                  <h2 class="mypage-review__edite-date">2022.01.29</h2>
                 </div>
 
                 <!--별점-->
                 <div class="mypage-review__start">
-                    <input
+                  <input
                     type="radio"
                     id="5-star--id-1"
                     name="grade"
                     value="5"
                     class="stars__radio"
-                    />
-                    <label
-                    for="5-star--id-1"
-                    class="stars__star review__star"
+                  />
+                  <label for="5-star--id-1" class="stars__star review__star"
                     >★</label
-                    >
+                  >
 
-                    <input
+                  <input
                     type="radio"
                     id="4-star--id-1"
                     name="grade"
                     value="4"
                     class="stars__radio"
-                    />
-                    <label
-                    for="4-star--id-1"
-                    class="stars__star review__star"
+                  />
+                  <label for="4-star--id-1" class="stars__star review__star"
                     >★</label
-                    >
+                  >
 
-                    <input
+                  <input
                     type="radio"
                     id="3-star--id-1"
                     name="grade"
                     value="3"
                     class="stars__radio"
-                    />
-                    <label
-                    for="3-star--id-1"
-                    class="stars__star review__star"
+                  />
+                  <label for="3-star--id-1" class="stars__star review__star"
                     >★</label
-                    >
+                  >
 
-                    <input
+                  <input
                     type="radio"
                     id="2-star--id-1"
                     name="grade"
                     value="2"
                     class="stars__radio"
-                    />
-                    <label
-                    for="2-star--id-1"
-                    class="stars__star review__star"
+                  />
+                  <label for="2-star--id-1" class="stars__star review__star"
                     >★</label
-                    >
+                  >
 
-                    <input
+                  <input
                     type="radio"
                     id="1-star--id-1"
                     name="grade"
                     value="1"
                     class="stars__radio"
-                    />
-                    <label
-                    for="1-star--id-1"
-                    class="stars__star review__star"
+                  />
+                  <label for="1-star--id-1" class="stars__star review__star"
                     >★</label
-                    >
+                  >
                 </div>
-                
+
                 <!--내용-->
                 <div class="mypage-review__content">
-                    <textarea class="mypage-review__content-textarea" readonly>역시 소주는 참이슬이죠ㅎㅎ</textarea>
+                  <textarea class="mypage-review__content-textarea" readonly>
+역시 소주는 참이슬이죠ㅎㅎ</textarea
+                  >
                 </div>
 
                 <!--추천,비추천-->
-                
+
                 <div class="mypage-review__preference">
-                    <div class="mypage-recommendation">
-                        <i class="far fa-thumbs-up recommendation__icon"></i>
-                        <i
-                          class="fas fa-thumbs-up recommendation__icon--clicked unvisible">
-                        </i>
-                        <span class="recommendation__count">40</span>
-                      </div>
+                  <div class="mypage-recommendation">
+                    <i class="far fa-thumbs-up recommendation__icon"></i>
+                    <i
+                      class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
+                    >
+                    </i>
+                    <span class="recommendation__count">40</span>
+                  </div>
 
-                      <div class="mypage-norecommendation">
-                        <i
-                          class="far fa-thumbs-down no-recommendation__icon"
-                        ></i>
-                        <i
-                          class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
-                        ></i>
-                        <span class="no-recommendation__count">15</span>
-                     </div>
+                  <div class="mypage-norecommendation">
+                    <i class="far fa-thumbs-down no-recommendation__icon"></i>
+                    <i
+                      class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
+                    ></i>
+                    <span class="no-recommendation__count">15</span>
+                  </div>
                 </div>
+              </div>
+
+              <!--수정,삭제-->
+
+              <div class="mypage-review__buttons">
+                <span class="mypage-review__edit-status">수정</span>
+                <div class="mypage-review__divider"></div>
+                <span class="mypage-review__delete">삭제</span>
+              </div>
             </div>
 
-            <!--수정,삭제-->
-            
-                 <div class="mypage-review__buttons">
-                    <span class="mypage-review__edit-status">수정</span>
-                    <div class="mypage-review__divider"></div>
-                    <span class="mypage-review__delete">삭제</span>
-                 </div>
+            <!--내 리뷰 리스트 이미지-->
+            <div class="mypage-review__item">
+              <div class="mypage-review__images">
+                <img
+                  src="../image/alcohol/guinness.png"
+                  alt=""
+                  class="mypage-review__image"
+                  onclick="location.href='#'"
+                />
+              </div>
 
-        </div>
+              <div class="mypage-info">
+                <!--내 리뷰 리스트 정보-->
+                <!--날짜-->
+                <div class="mypage-review__date">
+                  <h2 class="mypage-review__edite-date">2022.01.29</h2>
+                </div>
 
-        <div class="mypage__page">
-            <div class="page">
-              <a href="#" class="page__left">&lt;</a>
-              <a href="#" class="page__number page__number--clicked">1</a>
-              <a href="#" class="page__number">2</a>
-              <a href="#" class="page__number">3</a>
-              <a href="#" class="page__number">4</a>
-              <a href="#" class="page__number">5</a>
-              <a href="#" class="page__right">&gt;</a>
+                <!--별점-->
+                <div class="mypage-review__start">
+                  <input
+                    type="radio"
+                    id="5-star--id-1"
+                    name="grade"
+                    value="5"
+                    class="stars__radio"
+                  />
+                  <label for="5-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+
+                  <input
+                    type="radio"
+                    id="4-star--id-1"
+                    name="grade"
+                    value="4"
+                    class="stars__radio"
+                  />
+                  <label for="4-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+
+                  <input
+                    type="radio"
+                    id="3-star--id-1"
+                    name="grade"
+                    value="3"
+                    class="stars__radio"
+                  />
+                  <label for="3-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+
+                  <input
+                    type="radio"
+                    id="2-star--id-1"
+                    name="grade"
+                    value="2"
+                    class="stars__radio"
+                  />
+                  <label for="2-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+
+                  <input
+                    type="radio"
+                    id="1-star--id-1"
+                    name="grade"
+                    value="1"
+                    class="stars__radio"
+                  />
+                  <label for="1-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+                </div>
+
+                <!--내용-->
+                <div class="mypage-review__content">
+                  <textarea class="mypage-review__content-textarea" readonly>
+역시 소주는 참이슬이죠ㅎㅎ</textarea
+                  >
+                </div>
+
+                <!--추천,비추천-->
+
+                <div class="mypage-review__preference">
+                  <div class="mypage-recommendation">
+                    <i class="far fa-thumbs-up recommendation__icon"></i>
+                    <i
+                      class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
+                    >
+                    </i>
+                    <span class="recommendation__count">40</span>
+                  </div>
+
+                  <div class="mypage-norecommendation">
+                    <i class="far fa-thumbs-down no-recommendation__icon"></i>
+                    <i
+                      class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
+                    ></i>
+                    <span class="no-recommendation__count">15</span>
+                  </div>
+                </div>
+              </div>
+
+              <!--수정,삭제-->
+
+              <div class="mypage-review__buttons">
+                <span class="mypage-review__edit-status">수정</span>
+                <div class="mypage-review__divider"></div>
+                <span class="mypage-review__delete">삭제</span>
+              </div>
             </div>
-          </div>
-            </article>
-    </section>
+            <!--내 리뷰 리스트 이미지-->
+            <div class="mypage-review__item">
+              <div class="mypage-review__images">
+                <img
+                  src="../image/alcohol/warka.png"
+                  alt=""
+                  class="mypage-review__image"
+                  onclick="location.href='#'"
+                />
+              </div>
+
+              <div class="mypage-info">
+                <!--내 리뷰 리스트 정보-->
+                <!--날짜-->
+                <div class="mypage-review__date">
+                  <h2 class="mypage-review__edite-date">2022.01.29</h2>
+                </div>
+
+                <!--별점-->
+                <div class="mypage-review__start">
+                  <input
+                    type="radio"
+                    id="5-star--id-1"
+                    name="grade"
+                    value="5"
+                    class="stars__radio"
+                  />
+                  <label for="5-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+
+                  <input
+                    type="radio"
+                    id="4-star--id-1"
+                    name="grade"
+                    value="4"
+                    class="stars__radio"
+                  />
+                  <label for="4-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+
+                  <input
+                    type="radio"
+                    id="3-star--id-1"
+                    name="grade"
+                    value="3"
+                    class="stars__radio"
+                  />
+                  <label for="3-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+
+                  <input
+                    type="radio"
+                    id="2-star--id-1"
+                    name="grade"
+                    value="2"
+                    class="stars__radio"
+                  />
+                  <label for="2-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+
+                  <input
+                    type="radio"
+                    id="1-star--id-1"
+                    name="grade"
+                    value="1"
+                    class="stars__radio"
+                  />
+                  <label for="1-star--id-1" class="stars__star review__star"
+                    >★</label
+                  >
+                </div>
+
+                <!--내용-->
+                <div class="mypage-review__content">
+                  <textarea class="mypage-review__content-textarea" readonly>
+역시 소주는 참이슬이죠ㅎㅎ</textarea
+                  >
+                </div>
+
+                <!--추천,비추천-->
+
+                <div class="mypage-review__preference">
+                  <div class="mypage-recommendation">
+                    <i class="far fa-thumbs-up recommendation__icon"></i>
+                    <i
+                      class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
+                    >
+                    </i>
+                    <span class="recommendation__count">40</span>
+                  </div>
+
+                  <div class="mypage-norecommendation">
+                    <i class="far fa-thumbs-down no-recommendation__icon"></i>
+                    <i
+                      class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
+                    ></i>
+                    <span class="no-recommendation__count">15</span>
+                  </div>
+                </div>
+              </div>
+
+              <!--수정,삭제-->
+
+              <div class="mypage-review__buttons">
+                <span class="mypage-review__edit-status">수정</span>
+                <div class="mypage-review__divider"></div>
+                <span class="mypage-review__delete">삭제</span>
+              </div>
+            </div>
+
+            <div class="mypage__page">
+              <div class="page">
+                <a href="#" class="page__left">&lt;</a>
+                <a href="#" class="page__number page__number--clicked">1</a>
+                <a href="#" class="page__number">2</a>
+                <a href="#" class="page__number">3</a>
+                <a href="#" class="page__number">4</a>
+                <a href="#" class="page__number">5</a>
+                <a href="#" class="page__right">&gt;</a>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <footer></footer>
     </div>
 
-    <footer></footer>
-    </div>
-
-    <script src="https://kit.fontawesome.com/b17793764c.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/f6608f1ef9.js" crossorigin="anonymous"></script>
-    <script src="../js/MyPageSildeController.js"></script>
+    <script
+      src="https://kit.fontawesome.com/b17793764c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/f6608f1ef9.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../js/SlideController.js"></script>
     <script src="../js/myPage.js"></script>
-</body>
+  </body>
 </html>
