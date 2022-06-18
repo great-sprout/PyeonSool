@@ -1,15 +1,16 @@
 // 이미지를 감싸고 있는 imageBox 엘리먼트 속성이 position: absolute이어야 사용 가능
 class SlideController {
-  constructor(initLeft, imageBox, imageCount, slideDistance, prevButton, nextButton) {
+  constructor(initLeft, imageBox, imageCount, slideImageCount, slideDistance, prevButton, nextButton) {
       this.index = 0;
       this.initLeft = initLeft;
       this.slideDistance = slideDistance;
       this.imageCount = imageCount;
+      this.slideImageCount = slideImageCount;
       this.prevButton = prevButton;
       this.nextButton = nextButton;
       this.imageBox = imageBox;
       this.UNVISIBLE_CLASS = "unvisible";
-
+    
       this.controlButtons();
   }
 
@@ -38,7 +39,7 @@ class SlideController {
   }
 
   isLastPage() {
-      return this.index >= this.imageCount - 1;
+      return (this.index + 1) * this.slideImageCount >= this.imageCount;
   }
 
   hidePrevButton() {

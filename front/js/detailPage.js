@@ -5,7 +5,7 @@ function addRecommendationSlidingEvent() {
   const leftSlideButton = document.querySelector(".slide-button--left");
   const rightSlideButton = document.querySelector(".slide-button--right");
   
-  const recommendationSlideController = new SlideController(10, alcoholRecommendationItems, IMAGE_COUNT, SLIDE_DISTANCE, leftSlideButton, rightSlideButton);
+  const recommendationSlideController = new SlideController(10, alcoholRecommendationItems, IMAGE_COUNT, 5,  SLIDE_DISTANCE, leftSlideButton, rightSlideButton);
   
   leftSlideButton.addEventListener("click", function(event) {
     recommendationSlideController.slide(event.target);
