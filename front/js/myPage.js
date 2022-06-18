@@ -15,6 +15,7 @@ function addMystyleSlidingEvent() {
     
     //객체 생성
     const recommendationSlideController = new SlideController(10, mypageMystyleItems, IMAGE_COUNT, 5,  SLIDE_DISTANCE, leftSlideButton, rightSlideButton);
+    recommendationSlideController.controlButtons();
    
     leftSlideButton.addEventListener("click", function(event) {
         recommendationSlideController.controlButtonSlide(event.target);
