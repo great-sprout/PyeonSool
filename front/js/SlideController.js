@@ -14,10 +14,14 @@ class SlideController {
       this.controlButtons();
   }
 
-  slide(selectedButton) {
+  controlButtonSlide(selectedButton) {
       this.index += (selectedButton === this.prevButton) ? -1 : 1;
       this.imageBox.style.left = this.initLeft -(this.index * this.slideDistance) + "px";
       this.controlButtons();
+  }
+
+  slide(selectedButton) {
+
   }
 
   controlButtons() {

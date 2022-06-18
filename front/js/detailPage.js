@@ -8,11 +8,11 @@ function addRecommendationSlidingEvent() {
   const recommendationSlideController = new SlideController(10, alcoholRecommendationItems, IMAGE_COUNT, 5,  SLIDE_DISTANCE, leftSlideButton, rightSlideButton);
   
   leftSlideButton.addEventListener("click", function(event) {
-    recommendationSlideController.slide(event.target);
+    recommendationSlideController.controlButtonSlide(event.target);
   });
   
   rightSlideButton.addEventListener("click", function(event) {
-    recommendationSlideController.slide(event.target);
+    recommendationSlideController.controlButtonSlide(event.target);
   });
 }
 
