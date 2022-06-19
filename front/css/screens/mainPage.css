@@ -1,0 +1,219 @@
+#container {
+    padding: 100px 120px 50px 120px;
+    width: 1500px;
+    margin: auto;
+}
+
+/** 편술에 대한 소개 **/
+.introduction {
+    display: flex;
+    justify-content: center;
+    gap: 250px;
+}
+.introduction__intro-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+}
+.introduction__p--header-text {
+    font-size: 77px;
+}
+.introduction__p--sub-text {
+    font-size: 23px;
+    margin: 10px;
+}
+.introduction__font-color {
+    color: var(--main-color);
+}
+
+/** 이달의 추천, 당신의 편술 **/
+.recommend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recommmend__title {
+    padding: 200px 0px 50px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.recommmend button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 28px;
+    font-weight: 800;
+    font-family: 'NanumSquareRound',sans-serif;
+}
+.recommmend__button--ofmonth {
+    color: var(--main-color);
+}
+.recommend__button--yours {
+    color: var(--dark-gray);
+}
+
+/* 추천,편술 리스트 */
+.recommend__ul--items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.slide-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 30px;
+    color: var(--main-color);
+    font-weight: 900;
+    cursor: pointer;
+}
+.recommend__li--item {
+    display: table;
+    border: 1px solid var(--light-gray);
+    border-radius: 15px;
+    width: 255px;
+    height: 255px;
+    text-align: center;
+}
+.recommend__image-wrap {
+    display: table-cell;
+    vertical-align: middle;
+}
+.recommend__alcohol-image {
+    max-height: 206px;
+}
+.recommend__order-circle {
+    margin: 50px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/** 베스트 Like **/
+.best-like {
+    padding-top: 200px;
+}
+.best-like__h1--main-title {
+    font-size: 34px;
+    font-weight: bold;
+}
+.best-like__sub-title {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+.best-like__category {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+}
+.best-like button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'NanumSquareRound',sans-serif;
+}
+.best-like__category button {
+    padding: 0px;
+    font-size: 22px;
+}
+.best-like__button--soju {
+    color: var(--main-color);
+}
+.best-like__button--beer {
+    color: var(--dark-gray);
+}
+.best-like__button--wine {
+    color: var(--dark-gray);
+}
+.best-like__see-all a {
+    font-size: 14px;
+}
+
+/* 베스트 Like alcohol리스트 */
+.best-like__list {
+    display: flex;
+    flex-direction: column;
+}
+.best-like__list-first-row {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.best-like__list-second-row {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+.best-like__item {
+    display: flex;
+}
+
+/* 베스트 Like 이미지 */
+.best-like__image-box {
+    display: table;
+    border: 1px solid var(--light-gray);
+    border-radius: 15px;
+    width: 255px;
+    height: 255px;
+    text-align: center;
+}
+.best-like__image-wrap {
+    display: table-cell;
+    vertical-align: middle;
+}
+.best-like__image {
+    max-height: 206px;
+}
+
+/* 베스트 Like 술 관련정보 */
+.best-like__alcohol-info {
+    padding-left: 20px;
+}
+.best-like__alcohol-name {
+    margin: 10px;
+    font-size: 15px;
+}
+.best-like__alcohol-price {
+    margin: 10px;
+    font-size: 13px;
+}
+.best-like__alcohol-abv {
+    margin: 10px;
+    font-size: 13px;
+}
+.best-like__alcohol-like {
+    margin: 10px;
+}
+.best-like__alcohol-like-image {
+    vertical-align: middle;
+}
+.best-like__alcohol-like-count {
+    padding-left: 5px;
+    font-size: 13px;
+}
+.best-like__alcohol-tag {
+    padding-top: 110px;
+    padding-left: 5px;
+    display: flex;
+    gap: 5px;
+}
+.best-like__alcohol-tag-box {
+    display: table;
+    width: 53px;
+    height: 28px;
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    text-align: center;
+}
+.best-like__alcohol-tag-name {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--main-color);
+}
