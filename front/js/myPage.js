@@ -26,6 +26,49 @@ function addMystyleSlidingEvent() {
     });
   }
 
-  
+  //마이페이지 리뷰 수정,삭제
+  function addMyReviewEditStateEvent() {
+    document.querySelector(".myreviews").addEventListener("click", function(event) {
+      const myreview = event.target.closest(".my-review");
+      if (myreview === null) {
+        return;
+      }
+
+      const myreviewContent = myreview.querySelector(".my-review__content");
+      const myreviewTextarea = myreview.querySelector(".my-review__textarea");
+      const myreviewButtons = myreview.querySelector(".my-review__buttons");
+      const myreviewEditor = myreview.querySelector(".my-review__editor");
+      const myfixedStars = myreview.querySelector(".my-review__fixed-stars");
+      const myreviewStars = myreview.querySelector(".my-review__stars");
+     
+      
+      if (event.target.classList.contains("my-review__edit-status")) {
+        // 수정 가능 상태
+        myreviewTextarea.textContent =myreviewContent.innerText;
+       
+        myfixedStars.classList.add("unvisible");
+        myreviewStars.classList.remove("unvisible");
+        myreviewContent.classList.add("unvisible");
+        myreviewTextarea.classList.remove("unvisible");
+        myreviewButtons.classList.add("unvisible");
+        myreviewEditor.classList.remove("unvisible");
+        console.log(1);
+      } else if (event.target.classList.contains("my-review__cancel")) {
+        // 수정 불가능 상태
+        myfixedStars.classList.remove("unvisible");
+        myreviewStars.classList.add("unvisible");
+        myreviewContent.classList.remove("unvisible");
+        myreviewTextarea.classList.add("unvisible");
+        myreviewButtons.classList.remove("unvisible");
+        myreviewEditor.classList.add("unvisible");
+        console.log(2);
+      }
+      console.log(3);
+    
+    });
+  }
+
+
   //호출
   addMystyleSlidingEvent();
+  addMyReviewEditStateEvent();
