@@ -77,3 +77,10 @@
   color: white;
   border-radius: 8px;
 }
+
+.error-keyword {
+  color: var(--error-color);
+  text-decoration: underline;
+  text-decoration-color: var(--error-color);
+  text-underline-position: under;
+}

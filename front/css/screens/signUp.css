@@ -84,5 +84,5 @@
 
 .errors {
   margin-top: 10px;
-  color: rgb(209, 3, 3);
+  color: var(--error-color);
 }
