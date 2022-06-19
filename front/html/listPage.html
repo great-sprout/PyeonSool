@@ -2,6 +2,7 @@
 
 <html lang="ko" xmlns:th="http://www.thymeleaf.org/">
   <head>
+    
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -173,11 +174,11 @@
                 <button class="AlcoholSortList-find__button"></button>
               </span>
               <span class="AlcoholSortList-keyword">
-                <button>달콤함</button>
-                <button>sweet</button>
-                <button>시원함</button>
-                <button>흑맥주</button>
-                <button>더보기</button>
+                <button class="keyword-button sweet" >달콤함</button>
+                <button class="keyword-button sparkling" >스파클링</button>
+                <button class="keyword-button coolness" >시원함</button>
+                <button class="keyword-button dark" >흑맥주</button>
+                <button class="keyword-button">더보기</button>
               </span>
               <span class="AlcoholSortList-sort">
                 <select class="VendorList">
@@ -444,6 +445,8 @@
 
       <footer></footer>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>;
+
     <script
       src="https://kit.fontawesome.com/b17793764c.js"
       crossorigin="anonymous"

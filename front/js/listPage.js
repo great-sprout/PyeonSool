@@ -15,5 +15,15 @@ function addBestSlidingEvent(){
         bestSlideController.slide(event.target, 4);
     });
 }
+function addButtonClick(){
+   
+    const selectButton=document.querySelector(".keyword-button");
+    selectButton.addEventListener("click",function(){
+        
+        console.log(selectButton);
+        selectButton.classList.toggle("keyword-button--clicked");
+    });
 
+}
+addButtonClick();
 addBestSlidingEvent();

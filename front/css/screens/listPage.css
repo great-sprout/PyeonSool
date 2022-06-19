@@ -130,14 +130,18 @@ main {
     width: 63%;
     margin-left: 1%;
 }/*알콜 키워드 묶음 */
-.AlcoholSortList-keyword button{
+.keyword-button {
     height: 28px;
     background-color: white;
     border:1px solid rgb(117, 59, 252);
     color:rgb(117, 59, 252);
     border-radius: 5px;
+    cursor: pointer;
 }/*알콜 키워드 버튼 */
-
+.keyword-button--clicked{
+    color:white; 
+    background-color: var(--main-color);
+}
 .AlcoholSortList-sort select{
     height: 34px;
     width: 80px;
@@ -228,4 +232,5 @@ main {
     border:1px solid rgb(117, 59, 252);
     color:rgb(117, 59, 252);
     border-radius: 5px;
+    
 }
