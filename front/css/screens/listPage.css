@@ -108,19 +108,27 @@
     align-items: center;
 
 }/*알콜 리스트 정렬에 관련된 기능 묶음*/
-
-
-.AlcoholSortList-find input{
-    background-color: rgb(117, 59, 252);
-    opacity: 33%;
-    width: 186px;
+.AlcoholSortList-find {
+    display: flex;
+    align-items: center;
+    background-color: rgba(117, 59, 252,0.33);
+    height: 28px;
+    border-radius: 7px;
+}
+.AlcoholSortList-find input{   
+    background-color: transparent;
+    width: 170px;
     height: 28px;
     border-radius: 7px;
     border: 0px solid ;
     outline: none; /*제대로 안되는것 같음*/
 }/*알콜 검색 창*/
+.AlcoholSortList-find i{
+    padding-top: 2px;
+    width: 23px;
+}
 .AlcoholSortList-keyword{
-    width: 66%;
+    width: 70.5%;
     margin-left: 1%;
 }/*알콜 키워드 묶음 */
 .AlcoholSortList-keyword button{
@@ -183,16 +191,18 @@
     border: 1px solid gray;
     font-size: 15px;
     font-weight: 700;
-    width: 50px;
-    height: 20px;
-    padding-top: 3px;;
+
+    padding: 3px 3px 3px 3px;
     text-align: center;
-    border-radius: 7px;
+    border-radius: 15px;
     bottom: 8px;
     right: 15px;
     position:absolute;  
     
 }/*알콜 리스트 이미지 안 좋아요*/
+.AlcoholList__like i{
+    color: var(--heart-color);
+}
 .AlcoholList-image img{
     width: 250px;
     height: 250px;
