@@ -29,8 +29,17 @@ function addKeywordChoiceModalEvent() {
     document.querySelector(".modal").classList.remove(UNVISIBLE);
   });
 
-  document.querySelector(".keyword-choice__confirm").addEventListener("click", function() {
-    document.querySelector(".modal").classList.add(UNVISIBLE);
+  document.querySelector(".keyword-choice__confirm").addEventListener("click", function(event) {
+    const checkedKeywords = document.querySelectorAll(".keyword-choice__keyword-input:checked");
+
+    if (checkedKeywords.length !== 3) {
+      document.querySelector(".keyword-choice__choice-count").classList.add("error-keyword");
+  
+      event.preventDefault();
+      return;
+    } else {
+      document.querySelector(".keyword-choice__choice-count").classList.remove("error-keyword");
+    }
   });
 }
 
