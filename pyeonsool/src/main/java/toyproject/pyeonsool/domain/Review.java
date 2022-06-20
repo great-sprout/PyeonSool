@@ -29,6 +29,7 @@ public class Review {
 
     private Byte grade;
 
+    @Lob
     private String content;
 
     @Enumerated(EnumType.STRING)

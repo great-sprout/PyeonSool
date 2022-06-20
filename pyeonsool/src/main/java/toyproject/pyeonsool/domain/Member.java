@@ -20,8 +20,16 @@ public class Member {
     @GeneratedValue
     @Column(name ="member_id")
     private Long id;
+
+    @Column(length = 40)
     private String nickname;
+
+    @Column(length = 20)
     private String userId;
+
+    @Column(length = 20)
     private String password;
+
+    @Column(length = 14)
     private String phoneNumber;
 }

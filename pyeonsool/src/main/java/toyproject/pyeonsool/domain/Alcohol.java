@@ -20,9 +20,15 @@ public class Alcohol {
 
     @Enumerated(value = EnumType.STRING)
     private AlcoholType type;
+
+    @Column(length = 100)
     private String fileName;
+
+    @Column(length = 200)
     private String name;
     private Integer price;
+
+    @Column(precision = 3, scale = 1)
     private Float abv;
     private Byte sugarContent;
 

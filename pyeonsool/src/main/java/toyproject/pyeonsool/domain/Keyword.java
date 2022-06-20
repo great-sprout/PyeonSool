@@ -21,5 +21,7 @@ public class Keyword {
     @GeneratedValue
     @Column(name="keyword_id")
     private Long id;
+
+    @Column(length = 16)
     private String name;
 }
