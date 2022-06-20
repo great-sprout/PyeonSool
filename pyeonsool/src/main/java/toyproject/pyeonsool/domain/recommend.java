@@ -1,5 +1,5 @@
 package toyproject.pyeonsool.domain;
 
-public enum recommend {
+public enum Recommend {
     YES, NO, BASIC
 }
