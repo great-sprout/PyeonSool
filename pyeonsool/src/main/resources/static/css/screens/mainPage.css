@@ -93,16 +93,23 @@
 
 /** 베스트 Like **/
 .best-like {
-    padding-top: 200px;
+    padding-top: 50px;
 }
+
+.best-like__title{
+    width: 1350px;
+}
+
 .best-like__h1--main-title {
     font-size: 34px;
     font-weight: bold;
+    margin-left: 60px;
 }
 .best-like__sub-title {
     display: flex;
-    justify-content: space-between;
+    gap:900px;
     padding-top: 30px;
+    margin-left: 60px;
 }
 .best-like__category {
     display: flex;
@@ -141,13 +148,16 @@
 }
 .best-like__list-first-row {
     margin-top: 50px;
+    margin-left: 60px;
     display: flex;
-    justify-content: space-between;
+    gap: 200px;
 }
 .best-like__list-second-row {
     margin-top: 50px;
+    margin-left: 60px;
+    padding-bottom: 40px;
     display: flex;
-    justify-content: space-between;
+    gap: 200px;
 }
 .best-like__item {
     display: flex;
