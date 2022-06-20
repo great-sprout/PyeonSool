@@ -1,6 +1,9 @@
 package toyproject.pyeonsool.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +11,10 @@ import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+@Table(uniqueConstraints = {
+        @UniqueConstraint(name = "keyword_name_uk", columnNames = {"name"})})
 public class Keyword {
 
     @Id
@@ -15,15 +22,4 @@ public class Keyword {
     @Column(name="keyword_id")
     private Long id;
     private String name;
-
-    //알콜 키워드
-    //마이 키워드
-    @OneToMany(mappedBy = "keyword")
-    private List<AlcoholKeyword> alcoholKeywords = new ArrayList<>();
-    private List<MyKeyword> myKeywords = new ArrayList<>();
-
-
-
-
-
 }

@@ -1,6 +1,7 @@
 package toyproject.pyeonsool.domain;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 @Table(uniqueConstraints = {@UniqueConstraint(name = "alcohol_name_uk", columnNames = {"name"})})
 public class Alcohol {
     @Id
@@ -18,7 +20,6 @@ public class Alcohol {
 
     @Enumerated(value = EnumType.STRING)
     private AlcoholType type;
-
     private String fileName;
     private String name;
     private Integer price;
@@ -27,7 +28,6 @@ public class Alcohol {
 
     @Enumerated(value = EnumType.STRING)
     private Vendor vendor;
-
     private String manufacturer;
     private String origin;
 }

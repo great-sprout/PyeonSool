@@ -1,16 +1,21 @@
 package toyproject.pyeonsool.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Getter
-@Table
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Review {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "review_id")
     private Long id;
 
@@ -19,15 +24,15 @@ public class Review {
     private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "acohol_id")
+    @JoinColumn(name = "alcohol_id")
     private Alcohol alcohol;
 
     private Byte grade;
 
-    private String cotent;
+    private String content;
 
     @Enumerated(EnumType.STRING)
-    private Enum recommend;
+    private Recommend recommend;
 
     private LocalDateTime createdDate;
 

@@ -1,24 +1,28 @@
 package toyproject.pyeonsool.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class MyKeyword {
 
     @Id
     @GeneratedValue
-    @Column(name="mykeyword_id")
-    private  Long id;
+    @Column(name = "my_keyword_id")
+    private Long id;
 
-    //멤버
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="member_id")
+    @JoinColumn(name = "member_id")
     private Member member;
-    //키워드
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="keyword_id")
+    @JoinColumn(name = "keyword_id")
     private Keyword keyword;
 }

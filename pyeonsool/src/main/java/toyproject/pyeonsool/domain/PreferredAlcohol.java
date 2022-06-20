@@ -1,14 +1,19 @@
 package toyproject.pyeonsool.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class PreferredAlcohol {
     @Id @GeneratedValue
-    @Column(name = "preferredAlcohol_id")
+    @Column(name = "preferred_alcohol_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)

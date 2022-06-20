@@ -1,25 +1,27 @@
 package toyproject.pyeonsool.domain;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class AlcoholKeyword {
 
     @Id
     @GeneratedValue
-    @Column(name="alcoholkeyword_id")
+    @Column(name="alcohol_keyword_id")
     private Long id;
 
-
-    //키워드
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="keyword_id")
     private Keyword keyword;
 
-    //알콜
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="alcohol_id")
     private Alcohol alcohol;
