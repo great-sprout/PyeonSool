@@ -156,7 +156,7 @@
     justify-content: flex-start;
     gap: 30px;
 }
-.best-like button {
+.best-like h2 {
     cursor: pointer;
     background: none;
     border: none;
@@ -164,18 +164,18 @@
     font-weight: bold;
     font-family: 'NanumSquareRound',sans-serif;
 }
-.best-like__category button {
+.best-like__category h2 {
     padding: 0px;
     font-size: 22px;
 }
-.best-like__button--soju {
+.best-like__soju-title,
+.best-like__beer-title,
+.best-like__wine-title
+{
+    color: var(--dark-gray);
+}
+.best-like__selected-title{
     color: var(--main-color);
-}
-.best-like__button--beer {
-    color: var(--dark-gray);
-}
-.best-like__button--wine {
-    color: var(--dark-gray);
 }
 .best-like__see-all a {
     font-size: 14px;
