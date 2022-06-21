@@ -179,15 +179,28 @@
 .AlcoholList-vendor{
     width: 31px;
     position: absolute;
-    padding-top: 10px;
-    padding-left: 15px;
+    padding-top: 17px;
+    padding-left: 30px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 1;
 }/*알콜 리스트 카드안 편의점 박스*/
-.AlcoholList-vendor img{
-    width: 27px;
-    height:22px;
-    padding-bottom: 3px;
-}/*알콜 리스트 편의점 박스 각각 편의점 마크*/
+.AlcoholList-vendor__gs25{
+    width: 33px;
+    height:20px;
+    padding-bottom: 5px;
+}/*알콜 리스트 편의점 박스 gs 편의점 마크*/
+.AlcoholList-vendor__cu{
+    width: 38px;
+    height:32px;
+    padding-bottom: 5px;
+}/*알콜 리스트 편의점 박스 cu 편의점 마크*/
+.AlcoholList-vendor__7eleven{
+    width: 20px;
+    height:25px;
+    padding-bottom: 5px;
+}/*알콜 리스트 편의점 박스 7eleven 편의점 마크*/
 .AlcoholList-image{
     width: 255px;
     height: 255px;
