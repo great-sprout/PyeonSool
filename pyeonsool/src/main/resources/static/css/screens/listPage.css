@@ -166,6 +166,7 @@
     justify-content: space-evenly;
     width: auto;
     gap: 53px;
+    margin-bottom:40px;
 } /*알콜 리스트 */
 
 .AlcoholList-card{
