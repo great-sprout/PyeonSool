@@ -36,19 +36,45 @@ function addMonthRecommendSlideEvent() {
   leftSlideButton.addEventListener("click", function(event) {
     monthRecommendSlideController.controlButtonSlide(event.target);
 
-    changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, monthRecommendSlideController.index);
+    changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, monthRecommendSlideController.index, ".recommend__list--month");
   });
   
   rightSlideButton.addEventListener("click", function(event) {
     monthRecommendSlideController.controlButtonSlide(event.target);
 
-    changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, monthRecommendSlideController.index);
+    changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, monthRecommendSlideController.index, ".recommend__list--month");
   });
 
-  createSlideCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT);
+  createSlideCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, ".recommend__list--month");
 }
 
-function createSlideCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT) {
+function addYoursRecommendSlideEvent() {
+  const monthRecommendUlItems = document.querySelector(".recommend__list--yours .recommend__items");
+  const IMAGE_COUNT = monthRecommendUlItems.childElementCount;
+  const SLIDE_DISTANCE = 1140;
+  const SLIDE_IMAGE_COUNT = 4;
+  const leftSlideButton = document.querySelector(".recommend__list--yours .slide-button--left");
+  const rightSlideButton = document.querySelector(".recommend__list--yours .slide-button--right");
+  
+  const yoursRecommendSlideController = new SlideController(0, monthRecommendUlItems, IMAGE_COUNT, SLIDE_IMAGE_COUNT,  SLIDE_DISTANCE, leftSlideButton, rightSlideButton);
+  yoursRecommendSlideController.controlButtons();
+
+  leftSlideButton.addEventListener("click", function(event) {
+    yoursRecommendSlideController.controlButtonSlide(event.target);
+
+    changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, yoursRecommendSlideController.index, ".recommend__list--yours");
+  });
+  
+  rightSlideButton.addEventListener("click", function(event) {
+    yoursRecommendSlideController.controlButtonSlide(event.target);
+
+    changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, yoursRecommendSlideController.index, ".recommend__list--yours");
+  });
+
+  createSlideCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, ".recommend__list--yours");
+}
+
+function createSlideCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, ROOT_CLASS) {
   const circleCount = IMAGE_COUNT / SLIDE_IMAGE_COUNT;
   for (let i = 0; i < circleCount; i++) {
     const div = document.createElement("div");
@@ -58,12 +84,12 @@ function createSlideCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT) {
       div.classList.add("recommend__count-circle--selected");
     }
 
-    document.querySelector(".recommend__list--month .recommend__count-circles").appendChild(div);
+    document.querySelector(ROOT_CLASS + " .recommend__count-circles").appendChild(div);
   }
 }
 
-function changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, index) {
-  const countCircle = document.querySelectorAll(".recommend__count-circle");
+function changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, index, ROOT_CLASS) {
+  const countCircle = document.querySelectorAll(ROOT_CLASS + " .recommend__count-circle");
   const circleCount = IMAGE_COUNT / SLIDE_IMAGE_COUNT;
 
   for (let i = 0; i < circleCount; i++) {
@@ -77,3 +103,4 @@ function changeSelectedCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, index) {
 
 addRecommendSwitchEvent();
 addMonthRecommendSlideEvent();
+addYoursRecommendSlideEvent();
