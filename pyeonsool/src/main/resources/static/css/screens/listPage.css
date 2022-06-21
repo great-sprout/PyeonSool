@@ -131,20 +131,28 @@
 .AlcoholSortList-keyword{
     width: 65%;
     margin-left: 1%;
+    height:28px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
 }/*알콜 키워드 묶음 */
-.keyword-button {
-    height: 28px;
-    width: flex;
-    background-color: white;
-    border: 1px solid rgb(117, 59, 252);
-    color:rgb(117, 59, 252);
-    border-radius: 5px;
-    cursor: pointer;
-}/*알콜 키워드 버튼 */
-.keyword-button--clicked{
-    color:white; 
-    background-color: var(--main-color);
-}
+.sort-choice__keyword{
+    padding-top:7px;
+}/*알콜 키워드 버튼 input & label*/
+.sort-choice__keyword-input {
+  display: none;
+}/*알콜 키워드 버튼 체크박스*/
+.sort-choice__keyword-label {
+  width: 70px;
+  height: 28px;
+  border: 0.5px solid rgba(117, 59, 252, 0.53);
+  font-size: 14px;
+  font-weight: bolder;
+  color: rgba(117, 59, 252, 0.53);
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+}/*알콜 키워드 버튼 레이블*/
 .AlcoholSortList-sort select{
     height: 34px;
     width: flex;
@@ -157,6 +165,12 @@
     -moz-text-align-last: center;
     font-size: 12.5px;
 }/*알콜 키워드 정렬 셀렉트 박스*/
+
+
+.sort-choice__keyword-input:checked + .sort-choice__keyword-label {
+  background-color: var(--main-color);
+  color: white;
+}
 
 
 .AlcoholList-list{
