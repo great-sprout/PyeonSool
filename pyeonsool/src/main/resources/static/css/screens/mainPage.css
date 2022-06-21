@@ -39,19 +39,21 @@
     justify-content: center;
     gap: 50px;
 }
-.recommmend button {
+.recommmend h2 {
     cursor: pointer;
     background: none;
     border: none;
     font-size: 28px;
     font-weight: 800;
-    font-family: 'NanumSquareRound',sans-serif;
 }
-.recommmend__button--ofmonth {
-    color: var(--main-color);
-}
-.recommend__button--yours {
+.recommmend__month-title,
+.recommend__yours-title {
     color: var(--dark-gray);
+}
+
+.recommmend__selected-title {
+    color: var(--main-color);
+
 }
 
 /* 추천,편술 리스트 */
@@ -84,11 +86,22 @@
 .recommend__alcohol-image {
     max-height: 206px;
 }
-.recommend__order-circle {
+.recommend__count-circles {
     margin: 50px 0px;
     display: flex;
     justify-content: center;
     gap: 10px;
+}
+
+.recommend__count-circle {
+    width: 10px;
+    height: 10px;
+    background-color: var(--light-gray);
+    border-radius: 50%;
+}
+
+.recommend__count-circle--selected {
+    background-color: var(--main-color);
 }
 
 /** 베스트 Like **/
