@@ -129,7 +129,7 @@
     width: 23px;
 }
 .AlcoholSortList-keyword{
-    width: 70.5%;
+    width: 65%;
     margin-left: 1%;
 }/*알콜 키워드 묶음 */
 .keyword-button {
@@ -149,6 +149,7 @@
     height: 34px;
     width: flex;
     border-radius: 5px;
+    padding:4px 3px 4px 3px;
     margin-right: 7px;
     text-align-last: center;
     text-align: center;
