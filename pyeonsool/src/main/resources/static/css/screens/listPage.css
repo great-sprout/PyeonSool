@@ -15,19 +15,19 @@
     font-weight:800 ;
 }
 
-.bestAlcohol-text{
+.best-text{
     font-size: 20px;
     font-weight: 500;
     align-items: start;
     width:92%;
     display:inline-block;
 }/* 주류 종류 title*/
-.bestAlcohol-buttons{   
+.best-buttons{
     width: 10%;
     display: inline-block;
 }/*베스트 버튼 묶음*/
-.bestAlcohol__leftmove, 
-.bestAlcohol__rightmove{
+.best-button__left,
+.best-button__right{
     background-color: white ;
     color: rgb(117, 59, 252);
     border: 1px solid rgb(117, 59, 252);
@@ -40,19 +40,19 @@
     cursor: pointer;
 }/* 베스트 움직임 버튼*/
 
-.best-alcohol-list-wrap {
+.best-list{
     display: flex;
     justify-content: center;
 }
 
-.bestAlcoholList{
+.best-list__wrap{
     height: 350px;
     width: 1200px;
     overflow: hidden;
     margin-top: 20px;
     position: relative;
 }/*베스트 리스트 박스*/
-.bestAlcoholList-list{
+.best-list__ul{
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -60,7 +60,7 @@
     position: absolute;
     /* left: 40px; */
 }/*베스트 리스트 ul*/
-.bestAlcoholList-card{
+.best-list__li{
     width: 272px;
     height: 323.5px;
     display: flex;
@@ -71,7 +71,7 @@
     cursor: pointer;
     position: relative;
 }/*베스트 리스트 하나의 카드 li*/
-.bestAlcohol-image{
+.best-list__image{
     position: absolute;
     width:272px;
     height: 323.5px;
@@ -80,7 +80,7 @@
     border-radius:18px;
     
 }/*베스트 리스트 카드 안 이미지*/
-.bestAlcohol-mark{
+.best-list__mark{
     background-color: black;
     color: white;
     width: 50px;
@@ -94,13 +94,13 @@
     left: 0;
 }/*베스트 리스트 카드 안 베스트 마크*/
 
-.AlcoholList-text{
+.alcohol-list__text{
     font-size: 20px;
     font-weight: 450;
     margin-bottom: 20px;
     margin-top: 20px;
 }
-.AlcoholSortList{
+.sort-list{
     margin-top: 20px;
     display: flex;
     flex-wrap: nowrap;
@@ -108,14 +108,14 @@
     align-items: center;
 
 }/*알콜 리스트 정렬에 관련된 기능 묶음*/
-.AlcoholSortList-find {
+.sort-list__find {
     display: flex;
     align-items: center;
     background-color: rgba(117, 59, 252,0.33);
     height: 28px;
     border-radius: 7px;
 }
-.AlcoholSortList-find input{   
+.sort-list__find input{
     background-color: transparent;
     width: 170px;
     height: 28px;
@@ -124,11 +124,11 @@
     padding:10px;
     outline: none;
 }/*알콜 검색 창*/
-.AlcoholSortList-find i{
+.sort-list__find i{
     padding-top: 2px;
     width: 23px;
 }
-.AlcoholSortList-keyword{
+.sort-list__keyword{
     width: 65%;
     margin-left: 1%;
     height:28px;
@@ -153,7 +153,12 @@
   border-radius: 7px;
   cursor: pointer;
 }/*알콜 키워드 버튼 레이블*/
-.AlcoholSortList-sort select{
+.sort-choice__keyword-input:checked + .sort-choice__keyword-label {
+  background-color: var(--main-color);
+  color: white;
+}
+/*키워드 박스 선택시 변경*/
+.sort-list__select select{
     height: 34px;
     width: flex;
     border-radius: 5px;
@@ -167,13 +172,8 @@
 }/*알콜 키워드 정렬 셀렉트 박스*/
 
 
-.sort-choice__keyword-input:checked + .sort-choice__keyword-label {
-  background-color: var(--main-color);
-  color: white;
-}
 
-
-.AlcoholList-list{
+.alcohol-list{
     padding-top: 20px;
     display: inline-flex;
     flex-flow: row wrap;
@@ -183,15 +183,15 @@
     margin-bottom:40px;
 } /*알콜 리스트 */
 
-.AlcoholList-card{
+.alcohol-list__card{
    align-items: center;
 }/*알콜 리스트 카드*/
 
-.AlcoholList-box{
+.alcohol-card__box{
     position: relative;
     cursor: pointer;
 }/*알콜 리스트 카드 안 박스*/
-.AlcoholList-vendor{
+.alcohol-card__vendor{
     width: 31px;
     position: absolute;
     padding-top: 17px;
@@ -201,28 +201,28 @@
     align-items: center;
     z-index: 1;
 }/*알콜 리스트 카드안 편의점 박스*/
-.AlcoholList-vendor__gs25{
+.vendor-mark__gs25{
     width: 33px;
     height:20px;
     padding-bottom: 5px;
 }/*알콜 리스트 편의점 박스 gs 편의점 마크*/
-.AlcoholList-vendor__cu{
+.vendor-mark__cu{
     width: 38px;
     height:32px;
     padding-bottom: 5px;
 }/*알콜 리스트 편의점 박스 cu 편의점 마크*/
-.AlcoholList-vendor__7eleven{
+.vendor-mark__7eleven{
     width: 20px;
     height:25px;
     padding-bottom: 5px;
 }/*알콜 리스트 편의점 박스 7eleven 편의점 마크*/
-.AlcoholList-image{
+.alcohol-card__image{
     width: 255px;
     height: 255px;
     border: 0.5px solid rgb(204, 204, 204);
     border-radius: 15px;
 }/*알콜 리스트 이미지 밖 div*/
-.AlcoholList__like p{
+.alcohol-card__like p{
     border: 1px solid gray;
     font-size: 15px;
     font-weight: 700;
@@ -235,33 +235,33 @@
     position:absolute;  
     
 }/*알콜 리스트 이미지 안 좋아요*/
-.AlcoholList__like i{
+.alcohol-card__like i{
     color: var(--heart-color);
 }
-.AlcoholList-image img{
+.alcohol-card__image img{
     width: 250px;
     height: 250px;
     object-fit: cover;
     border-radius: 15px;
 }/*알콜 리스트 이미지 */
 
-.AlcoholList-info p{
+.alcohol-info p{
     margin-top: 7px;
     margin-bottom: 10px;
     padding-left: 10px;
 }
-.AlcoholList__name{
+.alcohol-info__name{
     font-size: 17px;
     font-weight: 800;
 }
-.AlcoholList__cost{
+.alcohol-info__cost{
     font-size: 15px;
     font-weight:600;
 }
-.AlcoholList__level{
+.alcohol-info__abv{
     font-size: 13px;
 }
-.AlcoholList-keyword button{
+.alcohol-info__keyword button{
     height: 28px;
     background-color: white;
     border:1px solid rgb(117, 59, 252);
