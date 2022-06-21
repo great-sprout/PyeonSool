@@ -121,7 +121,8 @@
     height: 28px;
     border-radius: 7px;
     border: 0px solid ;
-    outline: none; /*제대로 안되는것 같음*/
+    padding:10px;
+    outline: none;
 }/*알콜 검색 창*/
 .AlcoholSortList-find i{
     padding-top: 2px;
