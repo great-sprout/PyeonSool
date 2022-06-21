@@ -1,9 +1,9 @@
 function addBestSlidingEvent(){
-    const bestAlcoholCards = document.querySelector(".bestAlcoholList-list");
+    const bestAlcoholCards = document.querySelector(".best-list__ul");
     const IMAGE_COUNT = bestAlcoholCards.childElementCount;
     const SLIDE_DISTANCE = 305;
-    const leftButton = document.querySelector(".bestAlcohol__leftmove");
-    const rightButton = document.querySelector(".bestAlcohol__rightmove");
+    const leftButton = document.querySelector(".best-button__left");
+    const rightButton = document.querySelector(".best-button__right");
 
     // const bestSlideController = new BestSlideController(10,bestAlcoholCards,IMAGE_COUNT,SLIDE_DISTANCE,leftButton,rightButton);
     const bestSlideController = new SlideController(0, bestAlcoholCards,IMAGE_COUNT, 1, SLIDE_DISTANCE, leftButton,rightButton);
@@ -15,15 +15,4 @@ function addBestSlidingEvent(){
         bestSlideController.slide(event.target, 4);
     });
 }
-function addButtonClick(){
-   
-    const selectButton=document.querySelector(".keyword-button");
-    selectButton.addEventListener("click",function(){
-        
-        console.log(selectButton);
-        selectButton.classList.toggle("keyword-button--clicked");
-    });
-
-}
-addButtonClick();
 addBestSlidingEvent();

@@ -15,19 +15,19 @@
     font-weight:800 ;
 }
 
-.bestAlcohol-text{
+.best-text{
     font-size: 20px;
     font-weight: 500;
     align-items: start;
     width:92%;
     display:inline-block;
 }/* 주류 종류 title*/
-.bestAlcohol-buttons{   
+.best-buttons{
     width: 10%;
     display: inline-block;
 }/*베스트 버튼 묶음*/
-.bestAlcohol__leftmove, 
-.bestAlcohol__rightmove{
+.best-button__left,
+.best-button__right{
     background-color: white ;
     color: rgb(117, 59, 252);
     border: 1px solid rgb(117, 59, 252);
@@ -40,19 +40,19 @@
     cursor: pointer;
 }/* 베스트 움직임 버튼*/
 
-.best-alcohol-list-wrap {
+.best-list{
     display: flex;
     justify-content: center;
 }
 
-.bestAlcoholList{
+.best-list__wrap{
     height: 350px;
     width: 1200px;
     overflow: hidden;
     margin-top: 20px;
     position: relative;
 }/*베스트 리스트 박스*/
-.bestAlcoholList-list{
+.best-list__ul{
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -60,7 +60,7 @@
     position: absolute;
     /* left: 40px; */
 }/*베스트 리스트 ul*/
-.bestAlcoholList-card{
+.best-list__li{
     width: 272px;
     height: 323.5px;
     display: flex;
@@ -71,7 +71,7 @@
     cursor: pointer;
     position: relative;
 }/*베스트 리스트 하나의 카드 li*/
-.bestAlcohol-image{
+.best-list__image{
     position: absolute;
     width:272px;
     height: 323.5px;
@@ -80,7 +80,7 @@
     border-radius:18px;
     
 }/*베스트 리스트 카드 안 이미지*/
-.bestAlcohol-mark{
+.best-list__mark{
     background-color: black;
     color: white;
     width: 50px;
