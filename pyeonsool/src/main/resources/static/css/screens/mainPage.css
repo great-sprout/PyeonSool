@@ -32,60 +32,87 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.recommmend__title {
+.recommend__title {
     padding: 200px 0px 50px 0px;
     display: flex;
     justify-content: center;
     gap: 50px;
 }
-.recommmend h2 {
+.recommend h2 {
     cursor: pointer;
     background: none;
     border: none;
     font-size: 28px;
     font-weight: 800;
 }
-.recommmend__month-title,
+.recommend__month-title,
 .recommend__yours-title {
     color: var(--dark-gray);
 }
 
-.recommmend__selected-title {
+.recommend__selected-title {
     color: var(--main-color);
 
 }
 
 /* 추천,편술 리스트 */
-.recommend__ul--items {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.recommend__items-wrap {
+  width: 1140px;
+  height: 255px;
+  overflow: hidden;
+  position: relative;
 }
+
+.recommend__list {
+  position: relative;
+}
+
 .slide-button {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    position: absolute;
     font-size: 30px;
     color: var(--main-color);
     font-weight: 900;
+    top: 30%;
     cursor: pointer;
 }
-.recommend__li--item {
-    display: table;
-    border: 1px solid var(--light-gray);
-    border-radius: 15px;
-    width: 255px;
-    height: 255px;
-    text-align: center;
+
+.slide-button--left {
+  left: -40px;
 }
-.recommend__image-wrap {
-    display: table-cell;
-    vertical-align: middle;
+
+.slide-button--right {
+  right: -40px;
 }
-.recommend__alcohol-image {
-    max-height: 206px;
+
+.recommend__items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+  position: absolute;
+  left: 10px;
+  transition: left 0.2s ease-in-out;
 }
+
+.recommend__item {
+  width: 255px;
+  height: 255px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--light-gray);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.recommend__image {
+  height: 206px;
+}
+
 .recommend__count-circles {
     margin: 50px 0px;
     display: flex;
@@ -103,7 +130,6 @@
 .recommend__count-circle--selected {
     background-color: var(--main-color);
 }
-
 /** 베스트 Like **/
 .best-like {
     padding-top: 50px;
