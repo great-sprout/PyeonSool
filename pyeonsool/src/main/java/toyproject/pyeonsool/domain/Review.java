@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 public class Review {
 
     @Id
@@ -38,4 +37,14 @@ public class Review {
     private LocalDateTime createdDate;
 
     private LocalDateTime lastModifiedDate;
+
+    public Review(Member member, Alcohol alcohol, Byte grade, String content, Recommend recommend, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
+        this.member = member;
+        this.alcohol = alcohol;
+        this.grade = grade;
+        this.content = content;
+        this.recommend = recommend;
+        this.createdDate = createdDate;
+        this.lastModifiedDate = lastModifiedDate;
+    }
 }

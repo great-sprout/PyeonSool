@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 public class AlcoholKeyword {
 
     @Id
@@ -25,4 +24,9 @@ public class AlcoholKeyword {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="alcohol_id")
     private Alcohol alcohol;
+
+    public AlcoholKeyword(Keyword keyword, Alcohol alcohol) {
+        this.keyword = keyword;
+        this.alcohol = alcohol;
+    }
 }

@@ -9,7 +9,6 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 @Table(uniqueConstraints = {
         @UniqueConstraint(name = "member_nickname_uk", columnNames = {"nickname"}),
         @UniqueConstraint(name = "member_userId_uk", columnNames = {"userId"}),
@@ -32,4 +31,11 @@ public class Member {
 
     @Column(length = 14)
     private String phoneNumber;
+
+    public Member(String nickname, String userId, String password, String phoneNumber) {
+        this.nickname = nickname;
+        this.userId = userId;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+    }
 }

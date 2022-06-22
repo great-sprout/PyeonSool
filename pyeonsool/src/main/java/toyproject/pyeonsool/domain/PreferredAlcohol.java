@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 public class PreferredAlcohol {
     @Id @GeneratedValue
     @Column(name = "preferred_alcohol_id")
@@ -24,4 +23,8 @@ public class PreferredAlcohol {
     @JoinColumn(name = "alcohol_id")
     private Alcohol alcohol;
 
+    public PreferredAlcohol(Member member, Alcohol alcohol) {
+        this.member = member;
+        this.alcohol = alcohol;
+    }
 }

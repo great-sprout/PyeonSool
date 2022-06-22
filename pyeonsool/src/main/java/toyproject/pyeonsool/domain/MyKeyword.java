@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
 public class MyKeyword {
 
     @Id
@@ -25,4 +24,9 @@ public class MyKeyword {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "keyword_id")
     private Keyword keyword;
+
+    public MyKeyword(Member member, Keyword keyword) {
+        this.member = member;
+        this.keyword = keyword;
+    }
 }
