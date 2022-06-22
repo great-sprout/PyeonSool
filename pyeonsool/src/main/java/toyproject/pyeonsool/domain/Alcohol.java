@@ -30,19 +30,16 @@ public class Alcohol {
     private Float abv;
     private Byte sugarContent;
 
-    @Enumerated(value = EnumType.STRING)
-    private Vendor vendor;
     private String manufacturer;
     private String origin;
 
-    public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent, Vendor vendor, String manufacturer, String origin) {
+    public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent, String manufacturer, String origin) {
         this.type = type;
         this.fileName = fileName;
         this.name = name;
         this.price = price;
         this.abv = abv;
         this.sugarContent = sugarContent;
-        this.vendor = vendor;
         this.manufacturer = manufacturer;
         this.origin = origin;
     }
