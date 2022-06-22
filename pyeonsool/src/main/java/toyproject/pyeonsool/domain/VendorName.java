@@ -1,5 +1,5 @@
 package toyproject.pyeonsool.domain;
 
 public enum VendorName {
-    CU, SEVEN_ELEVEN, GS25
+    CU, GS25, SEVEN_ELEVEN
 }
