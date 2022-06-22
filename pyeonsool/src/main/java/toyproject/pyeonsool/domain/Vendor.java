@@ -18,13 +18,13 @@ public class Vendor {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "alcohol_id")
-    private Long alcoholId;
+    private Alcohol alcohol;
 
     @Enumerated(value = EnumType.STRING)
     private VendorName name;
 
-    public Vendor(Long alcoholId, VendorName name) {
-        this.alcoholId = alcoholId;
+    public Vendor(Alcohol alcohol, VendorName name) {
+        this.alcohol = alcohol;
         this.name = name;
     }
 }

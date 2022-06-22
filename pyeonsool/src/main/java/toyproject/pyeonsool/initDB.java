@@ -44,7 +44,7 @@ public class initDB {
 
             ArrayList<Alcohol> alcohols = new ArrayList<>();
             alcohols.add(new Alcohol(WINE, "louis-jadot.png",
-                    "루이자도 부르고뉴 샤르도네", 35000, 13f, null, null, null, null));
+                    "루이자도 부르고뉴 샤르도네", 35000, 13f, null, null, null));
 
             em.persist(alcohols.get(0));
 
