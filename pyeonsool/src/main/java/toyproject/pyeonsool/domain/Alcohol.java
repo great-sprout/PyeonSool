@@ -31,11 +31,11 @@ public class Alcohol {
     private Byte sugarContent;
 
     @Enumerated(value = EnumType.STRING)
-    private Vendor vendor;
+    private VendorName vendor;
     private String manufacturer;
     private String origin;
 
-    public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent, Vendor vendor, String manufacturer, String origin) {
+    public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent, VendorName vendor, String manufacturer, String origin) {
         this.type = type;
         this.fileName = fileName;
         this.name = name;
