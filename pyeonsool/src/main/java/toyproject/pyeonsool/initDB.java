@@ -41,92 +41,17 @@ public class initDB {
                 em.persist(keyword);
             }
 
-            ArrayList<Alcohol> alcohols = new ArrayList<>();
+            ArrayList<Alcohol> sojus = new ArrayList<>();
 
-            alcohols.add(new Alcohol(SOJU, "jinro.jpg",
-                    "진로 이즈 백", 1800, 16.5f, null,null, "하이트 진로(주)", "대한민국"));
-            alcohols.add(new Alcohol(SOJU, "jamong-chamisul.jpg",
-                    "자몽에 이슬", 1900, 13f, null, null,"하이트 진로(주)", "대한민국"));
-            alcohols.add(new Alcohol(SOJU, "chamisul.png",
-                    "참이슬", 1950, 16.5f, null,null, "하이트 진로(주)", "대한민국"));
-            alcohols.add(new Alcohol(SOJU, "like-first.jpg",
-                    "처음처럼", 1950, 16.5f, null,null, "롯데칠성음료(주)", "대한민국"));
-            alcohols.add(new Alcohol(SOJU, "hanlla.png",
-                    "한라산", 1900, 17.5f, null, null,"(주)한라산", "대한민국"));
-            alcohols.add(new Alcohol(SOJU, "rabbit-white.jpg",
-                    "토끼 소주 화이트", 38000, 23f, null, null,"농업회사법인 토끼소주(주)", "대한민국"));
-            alcohols.add(new Alcohol(SOJU, "munbae.jpg",
-                    "문배술", 10260, 40f, null, null,"문배주양조원", "대한민국"));
-            alcohols.add(new Alcohol(SOJU, "gosori.png",
-                    "제주 고소리술", 22800, 29f, null, null,"제주샘영농조합", "대한민국"));
-            alcohols.add(new Alcohol(SOJU, "hwayo.jpg",
-                    "화요", 8500, 25f, null,null, "(주)화요", "대한민국"));
 
-            em.persist(alcohols.get(0));
-            em.persist(new AlcoholKeyword(keywords[1],alcohols.get(0)));
-            em.persist(new AlcoholKeyword(keywords[2],alcohols.get(0)));
-            em.persist(new AlcoholKeyword(keywords[11],alcohols.get(0)));
-            em.persist(new Vendor(alcohols.get(0), VendorName.valueOf("CU")));
-            em.persist(new Vendor(alcohols.get(0), VendorName.valueOf("GS25")));
-            em.persist(new Vendor(alcohols.get(0), VendorName.valueOf("SEVEN_ELEVEN")));
+            sojuList(sojus);
+            for(Alcohol alcohol:sojus){
+                em.persist(alcohol);
+            }
 
-            em.persist(alcohols.get(1));
-            em.persist(new AlcoholKeyword(keywords[0],alcohols.get(1)));
-            em.persist(new AlcoholKeyword(keywords[6],alcohols.get(1)));
-            em.persist(new AlcoholKeyword(keywords[16],alcohols.get(1)));
-            em.persist(new Vendor(alcohols.get(1), VendorName.valueOf("CU")));
-            em.persist(new Vendor(alcohols.get(1), VendorName.valueOf("GS25")));
-            em.persist(new Vendor(alcohols.get(1), VendorName.valueOf("SEVEN_ELEVEN")));
+            sojuListKeyword(keywords, sojus);
 
-            em.persist(alcohols.get(2));
-            em.persist(new AlcoholKeyword(keywords[1],alcohols.get(2)));
-            em.persist(new AlcoholKeyword(keywords[2],alcohols.get(2)));
-            em.persist(new AlcoholKeyword(keywords[11],alcohols.get(2)));
-            em.persist(new Vendor(alcohols.get(2), VendorName.valueOf("CU")));
-            em.persist(new Vendor(alcohols.get(2), VendorName.valueOf("GS25")));
-            em.persist(new Vendor(alcohols.get(2), VendorName.valueOf("SEVEN_ELEVEN")));
-
-            em.persist(alcohols.get(3));
-            em.persist(new AlcoholKeyword(keywords[1],alcohols.get(3)));
-            em.persist(new AlcoholKeyword(keywords[2],alcohols.get(3)));
-            em.persist(new AlcoholKeyword(keywords[11],alcohols.get(3)));
-            em.persist(new Vendor(alcohols.get(3), VendorName.valueOf("CU")));
-            em.persist(new Vendor(alcohols.get(3), VendorName.valueOf("GS25")));
-            em.persist(new Vendor(alcohols.get(3), VendorName.valueOf("SEVEN_ELEVEN")));
-
-            em.persist(alcohols.get(4));
-            em.persist(new AlcoholKeyword(keywords[1],alcohols.get(4)));
-            em.persist(new AlcoholKeyword(keywords[2],alcohols.get(4)));
-            em.persist(new AlcoholKeyword(keywords[11],alcohols.get(4)));
-            em.persist(new Vendor(alcohols.get(4), VendorName.valueOf("CU")));
-            em.persist(new Vendor(alcohols.get(4), VendorName.valueOf("GS25")));
-            em.persist(new Vendor(alcohols.get(4), VendorName.valueOf("SEVEN_ELEVEN")));
-
-            em.persist(alcohols.get(5));
-            em.persist(new AlcoholKeyword(keywords[0],alcohols.get(5)));
-            em.persist(new AlcoholKeyword(keywords[1],alcohols.get(5)));
-            em.persist(new AlcoholKeyword(keywords[10],alcohols.get(5)));
-            em.persist(new Vendor(alcohols.get(5), VendorName.valueOf("CU")));
-            em.persist(new Vendor(alcohols.get(5), VendorName.valueOf("GS25")));
-
-            em.persist(alcohols.get(6));
-            em.persist(new AlcoholKeyword(keywords[0],alcohols.get(6)));
-            em.persist(new AlcoholKeyword(keywords[1],alcohols.get(6)));
-            em.persist(new AlcoholKeyword(keywords[5],alcohols.get(6)));
-            em.persist(new AlcoholKeyword(keywords[10],alcohols.get(6)));
-            em.persist(new Vendor(alcohols.get(6), VendorName.valueOf("CU")));
-
-            em.persist(alcohols.get(7));
-            em.persist(new AlcoholKeyword(keywords[1],alcohols.get(7)));
-            em.persist(new AlcoholKeyword(keywords[10],alcohols.get(7)));
-            em.persist(new Vendor(alcohols.get(7), VendorName.valueOf("GS25")));
-
-            em.persist(alcohols.get(8));
-            em.persist(new AlcoholKeyword(keywords[1],alcohols.get(8)));
-            em.persist(new AlcoholKeyword(keywords[5],alcohols.get(8)));
-            em.persist(new AlcoholKeyword(keywords[10],alcohols.get(8)));
-            em.persist(new Vendor(alcohols.get(8), VendorName.valueOf("CU")));
-            em.persist(new Vendor(alcohols.get(8), VendorName.valueOf("GS25")));
+            sojuListVendor(sojus);
 
             ArrayList<Alcohol> beers = new ArrayList<>();
             beers.add(new Alcohol(BEER, "san-miguel.png", "루이자도 부르고뉴 샤르도네", 3000,
@@ -151,6 +76,97 @@ public class initDB {
 
             em.flush();
             em.clear();
+        }
+
+        private void sojuListVendor(ArrayList<Alcohol> sojus) {
+            em.persist(new Vendor(sojus.get(0), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(0), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(sojus.get(0), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(1), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(1), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(sojus.get(1), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(2), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(2), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(sojus.get(2), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(3), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(3), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(sojus.get(3), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(4), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(4), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(sojus.get(4), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(5), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(5), VendorName.valueOf("GS25")));
+
+            em.persist(new Vendor(sojus.get(6), VendorName.valueOf("CU")));
+
+            em.persist(new Vendor(sojus.get(7), VendorName.valueOf("GS25")));
+
+            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("GS25")));
+        }
+
+        private void sojuList(ArrayList<Alcohol> sojus) {
+            sojus.add(new Alcohol(SOJU, "jinro.jpg",
+                    "진로 이즈 백", 1800, 16.5f, null,null, "하이트 진로(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "jamong-chamisul.jpg",
+                    "자몽에 이슬", 1900, 13f, null, null,"하이트 진로(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "chamisul.png",
+                    "참이슬", 1950, 16.5f, null,null, "하이트 진로(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "like-first.jpg",
+                    "처음처럼", 1950, 16.5f, null,null, "롯데칠성음료(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "hanlla.png",
+                    "한라산", 1900, 17.5f, null, null,"(주)한라산", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "rabbit-white.jpg",
+                    "토끼 소주 화이트", 38000, 23f, null, null,"농업회사법인 토끼소주(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "munbae.jpg",
+                    "문배술", 10260, 40f, null, null,"문배주양조원", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "gosori.png",
+                    "제주 고소리술", 22800, 29f, null, null,"제주샘영농조합", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "hwayo.jpg",
+                    "화요", 8500, 25f, null,null, "(주)화요", "대한민국"));
+        }
+
+        private void sojuListKeyword(Keyword[] keywords, ArrayList<Alcohol> sojus) {
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(0)));
+            em.persist(new AlcoholKeyword(keywords[2], sojus.get(0)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(0)));
+
+            em.persist(new AlcoholKeyword(keywords[0],sojus.get(1)));
+            em.persist(new AlcoholKeyword(keywords[6],sojus.get(1)));
+            em.persist(new AlcoholKeyword(keywords[16],sojus.get(1)));
+
+            em.persist(new AlcoholKeyword(keywords[1],sojus.get(2)));
+            em.persist(new AlcoholKeyword(keywords[2],sojus.get(2)));
+            em.persist(new AlcoholKeyword(keywords[11],sojus.get(2)));
+
+            em.persist(new AlcoholKeyword(keywords[1],sojus.get(3)));
+            em.persist(new AlcoholKeyword(keywords[2],sojus.get(3)));
+            em.persist(new AlcoholKeyword(keywords[11],sojus.get(3)));
+
+            em.persist(new AlcoholKeyword(keywords[1],sojus.get(4)));
+            em.persist(new AlcoholKeyword(keywords[2],sojus.get(4)));
+            em.persist(new AlcoholKeyword(keywords[11],sojus.get(4)));
+
+            em.persist(new AlcoholKeyword(keywords[0],sojus.get(5)));
+            em.persist(new AlcoholKeyword(keywords[1],sojus.get(5)));
+            em.persist(new AlcoholKeyword(keywords[10],sojus.get(5)));
+
+            em.persist(new AlcoholKeyword(keywords[0],sojus.get(6)));
+            em.persist(new AlcoholKeyword(keywords[1],sojus.get(6)));
+            em.persist(new AlcoholKeyword(keywords[5],sojus.get(6)));
+            em.persist(new AlcoholKeyword(keywords[10],sojus.get(6)));
+
+            em.persist(new AlcoholKeyword(keywords[1],sojus.get(7)));
+            em.persist(new AlcoholKeyword(keywords[10],sojus.get(7)));
+            
+            em.persist(new AlcoholKeyword(keywords[1],sojus.get(8)));
+            em.persist(new AlcoholKeyword(keywords[5],sojus.get(8)));
+            em.persist(new AlcoholKeyword(keywords[10],sojus.get(8)));
         }
 
         private void setKeywords(Keyword[] keywords) {
