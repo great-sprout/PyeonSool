@@ -42,14 +42,6 @@ public class initDB {
             }
 
             ArrayList<Alcohol> alcohols = new ArrayList<>();
-            alcohols.add(new Alcohol(WINE, "louis-jadot.png",
-                    "루이자도 부르고뉴 샤르도네", 35000, 13f, null, null,null, null));
-
-            em.persist(alcohols.get(0));
-
-            em.persist(new AlcoholKeyword(keywords[0], alcohols.get(0)));
-            em.persist(new AlcoholKeyword(keywords[1], alcohols.get(0)));
-
 
             alcohols.add(new Alcohol(SOJU, "jinro.jpg",
                     "진로 이즈 백", 1800, 16.5f, null,null, "하이트 진로(주)", "대한민국"));
@@ -136,6 +128,25 @@ public class initDB {
             em.persist(new Vendor(alcohols.get(8), VendorName.valueOf("CU")));
             em.persist(new Vendor(alcohols.get(8), VendorName.valueOf("GS25")));
 
+            ArrayList<Alcohol> beers = new ArrayList<>();
+            beers.add(new Alcohol(BEER, "san-miguel.png", "루이자도 부르고뉴 샤르도네", 3000,
+                    5f, null, null, "산미구엘 브루어리", "필리핀"));
+            beers.add(new Alcohol(BEER, "tiger.jpg", "루이자도 부르고뉴 샤르도네", 2500,
+                    5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르"));
+            beers.add(new Alcohol(BEER, "budweiser.png", "루이자도 부르고뉴 샤르도네", 2500,
+                    5f, null, null, "앤하이저부시", "미국"));
+            beers.add(new Alcohol(BEER, "gomyo.png", "루이자도 부르고뉴 샤르도네", 2500,
+                    4.5f, null, null, "세븐브로이맥주", "한국"));
+            beers.add(new Alcohol(BEER, "hite-extra-cold.png", "루이자도 부르고뉴 샤르도네", 2800,
+                    4.5f, null, null, "하이트진로", "한국"));
+            beers.add(new Alcohol(BEER, "kozel-premium-lager.png", "루이자도 부르고뉴 샤르도네", 2500,
+                    4.6f, null, null, "필젠스키 프레즈드로이", "체코"));
+            beers.add(new Alcohol(BEER, "somersby.png", "루이자도 부르고뉴 샤르도네", 4200,
+                    4.5f, null, null, "칼스버그 서플라이", "덴마크"));
+            beers.add(new Alcohol(BEER, "stella-artois.png", "루이자도 부르고뉴 샤르도네", 3000,
+                    5f, null, null, "스텔라 아르투아 브루어리", "벨기에"));
+            beers.add(new Alcohol(BEER, "guinness-draught.png", "루이자도 부르고뉴 샤르도네", 3000,
+                    4.2f, null, null, "디아지오 아일랜드", "아일랜드"));
 
 
             em.flush();
