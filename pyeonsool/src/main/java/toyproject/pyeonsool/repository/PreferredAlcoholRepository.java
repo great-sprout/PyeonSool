@@ -8,4 +8,6 @@ import toyproject.pyeonsool.domain.PreferredAlcohol;
 public interface PreferredAlcoholRepository  extends JpaRepository<PreferredAlcohol, Long> {
 
     boolean existsByMemberAndAlcohol(Member member, Alcohol alcohol);
+
+    void removeByMemberAndAlcohol(Member member, Alcohol alcohol);
 }
