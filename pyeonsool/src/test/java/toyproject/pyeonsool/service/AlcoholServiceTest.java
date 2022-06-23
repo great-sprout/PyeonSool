@@ -47,10 +47,11 @@ class AlcoholServiceTest {
         em.persist(new PreferredAlcohol(member, alcohol));
 
         //when
-        AlcoholDetailsDto alcoholDetails = alcoholService.getAlcoholDetails(alcohol.getId(), member.getId());
-
         //then
-        assertThat(alcoholDetails).isNotNull();
+        assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), member.getId())).isNotNull();
+        assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), null))
+                .as("로그인 상태가 아닌경우").isNotNull();
+
     }
 
     @Test
