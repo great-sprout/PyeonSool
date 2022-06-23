@@ -35,4 +35,14 @@ public class AlcoholService {
 
         return preferredAlcohol.getId();
     }
+
+    public void dislikeAlcohol(Long alcoholId, Long memberId) {
+        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
+        Member member = memberRepository.findById(memberId).orElse(null);
+        // TODO 술, 회원 예외처리 필요
+
+        if (preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol)) {
+            preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
+        }
+    }
 }
