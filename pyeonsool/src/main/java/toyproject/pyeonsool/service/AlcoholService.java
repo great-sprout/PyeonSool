@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Member;
+import toyproject.pyeonsool.domain.PreferredAlcohol;
 import toyproject.pyeonsool.repository.AlcoholRepository;
 import toyproject.pyeonsool.repository.MemberRepository;
 import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
@@ -22,5 +23,16 @@ public class AlcoholService {
         // TODO 술, 회원 예외처리 필요
 
         return AlcoholDetailsDto.of(alcohol, preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
+    }
+
+    public Long likeAlcohol(Long alcoholId, Long memberId) {
+        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
+        Member member = memberRepository.findById(memberId).orElse(null);
+        // TODO 술, 회원 예외처리 필요
+
+        PreferredAlcohol preferredAlcohol = new PreferredAlcohol(member, alcohol);
+        preferredAlcoholRepository.save(preferredAlcohol);
+
+        return preferredAlcohol.getId();
     }
 }
