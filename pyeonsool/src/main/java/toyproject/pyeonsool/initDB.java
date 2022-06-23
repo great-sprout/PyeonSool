@@ -42,43 +42,49 @@ public class initDB {
             }
 
             ArrayList<Alcohol> sojus = new ArrayList<>();
+            setSojuList(sojus);
 
-
-            sojuList(sojus);
             for(Alcohol alcohol:sojus){
                 em.persist(alcohol);
             }
 
-            sojuListKeyword(keywords, sojus);
-
-            sojuListVendor(sojus);
+            persistSojuKeywords(keywords, sojus);
+            persistSojuVendors(sojus);
 
             ArrayList<Alcohol> beers = new ArrayList<>();
-            beers.add(new Alcohol(BEER, "san-miguel.png", "루이자도 부르고뉴 샤르도네", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀"));
-            beers.add(new Alcohol(BEER, "tiger.jpg", "루이자도 부르고뉴 샤르도네", 2500,
-                    5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르"));
-            beers.add(new Alcohol(BEER, "budweiser.png", "루이자도 부르고뉴 샤르도네", 2500,
-                    5f, null, null, "앤하이저부시", "미국"));
-            beers.add(new Alcohol(BEER, "gomyo.png", "루이자도 부르고뉴 샤르도네", 2500,
-                    4.5f, null, null, "세븐브로이맥주", "한국"));
-            beers.add(new Alcohol(BEER, "hite-extra-cold.png", "루이자도 부르고뉴 샤르도네", 2800,
-                    4.5f, null, null, "하이트진로", "한국"));
-            beers.add(new Alcohol(BEER, "kozel-premium-lager.png", "루이자도 부르고뉴 샤르도네", 2500,
-                    4.6f, null, null, "필젠스키 프레즈드로이", "체코"));
-            beers.add(new Alcohol(BEER, "somersby.png", "루이자도 부르고뉴 샤르도네", 4200,
-                    4.5f, null, null, "칼스버그 서플라이", "덴마크"));
-            beers.add(new Alcohol(BEER, "stella-artois.png", "루이자도 부르고뉴 샤르도네", 3000,
-                    5f, null, null, "스텔라 아르투아 브루어리", "벨기에"));
-            beers.add(new Alcohol(BEER, "guinness-draught.png", "루이자도 부르고뉴 샤르도네", 3000,
-                    4.2f, null, null, "디아지오 아일랜드", "아일랜드"));
-
+            setBeers(beers);
+            for (Alcohol beer : beers) {
+                em.persist(beer);
+            }
+            persistBeerKeywords(keywords, beers);
+            persistBeerVendors(beers);
 
             em.flush();
             em.clear();
         }
 
-        private void sojuListVendor(ArrayList<Alcohol> sojus) {
+        private void setBeers(ArrayList<Alcohol> beers) {
+            beers.add(new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
+                    5f, null, null, "산미구엘 브루어리", "필리핀"));
+            beers.add(new Alcohol(BEER, "tiger.jpg", "타이거 아시안 라거", 2500,
+                    5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르"));
+            beers.add(new Alcohol(BEER, "budweiser.png", "버드와이저", 2500,
+                    5f, null, null, "앤하이저부시", "미국"));
+            beers.add(new Alcohol(BEER, "gomyo.png", "곰표 밀맥주", 2500,
+                    4.5f, null, null, "세븐브로이맥주", "한국"));
+            beers.add(new Alcohol(BEER, "hite-extra-cold.png", "하이트 엑스트라 콜드", 2800,
+                    4.5f, null, null, "하이트진로", "한국"));
+            beers.add(new Alcohol(BEER, "kozel-premium-lager.png", "코젤 프리미엄 라거", 2500,
+                    4.6f, null, null, "필젠스키 프레즈드로이", "체코"));
+            beers.add(new Alcohol(BEER, "somersby.png", "서머스비(사과)", 4200,
+                    4.5f, null, null, "칼스버그 서플라이", "덴마크"));
+            beers.add(new Alcohol(BEER, "stella-artois.png", "스텔라 아르투아", 3000,
+                    5f, null, null, "스텔라 아르투아 브루어리", "벨기에"));
+            beers.add(new Alcohol(BEER, "guinness-draught.png", "기네스 드래프트", 3000,
+                    4.2f, null, null, "디아지오 아일랜드", "아일랜드"));
+        }
+
+        private void persistSojuVendors(ArrayList<Alcohol> sojus) {
             em.persist(new Vendor(sojus.get(0), VendorName.valueOf("CU")));
             em.persist(new Vendor(sojus.get(0), VendorName.valueOf("GS25")));
             em.persist(new Vendor(sojus.get(0), VendorName.valueOf("SEVEN_ELEVEN")));
@@ -110,7 +116,7 @@ public class initDB {
             em.persist(new Vendor(sojus.get(8), VendorName.valueOf("GS25")));
         }
 
-        private void sojuList(ArrayList<Alcohol> sojus) {
+        private void setSojuList(ArrayList<Alcohol> sojus) {
             sojus.add(new Alcohol(SOJU, "jinro.jpg",
                     "진로 이즈 백", 1800, 16.5f, null,null, "하이트 진로(주)", "대한민국"));
             sojus.add(new Alcohol(SOJU, "jamong-chamisul.jpg",
@@ -131,7 +137,7 @@ public class initDB {
                     "화요", 8500, 25f, null,null, "(주)화요", "대한민국"));
         }
 
-        private void sojuListKeyword(Keyword[] keywords, ArrayList<Alcohol> sojus) {
+        private void persistSojuKeywords(Keyword[] keywords, ArrayList<Alcohol> sojus) {
             em.persist(new AlcoholKeyword(keywords[1], sojus.get(0)));
             em.persist(new AlcoholKeyword(keywords[2], sojus.get(0)));
             em.persist(new AlcoholKeyword(keywords[11], sojus.get(0)));
@@ -167,6 +173,51 @@ public class initDB {
             em.persist(new AlcoholKeyword(keywords[1],sojus.get(8)));
             em.persist(new AlcoholKeyword(keywords[5],sojus.get(8)));
             em.persist(new AlcoholKeyword(keywords[10],sojus.get(8)));
+        }
+        private void persistBeerKeywords(Keyword[] keywords, ArrayList<Alcohol> beers) {
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(0)));
+            em.persist(new AlcoholKeyword(keywords[5], beers.get(0)));
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(0)));
+
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(1)));
+            em.persist(new AlcoholKeyword(keywords[5], beers.get(1)));
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(1)));
+
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(2)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(2)));
+            em.persist(new AlcoholKeyword(keywords[5], beers.get(2)));
+
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(3)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(3)));
+            em.persist(new AlcoholKeyword(keywords[16], beers.get(3)));
+
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(4)));
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(4)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(4)));
+
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(5)));
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(5)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(5)));
+
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(6)));
+            em.persist(new AlcoholKeyword(keywords[16], beers.get(6)));
+            em.persist(new AlcoholKeyword(keywords[0], beers.get(6)));
+
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(7)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(7)));
+            em.persist(new AlcoholKeyword(keywords[7], beers.get(7)));
+
+            em.persist(new AlcoholKeyword(keywords[17], beers.get(8)));
+            em.persist(new AlcoholKeyword(keywords[5], beers.get(8)));
+            em.persist(new AlcoholKeyword(keywords[9], beers.get(8)));
+        }
+
+        private void persistBeerVendors(ArrayList<Alcohol> beers) {
+            for (Alcohol beer : beers) {
+                em.persist(new Vendor(beer, VendorName.CU));
+                em.persist(new Vendor(beer, VendorName.GS25));
+                em.persist(new Vendor(beer, VendorName.SEVEN_ELEVEN));
+            }
         }
 
         private void setKeywords(Keyword[] keywords) {
