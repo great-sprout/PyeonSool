@@ -57,27 +57,17 @@ public class initDB {
         }
 
         private void setKeywords(Keyword[] keywords) {
-            keywords[0] = new Keyword("sweet");
-            keywords[1] = new Keyword("clear");
-            keywords[2] = new Keyword("cool");
-            keywords[3] = new Keyword("heavy");
-            keywords[4] = new Keyword("light");
-            keywords[5] = new Keyword("nutty");
-            keywords[6] = new Keyword("fresh");
-            keywords[7] = new Keyword("flower");
-            keywords[8] = new Keyword("bitter");
-            keywords[9] = new Keyword("unique");
-            keywords[10] = new Keyword("strong");
-            keywords[11] = new Keyword("middle");
-            keywords[12] = new Keyword("mild");
-            keywords[13] = new Keyword("white");
-            keywords[14] = new Keyword("red");
-            keywords[15] = new Keyword("astringent");
-            keywords[16] = new Keyword("fruit");
-            keywords[17] = new Keyword("nonAlcoholic");
-            keywords[18] = new Keyword("highAcidity");
-            keywords[19] = new Keyword("middleAcidity");
-            keywords[20] = new Keyword("lowAcidity");
+            String[] keywordNames = {"sweet", "clear", "cool", "heavy", "light",
+                                     "nutty", "fresh", "flower", "bitter", "unique",
+                                     "strong", "middle", "mild", "white", "red",
+                                     "astringent", "fruit", "nonAlcoholic", "highAcidity", "middleAcidity",
+                                     "lowAcidity"
+                                    };
+
+            for(int i = 0; i < keywords.length; i++){
+                keywords[i] = new Keyword(keywordNames[i]);
+            }
+
         }
     }
 }
