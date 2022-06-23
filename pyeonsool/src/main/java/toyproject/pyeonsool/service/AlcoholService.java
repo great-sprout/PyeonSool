@@ -9,6 +9,8 @@ import toyproject.pyeonsool.repository.AlcoholRepository;
 import toyproject.pyeonsool.repository.MemberRepository;
 import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 
+import java.util.Objects;
+
 @Service
 @RequiredArgsConstructor
 public class AlcoholService {
@@ -19,10 +21,15 @@ public class AlcoholService {
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
-        Member member = memberRepository.findById(memberId).orElse(null);
-        // TODO 술, 회원 예외처리 필요
 
-        return AlcoholDetailsDto.of(alcohol, preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
+        if (Objects.isNull(memberId)) {
+            return AlcoholDetailsDto.of(alcohol, false);
+        } else {
+            Member member = memberRepository.findById(memberId).orElse(null);
+            // TODO 술, 회원 예외처리 필요
+
+            return AlcoholDetailsDto.of(alcohol, preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
+        }
     }
 
     public Long likeAlcohol(Long alcoholId, Long memberId) {
