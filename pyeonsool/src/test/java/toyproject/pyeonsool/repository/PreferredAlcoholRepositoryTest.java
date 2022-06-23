@@ -39,4 +39,24 @@ class PreferredAlcoholRepositoryTest {
         Assertions.assertThat(preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol))
                 .isTrue();
     }
+
+    @Test
+    void removeByMemberAndAlcohol() {
+        //given
+        Member member = new Member(null, null, null, null);
+        em.persist(member);
+
+        Alcohol alcohol = new Alcohol(null, null, null, null, null, null,
+                null, null, null);
+        em.persist(alcohol);
+
+        PreferredAlcohol preferredAlcohol = new PreferredAlcohol(member, alcohol);
+        em.persist(preferredAlcohol);
+
+        //when
+        preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
+
+        //then
+        Assertions.assertThat(preferredAlcoholRepository.findById(preferredAlcohol.getId())).isEmpty();
+    }
 }
