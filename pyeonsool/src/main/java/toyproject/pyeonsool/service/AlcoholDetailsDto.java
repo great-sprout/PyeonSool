@@ -10,7 +10,7 @@ import toyproject.pyeonsool.domain.AlcoholType;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class AlcoholDetailsDto {
     private AlcoholType type;
-    private String fileName;
+    private String imagePath;
     private String name;
     private Integer price;
     private Float abv;
@@ -20,10 +20,10 @@ public class AlcoholDetailsDto {
     private String origin;
     private boolean likeCurrentAlcohol;
 
-    public static AlcoholDetailsDto of(Alcohol alcohol, boolean likeCurrentAlcohol) {
+    public static AlcoholDetailsDto of(Alcohol alcohol, String imagePath, boolean likeCurrentAlcohol) {
         return new AlcoholDetailsDto(
                 alcohol.getType(),
-                alcohol.getFileName(),
+                imagePath,
                 alcohol.getName(),
                 alcohol.getPrice(),
                 alcohol.getAbv(),
