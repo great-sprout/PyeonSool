@@ -51,4 +51,21 @@ class AlcoholServiceTest {
         //then
         Assertions.assertThat(alcoholDetails).isNotNull();
     }
+
+    @Test
+    void likeAlcohol() {
+        //given
+        Member member = new Member("nickname", "userId", "password", "01012345678");
+        em.persist(member);
+
+        Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        em.persist(alcohol);
+
+        //when
+        Long likeAlcoholId = alcoholService.likeAlcohol(alcohol.getId(), member.getId());
+
+        //then
+        Assertions.assertThat(em.find(PreferredAlcohol.class, likeAlcoholId)).isNotNull();
+    }
 }
