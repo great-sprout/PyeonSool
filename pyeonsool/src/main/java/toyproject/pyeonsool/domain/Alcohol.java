@@ -29,17 +29,20 @@ public class Alcohol {
     @Column(precision = 3, scale = 1)
     private Float abv;
     private Byte sugarContent;
+    private Byte body;
 
     private String manufacturer;
     private String origin;
 
-    public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent, String manufacturer, String origin) {
+    public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent,
+                   Byte body, String manufacturer, String origin) {
         this.type = type;
         this.fileName = fileName;
         this.name = name;
         this.price = price;
         this.abv = abv;
         this.sugarContent = sugarContent;
+        this.body = body;
         this.manufacturer = manufacturer;
         this.origin = origin;
     }
