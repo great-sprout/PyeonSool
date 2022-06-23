@@ -21,6 +21,7 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -49,7 +50,7 @@ class AlcoholServiceTest {
         AlcoholDetailsDto alcoholDetails = alcoholService.getAlcoholDetails(alcohol.getId(), member.getId());
 
         //then
-        Assertions.assertThat(alcoholDetails).isNotNull();
+        assertThat(alcoholDetails).isNotNull();
     }
 
     @Test
@@ -66,6 +67,25 @@ class AlcoholServiceTest {
         Long likeAlcoholId = alcoholService.likeAlcohol(alcohol.getId(), member.getId());
 
         //then
-        Assertions.assertThat(em.find(PreferredAlcohol.class, likeAlcoholId)).isNotNull();
+        assertThat(em.find(PreferredAlcohol.class, likeAlcoholId)).isNotNull();
+    }
+
+    @Test
+    void dislikeAlcohol() {
+        //given
+        Member member = new Member("nickname", "userId", "password", "01012345678");
+        em.persist(member);
+
+        Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        em.persist(alcohol);
+
+        Long likeAlcoholId = alcoholService.likeAlcohol(alcohol.getId(), member.getId());
+
+        //when
+        alcoholService.dislikeAlcohol(alcohol.getId(), member.getId());
+
+        //then
+        assertThat(em.find(PreferredAlcohol.class, likeAlcoholId)).isNull();
     }
 }
