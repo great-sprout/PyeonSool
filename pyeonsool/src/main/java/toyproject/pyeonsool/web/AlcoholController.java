@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/alcohols")
 public class AlcoholController {
 
+    @GetMapping
+    public String getListPage(){
+        return"listPage";
+    }
     @GetMapping("/{alcoholId}")
     public String getDetailPage(@PathVariable Long alcoholId) {
         return "detailPage";
