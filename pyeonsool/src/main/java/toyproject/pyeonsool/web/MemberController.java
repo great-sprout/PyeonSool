@@ -2,10 +2,7 @@ package toyproject.pyeonsool.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/members")
@@ -22,7 +19,8 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public void login() {
+    public String login(LoginForm loginForm, @RequestParam(defaultValue = "/") String redirectURL) {
 
+        return "redirect:/" + redirectURL;
     }
 }

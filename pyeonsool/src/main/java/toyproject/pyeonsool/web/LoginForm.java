@@ -1,10 +1,8 @@
 package toyproject.pyeonsool.web;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
+@Data
 public class LoginForm {
     private String userId;
     private String password;
