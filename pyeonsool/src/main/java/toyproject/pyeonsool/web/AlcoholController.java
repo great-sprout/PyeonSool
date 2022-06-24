@@ -17,6 +17,11 @@ public class AlcoholController {
 
     private final AlcoholService alcoholService;
 
+    @GetMapping
+    public String getListPage(){
+        return"listPage";
+    }
+
     @GetMapping("/{alcoholId}")
     public String getDetailPage(@PathVariable Long alcoholId,
                                 @SessionAttribute(name = "memberId", required = false) Long memberId,
