@@ -27,7 +27,7 @@ class MemberRepositoryTest {
         em.persist(member);
 
         //when
-        Member findMember = memberRepository.findByUserId(userId);
+        Member findMember = memberRepository.findByUserId(userId).get();
 
         //then
         Assertions.assertThat(findMember.getUserId()).isEqualTo(userId);
