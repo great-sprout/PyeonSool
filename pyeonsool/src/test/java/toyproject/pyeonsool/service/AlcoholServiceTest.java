@@ -1,29 +1,17 @@
 package toyproject.pyeonsool.service;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
-import toyproject.pyeonsool.repository.AlcoholRepository;
-import toyproject.pyeonsool.repository.MemberRepository;
-import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
@@ -47,10 +35,11 @@ class AlcoholServiceTest {
         em.persist(new PreferredAlcohol(member, alcohol));
 
         //when
-        AlcoholDetailsDto alcoholDetails = alcoholService.getAlcoholDetails(alcohol.getId(), member.getId());
-
         //then
-        assertThat(alcoholDetails).isNotNull();
+        assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), member.getId())).isNotNull();
+        assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), null))
+                .as("로그인 상태가 아닌경우").isNotNull();
+
     }
 
     @Test
