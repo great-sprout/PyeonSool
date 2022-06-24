@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="../image/components/pyeonsool-icon.svg"
+      href="/image/components/pyeonsool-icon.svg"
       rel="icon"
       type="image/x-icon"
     />
     <title>로그인</title>
-    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../css/screens/signIn.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/screens/signIn.css" />
   </head>
   <body>
     <div id="wrap">
@@ -21,12 +21,12 @@
             <h1 class="sign-in__title">
               <img
                 class="sign-in__logo"
-                src="../image/components/pyeonsool-logo.svg"
+                src="/image/components/pyeonsool-logo.svg"
                 alt="pyeonsool-logo"
               />
             </h1>
 
-            <form action="" method="post" class="sign-in__form">
+            <form th:action method="post" class="sign-in__form" th:object="${loginForm}">
               <div class="sign-in__id-wrap">
                 <h2 class="sign-in__id">아이디</h2>
 
@@ -36,6 +36,7 @@
                   class="sign-in__id-input"
                   maxlength="20"
                   required
+                  th:field="*{userId}"
                 />
               </div>
 
@@ -49,6 +50,7 @@
                   required
                   minlength="4"
                   maxlength="20"
+                  th:field="*{password}"
                 />
               </div>
 
@@ -68,7 +70,7 @@
                 >아직 회원이 아니세요?</span
               >
 
-              <a href="./signUp.html" class="sign-in__sign-up-link">회원가입</a>
+              <a href="/members/add" class="sign-in__sign-up-link">회원가입</a>
             </div>
           </article>
         </main>

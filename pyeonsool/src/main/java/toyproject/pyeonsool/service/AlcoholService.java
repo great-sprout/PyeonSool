@@ -10,10 +10,12 @@ import toyproject.pyeonsool.repository.AlcoholRepository;
 import toyproject.pyeonsool.repository.MemberRepository;
 import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 
+import javax.transaction.Transactional;
 import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class AlcoholService {
 
     private final AlcoholRepository alcoholRepository;
