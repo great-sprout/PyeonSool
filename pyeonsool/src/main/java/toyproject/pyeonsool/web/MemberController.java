@@ -10,7 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController {
 
     @GetMapping("/{memberId}")
-    public String getMyPage(@PathVariable Long memberId){
+    public String getMyPage(@PathVariable Long memberId) {
         return "myPage";
+    }
+
+    @GetMapping("login")
+    public String getSignInPage() {
+        return "signIn";
     }
 }
