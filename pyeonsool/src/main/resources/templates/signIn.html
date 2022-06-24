@@ -26,7 +26,7 @@
               />
             </h1>
 
-            <form action="/members/login" method="post" class="sign-in__form">
+            <form th:action method="post" class="sign-in__form" th:object="${loginForm}">
               <div class="sign-in__id-wrap">
                 <h2 class="sign-in__id">아이디</h2>
 
@@ -36,6 +36,7 @@
                   class="sign-in__id-input"
                   maxlength="20"
                   required
+                  th:field="*{userId}"
                 />
               </div>
 
@@ -49,6 +50,7 @@
                   required
                   minlength="4"
                   maxlength="20"
+                  th:field="*{password}"
                 />
               </div>
 
