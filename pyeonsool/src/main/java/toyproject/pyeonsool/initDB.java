@@ -34,6 +34,10 @@ public class initDB {
         EntityManager em;
 
         public void init() {
+            Member member =
+                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+            em.persist(member);
+
             Keyword[] keywords = new Keyword[21];
             setKeywords(keywords);
 
