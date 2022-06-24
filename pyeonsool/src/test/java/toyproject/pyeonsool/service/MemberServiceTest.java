@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.domain.Member;
 
 import javax.persistence.EntityManager;
@@ -34,11 +35,11 @@ class MemberServiceTest {
 
             em.persist(member);
             //when
-            Member loginMember = memberService.findLoginMember(userId, password);
+            LoginMember loginMember = memberService.findLoginMember(userId, password);
 
             //then
-            assertThat(loginMember.getUserId()).isEqualTo(userId);
-            assertThat(loginMember.getPassword()).isEqualTo(password);
+            assertThat(loginMember.getId()).isEqualTo(member.getId());
+            assertThat(loginMember.getNickname()).isEqualTo(member.getNickname());
         }
 
         @Test
