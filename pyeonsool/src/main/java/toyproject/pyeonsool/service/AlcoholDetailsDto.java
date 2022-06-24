@@ -13,7 +13,7 @@ public class AlcoholDetailsDto {
     private String imagePath;
     private String name;
     private Integer price;
-    private Float abv;
+    private String abv;
     private Byte sugarContent;
     private Byte body;
     private String manufacturer;
@@ -26,11 +26,27 @@ public class AlcoholDetailsDto {
                 imagePath,
                 alcohol.getName(),
                 alcohol.getPrice(),
-                alcohol.getAbv(),
+                String.format("%.1f", alcohol.getAbv()),
                 alcohol.getSugarContent(),
                 alcohol.getBody(),
                 alcohol.getManufacturer(),
                 alcohol.getOrigin(),
                 likeCurrentAlcohol);
+    }
+
+    @Override
+    public String toString() {
+        return "AlcoholDetailsDto{" +
+                "type=" + type +
+                ", imagePath='" + imagePath + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", abv='" + abv + '\'' +
+                ", sugarContent=" + sugarContent +
+                ", body=" + body +
+                ", manufacturer='" + manufacturer + '\'' +
+                ", origin='" + origin + '\'' +
+                ", likeCurrentAlcohol=" + likeCurrentAlcohol +
+                '}';
     }
 }

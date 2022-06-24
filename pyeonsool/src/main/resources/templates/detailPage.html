@@ -83,6 +83,7 @@
               <div class="alcohol-info__image-wrap">
                 <img
                   src="/image/alcohol/chamisul.png"
+                  th:src="${alcoholDetails.imagePath}"
                   alt="술 이미지"
                   class="alcohol-info__image"
                 />
@@ -90,42 +91,37 @@
             </div>
 
             <div class="alcohol-info__right-column">
-              <h1 class="alcohol-info__name">참이슬 360mL</h1>
+              <h1 class="alcohol-info__name" th:text="${alcoholDetails.name}">참이슬 360mL</h1>
 
               <div class="alcohol-info__contents">
                 <div class="alcohol-info__row alcohol-info__price">
                   <span class="alcohol-info__price-key">가격</span>
-                  <span class="alcohol-info__price-value">1,190원</span>
+                  <span class="alcohol-info__price-value" th:text="${alcoholDetails.price}">1,190원</span>
                 </div>
 
                 <div class="alcohol-info__content">
                   <span class="alcohol-info__content-key">도수</span>
-                  <span class="alcohol-info__content-value">17.8도</span>
+                  <span class="alcohol-info__content-value" th:text="${alcoholDetails.abv}">17.8도</span>
                 </div>
 
-                <div class="alcohol-info__taste">
+                <div class="alcohol-info__taste"
+                     th:if="${alcoholDetails.type eq T(toyproject.pyeonsool.domain.AlcoholType).WINE}">
                   <div class="alcohol-info__sugar">
                     <span class="alcohol-info__sugar-key">당도</span>
 
                     <div class="alcohol-info__sugar-values">
-                      <div class="alcohol-info__sugar-value"></div>
-                      <div class="alcohol-info__sugar-value"></div>
-                      <div class="alcohol-info__sugar-value"></div>
-                      <div class="alcohol-info__sugar-value"></div>
-                      <div class="alcohol-info__sugar-value"></div>
+                      <div class="alcohol-info__sugar-value"
+                           th:each="num : ${#numbers.sequence(1, alcoholDetails.sugarContent)}"></div>
+
                     </div>
                   </div>
 
-                  <!-- 와인인 경우만 표시 -->
                   <div class="alcohol-info__body">
                     <span class="alcohol-info__body-key">바디</span>
 
                     <div class="alcohol-info__body-values">
-                      <div class="alcohol-info__body-value"></div>
-                      <div class="alcohol-info__body-value"></div>
-                      <div class="alcohol-info__body-value"></div>
-                      <div class="alcohol-info__body-value"></div>
-                      <div class="alcohol-info__body-value"></div>
+                      <div class="alcohol-info__body-value-value"
+                           th:each="num : ${#numbers.sequence(1, alcoholDetails.sugarContent)}"></div>
                     </div>
                   </div>
                 </div>
@@ -160,12 +156,12 @@
 
                 <div class="alcohol-info__manufacturer">
                   <span class="alcohol-info__manufacturer-key">제조사</span>
-                  <span class="alcohol-info__manufacturer-value">(주)쌍용</span>
+                  <span class="alcohol-info__manufacturer-value" th:text="${alcoholDetails.manufacturer}">(주)쌍용</span>
                 </div>
 
                 <div class="alcohol-info__origin">
                   <span class="alcohol-info__origin-key">원산지</span>
-                  <span class="alcohol-info__origin-value">대한민국</span>
+                  <span class="alcohol-info__origin-value" th:text="${alcoholDetails.origin}">대한민국</span>
                 </div>
 
                 <div class="alcohol-info__keywords">
@@ -176,7 +172,8 @@
               </div>
 
               <div class="alcohol-info__buttons">
-                <button class="alcohol-info__like-button">
+                <button class="alcohol-info__like-button"
+                        th:classappend="${alcoholDetails.likeCurrentAlcohol} ? 'alcohol-info__like-button--liked'">
                   <span class="alcohol-info__like-text">Like</span>
                   <i class="fas fa-heart"></i>
                 </button>
