@@ -1,6 +1,8 @@
 package toyproject.pyeonsool.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
@@ -17,26 +19,30 @@ public class AlcoholApiController {
     private final AlcoholService alcoholService;
 
     @PostMapping("/{alcoholId}/like")
-    public void likeAlcohol(
+    public ResponseEntity<Void> likeAlcohol(
             @PathVariable Long alcoholId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
         if (isNull(loginMember)) {
-            // TODO 예외를 처리할 advice 클래스 생성
-            throw new RuntimeException("로그인 상태가 아닙니다.");
+            // TODO advice 클래스 생성 후 예외 통합 관리
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         alcoholService.likeAlcohol(alcoholId, loginMember.getId());
+
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{alcoholId}/dislike")
-    public void dislikeAlcohol(
+    public ResponseEntity<Void> dislikeAlcohol(
             @PathVariable Long alcoholId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
         if (isNull(loginMember)) {
-            // TODO 예외를 처리할 advice 클래스 생성
-            throw new RuntimeException("로그인 상태가 아닙니다.");
+            // TODO advice 클래스 생성 후 예외 통합 관리
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         alcoholService.dislikeAlcohol(alcoholId, loginMember.getId());
+
+        return ResponseEntity.ok().build();
     }
 }
