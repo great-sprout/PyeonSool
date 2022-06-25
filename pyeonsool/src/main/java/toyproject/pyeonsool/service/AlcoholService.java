@@ -6,12 +6,15 @@ import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
+import toyproject.pyeonsool.repository.AlcoholKeywordRepository;
 import toyproject.pyeonsool.repository.AlcoholRepository;
 import toyproject.pyeonsool.repository.MemberRepository;
 import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 
 import javax.transaction.Transactional;
-import java.util.Objects;
+import java.util.List;
+
+import static java.util.Objects.*;
 
 @Service
 @RequiredArgsConstructor
@@ -21,21 +24,25 @@ public class AlcoholService {
     private final AlcoholRepository alcoholRepository;
     private final PreferredAlcoholRepository preferredAlcoholRepository;
     private final MemberRepository memberRepository;
+    private final AlcoholKeywordRepository alcoholKeywordRepository;
     private final FileManager fileManager;
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
         String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+        List<String> alcoholKeywords = alcoholKeywordRepository.getAlcoholKeywords(alcoholId);
 
-        if (Objects.isNull(memberId)) {
-            return AlcoholDetailsDto.of(alcohol, alcoholImagePath, false);
-        } else {
-            Member member = memberRepository.findById(memberId).orElse(null);
-            // TODO 술, 회원 예외처리 필요
-
-            return AlcoholDetailsDto.of(alcohol, alcoholImagePath,
-                    preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
+        if (isNull(memberId)) {
+            return AlcoholDetailsDto.of(alcohol, alcoholImagePath, alcoholKeywords);
         }
+
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
+        // TODO 술, 회원 예외처리 필요
+
+        return AlcoholDetailsDto.of(alcohol, alcoholImagePath,alcoholKeywords,
+                preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
+
     }
 
     public Long likeAlcohol(Long alcoholId, Long memberId) {
