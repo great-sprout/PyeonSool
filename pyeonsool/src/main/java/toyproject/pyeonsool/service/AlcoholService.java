@@ -60,7 +60,7 @@ public class AlcoholService {
             return String.format("%.1f", ratingAvg);
         }
 
-        return null;
+        return "-";
     }
 
     private Map<String, String> createKeywordMap() {
