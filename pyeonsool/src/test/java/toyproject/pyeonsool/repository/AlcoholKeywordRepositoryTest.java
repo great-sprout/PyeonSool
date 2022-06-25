@@ -12,16 +12,14 @@ import toyproject.pyeonsool.domain.Keyword;
 
 import javax.persistence.EntityManager;
 
-import java.security.Key;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 
 @DataJpaTest
 @Import(AppConfig.class)
-class AlcoholKeywordCustomRepositoryImplTest {
+class AlcoholKeywordRepositoryTest {
 
     @Autowired
     AlcoholKeywordRepository alcoholKeywordRepository;
