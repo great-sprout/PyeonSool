@@ -6,6 +6,8 @@ import lombok.Getter;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
 
+import java.util.List;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class AlcoholDetailsDto {
@@ -18,9 +20,10 @@ public class AlcoholDetailsDto {
     private Byte body;
     private String manufacturer;
     private String origin;
+    private List<String> keywords;
     private boolean likeCurrentAlcohol;
 
-    public static AlcoholDetailsDto of(Alcohol alcohol, String imagePath, boolean likeCurrentAlcohol) {
+    public static AlcoholDetailsDto of(Alcohol alcohol, String imagePath, List<String> alcoholKeywords, boolean likeCurrentAlcohol) {
         return new AlcoholDetailsDto(
                 alcohol.getType(),
                 imagePath,
@@ -31,7 +34,12 @@ public class AlcoholDetailsDto {
                 alcohol.getBody(),
                 alcohol.getManufacturer(),
                 alcohol.getOrigin(),
+                alcoholKeywords,
                 likeCurrentAlcohol);
+    }
+
+    public static AlcoholDetailsDto of(Alcohol alcohol, String imagePath, List<String> alcoholKeywords) {
+        return AlcoholDetailsDto.of(alcohol, imagePath, alcoholKeywords, false);
     }
 
     @Override
