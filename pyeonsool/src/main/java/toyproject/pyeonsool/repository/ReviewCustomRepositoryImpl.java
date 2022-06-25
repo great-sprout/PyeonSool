@@ -2,11 +2,10 @@ package toyproject.pyeonsool.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import toyproject.pyeonsool.domain.QReview;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.QReview.*;
+import static toyproject.pyeonsool.domain.QReview.review;
 
 @RequiredArgsConstructor
 public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
