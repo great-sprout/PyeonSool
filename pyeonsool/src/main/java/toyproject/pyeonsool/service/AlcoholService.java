@@ -91,8 +91,10 @@ public class AlcoholService {
     }
 
     public Long likeAlcohol(Long alcoholId, Long memberId) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
-        Member member = memberRepository.findById(memberId).orElse(null);
+        Alcohol alcohol = alcoholRepository.findById(alcoholId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
 
         PreferredAlcohol preferredAlcohol = new PreferredAlcohol(member, alcohol);
@@ -102,8 +104,10 @@ public class AlcoholService {
     }
 
     public void dislikeAlcohol(Long alcoholId, Long memberId) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
-        Member member = memberRepository.findById(memberId).orElse(null);
+        Alcohol alcohol = alcoholRepository.findById(alcoholId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
 
         if (preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol)) {
