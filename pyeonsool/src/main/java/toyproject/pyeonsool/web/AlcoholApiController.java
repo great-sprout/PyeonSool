@@ -8,9 +8,7 @@ import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.service.AlcoholService;
 
-import java.util.Objects;
-
-import static java.util.Objects.*;
+import static java.util.Objects.isNull;
 
 @RestController
 @RequiredArgsConstructor
