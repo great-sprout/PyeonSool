@@ -3,10 +3,7 @@ package toyproject.pyeonsool.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.PreferredAlcohol;
+import toyproject.pyeonsool.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -34,12 +31,17 @@ class AlcoholServiceTest {
         em.persist(alcohol);
         em.persist(new PreferredAlcohol(member, alcohol));
 
+        em.persist(new Review(member, alcohol, (byte) 5, "", Recommend.BASIC));
+        em.persist(new Review(member, alcohol, (byte) 3, "", Recommend.BASIC));
+        em.persist(new Review(member, alcohol, (byte) 2, "", Recommend.BASIC));
+
         //when
+        AlcoholDetailsDto alcoholDetails = alcoholService.getAlcoholDetails(alcohol.getId(), member.getId());
+
         //then
-        assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), member.getId())).isNotNull();
         assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), null))
                 .as("로그인 상태가 아닌경우").isNotNull();
-
+        assertThat(alcoholDetails.getGrade()).isEqualTo("3.3");
     }
 
     @Test
