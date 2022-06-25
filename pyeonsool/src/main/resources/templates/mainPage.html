@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.thymeleaf.org/">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      href="../image/components/pyeonsool-icon.svg"
+      href="/image/components/pyeonsool-icon.svg"
       rel="icon"
       type="image/x-icon"
     />
     <title>메인 페이지</title>
-    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="../css/screens/mainPage.css" />
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/screens/mainPage.css" />
   </head>
   <body>
     <div id="wrap">
@@ -22,21 +22,21 @@
 
           <ul class="list-nav unvisible">
             <li class="list-nav__item">
-              <a href="./productListPage.html">소주</a>
+              <a href="/alcohols">소주</a>
             </li>
             <li class="list-nav__item">
-              <a href="./productListPage.html">맥주</a>
+              <a href="/alcohols">맥주</a>
             </li>
             <li class="list-nav__item">
-              <a href="./productListPage.html">와인</a>
+              <a href="/alcohols">와인</a>
             </li>
           </ul>
         </nav>
 
         <div class="header__logo">
-          <a href="./mainPage.html" class="logo-link">
+          <a href="/" class="logo-link">
             <img
-              src="../image/components/pyeonsool-logo.svg"
+              src="/image/components/pyeonsool-logo.svg"
               alt="편술 로고"
               class="logo"
             />
@@ -51,7 +51,8 @@
 
             <div class="header-profile__content">
               <div class="header-profile__link">
-                <a class="header-profile__mypage">마이페이지</a>
+                <!-- TODO 파라미터 memberId 수정 -->
+                <a href="/members/1" class="header-profile__mypage">마이페이지</a>
                 <div class="header-profile__divider"></div>
                 <span class="header-profile__logout">로그아웃</span>
               </div>
@@ -91,7 +92,7 @@
             <div class="introduction__intro-image">
               <img
                 class="introduction__img--intro-image"
-                src="../image/components/pyeonsool-image.png"
+                src="/image/components/pyeonsool-image.png"
                 alt="편술 이미지"
               />
             </div>
@@ -110,12 +111,13 @@
             <div class="recommend__list recommend__list--month">
               <div class="slide-button slide-button--left">&lt;</div>
               <div class="slide-button slide-button--right">&gt;</div>
-
+              <!-- TODO 이미지 주소 imagePath -->
               <div class="recommend__items-wrap">
                 <ul class="recommend__items">
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/chamisul.png"
+                      src="../image/alcohol/soju/chamisul.png"
+                      th:src="@{/image/alcohol/soju/chamisul.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -123,7 +125,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/chamisul.png"
+                      src="../image/alcohol/soju/chamisul.png"
+                      th:src="@{/image/alcohol/soju/chamisul.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -131,7 +134,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/chamisul.png"
+                      src="../image/alcohol/soju/chamisul.png"
+                      th:src="@{/image/alcohol/soju/chamisul.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -139,7 +143,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/chamisul.png"
+                      src="../image/alcohol/soju/chamisul.png"
+                      th:src="@{/image/alcohol/soju/chamisul.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -147,7 +152,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/chamisul.png"
+                      src="../image/alcohol/soju/chamisul.png"
+                      th:src="@{/image/alcohol/soju/chamisul.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -155,7 +161,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -163,7 +170,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -171,7 +179,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -179,7 +188,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -187,7 +197,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -195,7 +206,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -214,7 +226,8 @@
                 <ul class="recommend__items">
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/calsberg.jpg"
+                      src="../image/alcohol/beer/carlsberg.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -222,7 +235,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/chamisul.png"
+                      src="../image/alcohol/soju/chamisul.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -230,7 +244,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/chamisul.png"
+                      src="../image/alcohol/soju/chamisul.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -238,7 +253,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/chamisul.png"
+                      src="../image/alcohol/soju/chamisul.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -246,7 +262,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/calsberg.jpg"
+                      src="../image/alcohol/beer/calsberg.jpg"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -254,7 +271,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -262,7 +280,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -270,7 +289,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -278,7 +298,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -286,7 +307,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -294,7 +316,8 @@
 
                   <li class="recommend__item" onclick="location.href='#'">
                     <img
-                      src="../image/alcohol/cass.png"
+                      src="../image/alcohol/beer/cass-fresh.png"
+                      th:src="@{/image/alcohol/beer/carlsberg.png}"
                       alt="alcohol"
                       class="recommend__image"
                     />
@@ -317,21 +340,25 @@
                   <h2 class="best-like__wine-title">와인</h2>
                 </span>
                 <span class="best-like__see-all">
-                  <a href="" class="best-like__button--see-all">모두보기 &gt;</a>
+                  <!-- TODO alcohol.type값을 넘겨주어야 함 -->
+                  <a href="/alcohols" class="best-like__button--see-all">모두보기 &gt;</a>
                 </span>
               </div>
             </div>
              <!-- 베스트 Like 리스트 소주 부분 -->
             <div class="best-like__list-soju">
-              <!-- thymeleaf로 type별로 alcohol리스트 출력 -->
+              <!-- TODO thymeleaf: 파라미터 변수로 데이터 받기 -->
               <div class="best-like__list-first-row">
                 <div class="best-like__item">
                   <a href="#">
                     <div class="best-like__image-box">
                       <div class="best-like__image-wrap">
-                        <img src="../image/alcohol/chamisul.png" 
-                        alt="참이슬" 
-                        class="best-like__image">
+                        <img
+                          src="../image/alcohol/soju/chamisul.png"
+                          th:src="@{/image/alcohol/soju/chamisul.png}"
+                          alt="참이슬"
+                          class="best-like__image"
+                        >
                       </div>
                     </div>
                   </a>
@@ -354,9 +381,12 @@
                   <a href="#">
                     <div class="best-like__image-box">
                       <div class="best-like__image-wrap">
-                        <img src="../image/alcohol/chamisul.png" 
-                        alt="참이슬" 
-                        class="best-like__image">
+                        <img
+                          src="../image/alcohol/soju/chamisul.png"
+                          th:src="@{/image/alcohol/soju/chamisul.png}"
+                          alt="참이슬"
+                          class="best-like__image"
+                        >
                       </div>
                     </div>
                   </a>
@@ -381,7 +411,12 @@
                 <div class="best-like__item">
                   <div class="best-like__image-box">
                     <div class="best-like__image-wrap">
-                      <img src="../image/alcohol/chamisul.png" alt="" class="best-like__image">
+                      <img
+                        src="../image/alcohol/soju/chamisul.png"
+                        th:src="@{/image/alcohol/soju/chamisul.png}"
+                        alt=""
+                        class="best-like__image"
+                      >
                     </div>
                   </div>
                   <div class="best-like__alcohol-info">
@@ -402,7 +437,12 @@
                 <div class="best-like__item">
                   <div class="best-like__image-box">
                     <div class="best-like__image-wrap">
-                      <img src="../image/alcohol/chamisul.png" alt="참이슬" class="best-like__image">
+                      <img
+                        src="../image/alcohol/soju/chamisul.png"
+                        th:src="@{/image/alcohol/soju/chamisul.png}"
+                        alt="참이슬"
+                        class="best-like__image"
+                      >
                     </div>
                   </div>
                   <div class="best-like__alcohol-info">
@@ -425,15 +465,17 @@
   
             <!--베스트 Like 리스트 맥주 부분-->
             <div class="best-like__list-beer unvisible">
-              <!-- thymeleaf로 type별로 alcohol리스트 출력 -->
               <div class="best-like__list-first-row">
                 <div class="best-like__item">
                   <a href="#">
                     <div class="best-like__image-box">
                       <div class="best-like__image-wrap">
-                        <img src="../image/alcohol/guinness.png" 
-                        alt="참이슬" 
-                        class="best-like__image">
+                        <img
+                          src="../image/alcohol/beer/guinness-draught.png"
+                          th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                          alt="기네스"
+                          class="best-like__image"
+                        >
                       </div>
                     </div>
                   </a>
@@ -456,9 +498,12 @@
                   <a href="#">
                     <div class="best-like__image-box">
                       <div class="best-like__image-wrap">
-                        <img src="../image/alcohol/guinness.png" 
-                        alt="참이슬" 
-                        class="best-like__image">
+                        <img
+                          src="../image/alcohol/beer/guinness-draught.png"
+                          th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                          alt=""
+                          class="best-like__image"
+                        >
                       </div>
                     </div>
                   </a>
@@ -483,7 +528,12 @@
                 <div class="best-like__item">
                   <div class="best-like__image-box">
                     <div class="best-like__image-wrap">
-                      <img src="../image/alcohol/guinness.png" alt="" class="best-like__image">
+                      <img
+                        src="../image/alcohol/guinness-draught.png"
+                        th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                        alt=""
+                        class="best-like__image"
+                      >
                     </div>
                   </div>
                   <div class="best-like__alcohol-info">
@@ -504,7 +554,12 @@
                 <div class="best-like__item">
                   <div class="best-like__image-box">
                     <div class="best-like__image-wrap">
-                      <img src="../image/alcohol/guinness.png" alt="참이슬" class="best-like__image">
+                      <img
+                        src="../image/alcohol/guinness-draught.png"
+                        th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                        alt="참이슬"
+                        class="best-like__image"
+                      >
                     </div>
                   </div>
                   <div class="best-like__alcohol-info">
@@ -527,15 +582,17 @@
   
              <!--베스트 Like 리스트 와인 부분-->
              <div class="best-like__list-wine unvisible">
-              <!-- thymeleaf로 type별로 alcohol리스트 출력 -->
               <div class="best-like__list-first-row">
                 <div class="best-like__item">
                   <a href="#">
                     <div class="best-like__image-box">
                       <div class="best-like__image-wrap">
-                        <img src="../image/alcohol/wine.png" 
-                        alt="참이슬" 
-                        class="best-like__image">
+                        <img
+                          src="../image/alcohol/wine/babich.png"
+                          th:src="@{/image/alcohol/wine/babich.png}"
+                          alt="참이슬"
+                          class="best-like__image"
+                        >
                       </div>
                     </div>
                   </a>
@@ -558,9 +615,12 @@
                   <a href="#">
                     <div class="best-like__image-box">
                       <div class="best-like__image-wrap">
-                        <img src="../image/alcohol/wine.png" 
-                        alt="참이슬" 
-                        class="best-like__image">
+                        <img
+                          src="../image/alcohol/wine.png"
+                          th:src="@{/image/alcohol/wine/babich.png}"
+                          alt="참이슬"
+                          class="best-like__image"
+                        >
                       </div>
                     </div>
                   </a>
@@ -585,7 +645,12 @@
                 <div class="best-like__item">
                   <div class="best-like__image-box">
                     <div class="best-like__image-wrap">
-                      <img src="../image/alcohol/wine.png" alt="" class="best-like__image">
+                      <img
+                        src="../image/alcohol/wine.png"
+                        th:src="@{/image/alcohol/wine/babich.png}"
+                        alt=""
+                        class="best-like__image"
+                      >
                     </div>
                   </div>
                   <div class="best-like__alcohol-info">
@@ -606,7 +671,12 @@
                 <div class="best-like__item">
                   <div class="best-like__image-box">
                     <div class="best-like__image-wrap">
-                      <img src="../image/alcohol/wine.png" alt="참이슬" class="best-like__image">
+                      <img
+                        src="../image/alcohol/wine.png"
+                        th:src="@{/image/alcohol/wine/babich.png}"
+                        alt="참이슬"
+                        class="best-like__image"
+                      >
                     </div>
                   </div>
                   <div class="best-like__alcohol-info">
@@ -648,7 +718,7 @@
                 <a href="https://github.com/Jangsue" class="footer-column__text"
                   >장수빈 : https://github.com/Jangsue</a
                 ><br />
-                <a href="https://github.com/sjihwa" class="footer-column__text"
+                <a href="https://github.com/sjihwan" class="footer-column__text"
                   >신지환 : https://github.com/sjihwan</a
                 >
               </div>
@@ -696,9 +766,9 @@
         src="https://kit.fontawesome.com/b17793764c.js"
         crossorigin="anonymous"
       ></script>
-      <script src="../js/header.js"></script>
-      <script src="../js/SlideController.js"></script>
-      <script src="../js/mainPage.js"></script>
+      <script src="/js/header.js"></script>
+      <script src="/js/SlideController.js"></script>
+      <script src="/js/mainPage.js"></script>
     </div>
   </body>
 </html>
