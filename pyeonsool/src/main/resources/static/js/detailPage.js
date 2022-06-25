@@ -24,54 +24,58 @@ function addLikeClickEvent() {
     const LIKE_STATUS_CLASS=  "alcohol-info__like-button--liked";
     if (alcoholInfoLikeButton.classList.contains(LIKE_STATUS_CLASS)) {
       // dislike ajax
-      const request = new XMLHttpRequest();
-
-      if (!request) {
-        alert("XMLHTTP 인스턴스 생성 불가");
-        return false;
-      }
-
-      request.onreadystatechange = function () {
-        if (request.readyState === XMLHttpRequest.DONE) {
-          if (request.status === 200) {
-            alcoholInfoLikeButton.classList.remove(LIKE_STATUS_CLASS);
-          } else {
-            alert(request.response.message);
-          }
-        }
-      }
-
-      request.open("post", window.location.pathname + "/dislike");
-      request.responseType = "json";
-      request.send();
+      return dislikeAlcoholAjax(LIKE_STATUS_CLASS);
     } else {
       // like ajax
-      const request = new XMLHttpRequest();
-
-      if (!request) {
-        alert("XMLHTTP 인스턴스 생성 불가");
-        return false;
-      }
-
-      request.onreadystatechange = function () {
-        if (request.readyState === XMLHttpRequest.DONE) {
-          if (request.status === 200) {
-            alcoholInfoLikeButton.classList.add(LIKE_STATUS_CLASS);
-          } else {
-            alert(request.response.message);
-          }
-        }
-      }
-
-      request.open("post", window.location.pathname + "/like");
-      request.responseType = "json";
-      request.send();
+      return likeAlcoholAjax(LIKE_STATUS_CLASS);
     }
   })
-}
 
-function likeAlcoholAjax() {
+  function dislikeAlcoholAjax(LIKE_STATUS_CLASS) {
+    const request = new XMLHttpRequest();
 
+    if (!request) {
+      alert("XMLHTTP 인스턴스 생성 불가");
+      return false;
+    }
+
+    request.onreadystatechange = function () {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          alcoholInfoLikeButton.classList.remove(LIKE_STATUS_CLASS);
+        } else {
+          alert(request.response.message);
+        }
+      }
+    }
+
+    request.open("post", window.location.pathname + "/dislike");
+    request.responseType = "json";
+    request.send();
+  }
+
+  function likeAlcoholAjax(LIKE_STATUS_CLASS) {
+    const request = new XMLHttpRequest();
+
+    if (!request) {
+      alert("XMLHTTP 인스턴스 생성 불가");
+      return false;
+    }
+
+    request.onreadystatechange = function () {
+      if (request.readyState === XMLHttpRequest.DONE) {
+        if (request.status === 200) {
+          alcoholInfoLikeButton.classList.add(LIKE_STATUS_CLASS);
+        } else {
+          alert(request.response.message);
+        }
+      }
+    }
+
+    request.open("post", window.location.pathname + "/like");
+    request.responseType = "json";
+    request.send();
+  }
 }
 
 function addReviewRecommendationEvent() {
