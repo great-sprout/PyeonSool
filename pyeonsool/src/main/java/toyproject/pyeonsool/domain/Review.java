@@ -4,6 +4,9 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -34,17 +37,18 @@ public class Review {
     @Enumerated(EnumType.STRING)
     private Recommend recommend;
 
+    @CreatedDate
+    @Column(updatable = false)
     private LocalDateTime createdDate;
 
+    @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
-    public Review(Member member, Alcohol alcohol, Byte grade, String content, Recommend recommend, LocalDateTime createdDate, LocalDateTime lastModifiedDate) {
+    public Review(Member member, Alcohol alcohol, Byte grade, String content, Recommend recommend) {
         this.member = member;
         this.alcohol = alcohol;
         this.grade = grade;
         this.content = content;
         this.recommend = recommend;
-        this.createdDate = createdDate;
-        this.lastModifiedDate = lastModifiedDate;
     }
 }
