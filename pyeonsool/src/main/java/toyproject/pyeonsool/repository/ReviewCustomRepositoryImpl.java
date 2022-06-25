@@ -13,7 +13,7 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<Byte> getReviewRatings(Long alcoholId) {
+    public List<Byte> getReviewGrades(Long alcoholId) {
         return queryFactory.select(review.grade)
                 .from(review)
                 .where(review.alcohol.id.eq(alcoholId))

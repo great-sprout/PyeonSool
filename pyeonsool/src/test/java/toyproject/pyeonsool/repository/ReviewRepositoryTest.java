@@ -15,7 +15,6 @@ import javax.persistence.EntityManager;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 @DataJpaTest
@@ -44,7 +43,7 @@ class ReviewRepositoryTest {
         em.persist(new Review(member, alcohol, (byte) 2, "", Recommend.BASIC));
 
         //when
-        List<Byte> reviewRatings = reviewRepository.getReviewRatings(alcohol.getId());
+        List<Byte> reviewRatings = reviewRepository.getReviewGrades(alcohol.getId());
         long sum = reviewRatings.stream()
                 .mapToLong(rating -> rating).sum();
 
