@@ -27,4 +27,16 @@ public class AlcoholApiController {
         }
         alcoholService.likeAlcohol(alcoholId, loginMember.getId());
     }
+
+    @PostMapping("/{alcoholId}/dislike")
+    public void dislikeAlcohol(
+            @PathVariable Long alcoholId,
+            @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
+
+        if (isNull(loginMember)) {
+            // TODO 예외를 처리할 advice 클래스 생성
+            throw new RuntimeException("로그인 상태가 아닙니다.");
+        }
+        alcoholService.dislikeAlcohol(alcoholId, loginMember.getId());
+    }
 }
