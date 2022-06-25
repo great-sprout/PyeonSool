@@ -6,10 +6,7 @@ import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
-import toyproject.pyeonsool.repository.AlcoholKeywordRepository;
-import toyproject.pyeonsool.repository.AlcoholRepository;
-import toyproject.pyeonsool.repository.MemberRepository;
-import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
+import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -25,22 +22,24 @@ public class AlcoholService {
     private final PreferredAlcoholRepository preferredAlcoholRepository;
     private final MemberRepository memberRepository;
     private final AlcoholKeywordRepository alcoholKeywordRepository;
+    private final VendorRepository vendorRepository;
     private final FileManager fileManager;
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
         String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
         List<String> alcoholKeywords = alcoholKeywordRepository.getAlcoholKeywords(alcoholId);
+        List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId);
 
         if (isNull(memberId)) {
-            return AlcoholDetailsDto.of(alcohol, alcoholImagePath, alcoholKeywords);
+            return AlcoholDetailsDto.of(alcohol, alcoholImagePath, alcoholKeywords, alcoholVendors);
         }
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
 
-        return AlcoholDetailsDto.of(alcohol, alcoholImagePath,alcoholKeywords,
+        return AlcoholDetailsDto.of(alcohol, alcoholImagePath, alcoholKeywords, alcoholVendors,
                 preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
 
     }
