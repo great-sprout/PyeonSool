@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Import;
+import toyproject.pyeonsool.AppConfig;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
@@ -14,6 +16,7 @@ import javax.persistence.EntityManager;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
+@Import(AppConfig.class)
 class PreferredAlcoholRepositoryTest {
 
     @Autowired

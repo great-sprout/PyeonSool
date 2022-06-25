@@ -3,10 +3,7 @@ package toyproject.pyeonsool.service;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.PreferredAlcohol;
+import toyproject.pyeonsool.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -34,12 +31,27 @@ class AlcoholServiceTest {
         em.persist(alcohol);
         em.persist(new PreferredAlcohol(member, alcohol));
 
+        em.persist(new Review(member, alcohol, (byte) 5, "", Recommend.BASIC));
+        em.persist(new Review(member, alcohol, (byte) 3, "", Recommend.BASIC));
+        em.persist(new Review(member, alcohol, (byte) 2, "", Recommend.BASIC));
+
+        Keyword[] keywords = new Keyword[3];
+        String[] keywordNames = {"sweet", "cool", "heavy"};
+
+        for (int i = 0; i < keywords.length; i++) {
+            keywords[i] = new Keyword(keywordNames[i]);
+            em.persist(keywords[i]);
+            em.persist(new AlcoholKeyword(keywords[i], alcohol));
+        }
+
         //when
+        AlcoholDetailsDto alcoholDetails = alcoholService.getAlcoholDetails(alcohol.getId(), member.getId());
+
         //then
-        assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), member.getId())).isNotNull();
         assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), null))
                 .as("로그인 상태가 아닌경우").isNotNull();
-
+        assertThat(alcoholDetails.getGrade()).isEqualTo("3.3");
+        assertThat(alcoholDetails.getKeywords()).containsOnly("달콤함", "청량함", "무거움");
     }
 
     @Test

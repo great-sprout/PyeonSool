@@ -9,7 +9,10 @@ import toyproject.pyeonsool.domain.PreferredAlcohol;
 import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.util.Objects.*;
 
@@ -29,7 +32,12 @@ public class AlcoholService {
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
         String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
-        List<String> alcoholKeywords = alcoholKeywordRepository.getAlcoholKeywords(alcoholId);
+        List<String> alcoholKeywords = new ArrayList<>();
+        Map<String, String> keywordMap = createKeywordMap();
+        for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcoholId)) {
+            alcoholKeywords.add(keywordMap.get(keyword));
+        }
+
         List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId);
         String grade = getFormattedTotalGrade(reviewRepository.getReviewGrades(alcoholId));
 
@@ -53,6 +61,33 @@ public class AlcoholService {
         }
 
         return null;
+    }
+
+    private Map<String, String> createKeywordMap() {
+        Map<String, String> keywordMap = new HashMap<>();
+        keywordMap.put("sweet", "달콤함");
+        keywordMap.put("clear", "깔끔함");
+        keywordMap.put("cool", "청량함");
+        keywordMap.put("heavy", "무거움");
+        keywordMap.put("light", "가벼움");
+        keywordMap.put("nutty", "고소함");
+        keywordMap.put("fresh", "상큼함");
+        keywordMap.put("flower", "꽃향");
+        keywordMap.put("bitter", "쌉싸름함");
+        keywordMap.put("unique", "독특함");
+        keywordMap.put("strong", "도수 독함");
+        keywordMap.put("middle", "도수 중간");
+        keywordMap.put("mild", "도수 순함");
+        keywordMap.put("white", "화이트");
+        keywordMap.put("red", "레드");
+        keywordMap.put("astringent", "떫음");
+        keywordMap.put("fruit", "과일향");
+        keywordMap.put("nonAlcoholic", "무알콜");
+        keywordMap.put("highAcidity", "높은 산도");
+        keywordMap.put("middleAcidity", "중간 산도");
+        keywordMap.put("lowAcidity", "낮은 산도");
+
+        return keywordMap;
     }
 
     public Long likeAlcohol(Long alcoholId, Long memberId) {
