@@ -22,12 +22,13 @@ public class AlcoholDetailsDto {
     private Byte body;
     private String manufacturer;
     private String origin;
+    private String grade;
     private List<String> keywords;
     private List<String> vendors;
     private boolean likeCurrentAlcohol;
 
     public static AlcoholDetailsDto of(
-            Alcohol alcohol, String imagePath, List<String> alcoholKeywords,
+            Alcohol alcohol, String imagePath, String grade, List<String> alcoholKeywords,
             List<String> alcoholVendors, boolean likeCurrentAlcohol) {
         return new AlcoholDetailsDto(
                 alcohol.getType(),
@@ -39,13 +40,14 @@ public class AlcoholDetailsDto {
                 alcohol.getBody(),
                 alcohol.getManufacturer(),
                 alcohol.getOrigin(),
+                grade,
                 alcoholKeywords,
                 alcoholVendors,
                 likeCurrentAlcohol);
     }
 
     public static AlcoholDetailsDto of(
-            Alcohol alcohol, String imagePath, List<String> alcoholKeywords, List<String> alcoholVendors) {
-        return AlcoholDetailsDto.of(alcohol, imagePath, alcoholKeywords, alcoholVendors, false);
+            Alcohol alcohol, String imagePath, String grade, List<String> alcoholKeywords, List<String> alcoholVendors) {
+        return AlcoholDetailsDto.of(alcohol, imagePath, grade, alcoholKeywords, alcoholVendors, false);
     }
 }

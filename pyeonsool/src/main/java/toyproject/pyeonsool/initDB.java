@@ -37,6 +37,12 @@ public class initDB {
             Member member =
                     new Member("준영이", "chlwnsdud121", "1234", "01012345678");
             em.persist(member);
+            Member member2 =
+                    new Member("영준이", "chldudwns121", "1234", "01023456789");
+            em.persist(member2);
+            Member member3 =
+                    new Member("춘향이", "chlcnsgid121", "1234", "01043218765");
+            em.persist(member3);
 
             Keyword[] keywords = new Keyword[21];
             setKeywords(keywords);
@@ -54,6 +60,13 @@ public class initDB {
 
             persistSojuKeywords(keywords, sojus);
             persistSojuVendors(sojus);
+
+            em.persist(new Review(member3, sojus.get(0), (byte)5, "목넘김이 시원하네요!", Recommend.YES));
+            em.persist(new Review(member2, sojus.get(0), (byte)3, "평범하네요", Recommend.YES));
+            em.persist(new Review(member, sojus.get(0), (byte)2,
+                    "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. " +
+                            "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. " +
+                            "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. ", Recommend.YES));
 
             ArrayList<Alcohol> beers = new ArrayList<>();
             setBeers(beers);

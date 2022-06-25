@@ -23,6 +23,7 @@ public class AlcoholService {
     private final MemberRepository memberRepository;
     private final AlcoholKeywordRepository alcoholKeywordRepository;
     private final VendorRepository vendorRepository;
+    private final ReviewRepository reviewRepository;
     private final FileManager fileManager;
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
@@ -30,18 +31,28 @@ public class AlcoholService {
         String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
         List<String> alcoholKeywords = alcoholKeywordRepository.getAlcoholKeywords(alcoholId);
         List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId);
+        String grade = getFormattedTotalGrade(reviewRepository.getReviewGrades(alcoholId));
 
         if (isNull(memberId)) {
-            return AlcoholDetailsDto.of(alcohol, alcoholImagePath, alcoholKeywords, alcoholVendors);
+            return AlcoholDetailsDto.of(alcohol, alcoholImagePath, grade, alcoholKeywords, alcoholVendors);
         }
 
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
 
-        return AlcoholDetailsDto.of(alcohol, alcoholImagePath, alcoholKeywords, alcoholVendors,
+        return AlcoholDetailsDto.of(alcohol, alcoholImagePath, grade, alcoholKeywords, alcoholVendors,
                 preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
 
+    }
+
+    private String getFormattedTotalGrade(List<Byte> reviewGrades) {
+        if (reviewGrades.size() != 0) {
+            double ratingAvg = (double) reviewGrades.stream().mapToLong(rating -> rating).sum() / reviewGrades.size();
+            return String.format("%.1f", ratingAvg);
+        }
+
+        return null;
     }
 
     public Long likeAlcohol(Long alcoholId, Long memberId) {
