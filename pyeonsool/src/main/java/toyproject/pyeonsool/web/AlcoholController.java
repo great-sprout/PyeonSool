@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
+import toyproject.pyeonsool.domain.Alcohol;
+import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.service.AlcoholDetailsDto;
 import toyproject.pyeonsool.service.AlcoholService;
+import toyproject.pyeonsool.service.AlcoholTypeDto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static java.util.Objects.*;
 
@@ -24,8 +28,13 @@ public class AlcoholController {
     private final AlcoholService alcoholService;
 
     @GetMapping
-    public String getListPage() {
-        return "listPage";
+    public String getListPage(){
+        return"listPage";
+    }
+    @GetMapping("/alcoholType/{alcoholType}")
+    public List<Alcohol> getListPage(@PathVariable AlcoholType alcoholType) {
+        System.out.println("hmm : "+alcoholType);
+        return alcoholService.findTypeAlcohol(alcoholType);
     }
 
     @GetMapping("/{alcoholId}")

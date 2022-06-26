@@ -1,9 +1,11 @@
 package toyproject.pyeonsool.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.domain.Alcohol;
+import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
 import toyproject.pyeonsool.repository.*;
@@ -113,5 +115,11 @@ public class AlcoholService {
         if (preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol)) {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
         }
+    }
+
+
+    public List<Alcohol> findTypeAlcohol(AlcoholType alcoholType ){
+        List<Alcohol> alcohols = alcoholRepository.findAllByType(alcoholType);
+        return alcohols;
     }
 }
