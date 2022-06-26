@@ -9,6 +9,6 @@ import toyproject.pyeonsool.domain.Review;
 import java.util.List;
 
 public interface ReviewRepository  extends JpaRepository<Review, Long>, ReviewCustomRepository {
-    Page<Review> findByAlcohol(Alcohol alcohol, Pageable pageable);
+    Page<Review> findReviewsByAlcohol(Alcohol alcohol, Pageable pageable);
 }
 
