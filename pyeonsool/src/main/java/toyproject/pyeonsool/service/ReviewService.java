@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.Recommend;
 import toyproject.pyeonsool.domain.Review;
 import toyproject.pyeonsool.repository.AlcoholRepository;
 import toyproject.pyeonsool.repository.MemberRepository;
