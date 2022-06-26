@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.Recommend;
+import toyproject.pyeonsool.domain.RecommendStatus;
 import toyproject.pyeonsool.domain.Review;
 
 import javax.persistence.EntityManager;
@@ -38,9 +38,9 @@ class ReviewRepositoryTest {
                 5f, null, null, "산미구엘 브루어리", "필리핀");
         em.persist(alcohol);
 
-        em.persist(new Review(member, alcohol, (byte) 5, "", Recommend.BASIC));
-        em.persist(new Review(member, alcohol, (byte) 3, "", Recommend.BASIC));
-        em.persist(new Review(member, alcohol, (byte) 2, "", Recommend.BASIC));
+        em.persist(new Review(member, alcohol, (byte) 5, ""));
+        em.persist(new Review(member, alcohol, (byte) 3, ""));
+        em.persist(new Review(member, alcohol, (byte) 2, ""));
 
         //when
         List<Byte> reviewRatings = reviewRepository.getReviewGrades(alcohol.getId());

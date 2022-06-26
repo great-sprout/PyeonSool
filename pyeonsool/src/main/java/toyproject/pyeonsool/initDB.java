@@ -61,12 +61,12 @@ public class initDB {
             persistSojuKeywords(keywords, sojus);
             persistSojuVendors(sojus);
 
-            em.persist(new Review(member3, sojus.get(0), (byte)5, "목넘김이 시원하네요!", Recommend.YES));
-            em.persist(new Review(member2, sojus.get(0), (byte)3, "평범하네요", Recommend.YES));
+            em.persist(new Review(member3, sojus.get(0), (byte)5, "목넘김이 시원하네요!"));
+            em.persist(new Review(member2, sojus.get(0), (byte)3, "평범하네요"));
             em.persist(new Review(member, sojus.get(0), (byte)2,
                     "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. " +
                             "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. " +
-                            "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. ", Recommend.YES));
+                            "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. "));
 
             ArrayList<Alcohol> beers = new ArrayList<>();
             setBeers(beers);

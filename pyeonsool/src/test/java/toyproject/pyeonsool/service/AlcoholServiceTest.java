@@ -31,9 +31,9 @@ class AlcoholServiceTest {
         em.persist(alcohol);
         em.persist(new PreferredAlcohol(member, alcohol));
 
-        em.persist(new Review(member, alcohol, (byte) 5, "", Recommend.BASIC));
-        em.persist(new Review(member, alcohol, (byte) 3, "", Recommend.BASIC));
-        em.persist(new Review(member, alcohol, (byte) 2, "", Recommend.BASIC));
+        em.persist(new Review(member, alcohol, (byte) 5, ""));
+        em.persist(new Review(member, alcohol, (byte) 3, ""));
+        em.persist(new Review(member, alcohol, (byte) 2, ""));
 
         Keyword[] keywords = new Keyword[3];
         String[] keywordNames = {"sweet", "cool", "heavy"};
