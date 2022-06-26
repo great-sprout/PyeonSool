@@ -12,7 +12,7 @@ import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.service.AlcoholDetailsDto;
 import toyproject.pyeonsool.service.AlcoholService;
 
-import java.util.Objects;
+import java.util.ArrayList;
 
 import static java.util.Objects.*;
 
@@ -37,7 +37,18 @@ public class AlcoholController {
         AlcoholDetailsDto alcoholDetails =
                 alcoholService.getAlcoholDetails(alcoholId, isNull(loginMember) ? null : loginMember.getId());
         model.addAttribute("alcoholDetails", alcoholDetails);
+        model.addAttribute("reviewSaveForm", new ReviewSaveForm(alcoholId));
+        model.addAttribute("stars", createStars());
 
         return "detailPage";
+    }
+
+    private ArrayList<Integer> createStars() {
+        ArrayList<Integer> stars = new ArrayList<>();
+        for (int star = 5; star >= 1; star--) {
+            stars.add(star);
+        }
+
+        return stars;
     }
 }

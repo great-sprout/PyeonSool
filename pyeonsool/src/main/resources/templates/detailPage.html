@@ -314,69 +314,30 @@
               >
             </h2>
 
-            <form action="" method="post" class="review-form">
+            <form action="/reviews/add" method="post" class="review-form" th:object="${reviewSaveForm}">
+              <input type="hidden" th:field="*{alcoholId}">
+
               <div class="stars review-form__stars">
-                <input
-                  type="radio"
-                  id="5-star"
-                  name="grade"
-                  value="5"
-                  class="stars__radio"
-                  required
-                />
-                <label for="5-star" class="stars__star review-form__star"
+                <th:block th:each="star : ${stars}">
+                  <input
+                          type="radio"
+                          value="5"
+                          class="stars__radio"
+                          required
+                          th:field="*{grade}"
+                          th:value="${star}"
+                  />
+                  <label th:for="${#ids.prev('grade')}" class="stars__star review-form__star"
                   >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="4-star"
-                  name="grade"
-                  value="4"
-                  class="stars__radio"
-                />
-                <label for="4-star" class="stars__star review-form__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="3-star"
-                  name="grade"
-                  value="3"
-                  class="stars__radio"
-                />
-                <label for="3-star" class="stars__star review-form__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="2-star"
-                  name="grade"
-                  value="2"
-                  class="stars__radio"
-                />
-                <label for="2-star" class="stars__star review-form__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="1-star"
-                  name="grade"
-                  value="1"
-                  class="stars__radio"
-                />
-                <label for="1-star" class="stars__star review-form__star"
-                  >★</label
-                >
+                  >
+                </th:block>
               </div>
 
               <textarea
                 class="review-form__textarea"
                 maxlength="300"
                 required
+                th:field="*{content}"
               ></textarea>
 
               <div class="review-form__submit-wrap">

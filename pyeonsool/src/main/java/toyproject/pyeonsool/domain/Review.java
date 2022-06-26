@@ -51,4 +51,8 @@ public class Review {
         this.content = content;
         this.recommend = recommend;
     }
+
+    public Review(Member member, Alcohol alcohol, Byte grade, String content) {
+        this(member, alcohol, grade, content, Recommend.BASIC);
+    }
 }
