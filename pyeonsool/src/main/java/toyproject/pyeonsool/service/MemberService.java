@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.LoginMember;
-import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
 import toyproject.pyeonsool.repository.AlcoholRepository;
@@ -45,10 +44,14 @@ public class MemberService {
   public List<MyPageDto> findLikeList(Member member){
         List<PreferredAlcohol> preferredAlcohols = preferredAlcoholRepository.findAllPreferredAlcoholsByMember(member);
         List<MyPageDto> result = preferredAlcohols.stream()
-                .map(pa -> new MyPageDto(pa,fileManager.getAlcoholImagePath(pa.getAlcohol().getType(),pa.getAlcohol().getFileName()))
+                .map(pa -> new MyPageDto(pa, getAlcoholImagePath(pa)))
                 .collect(Collectors.toList());
-        return result;
 
+        return result;
    }
+
+    private String getAlcoholImagePath(PreferredAlcohol pa) {
+        return fileManager.getAlcoholImagePath(pa.getAlcohol().getType(), pa.getAlcohol().getFileName());
+    }
 
 }
