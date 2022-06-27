@@ -349,6 +349,7 @@
               <div class="review-area__order">
                 <a
                   href="#"
+                  th:href="|/alcohols/${alcoholId}|"
                   class="review-area__latest-order review-area__selected-order"
                   >최신순</a
                 >
@@ -357,7 +358,7 @@
               </div>
 
               <div class="reviews">
-                <th:block  th:each="review : ${reviewPage.content}">
+                <th:block  th:each="review : ${reviews}">
                   <form class="review" th:number="${review.reviewId}" th:object="${review}">
                     <div class="review__left-column">
                       <div class="review__row">
@@ -466,14 +467,20 @@
 
               <div class="review-area__page">
                 <div class="page">
-                  <a href="#" class="page__left">&lt;</a>
-                  <a href="#" class="page__number page__number--clicked">1</a>
-                  <a href="#" class="page__number">2</a>
-                  <a href="#" class="page__number">3</a>
-                  <a href="#" class="page__number">4</a>
-                  <a href="#" class="page__number">5</a>
-                  <a href="#" class="page__right">&gt;</a>
+                  <a class="page__left" th:if="${!reviewPagination.isFirstBlock()}"
+                     th:href="|/alcohols/${alcoholId}?page=${reviewPagination.startPagePerBlock - reviewPagination.blockSize - 1}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&lt;</a>
+                  <th:block
+                    th:each="page : ${#numbers.sequence(reviewPagination.startPagePerBlock,
+                    reviewPagination.isLastBlock() ? reviewPagination.totalPages : reviewPagination.endPagePerBlock)}">
+                    <a th:href="|/alcohols/${alcoholId}?page=${page - 1}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|" class="page__number"
+                       th:text="${page}" th:classappend="${reviewPagination.currentPage == page} ? 'page__number--clicked'">1</a>
+                  </th:block>
+
+                  <a class="page__right" th:if="${!reviewPagination.isLastBlock()}"
+                     th:href="|/alcohols/${alcoholId}?page=${reviewPagination.endPagePerBlock}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&gt;</a>
                 </div>
+<!--              /members?page=0&size=3&sort=id,desc&sort=username,des-->
+
               </div>
             </div>
           </article>
