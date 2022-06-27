@@ -43,6 +43,12 @@ public class initDB {
             Member member3 =
                     new Member("춘향이", "chlcnsgid121", "1234", "01043218765");
             em.persist(member3);
+            Member member4 =
+                    new Member("지환이", "tlswlghks121", "1234", "01011112222");
+            em.persist(member4);
+            Member member5 =
+                    new Member("몽룡이", "dlahdfyd121", "1234", "01011111111");
+            em.persist(member5);
 
             Keyword[] keywords = new Keyword[21];
             setKeywords(keywords);
@@ -84,6 +90,32 @@ public class initDB {
             }
             persistWineKeywords(keywords, wines);
             persistWineVendors(wines);
+
+            //좋아요 술
+            PreferredAlcohol preferredAlcohol1 = new PreferredAlcohol(member, sojus.get(0));
+            PreferredAlcohol preferredAlcohol2 = new PreferredAlcohol(member2, sojus.get(0));
+            PreferredAlcohol preferredAlcohol3 = new PreferredAlcohol(member3, sojus.get(0));
+            PreferredAlcohol preferredAlcohol4 = new PreferredAlcohol(member, sojus.get(1));
+            PreferredAlcohol preferredAlcohol5 = new PreferredAlcohol(member3, beers.get(1));
+            PreferredAlcohol preferredAlcohol6 = new PreferredAlcohol(member2, beers.get(2));
+            PreferredAlcohol preferredAlcohol7 = new PreferredAlcohol(member4, beers.get(0));
+            PreferredAlcohol preferredAlcohol8 = new PreferredAlcohol(member5, beers.get(0));
+            PreferredAlcohol preferredAlcohol9 = new PreferredAlcohol(member2, wines.get(2));
+            PreferredAlcohol preferredAlcohol10 = new PreferredAlcohol(member3, wines.get(3));
+            PreferredAlcohol preferredAlcohol11 = new PreferredAlcohol(member4, wines.get(4));
+            PreferredAlcohol preferredAlcohol12 = new PreferredAlcohol(member5, wines.get(6));
+            em.persist(preferredAlcohol1);
+            em.persist(preferredAlcohol2);
+            em.persist(preferredAlcohol3);
+            em.persist(preferredAlcohol4);
+            em.persist(preferredAlcohol5);
+            em.persist(preferredAlcohol6);
+            em.persist(preferredAlcohol7);
+            em.persist(preferredAlcohol8);
+            em.persist(preferredAlcohol9);
+            em.persist(preferredAlcohol10);
+            em.persist(preferredAlcohol11);
+            em.persist(preferredAlcohol12);
 
             em.flush();
             em.clear();
@@ -352,7 +384,6 @@ public class initDB {
             for(int i = 0; i < keywords.length; i++){
                 keywords[i] = new Keyword(keywordNames[i]);
             }
-
         }
     }
 }
