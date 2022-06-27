@@ -2,7 +2,9 @@ package toyproject.pyeonsool.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.LoginMember;
+import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
 import toyproject.pyeonsool.repository.AlcoholRepository;
@@ -24,6 +26,8 @@ public class MemberService {
 
     private final PreferredAlcoholRepository preferredAlcoholRepository;
 
+    private  final FileManager fileManager;
+
     public LoginMember findLoginMember(String userId, String password) {
         Member findMember = memberRepository.findByUserId(userId)
                 .orElseThrow(() -> new IllegalArgumentException("잘못된 아이디입니다."));
@@ -39,9 +43,9 @@ public class MemberService {
 
     //MyPageDto변환
   public List<MyPageDto> findLikeList(Member member){
-        List<PreferredAlcohol> preferredAlcohols = PreferredAlcoholRepository.findAllPreferredAlcoholsByMember(member);
+        List<PreferredAlcohol> preferredAlcohols = preferredAlcoholRepository.findAllPreferredAlcoholsByMember(member);
         List<MyPageDto> result = preferredAlcohols.stream()
-                .map(pa -> new MyPageDto(pa))
+                .map(pa -> new MyPageDto(pa,fileManager.getAlcoholImagePath(pa.getAlcohol().getType(),pa.getAlcohol().getFileName()))
                 .collect(Collectors.toList());
         return result;
 
