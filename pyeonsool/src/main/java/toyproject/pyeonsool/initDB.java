@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static toyproject.pyeonsool.domain.AlcoholType.*;
 
@@ -57,7 +58,11 @@ public class initDB {
             persistSojuKeywords(keywords, sojus);
             persistSojuVendors(sojus);
 
-            persistReviews(members, sojus.get(0));
+            List<Review> reviews = new ArrayList<>();
+            setReviews(members, sojus.get(0), reviews);
+            for (Review review : reviews) {
+                em.persist(review);
+            }
 
             ArrayList<Alcohol> beers = new ArrayList<>();
             setBeers(beers);
@@ -76,46 +81,53 @@ public class initDB {
             persistWineKeywords(keywords, wines);
             persistWineVendors(wines);
 
-            PreferredAlcohol preferredAlcohol1 = new PreferredAlcohol(members[0], sojus.get(0));
-            PreferredAlcohol preferredAlcohol2 = new PreferredAlcohol(members[1], sojus.get(0));
-            PreferredAlcohol preferredAlcohol3 = new PreferredAlcohol(members[2], sojus.get(0));
-            PreferredAlcohol preferredAlcohol4 = new PreferredAlcohol(members[0], sojus.get(1));
-            PreferredAlcohol preferredAlcohol5 = new PreferredAlcohol(members[2], beers.get(1));
-            PreferredAlcohol preferredAlcohol6 = new PreferredAlcohol(members[1], beers.get(2));
-            PreferredAlcohol preferredAlcohol7 = new PreferredAlcohol(members[3], beers.get(0));
-            PreferredAlcohol preferredAlcohol8 = new PreferredAlcohol(members[4], beers.get(0));
-            PreferredAlcohol preferredAlcohol9 = new PreferredAlcohol(members[1], wines.get(2));
-            PreferredAlcohol preferredAlcohol10 = new PreferredAlcohol(members[2], wines.get(3));
-            PreferredAlcohol preferredAlcohol11 = new PreferredAlcohol(members[3], wines.get(4));
-            PreferredAlcohol preferredAlcohol12 = new PreferredAlcohol(members[4], wines.get(6));
-            em.persist(preferredAlcohol1);
-            em.persist(preferredAlcohol2);
-            em.persist(preferredAlcohol3);
-            em.persist(preferredAlcohol4);
-            em.persist(preferredAlcohol5);
-            em.persist(preferredAlcohol6);
-            em.persist(preferredAlcohol7);
-            em.persist(preferredAlcohol8);
-            em.persist(preferredAlcohol9);
-            em.persist(preferredAlcohol10);
-            em.persist(preferredAlcohol11);
-            em.persist(preferredAlcohol12);
+            PreferredAlcohol[] preferredAlcohols = new PreferredAlcohol[12];
+            setPreferredAlcohols(members, sojus, beers, wines, preferredAlcohols);
+            for (PreferredAlcohol preferredAlcohol : preferredAlcohols) {
+                em.persist(preferredAlcohol);
+            }
+
+            for (int i = 0, len = Math.min(members.length, reviews.size()); i < len; i++) {
+                int j = 0;
+                for (; j < i; j++) {
+                    em.persist(new RecommendedReview(members[i], reviews.get(j), RecommendStatus.LIKE));
+                }
+                for (; j < len; j++) {
+                    em.persist(new RecommendedReview(members[i], reviews.get(j), RecommendStatus.DISLIKE));
+                }
+            }
 
             em.flush();
             em.clear();
         }
 
-        private void persistReviews(Member[] members, Alcohol alcohol) {
-            em.persist(new Review(members[1], alcohol, (byte) 5, "목넘김이 시원하네요!"));
-            em.persist(new Review(members[2], alcohol, (byte) 3, "평범하네요"));
-            em.persist(new Review(members[0], alcohol, (byte) 2,
+        private void setReviews(Member[] members, Alcohol alcohol, List<Review> reviews) {
+            reviews.add(new Review(members[1], alcohol, (byte) 5, "목넘김이 시원하네요!"));
+            reviews.add(new Review(members[2], alcohol, (byte) 3, "평범하네요"));
+            reviews.add(new Review(members[0], alcohol, (byte) 2,
                     "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. " +
                             "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. " +
                             "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. "));
+
             for (int i = 0; i < 65; i++) {
-                em.persist(new Review(
+                reviews.add(new Review(
                         members[i % 3], alcohol, (byte) (5 - (i % 5)), "테스트 리뷰 " + i));
             }
+        }
+
+        private void setPreferredAlcohols(Member[] members, ArrayList<Alcohol> sojus, ArrayList<Alcohol> beers, ArrayList<Alcohol> wines, PreferredAlcohol[] preferredAlcohols) {
+            preferredAlcohols[0] = new PreferredAlcohol(members[0], sojus.get(0));
+            preferredAlcohols[1] = new PreferredAlcohol(members[1], sojus.get(0));
+            preferredAlcohols[2] = new PreferredAlcohol(members[2], sojus.get(0));
+            preferredAlcohols[3] = new PreferredAlcohol(members[0], sojus.get(1));
+            preferredAlcohols[4] = new PreferredAlcohol(members[2], beers.get(1));
+            preferredAlcohols[5] = new PreferredAlcohol(members[1], beers.get(2));
+            preferredAlcohols[6] = new PreferredAlcohol(members[3], beers.get(0));
+            preferredAlcohols[7] = new PreferredAlcohol(members[4], beers.get(0));
+            preferredAlcohols[8] = new PreferredAlcohol(members[1], wines.get(2));
+            preferredAlcohols[9] = new PreferredAlcohol(members[2], wines.get(3));
+            preferredAlcohols[10] = new PreferredAlcohol(members[3], wines.get(4));
+            preferredAlcohols[11] = new PreferredAlcohol(members[4], wines.get(6));
         }
 
         private void setMembers(Member[] members) {
