@@ -67,14 +67,14 @@ public class ReviewService {
         return recommendedReview.getId();
     }
 
-    public void cancelRecommendation(Long memberId, Long reviewId) {
+    public void cancelRecommendation(Long memberId, Long reviewId, RecommendStatus status) {
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
 
-        recommendedReviewRepository.findByMemberAndReview(member, review)
+        recommendedReviewRepository.findByMemberAndReviewAndStatus(member, review, status)
                 .ifPresent(recommendedReviewRepository::delete);
     }
 }

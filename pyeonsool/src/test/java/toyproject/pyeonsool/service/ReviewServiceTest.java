@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.repository.RecommendedReviewRepository;
+import toyproject.pyeonsool.repository.ReviewRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -18,6 +20,9 @@ class ReviewServiceTest {
 
     @Autowired
     ReviewService reviewService;
+
+    @Autowired
+    RecommendedReviewRepository recommendedReviewRepository;
 
     @Autowired
     EntityManager em;
@@ -103,15 +108,11 @@ class ReviewServiceTest {
         Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰");
         em.persist(review);
 
-        RecommendedReview recommendedReview = new RecommendedReview(member, review, RecommendStatus.DISLIKE);
-        em.persist(recommendedReview);
-
-
         //when
-        reviewService.cancelRecommendation(member.getId(), review.getId());
+        reviewService.cancelRecommendation(member.getId(), review.getId(), RecommendStatus.LIKE);
 
         //then
-        assertThat(em.find(RecommendedReview.class, recommendedReview.getId())).isNull();
+        assertThat(recommendedReviewRepository.findByMemberAndReview(member, review)).isEmpty();
     }
 
 }
