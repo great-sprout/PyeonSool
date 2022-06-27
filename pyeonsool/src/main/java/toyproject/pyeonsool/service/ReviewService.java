@@ -12,6 +12,8 @@ import toyproject.pyeonsool.repository.ReviewRepository;
 
 import javax.transaction.Transactional;
 
+import java.util.Optional;
+
 import static java.util.Objects.*;
 
 @Service
@@ -63,5 +65,16 @@ public class ReviewService {
         }
 
         return recommendedReview.getId();
+    }
+
+    public void cancelRecommendation(Long memberId, Long reviewId) {
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
+        // TODO 술, 회원 예외처리 필요
+
+        recommendedReviewRepository.findByMemberAndReview(member, review)
+                .ifPresent(recommendedReviewRepository::delete);
     }
 }
