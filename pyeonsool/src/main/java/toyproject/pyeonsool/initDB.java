@@ -34,7 +34,8 @@ public class initDB {
         EntityManager em;
 
         public void init() {
-            Member[] members = new Member[3];
+
+            Member[] members = new Member[5];
             setMembers(members);
             for (Member m : members) {
                 em.persist(m);
@@ -75,6 +76,31 @@ public class initDB {
             persistWineKeywords(keywords, wines);
             persistWineVendors(wines);
 
+            PreferredAlcohol preferredAlcohol1 = new PreferredAlcohol(members[0], sojus.get(0));
+            PreferredAlcohol preferredAlcohol2 = new PreferredAlcohol(members[1], sojus.get(0));
+            PreferredAlcohol preferredAlcohol3 = new PreferredAlcohol(members[2], sojus.get(0));
+            PreferredAlcohol preferredAlcohol4 = new PreferredAlcohol(members[0], sojus.get(1));
+            PreferredAlcohol preferredAlcohol5 = new PreferredAlcohol(members[2], beers.get(1));
+            PreferredAlcohol preferredAlcohol6 = new PreferredAlcohol(members[1], beers.get(2));
+            PreferredAlcohol preferredAlcohol7 = new PreferredAlcohol(members[3], beers.get(0));
+            PreferredAlcohol preferredAlcohol8 = new PreferredAlcohol(members[4], beers.get(0));
+            PreferredAlcohol preferredAlcohol9 = new PreferredAlcohol(members[1], wines.get(2));
+            PreferredAlcohol preferredAlcohol10 = new PreferredAlcohol(members[2], wines.get(3));
+            PreferredAlcohol preferredAlcohol11 = new PreferredAlcohol(members[3], wines.get(4));
+            PreferredAlcohol preferredAlcohol12 = new PreferredAlcohol(members[4], wines.get(6));
+            em.persist(preferredAlcohol1);
+            em.persist(preferredAlcohol2);
+            em.persist(preferredAlcohol3);
+            em.persist(preferredAlcohol4);
+            em.persist(preferredAlcohol5);
+            em.persist(preferredAlcohol6);
+            em.persist(preferredAlcohol7);
+            em.persist(preferredAlcohol8);
+            em.persist(preferredAlcohol9);
+            em.persist(preferredAlcohol10);
+            em.persist(preferredAlcohol11);
+            em.persist(preferredAlcohol12);
+
             em.flush();
             em.clear();
         }
@@ -96,6 +122,8 @@ public class initDB {
             members[0] = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
             members[1] = new Member("영준이", "chldudwns121", "1234", "01023456789");
             members[2] = new Member("춘향이", "chlcnsgid121", "1234", "01043218765");
+            members[3] = new Member("지환이", "tlswlghks121", "1234", "01012341234");
+            members[4] = new Member("몽룡이", "dlahdfyd121", "1234", "01043214321");
         }
 
         private void setSojuList(ArrayList<Alcohol> sojus) {
