@@ -1,19 +1,16 @@
 package toyproject.pyeonsool.service;
 
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.Review;
+import toyproject.pyeonsool.domain.*;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 @SpringBootTest
 @Transactional
@@ -41,4 +38,55 @@ class ReviewServiceTest {
         //then
         assertThat(em.find(Review.class, reviewId)).isNotNull();
     }
+
+    @Nested
+    class recommendReviewTest {
+        @Test
+        void success_existing_entity() {
+            //given
+            Member member =
+                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+            em.persist(member);
+
+            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
+                    5f, null, null, "산미구엘 브루어리", "필리핀");
+            em.persist(alcohol);
+
+            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰");
+            em.persist(review);
+
+            RecommendedReview recommendedReview = new RecommendedReview(member, review, RecommendStatus.DISLIKE);
+            em.persist(recommendedReview);
+
+            //when
+            Long recommendReviewId = reviewService.recommendReview(member.getId(), review.getId(), RecommendStatus.LIKE);
+
+            //then
+            assertThat(em.find(RecommendedReview.class, recommendReviewId).getStatus())
+                    .isEqualTo(RecommendStatus.LIKE);
+        }
+
+        @Test
+        void success_not_existing_entity() {
+            //given
+            Member member =
+                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+            em.persist(member);
+
+            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
+                    5f, null, null, "산미구엘 브루어리", "필리핀");
+            em.persist(alcohol);
+
+            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰");
+            em.persist(review);
+
+            //when
+            Long recommendReviewId = reviewService.recommendReview(member.getId(), review.getId(), RecommendStatus.LIKE);
+
+            //then
+            assertThat(em.find(RecommendedReview.class, recommendReviewId).getStatus())
+                    .isEqualTo(RecommendStatus.LIKE);
+        }
+    }
+
 }

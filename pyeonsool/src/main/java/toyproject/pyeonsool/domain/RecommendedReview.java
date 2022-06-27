@@ -29,4 +29,8 @@ public class RecommendedReview {
         this.review = review;
         this.status = status;
     }
+
+    public void changeStatus(RecommendStatus status) {
+        this.status = status;
+    }
 }
