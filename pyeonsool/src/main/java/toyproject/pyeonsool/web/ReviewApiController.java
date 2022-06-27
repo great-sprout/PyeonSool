@@ -46,4 +46,32 @@ public class ReviewApiController {
 
         return ResponseEntity.ok().build();
     }
+
+    @DeleteMapping("/{reviewId}/recommend")
+    public ResponseEntity<Void> cancelRecommendation(
+            @PathVariable Long reviewId,
+            @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
+
+        if (isNull(loginMember)) {
+            // TODO advice 클래스 생성 후 예외 통합 관리
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        reviewService.cancelRecommendation(loginMember.getId(), reviewId, RecommendStatus.LIKE);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{reviewId}/not-recommend")
+    public ResponseEntity<Void> cancelNotRecommendation(
+            @PathVariable Long reviewId,
+            @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
+
+        if (isNull(loginMember)) {
+            // TODO advice 클래스 생성 후 예외 통합 관리
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        reviewService.cancelRecommendation(loginMember.getId(), reviewId, RecommendStatus.DISLIKE);
+
+        return ResponseEntity.ok().build();
+    }
 }
