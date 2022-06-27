@@ -11,8 +11,6 @@ import toyproject.pyeonsool.repository.RecommendedReviewRepository;
 import toyproject.pyeonsool.repository.ReviewRepository;
 
 import javax.transaction.Transactional;
-import java.util.Objects;
-import java.util.Optional;
 
 import static java.util.Objects.*;
 
@@ -47,7 +45,7 @@ public class ReviewService {
                 .map(ReviewDto::from);
     }
 
-    public Long recommendReview(Long memberId, Long reviewId) {
+    public Long recommendReview(Long memberId, Long reviewId, RecommendStatus status) {
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
         Member member = memberRepository.findById(memberId)
@@ -56,12 +54,12 @@ public class ReviewService {
 
         RecommendedReview recommendedReview =
                 recommendedReviewRepository.findByMemberAndReview(member, review)
-                        .orElseGet(() -> new RecommendedReview(member, review, RecommendStatus.LIKE));
+                        .orElseGet(() -> new RecommendedReview(member, review, status));
 
         if (isNull(recommendedReview.getId())) {
             recommendedReviewRepository.save(recommendedReview);
         } else {
-            recommendedReview.changeStatus(RecommendStatus.LIKE);
+            recommendedReview.changeStatus(status);
         }
 
         return recommendedReview.getId();

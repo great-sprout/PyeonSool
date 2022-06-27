@@ -1,6 +1,5 @@
 package toyproject.pyeonsool.service;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 @SpringBootTest
@@ -61,7 +59,7 @@ class ReviewServiceTest {
             em.persist(recommendedReview);
 
             //when
-            Long recommendReviewId = reviewService.recommendReview(member.getId(), review.getId());
+            Long recommendReviewId = reviewService.recommendReview(member.getId(), review.getId(), RecommendStatus.LIKE);
 
             //then
             assertThat(em.find(RecommendedReview.class, recommendReviewId).getStatus())
@@ -83,7 +81,7 @@ class ReviewServiceTest {
             em.persist(review);
 
             //when
-            Long recommendReviewId = reviewService.recommendReview(member.getId(), review.getId());
+            Long recommendReviewId = reviewService.recommendReview(member.getId(), review.getId(), RecommendStatus.LIKE);
 
             //then
             assertThat(em.find(RecommendedReview.class, recommendReviewId).getStatus())
