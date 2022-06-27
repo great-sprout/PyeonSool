@@ -7,19 +7,26 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.Pagination;
 import toyproject.pyeonsool.SessionConst;
+import toyproject.pyeonsool.domain.Alcohol;
+import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.service.AlcoholDetailsDto;
 import toyproject.pyeonsool.service.AlcoholService;
+
+import toyproject.pyeonsool.service.AlcoholTypeDto;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import toyproject.pyeonsool.service.ReviewDto;
 import toyproject.pyeonsool.service.ReviewService;
 
+
 import static java.util.Objects.*;
+import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 @Controller
 @RequestMapping("/alcohols")
@@ -29,9 +36,21 @@ public class AlcoholController {
     private final AlcoholService alcoholService;
     private final ReviewService reviewService;
 
+
     @GetMapping
-    public String getListPage() {
+    public String getListPage(@RequestParam String alcoholType,
+                              Model model) {
+        List<AlcoholTypeDto> findTypeAlcohol= alcoholService.findTypeAlcohol(AlcoholType.valueOf(alcoholType));
+        model.addAttribute("typeList",findTypeAlcohol);
+
+
+
+        //then
+        for (AlcoholTypeDto a : findTypeAlcohol){
+            System.out.println(alcoholType + "= "+a.getName());
+        }
         return "listPage";
+
     }
 
     @GetMapping("/{alcoholId}")
