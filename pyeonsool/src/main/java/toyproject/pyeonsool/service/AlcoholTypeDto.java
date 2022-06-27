@@ -1,5 +1,6 @@
 package toyproject.pyeonsool.service;
 
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +14,7 @@ import java.util.List;
 @ToString
 public class AlcoholTypeDto {
 
+
     private AlcoholType type;
     private String imagePath;
     private String name;
@@ -23,20 +25,27 @@ public class AlcoholTypeDto {
 
 
 
-    public static AlcoholTypeDto of(
-            Alcohol alcohol, String imagePath, String grade, List<String> alcoholKeywords,
+    /*public AlcoholTypeDto (
+            AlcoholType alcoholType, String imagePath, Integer price,String grade,String abvs, List<String> alcoholKeywords,
             List<String> alcoholVendors) {
-        return new AlcoholTypeDto(
-                alcohol.getType(),
-                imagePath,
-                alcohol.getName(),
-                alcohol.getPrice(),
-                String.format("%.1f", alcohol.getAbv()),
-                alcoholKeywords,
-                alcoholVendors);
+            this.type = alcoholType;
+            this.imagePath = imagePath;
+            this.price=price;
+            this.abv = abv;
+            this.keywords = alcoholKeywords;
+            this.vendors = alcoholVendors;
+    }*/
+@QueryProjection
+    public AlcoholTypeDto(Alcohol alcohol){
+        type= alcohol.getType();
+        name = alcohol.getName();
+        price = alcohol.getPrice();
+        abv = String.valueOf(alcohol.getAbv());
+
     }
-    public static AlcoholTypeDto of(AlcoholType type, String imagePath, String name, Integer price, String format, List<String> alcoholKeywords, List<String> alcoholVendors) {
-        return AlcoholTypeDto.of(type,imagePath,name,price,format,alcoholKeywords,alcoholVendors);
-    }
+
+
+
+
 
 }

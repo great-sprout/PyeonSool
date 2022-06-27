@@ -8,7 +8,9 @@ import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholKeyword;
+import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.Keyword;
+import toyproject.pyeonsool.service.AlcoholTypeDto;
 
 import javax.persistence.EntityManager;
 
@@ -50,7 +52,9 @@ class AlcoholRepositoryTest {
 
 
         //then
-        System.out.println("alcoholType = " + alcoholType);
+        for(Alcohol a : alcoholType) {
+            System.out.println("alcoholType = " + a.getName());
+        }
 
 
     }

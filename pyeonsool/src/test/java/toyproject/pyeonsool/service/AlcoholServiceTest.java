@@ -114,11 +114,11 @@ class AlcoholServiceTest {
         em.persist(alcohol5);
 
         //when
-        List<Alcohol> alcoholType = alcoholService.findTypeAlcohol(BEER);
+        List<AlcoholTypeDto> alcoholType = alcoholService.findTypeAlcohol(WINE);
 
 
         //then
-        for (Alcohol a : alcoholType){
+        for (AlcoholTypeDto a : alcoholType){
             System.out.println("hello = "+a.getName());
         }
     }

@@ -3,10 +3,7 @@ package toyproject.pyeonsool.web;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.domain.Alcohol;
@@ -19,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.*;
+import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 @Controller
 @RequestMapping("/alcohols")
@@ -27,14 +25,21 @@ public class AlcoholController {
 
     private final AlcoholService alcoholService;
 
+
     @GetMapping
-    public String getListPage(){
-        return"listPage";
-    }
-    @GetMapping("/alcoholType/{alcoholType}")
-    public List<Alcohol> getListPage(@PathVariable AlcoholType alcoholType) {
-        System.out.println("hmm : "+alcoholType);
-        return alcoholService.findTypeAlcohol(alcoholType);
+    public String getListPage(@RequestParam String alcoholType,
+                              Model model) {
+        List<AlcoholTypeDto> findTypeAlcohol= alcoholService.findTypeAlcohol(AlcoholType.valueOf(alcoholType));
+        model.addAttribute("typeList",findTypeAlcohol);
+
+
+
+        //then
+        for (AlcoholTypeDto a : findTypeAlcohol){
+            System.out.println(alcoholType + "= "+a.getName());
+        }
+        return "listPage";
+
     }
 
     @GetMapping("/{alcoholId}")

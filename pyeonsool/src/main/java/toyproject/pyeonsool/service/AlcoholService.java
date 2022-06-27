@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.*;
 
@@ -118,8 +119,12 @@ public class AlcoholService {
     }
 
 
-    public List<Alcohol> findTypeAlcohol(AlcoholType alcoholType ){
-        List<Alcohol> alcohols = alcoholRepository.findAllByType(alcoholType);
-        return alcohols;
+    public List<AlcoholTypeDto> findTypeAlcohol(AlcoholType byType){
+        List<Alcohol> alcohols = alcoholRepository.findAllByType(byType);
+        List<AlcoholTypeDto> result = alcohols.stream()
+                .map(a -> new AlcoholTypeDto(a))
+                .collect(Collectors.toList());
+        return result;
     }
+
 }
