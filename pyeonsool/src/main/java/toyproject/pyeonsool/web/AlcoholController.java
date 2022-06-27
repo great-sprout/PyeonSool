@@ -1,6 +1,10 @@
 package toyproject.pyeonsool.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,11 +12,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import toyproject.pyeonsool.LoginMember;
+import toyproject.pyeonsool.Pagination;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.service.AlcoholDetailsDto;
 import toyproject.pyeonsool.service.AlcoholService;
-
-import java.util.ArrayList;
+import toyproject.pyeonsool.service.ReviewDto;
+import toyproject.pyeonsool.service.ReviewService;
 
 import static java.util.Objects.*;
 
@@ -22,6 +27,7 @@ import static java.util.Objects.*;
 public class AlcoholController {
 
     private final AlcoholService alcoholService;
+    private final ReviewService reviewService;
 
     @GetMapping
     public String getListPage() {
@@ -32,23 +38,18 @@ public class AlcoholController {
     public String getDetailPage(
             @PathVariable Long alcoholId,
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
+            @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
             Model model) {
 
         AlcoholDetailsDto alcoholDetails =
                 alcoholService.getAlcoholDetails(alcoholId, isNull(loginMember) ? null : loginMember.getId());
+        model.addAttribute("alcoholId", alcoholId);
         model.addAttribute("alcoholDetails", alcoholDetails);
         model.addAttribute("reviewSaveForm", new ReviewSaveForm(alcoholId));
-        model.addAttribute("stars", createStars());
+        Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId);
+        model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
+        model.addAttribute("reviews", reviewPage.getContent());
 
         return "detailPage";
-    }
-
-    private ArrayList<Integer> createStars() {
-        ArrayList<Integer> stars = new ArrayList<>();
-        for (int star = 5; star >= 1; star--) {
-            stars.add(star);
-        }
-
-        return stars;
     }
 }

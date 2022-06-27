@@ -34,8 +34,12 @@ public class initDB {
         EntityManager em;
 
         public void init() {
+<<<<<<< HEAD
 
             Member[] members = new Member[5];
+=======
+            Member[] members = new Member[3];
+>>>>>>> 597b7dd3607463e2c6f908a90d59e61fab26a081
             setMembers(members);
             for (Member m : members) {
                 em.persist(m);
@@ -122,8 +126,11 @@ public class initDB {
             members[0] = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
             members[1] = new Member("영준이", "chldudwns121", "1234", "01023456789");
             members[2] = new Member("춘향이", "chlcnsgid121", "1234", "01043218765");
+<<<<<<< HEAD
             members[3] = new Member("지환이", "tlswlghks121", "1234", "01012341234");
             members[4] = new Member("몽룡이", "dlahdfyd121", "1234", "01043214321");
+=======
+>>>>>>> 597b7dd3607463e2c6f908a90d59e61fab26a081
         }
 
         private void setSojuList(ArrayList<Alcohol> sojus) {

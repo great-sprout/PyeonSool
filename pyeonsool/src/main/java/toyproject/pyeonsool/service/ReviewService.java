@@ -1,6 +1,8 @@
 package toyproject.pyeonsool.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Member;
@@ -31,5 +33,13 @@ public class ReviewService {
         reviewRepository.save(review);
 
         return review.getId();
+    }
+
+    public Page<ReviewDto> getReviewPage(Pageable pageable, Long alcoholId) {
+        Alcohol alcohol = alcoholRepository.findById(alcoholId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
+
+        return reviewRepository.findReviewsByAlcohol(alcohol, pageable)
+                .map(ReviewDto::from);
     }
 }
