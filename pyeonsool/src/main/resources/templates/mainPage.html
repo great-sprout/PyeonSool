@@ -1,774 +1,706 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org/">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link
-      href="/image/components/pyeonsool-icon.svg"
-      rel="icon"
-      type="image/x-icon"
+            href="/image/components/pyeonsool-icon.svg"
+            rel="icon"
+            type="image/x-icon"
     />
     <title>메인 페이지</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
-    <link rel="stylesheet" type="text/css" href="/css/screens/mainPage.css" />
-  </head>
-  <body>
-    <div id="wrap">
-      <header class="header">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/screens/mainPage.css"/>
+</head>
+<body>
+<div id="wrap">
+    <header class="header">
         <nav class="header__nav">
-          <i class="fas fa-bars"></i>
-          <i class="fas fa-times unvisible"></i>
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times unvisible"></i>
 
-          <ul class="list-nav unvisible">
-            <li class="list-nav__item">
-              <a href="/alcohols">소주</a>
-            </li>
-            <li class="list-nav__item">
-              <a href="/alcohols">맥주</a>
-            </li>
-            <li class="list-nav__item">
-              <a href="/alcohols">와인</a>
-            </li>
-          </ul>
+            <ul class="list-nav unvisible">
+                <li class="list-nav__item">
+                    <a href="/alcohols">소주</a>
+                </li>
+                <li class="list-nav__item">
+                    <a href="/alcohols">맥주</a>
+                </li>
+                <li class="list-nav__item">
+                    <a href="/alcohols">와인</a>
+                </li>
+            </ul>
         </nav>
 
         <div class="header__logo">
-          <a href="/" class="logo-link">
-            <img
-              src="/image/components/pyeonsool-logo.svg"
-              alt="편술 로고"
-              class="logo"
-            />
-          </a>
+            <a href="/" class="logo-link">
+                <img
+                        src="/image/components/pyeonsool-logo.svg"
+                        alt="편술 로고"
+                        class="logo"
+                />
+            </a>
         </div>
 
         <div class="header__profile">
-          <i class="far fa-user-circle"></i>
+            <i class="far fa-user-circle"></i>
 
-          <div class="header-profile unvisible">
-            <div class="header-profile__triangle"></div>
+            <div class="header-profile unvisible">
+                <div class="header-profile__triangle"></div>
 
-            <div class="header-profile__content">
-              <div class="header-profile__link">
-                <!-- TODO 파라미터 memberId 수정 -->
-                <a href="/members/1" class="header-profile__mypage">마이페이지</a>
-                <div class="header-profile__divider"></div>
-                <span class="header-profile__logout">로그아웃</span>
-              </div>
+                <div class="header-profile__content">
+                    <div class="header-profile__link">
+                        <!-- TODO 파라미터 memberId 수정 -->
+                        <a href="/members/1" class="header-profile__mypage">마이페이지</a>
+                        <div class="header-profile__divider"></div>
+                        <span class="header-profile__logout">로그아웃</span>
+                    </div>
 
-              <div class="header-profile__keywords">
-                <span class="keyword">#달콤함</span>
-                <span class="keyword">#깔끔함</span>
-                <span class="keyword">#묵직함</span>
-              </div>
+                    <div class="header-profile__keywords">
+                        <span class="keyword">#달콤함</span>
+                        <span class="keyword">#깔끔함</span>
+                        <span class="keyword">#묵직함</span>
+                    </div>
 
-              <div class="header-profile__select-again-keyword-wrap">
+                    <div class="header-profile__select-again-keyword-wrap">
                 <span class="header-profile__select-again-keyword"
-                  >다시 고르기</span
+                >다시 고르기</span
                 >
-              </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </header>
+    </header>
 
-      <!-- 편술 소개 & 이미지 -->
-      <div id="container">
+    <!-- 편술 소개 & 이미지 -->
+    <div id="container">
         <main>
-          <article class="introduction">
-            <div class="introduction__intro-text">
-              <p class="introduction__p--header-text">
-                <span class="introduction__font-color">편</span>하게
-                <span class="introduction__font-color">술</span>먹자,
-                <span class="introduction__font-color">편술</span>
-              </p>
-              <p class="introduction__p--sub-text">
-                편의점 술, 너무 많아 고민된다면?!
-                <span class="introduction__font-color">편술</span>이
-                추천해드립니다!
-              </p>
-            </div>
-            <div class="introduction__intro-image">
-              <img
-                class="introduction__img--intro-image"
-                src="/image/components/pyeonsool-image.png"
-                alt="편술 이미지"
-              />
-            </div>
-          </article>
+            <article class="introduction">
+                <div class="introduction__intro-text">
+                    <p class="introduction__p--header-text">
+                        <span class="introduction__font-color">편</span>하게
+                        <span class="introduction__font-color">술</span>먹자,
+                        <span class="introduction__font-color">편술</span>
+                    </p>
+                    <p class="introduction__p--sub-text">
+                        편의점 술, 너무 많아 고민된다면?!
+                        <span class="introduction__font-color">편술</span>이
+                        추천해드립니다!
+                    </p>
+                </div>
+                <div class="introduction__intro-image">
+                    <img
+                            class="introduction__img--intro-image"
+                            src="/image/components/pyeonsool-image.png"
+                            alt="편술 이미지"
+                    />
+                </div>
+            </article>
         </main>
         <section>
-          <article class="recommend">
-            <!-- 이달의 추천 & 당신의 편술 리스트 -->
-            <div class="recommend__title">
-              <h2 class="recommend__month-title recommend__selected-title">
-                이달의 추천
-              </h2>
-              <h2 class="recommend__yours-title">당신의 편술</h2>
-            </div>
-            <!-- 슬라이딩 리스트 -->
-            <div class="recommend__list recommend__list--month">
-              <div class="slide-button slide-button--left">&lt;</div>
-              <div class="slide-button slide-button--right">&gt;</div>
-              <!-- TODO 이미지 주소 imagePath -->
-              <div class="recommend__items-wrap">
-                <ul class="recommend__items">
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/soju/chamisul.png"
-                      th:src="@{/image/alcohol/soju/chamisul.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+            <article class="recommend">
+                <!-- 이달의 추천 & 당신의 편술 리스트 -->
+                <div class="recommend__title">
+                    <h2 class="recommend__month-title recommend__selected-title">
+                        이달의 추천
+                    </h2>
+                    <h2 class="recommend__yours-title">당신의 편술</h2>
+                </div>
+                <!-- 슬라이딩 리스트 -->
+                <div class="recommend__list recommend__list--month">
+                    <div class="slide-button slide-button--left">&lt;</div>
+                    <div class="slide-button slide-button--right">&gt;</div>
+                    <div class="recommend__items-wrap">
+                        <ul class="recommend__items">
+                            <li th:each="alcoholDetail, alcoholStat : ${alcoholDetailsList}" class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        th:src="${alcoholDetail.imagePath}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
+                        </ul>
+                    </div>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/soju/chamisul.png"
-                      th:src="@{/image/alcohol/soju/chamisul.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                    <div class="recommend__count-circles"></div>
+                </div>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/soju/chamisul.png"
-                      th:src="@{/image/alcohol/soju/chamisul.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                <div class="recommend__list recommend__list--yours unvisible">
+                    <div class="slide-button slide-button--left">&lt;</div>
+                    <div class="slide-button slide-button--right">&gt;</div>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/soju/chamisul.png"
-                      th:src="@{/image/alcohol/soju/chamisul.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                    <div class="recommend__items-wrap">
+                        <ul class="recommend__items">
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/beer/carlsberg.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/soju/chamisul.png"
-                      th:src="@{/image/alcohol/soju/chamisul.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/soju/chamisul.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/soju/chamisul.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/soju/chamisul.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/beer/calsberg.jpg"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/beer/cass-fresh.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/beer/cass-fresh.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/cass-fresh.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-                </ul>
-              </div>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/beer/cass-fresh.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-              <div class="recommend__count-circles"></div>
-            </div>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/beer/cass-fresh.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-            <div class="recommend__list recommend__list--yours unvisible">
-              <div class="slide-button slide-button--left">&lt;</div>
-              <div class="slide-button slide-button--right">&gt;</div>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/beer/cass-fresh.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
 
-              <div class="recommend__items-wrap">
-                <ul class="recommend__items">
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/carlsberg.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                            <li class="recommend__item" onclick="location.href='#'">
+                                <img
+                                        src="/image/alcohol/beer/cass-fresh.png"
+                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                        alt="alcohol"
+                                        class="recommend__image"
+                                />
+                            </li>
+                        </ul>
+                    </div>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/soju/chamisul.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
+                    <div class="recommend__count-circles"></div>
+                </div>
+            </article>
 
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/soju/chamisul.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/soju/chamisul.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/calsberg.jpg"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-
-                  <li class="recommend__item" onclick="location.href='#'">
-                    <img
-                      src="../image/alcohol/beer/cass-fresh.png"
-                      th:src="@{/image/alcohol/beer/carlsberg.png}"
-                      alt="alcohol"
-                      class="recommend__image"
-                    />
-                  </li>
-                </ul>
-              </div>
-
-              <div class="recommend__count-circles"></div>
-            </div>
-          </article>
-
-          <article class="best-like">
-            <!-- 베스트 Like 리스트 -->
-            <div class="best-like__title">
-              <h1 class="best-like__h1--main-title">베스트 Like</h1>
-              <div class="best-like__sub-title">
+            <article class="best-like">
+                <!-- 베스트 Like 리스트 -->
+                <div class="best-like__title">
+                    <h1 class="best-like__h1--main-title">베스트 Like</h1>
+                    <div class="best-like__sub-title">
                 <span class="best-like__category">
                   <h2 class="best-like__soju-title best-like__selected-title">소주</h2>
                   <h2 class="best-like__beer-title">맥주</h2>
                   <h2 class="best-like__wine-title">와인</h2>
                 </span>
-                <span class="best-like__see-all">
+                        <span class="best-like__see-all">
                   <!-- TODO alcohol.type값을 넘겨주어야 함 -->
                   <a href="/alcohols" class="best-like__button--see-all">모두보기 &gt;</a>
                 </span>
-              </div>
-            </div>
-             <!-- 베스트 Like 리스트 소주 부분 -->
-            <div class="best-like__list-soju">
-              <!-- TODO thymeleaf: 파라미터 변수로 데이터 받기 -->
-              <div class="best-like__list-first-row">
-                <div class="best-like__item">
-                  <a href="#">
-                    <div class="best-like__image-box">
-                      <div class="best-like__image-wrap">
-                        <img
-                          src="../image/alcohol/soju/chamisul.png"
-                          th:src="@{/image/alcohol/soju/chamisul.png}"
-                          alt="참이슬"
-                          class="best-like__image"
-                        >
-                      </div>
                     </div>
-                  </a>
-                  <div class="best-like__alcohol-info">
-                    <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-                <div class="best-like__item">
-                  <a href="#">
-                    <div class="best-like__image-box">
-                      <div class="best-like__image-wrap">
-                        <img
-                          src="../image/alcohol/soju/chamisul.png"
-                          th:src="@{/image/alcohol/soju/chamisul.png}"
-                          alt="참이슬"
-                          class="best-like__image"
-                        >
-                      </div>
+                <!-- 베스트 Like 리스트 소주 부분 -->
+                <div class="best-like__list-soju">
+                    <!-- TODO thymeleaf: 파라미터 변수로 데이터 받기 -->
+                    <div class="best-like__list-first-row">
+                        <div class="best-like__item">
+                            <a href="#">
+                                <div class="best-like__image-box">
+                                    <div class="best-like__image-wrap">
+                                        <img
+                                                src="/image/alcohol/soju/chamisul.png"
+                                                th:src="@{/image/alcohol/soju/chamisul.png}"
+                                                alt="참이슬"
+                                                class="best-like__image"
+                                        >
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="best-like__alcohol-info">
+                                <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="best-like__item">
+                            <a href="#">
+                                <div class="best-like__image-box">
+                                    <div class="best-like__image-wrap">
+                                        <img
+                                                src="/image/alcohol/soju/chamisul.png"
+                                                th:src="@{/image/alcohol/soju/chamisul.png}"
+                                                alt="참이슬"
+                                                class="best-like__image"
+                                        >
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </a>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
+
+                    <div class="best-like__list-second-row">
+                        <div class="best-like__item">
+                            <div class="best-like__image-box">
+                                <div class="best-like__image-wrap">
+                                    <img
+                                            src="/image/alcohol/soju/chamisul.png"
+                                            th:src="@{/image/alcohol/soju/chamisul.png}"
+                                            alt=""
+                                            class="best-like__image"
+                                    >
+                                </div>
+                            </div>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="best-like__item">
+                            <div class="best-like__image-box">
+                                <div class="best-like__image-wrap">
+                                    <img
+                                            src="/image/alcohol/soju/chamisul.png"
+                                            th:src="@{/image/alcohol/soju/chamisul.png}"
+                                            alt="참이슬"
+                                            class="best-like__image"
+                                    >
+                                </div>
+                            </div>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-              
-              <div class="best-like__list-second-row">
-                <div class="best-like__item">
-                  <div class="best-like__image-box">
-                    <div class="best-like__image-wrap">
-                      <img
-                        src="../image/alcohol/soju/chamisul.png"
-                        th:src="@{/image/alcohol/soju/chamisul.png}"
-                        alt=""
-                        class="best-like__image"
-                      >
+
+                <!--베스트 Like 리스트 맥주 부분-->
+                <div class="best-like__list-beer unvisible">
+                    <div class="best-like__list-first-row">
+                        <div class="best-like__item">
+                            <a href="#">
+                                <div class="best-like__image-box">
+                                    <div class="best-like__image-wrap">
+                                        <img
+                                                src="/image/alcohol/beer/guinness-draught.png"
+                                                th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                                                alt="기네스"
+                                                class="best-like__image"
+                                        >
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="best-like__alcohol-info">
+                                <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="best-like__item">
+                            <a href="#">
+                                <div class="best-like__image-box">
+                                    <div class="best-like__image-wrap">
+                                        <img
+                                                src="/image/alcohol/beer/guinness-draught.png"
+                                                th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                                                alt=""
+                                                class="best-like__image"
+                                        >
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
+
+                    <div class="best-like__list-second-row">
+                        <div class="best-like__item">
+                            <div class="best-like__image-box">
+                                <div class="best-like__image-wrap">
+                                    <img
+                                            src="/image/alcohol/guinness-draught.png"
+                                            th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                                            alt=""
+                                            class="best-like__image"
+                                    >
+                                </div>
+                            </div>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="best-like__item">
+                            <div class="best-like__image-box">
+                                <div class="best-like__image-wrap">
+                                    <img
+                                            src="/image/alcohol/guinness-draught.png"
+                                            th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                                            alt="참이슬"
+                                            class="best-like__image"
+                                    >
+                                </div>
+                            </div>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <div class="best-like__item">
-                  <div class="best-like__image-box">
-                    <div class="best-like__image-wrap">
-                      <img
-                        src="../image/alcohol/soju/chamisul.png"
-                        th:src="@{/image/alcohol/soju/chamisul.png}"
-                        alt="참이슬"
-                        class="best-like__image"
-                      >
+
+                <!--베스트 Like 리스트 와인 부분-->
+                <div class="best-like__list-wine unvisible">
+                    <div class="best-like__list-first-row">
+                        <div class="best-like__item">
+                            <a href="#">
+                                <div class="best-like__image-box">
+                                    <div class="best-like__image-wrap">
+                                        <img
+                                                src="/image/alcohol/wine/babich.png"
+                                                th:src="@{/image/alcohol/wine/babich.png}"
+                                                alt="참이슬"
+                                                class="best-like__image"
+                                        >
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="best-like__alcohol-info">
+                                <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="best-like__item">
+                            <a href="#">
+                                <div class="best-like__image-box">
+                                    <div class="best-like__image-wrap">
+                                        <img
+                                                src="/image/alcohol/wine.png"
+                                                th:src="@{/image/alcohol/wine/babich.png}"
+                                                alt="참이슬"
+                                                class="best-like__image"
+                                        >
+                                    </div>
+                                </div>
+                            </a>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
+
+                    <div class="best-like__list-second-row">
+                        <div class="best-like__item">
+                            <div class="best-like__image-box">
+                                <div class="best-like__image-wrap">
+                                    <img
+                                            src="/image/alcohol/wine.png"
+                                            th:src="@{/image/alcohol/wine/babich.png}"
+                                            alt=""
+                                            class="best-like__image"
+                                    >
+                                </div>
+                            </div>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="best-like__item">
+                            <div class="best-like__image-box">
+                                <div class="best-like__image-wrap">
+                                    <img
+                                            src="/image/alcohol/wine.png"
+                                            th:src="@{/image/alcohol/wine/babich.png}"
+                                            alt="참이슬"
+                                            class="best-like__image"
+                                    >
+                                </div>
+                            </div>
+                            <div class="best-like__alcohol-info">
+                                <p class="best-like__alcohol-name">참이슬</p>
+                                <p class="best-like__alcohol-price">1,280 원</p>
+                                <p class="best-like__alcohol-abv">20.1 도</p>
+                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
+                                                                        src="/image/components/heart-circle.png"><span
+                                        class="best-like__alcohol-like-count">1732</span></p>
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                    </div>
+                                    <div class="best-like__alcohol-tag-box">
+                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-            </div>
-  
-            <!--베스트 Like 리스트 맥주 부분-->
-            <div class="best-like__list-beer unvisible">
-              <div class="best-like__list-first-row">
-                <div class="best-like__item">
-                  <a href="#">
-                    <div class="best-like__image-box">
-                      <div class="best-like__image-wrap">
-                        <img
-                          src="../image/alcohol/beer/guinness-draught.png"
-                          th:src="@{/image/alcohol/beer/guinness-draught.png}"
-                          alt="기네스"
-                          class="best-like__image"
-                        >
-                      </div>
-                    </div>
-                  </a>
-                  <div class="best-like__alcohol-info">
-                    <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="best-like__item">
-                  <a href="#">
-                    <div class="best-like__image-box">
-                      <div class="best-like__image-wrap">
-                        <img
-                          src="../image/alcohol/beer/guinness-draught.png"
-                          th:src="@{/image/alcohol/beer/guinness-draught.png}"
-                          alt=""
-                          class="best-like__image"
-                        >
-                      </div>
-                    </div>
-                  </a>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="best-like__list-second-row">
-                <div class="best-like__item">
-                  <div class="best-like__image-box">
-                    <div class="best-like__image-wrap">
-                      <img
-                        src="../image/alcohol/guinness-draught.png"
-                        th:src="@{/image/alcohol/beer/guinness-draught.png}"
-                        alt=""
-                        class="best-like__image"
-                      >
-                    </div>
-                  </div>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="best-like__item">
-                  <div class="best-like__image-box">
-                    <div class="best-like__image-wrap">
-                      <img
-                        src="../image/alcohol/guinness-draught.png"
-                        th:src="@{/image/alcohol/beer/guinness-draught.png}"
-                        alt="참이슬"
-                        class="best-like__image"
-                      >
-                    </div>
-                  </div>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-  
-             <!--베스트 Like 리스트 와인 부분-->
-             <div class="best-like__list-wine unvisible">
-              <div class="best-like__list-first-row">
-                <div class="best-like__item">
-                  <a href="#">
-                    <div class="best-like__image-box">
-                      <div class="best-like__image-wrap">
-                        <img
-                          src="../image/alcohol/wine/babich.png"
-                          th:src="@{/image/alcohol/wine/babich.png}"
-                          alt="참이슬"
-                          class="best-like__image"
-                        >
-                      </div>
-                    </div>
-                  </a>
-                  <div class="best-like__alcohol-info">
-                    <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="best-like__item">
-                  <a href="#">
-                    <div class="best-like__image-box">
-                      <div class="best-like__image-wrap">
-                        <img
-                          src="../image/alcohol/wine.png"
-                          th:src="@{/image/alcohol/wine/babich.png}"
-                          alt="참이슬"
-                          class="best-like__image"
-                        >
-                      </div>
-                    </div>
-                  </a>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div class="best-like__list-second-row">
-                <div class="best-like__item">
-                  <div class="best-like__image-box">
-                    <div class="best-like__image-wrap">
-                      <img
-                        src="../image/alcohol/wine.png"
-                        th:src="@{/image/alcohol/wine/babich.png}"
-                        alt=""
-                        class="best-like__image"
-                      >
-                    </div>
-                  </div>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="best-like__item">
-                  <div class="best-like__image-box">
-                    <div class="best-like__image-wrap">
-                      <img
-                        src="../image/alcohol/wine.png"
-                        th:src="@{/image/alcohol/wine/babich.png}"
-                        alt="참이슬"
-                        class="best-like__image"
-                      >
-                    </div>
-                  </div>
-                  <div class="best-like__alcohol-info">
-                    <p class="best-like__alcohol-name">참이슬</p>
-                    <p class="best-like__alcohol-price">1,280 원</p>
-                    <p class="best-like__alcohol-abv">20.1 도</p>
-                    <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image" src="../image/components/heart-circle.png"><span class="best-like__alcohol-like-count">1732</span></p>
-                    <div class="best-like__alcohol-tag">
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">시원함</p>
-                      </div>
-                      <div class="best-like__alcohol-tag-box">
-                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </article>
+            </article>
         </section>
-      </div>
-
-      <footer class="footer">
-        <div class="footer__inner">
-          <div class="footer__content">
-            <div class="footer-column">
-              <h2 class="footer-column__title">프로젝트 조원</h2>
-
-              <div class="footer-column__content">
-                <a
-                  href="https://github.com/JunYoung-C"
-                  class="footer-column__text"
-                  >최준영 : https://github.com/JunYoung-C</a
-                ><br />
-                <a href="https://github.com/wyu950" class="footer-column__text"
-                  >원연욱 : https://github.com/wyu950</a
-                ><br />
-                <a href="https://github.com/Jangsue" class="footer-column__text"
-                  >장수빈 : https://github.com/Jangsue</a
-                ><br />
-                <a href="https://github.com/sjihwan" class="footer-column__text"
-                  >신지환 : https://github.com/sjihwan</a
-                >
-              </div>
-            </div>
-
-            <div class="footer-column">
-              <h2 class="footer-column__title">SKILLS</h2>
-
-              <div class="footer-column__content">
-                <span class="footer-column__text">HTML, CSS, JavaScript</span
-                ><br />
-                <span class="footer-column__text">JAVA, Spring, JPA</span><br />
-                <span class="footer-column__text">MySQL, H2</span>
-              </div>
-            </div>
-
-            <div class="footer-column">
-              <h2 class="footer-column__title">GitHub</h2>
-
-              <div class="footer-column__content">
-                <a
-                  href="https://github.com/great-sprout/PyeonSool"
-                  class="footer-column__text"
-                  >https://github.com/great-sprout/PyeonSool</a
-                >
-              </div>
-            </div>
-
-            <div class="footer-column">
-              <h2 class="footer-column__title">고객센터</h2>
-
-              <div class="footer-column__content">
-                <span class="footer-column__text">02-333-3333</span>
-              </div>
-            </div>
-          </div>
-
-          <span class="footer__rights"
-            >© 2022 Final Project - PyeonSool. All rights reserved.</span
-          >
-        </div>
-      </footer>
-
-      <script
-        src="https://kit.fontawesome.com/b17793764c.js"
-        crossorigin="anonymous"
-      ></script>
-      <script src="/js/header.js"></script>
-      <script src="/js/SlideController.js"></script>
-      <script src="/js/mainPage.js"></script>
     </div>
-  </body>
+
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__content">
+                <div class="footer-column">
+                    <h2 class="footer-column__title">프로젝트 조원</h2>
+
+                    <div class="footer-column__content">
+                        <a
+                                href="https://github.com/JunYoung-C"
+                                class="footer-column__text"
+                        >최준영 : https://github.com/JunYoung-C</a
+                        ><br/>
+                        <a href="https://github.com/wyu950" class="footer-column__text"
+                        >원연욱 : https://github.com/wyu950</a
+                        ><br/>
+                        <a href="https://github.com/Jangsue" class="footer-column__text"
+                        >장수빈 : https://github.com/Jangsue</a
+                        ><br/>
+                        <a href="https://github.com/sjihwan" class="footer-column__text"
+                        >신지환 : https://github.com/sjihwan</a
+                        >
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h2 class="footer-column__title">SKILLS</h2>
+
+                    <div class="footer-column__content">
+                <span class="footer-column__text">HTML, CSS, JavaScript</span
+                ><br/>
+                        <span class="footer-column__text">JAVA, Spring, JPA</span><br/>
+                        <span class="footer-column__text">MySQL, H2</span>
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h2 class="footer-column__title">GitHub</h2>
+
+                    <div class="footer-column__content">
+                        <a
+                                href="https://github.com/great-sprout/PyeonSool"
+                                class="footer-column__text"
+                        >https://github.com/great-sprout/PyeonSool</a
+                        >
+                    </div>
+                </div>
+
+                <div class="footer-column">
+                    <h2 class="footer-column__title">고객센터</h2>
+
+                    <div class="footer-column__content">
+                        <span class="footer-column__text">02-333-3333</span>
+                    </div>
+                </div>
+            </div>
+
+            <span class="footer__rights"
+            >© 2022 Final Project - PyeonSool. All rights reserved.</span
+            >
+        </div>
+    </footer>
+
+    <script
+            src="https://kit.fontawesome.com/b17793764c.js"
+            crossorigin="anonymous"
+    ></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/SlideController.js"></script>
+    <script src="/js/mainPage.js"></script>
+</div>
+</body>
 </html>
