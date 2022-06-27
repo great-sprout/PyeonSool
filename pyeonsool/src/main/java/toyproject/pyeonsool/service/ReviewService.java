@@ -12,7 +12,6 @@ import toyproject.pyeonsool.repository.MemberRepository;
 import toyproject.pyeonsool.repository.ReviewRepository;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -36,11 +35,11 @@ public class ReviewService {
         return review.getId();
     }
 
-    public List<ReviewDto> getReviews(Pageable pageable, Long alcoholId) {
+    public Page<ReviewDto> getReviewPage(Pageable pageable, Long alcoholId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
 
         return reviewRepository.findReviewsByAlcohol(alcohol, pageable)
-                .map(ReviewDto::from).getContent();
+                .map(ReviewDto::from);
     }
 }
