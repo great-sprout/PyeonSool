@@ -8,6 +8,8 @@ import toyproject.pyeonsool.domain.*;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -88,5 +90,32 @@ class AlcoholServiceTest {
 
         //then
         assertThat(em.find(PreferredAlcohol.class, likeAlcoholId)).isNull();
+    }
+
+    @Test
+    void findLikeList() {
+        //given
+        Member member = new Member("nickname", "userId", "password", "01012345678");
+        em.persist(member);
+
+        Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        Alcohol alcohol2 = new Alcohol(AlcoholType.SOJU, "test.jpg", "옐로우테일2", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        Alcohol alcohol3 = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일3", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        em.persist(alcohol);
+        em.persist(alcohol2);
+        em.persist(alcohol3);
+
+        em.persist(new PreferredAlcohol(member, alcohol));
+        em.persist(new PreferredAlcohol(member, alcohol2));
+        em.persist(new PreferredAlcohol(member, alcohol3));
+
+        //when
+        List<MyPageDto> likeList = alcoholService.findLikeList(member);
+
+        //then
+        assertThat(likeList.size()).isEqualTo(3);
     }
 }

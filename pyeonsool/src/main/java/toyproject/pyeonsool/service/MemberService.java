@@ -39,19 +39,4 @@ public class MemberService {
 
         return new LoginMember(findMember.getId(), findMember.getNickname());
     }
-
-    //MyPageDto변환
-  public List<MyPageDto> findLikeList(Member member){
-        List<PreferredAlcohol> preferredAlcohols = preferredAlcoholRepository.findAllPreferredAlcoholsByMember(member);
-        List<MyPageDto> result = preferredAlcohols.stream()
-                .map(pa -> new MyPageDto(pa, getAlcoholImagePath(pa)))
-                .collect(Collectors.toList());
-
-        return result;
-   }
-
-    private String getAlcoholImagePath(PreferredAlcohol pa) {
-        return fileManager.getAlcoholImagePath(pa.getAlcohol().getType(), pa.getAlcohol().getFileName());
-    }
-
 }

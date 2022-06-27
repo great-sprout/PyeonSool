@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.*;
 
@@ -113,5 +114,19 @@ public class AlcoholService {
         if (preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol)) {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
         }
+    }
+
+    //MyPageDto변환
+    public List<MyPageDto> findLikeList(Member member){
+        List<PreferredAlcohol> preferredAlcohols = preferredAlcoholRepository.findAllPreferredAlcoholsByMember(member);
+        List<MyPageDto> result = preferredAlcohols.stream()
+                .map(pa -> new MyPageDto(pa, getAlcoholImagePath(pa)))
+                .collect(Collectors.toList());
+
+        return result;
+    }
+
+    private String getAlcoholImagePath(PreferredAlcohol pa) {
+        return fileManager.getAlcoholImagePath(pa.getAlcohol().getType(), pa.getAlcohol().getFileName());
     }
 }
