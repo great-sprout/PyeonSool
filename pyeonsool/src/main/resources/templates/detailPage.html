@@ -318,14 +318,14 @@
               <input type="hidden" th:field="*{alcoholId}">
 
               <div class="stars review-form__stars">
-                <th:block th:each="star : ${stars}">
+                <th:block th:each="num : ${#numbers.sequence(5, 1)}">
                   <input
                           type="radio"
                           value="5"
                           class="stars__radio"
                           required
                           th:field="*{grade}"
-                          th:value="${star}"
+                          th:value="${num}"
                   />
                   <label th:for="${#ids.prev('grade')}" class="stars__star review-form__star"
                   >★</label
@@ -349,6 +349,7 @@
               <div class="review-area__order">
                 <a
                   href="#"
+                  th:href="|/alcohols/${alcoholId}|"
                   class="review-area__latest-order review-area__selected-order"
                   >최신순</a
                 >
@@ -357,317 +358,129 @@
               </div>
 
               <div class="reviews">
-                <form class="review" num="1">
-                  <div class="review__left-column">
-                    <div class="review__row">
-                      <span class="review__nickname">알코홀릭</span>
+                <th:block  th:each="review : ${reviews}">
+                  <form class="review" th:number="${review.reviewId}" th:object="${review}">
+                    <div class="review__left-column">
+                      <div class="review__row">
+                        <span class="review__nickname" th:text="*{nickname}">알코홀릭</span>
 
-                      <div class="review__fixed-stars">
+                        <div class="review__fixed-stars">
                         <span
-                          class="review__fixed-star review__fixed-star--selected"
-                          >★</span
+                                class="review__fixed-star review__fixed-star--selected"
+                                th:each="num : ${#numbers.sequence(1, review.grade)}"
+                        >★</span
                         >
-                        <span
-                          class="review__fixed-star review__fixed-star--selected"
+                          <span
+                                  class="review__fixed-star"
+                                  th:if="${review.grade < 5}" ? th:each="num : ${#numbers.sequence(review.grade + 1, 5)}"
                           >★</span
-                        >
-                        <span
-                          class="review__fixed-star review__fixed-star--selected"
-                          >★</span
-                        >
-                        <span
-                          class="review__fixed-star review__fixed-star--selected"
-                          >★</span
-                        >
-                        <span class="review__fixed-star">★</span>
+                          >
+                        </div>
+
+                        <div class="stars review__stars unvisible">
+                          <th:block th:each="num : ${#numbers.sequence(5, 1)}">
+                            <input
+                                    type="radio"
+                                    id="5-star--id-1"
+                                    name="grade"
+                                    value="5"
+                                    class="stars__radio"
+                                    required
+                                    th:id="|${num}-star-id-*{reviewId}|"
+                            />
+                            <label
+                                    for="5-star--id-1"
+                                    th:for="|${num}-star-id-*{reviewId}|"
+                                    class="stars__star review__star"
+                            >★</label
+                            >
+                          </th:block>
+                        </div>
+
+                        <th:block th:if="${session.loginMember != null and session.loginMember.id eq review.writerId}">
+                          <div class="review__buttons">
+                            <span class="review__edit-status">수정</span>
+                            <div class="review__divider"></div>
+                            <span class="review__delete">삭제</span>
+                          </div>
+
+                          <div class="review__editor unvisible">
+                            <input
+                                    type="submit"
+                                    value="등록"
+                                    class="review__edit"
+                            />
+                            <div class="review__divider"></div>
+                            <span class="review__cancel">취소</span>
+                          </div>
+                        </th:block>
                       </div>
 
-                      <!-- 리뷰마다 id, for 값 다름에 유의 -->
-                      <div class="stars review__stars unvisible">
-                        <input
-                          type="radio"
-                          id="5-star--id-1"
-                          name="grade"
-                          value="5"
-                          class="stars__radio"
-                          required
-                        />
-                        <label
-                          for="5-star--id-1"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-
-                        <input
-                          type="radio"
-                          id="4-star--id-1"
-                          name="grade"
-                          value="4"
-                          class="stars__radio"
-                        />
-                        <label
-                          for="4-star--id-1"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-
-                        <input
-                          type="radio"
-                          id="3-star--id-1"
-                          name="grade"
-                          value="3"
-                          class="stars__radio"
-                        />
-                        <label
-                          for="3-star--id-1"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-
-                        <input
-                          type="radio"
-                          id="2-star--id-1"
-                          name="grade"
-                          value="2"
-                          class="stars__radio"
-                        />
-                        <label
-                          for="2-star--id-1"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-
-                        <input
-                          type="radio"
-                          id="1-star--id-1"
-                          name="grade"
-                          value="1"
-                          class="stars__radio"
-                        />
-                        <label
-                          for="1-star--id-1"
-                          class="stars__star review__star"
-                          >★</label
-                        >
+                      <div class="review__content" th:text="*{content}">
+                        역시 소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시
+                        소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
                       </div>
 
-                      <div class="review__buttons">
-                        <span class="review__edit-status">수정</span>
-                        <div class="review__divider"></div>
-                        <span class="review__delete">삭제</span>
-                      </div>
-
-                      <div class="review__editor unvisible">
-                        <input
-                          type="submit"
-                          value="등록"
-                          class="review__edit"
-                        />
-                        <div class="review__divider"></div>
-                        <span class="review__cancel">취소</span>
-                      </div>
+                      <textarea
+                              class="review__textarea unvisible"
+                              maxlength="300"
+                              required
+                      ></textarea>
                     </div>
 
-                    <div class="review__content">
-                      역시 소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시
-                      소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                      참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                    </div>
+                    <div class="review__right-column">
+                      <span class="review__last-updated-date"
+                            th:text="${#temporals.format(review.lastModifiedDate, 'yyyy.MM.dd')}">2022.01.29</span>
 
-                    <textarea
-                      class="review__textarea unvisible"
-                      maxlength="300"
-                      required
-                    ></textarea>
-                  </div>
+                      <div class="review__preference">
+                        <div class="recommendation">
+                          <i class="far fa-thumbs-up recommendation__icon"></i>
+                          <i
+                                  class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
+                          ></i>
+                          <span class="recommendation__count">40</span>
+                        </div>
 
-                  <div class="review__right-column">
-                    <span class="review__last-updated-date">2022.01.29</span>
-
-                    <div class="review__preference">
-                      <div class="recommendation">
-                        <i class="far fa-thumbs-up recommendation__icon"></i>
-                        <i
-                          class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
-                        ></i>
-                        <span class="recommendation__count">40</span>
-                      </div>
-
-                      <div class="no-recommendation">
-                        <i
-                          class="far fa-thumbs-down no-recommendation__icon"
-                        ></i>
-                        <i
-                          class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
-                        ></i>
-                        <span class="no-recommendation__count">15</span>
+                        <div class="no-recommendation">
+                          <i
+                                  class="far fa-thumbs-down no-recommendation__icon"
+                          ></i>
+                          <i
+                                  class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
+                          ></i>
+                          <span class="no-recommendation__count">15</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </form>
+                  </form>
+                </th:block>
 
-                <form class="review" num="2">
-                  <div class="review__left-column">
-                    <div class="review__row">
-                      <span class="review__nickname">알코홀릭</span>
-
-                      <div class="review__fixed-stars">
-                        <span
-                          class="review__fixed-star review__fixed-star--selected"
-                          >★</span
-                        >
-                        <span
-                          class="review__fixed-star review__fixed-star--selected"
-                          >★</span
-                        >
-                        <span
-                          class="review__fixed-star review__fixed-star--selected"
-                          >★</span
-                        >
-                        <span class="review__fixed-star">★</span>
-                        <span class="review__fixed-star">★</span>
-                      </div>
-
-                      <!-- 리뷰마다 id, for 값 다름에 유의 -->
-                      <div class="stars review__stars unvisible">
-                        <input
-                          type="radio"
-                          id="5-star--id-2"
-                          name="grade"
-                          value="5"
-                          class="stars__radio"
-                          required
-                        />
-                        <label
-                          for="5-star--id-2"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-
-                        <input
-                          type="radio"
-                          id="4-star--id-2"
-                          name="grade"
-                          value="4"
-                          class="stars__radio"
-                        />
-                        <label
-                          for="4-star--id-2"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-
-                        <input
-                          type="radio"
-                          id="3-star--id-2"
-                          name="grade"
-                          value="3"
-                          class="stars__radio"
-                        />
-                        <label
-                          for="3-star--id-2"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-
-                        <input
-                          type="radio"
-                          id="2-star--id-2"
-                          name="grade"
-                          value="2"
-                          class="stars__radio"
-                        />
-                        <label
-                          for="2-star--id-2"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-
-                        <input
-                          type="radio"
-                          id="1-star--id-2"
-                          name="grade"
-                          value="1"
-                          class="stars__radio"
-                        />
-                        <label
-                          for="1-star--id-2"
-                          class="stars__star review__star"
-                          >★</label
-                        >
-                      </div>
-
-                      <div class="review__buttons">
-                        <span class="review__edit-status">수정</span>
-                        <div class="review__divider"></div>
-                        <span class="review__delete">삭제</span>
-                      </div>
-
-                      <div class="review__editor unvisible">
-                        <input
-                          type="submit"
-                          value="등록"
-                          class="review__edit"
-                        />
-                        <div class="review__divider"></div>
-                        <span class="review__cancel">취소</span>
-                      </div>
-                    </div>
-
-                    <div class="review__content">
-                      역시 소주는 참이슬이죠ㅎㅎ
-                    </div>
-
-                    <textarea
-                      class="review__textarea unvisible"
-                      maxlength="300"
-                      required
-                    ></textarea>
-                  </div>
-
-                  <div class="review__right-column">
-                    <span class="review__last-updated-date">2022.01.29</span>
-
-                    <div class="review__preference">
-                      <div class="recommendation">
-                        <i class="far fa-thumbs-up recommendation__icon"></i>
-                        <i
-                          class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
-                        ></i>
-                        <span class="recommendation__count">40</span>
-                      </div>
-
-                      <div class="no-recommendation">
-                        <i
-                          class="far fa-thumbs-down no-recommendation__icon"
-                        ></i>
-                        <i
-                          class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
-                        ></i>
-                        <span class="no-recommendation__count">15</span>
-                      </div>
-                    </div>
-                  </div>
-                </form>
               </div>
 
               <div class="review-area__page">
                 <div class="page">
-                  <a href="#" class="page__left">&lt;</a>
-                  <a href="#" class="page__number page__number--clicked">1</a>
-                  <a href="#" class="page__number">2</a>
-                  <a href="#" class="page__number">3</a>
-                  <a href="#" class="page__number">4</a>
-                  <a href="#" class="page__number">5</a>
-                  <a href="#" class="page__right">&gt;</a>
+                  <a class="page__left" th:if="${!reviewPagination.isFirstBlock()}"
+                     th:href="|/alcohols/${alcoholId}?page=${reviewPagination.startPagePerBlock - reviewPagination.blockSize - 1}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&lt;</a>
+                  <th:block
+                    th:each="page : ${#numbers.sequence(reviewPagination.startPagePerBlock,
+                    reviewPagination.isLastBlock() ? reviewPagination.totalPages : reviewPagination.endPagePerBlock)}">
+                    <a th:href="|/alcohols/${alcoholId}?page=${page - 1}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|" class="page__number"
+                       th:text="${page}" th:classappend="${reviewPagination.currentPage == page} ? 'page__number--clicked'">1</a>
+                  </th:block>
+
+                  <a class="page__right" th:if="${!reviewPagination.isLastBlock()}"
+                     th:href="|/alcohols/${alcoholId}?page=${reviewPagination.endPagePerBlock}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&gt;</a>
                 </div>
+<!--              /members?page=0&size=3&sort=id,desc&sort=username,des-->
+
               </div>
             </div>
           </article>
