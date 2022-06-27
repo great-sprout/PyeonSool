@@ -16,7 +16,8 @@ public class AlcoholTypeDto {
 
 
     private AlcoholType type;
-    private String imagePath;
+    private Long id;
+    private String image;
     private String name;
     private Integer price;
     private String abv;
@@ -36,12 +37,15 @@ public class AlcoholTypeDto {
             this.vendors = alcoholVendors;
     }*/
 @QueryProjection
-    public AlcoholTypeDto(Alcohol alcohol){
+    public AlcoholTypeDto(Alcohol alcohol,String imagePath,List<String> alcoholKeywords,List<String> alcoholVendors){
         type= alcohol.getType();
+        id = alcohol.getId();
+        image = imagePath;
         name = alcohol.getName();
         price = alcohol.getPrice();
         abv = String.valueOf(alcohol.getAbv());
-
+        keywords = alcoholKeywords;
+        vendors = alcoholVendors;
     }
 
 
