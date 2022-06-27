@@ -88,12 +88,9 @@ function addReviewRecommendationEvent() {
         } else if (target.classList.contains("recommendation__icon--clicked")) {
             cancelRecommendReviewAjax(target, reviewId);
         } else if (target.classList.contains("no-recommendation__icon")) {
-            clearClickeState(target, ".recommendation__icon", ".recommendation__icon--clicked");
-            changeToClickState(target);
-            // 리뷰 비추천
+            notRecommendReviewAjax(target, reviewId);
         } else if (target.classList.contains("no-recommendation__icon--clicked")) {
-            changeToUnclickState(target);
-            // 리뷰 비추천 취소
+            cancelNotRecommendReviewAjax(target, reviewId);
         }
     });
 
@@ -144,7 +141,52 @@ function addReviewRecommendationEvent() {
         request.send();
     }
 
-    
+    function notRecommendReviewAjax(target, reviewId) {
+        const request = new XMLHttpRequest();
+
+        if (!request) {
+            alert("XMLHTTP 인스턴스 생성 불가");
+            return false;
+        }
+
+        request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    clearClickeState(target, ".recommendation__icon", ".recommendation__icon--clicked");
+                    changeToClickState(target);
+                } else {
+                    alert(request.response.message);
+                }
+            }
+        }
+
+        request.open("POST", "/reviews/" + reviewId + "/not-recommend");
+        request.responseType = "json";
+        request.send();
+    }
+
+    function cancelNotRecommendReviewAjax(target, reviewId) {
+        const request = new XMLHttpRequest();
+
+        if (!request) {
+            alert("XMLHTTP 인스턴스 생성 불가");
+            return false;
+        }
+
+        request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    changeToUnclickState(target);
+                } else {
+                    alert(request.response.message);
+                }
+            }
+        }
+
+        request.open("DELETE", "/reviews/" + reviewId + "/not-recommend");
+        request.responseType = "json";
+        request.send();
+    }
 
     function changeToClickState(target) {
         target.classList.add("unvisible");
