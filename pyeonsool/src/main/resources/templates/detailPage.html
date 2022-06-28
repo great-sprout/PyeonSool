@@ -442,21 +442,26 @@
 
                       <div class="review__preference">
                         <div class="recommendation">
-                          <i class="far fa-thumbs-up recommendation__icon"></i>
+                          <i class="far fa-thumbs-up recommendation__icon"
+                             th:classappend="${review.myRecommendStatus == T(toyproject.pyeonsool.domain.RecommendStatus).LIKE} ? 'unvisible'"></i>
                           <i
-                                  class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
+                              class="fas fa-thumbs-up recommendation__icon--clicked"
+                              th:classappend="${review.myRecommendStatus != T(toyproject.pyeonsool.domain.RecommendStatus).LIKE} ? 'unvisible'"
                           ></i>
-                          <span class="recommendation__count">40</span>
+                          <span class="recommendation__count" th:text="*{likeCount}">40</span>
                         </div>
 
                         <div class="no-recommendation">
                           <i
                                   class="far fa-thumbs-down no-recommendation__icon"
+                                  th:classappend="${review.myRecommendStatus == T(toyproject.pyeonsool.domain.RecommendStatus).DISLIKE} ? 'unvisible'"
                           ></i>
                           <i
-                                  class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
+                                  class="fas fa-thumbs-down no-recommendation__icon--clicked"
+                                  th:classappend="${review.myRecommendStatus != T(toyproject.pyeonsool.domain.RecommendStatus).DISLIKE} ? 'unvisible'"
+
                           ></i>
-                          <span class="no-recommendation__count">15</span>
+                          <span class="no-recommendation__count" th:text="*{dislikeCount}">15</span>
                         </div>
                       </div>
                     </div>

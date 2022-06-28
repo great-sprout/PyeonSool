@@ -51,14 +51,18 @@ public class AlcoholController {
             Model model) {
 
         AlcoholDetailsDto alcoholDetails =
-                alcoholService.getAlcoholDetails(alcoholId, isNull(loginMember) ? null : loginMember.getId());
+                alcoholService.getAlcoholDetails(alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("alcoholId", alcoholId);
         model.addAttribute("alcoholDetails", alcoholDetails);
         model.addAttribute("reviewSaveForm", new ReviewSaveForm(alcoholId));
-        Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId);
+        Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
         model.addAttribute("reviews", reviewPage.getContent());
 
         return "detailPage";
+    }
+
+    private Long getLoginMemberId(LoginMember loginMember) {
+        return isNull(loginMember) ? null : loginMember.getId();
     }
 }
