@@ -85,14 +85,33 @@ function addReviewRecommendationEvent() {
 
         if (target.classList.contains("recommendation__icon")) {
             recommendReviewAjax(target, reviewId);
+
         } else if (target.classList.contains("recommendation__icon--clicked")) {
             cancelRecommendReviewAjax(target, reviewId);
+            // 추천 카운트 - 1
         } else if (target.classList.contains("no-recommendation__icon")) {
             notRecommendReviewAjax(target, reviewId);
+            // 비추천 카운트 + 1
+            // 추천 클릭되어 있었다면 추천 카운트 - 1, 아니면 그대로
         } else if (target.classList.contains("no-recommendation__icon--clicked")) {
             cancelNotRecommendReviewAjax(target, reviewId);
+            // 비추천 카운트 - 1
         }
     });
+
+    function changeLikeCount(reviewPreference, increment) {
+        const likeCount = reviewPreference.querySelector(".recommendation__count");
+        likeCount.textContent = parseInt(likeCount.textContent) + increment;
+    }
+
+    function changeDislikeCount(reviewPreference, increment) {
+        const dislikeCount = reviewPreference.querySelector(".no-recommendation__count");
+        dislikeCount.textContent = parseInt(dislikeCount.textContent) + increment;
+    }
+
+    function isClicked(reviewPreference, className) {
+        return reviewPreference.querySelector(className).classList.contains("unvisible");
+    }
 
     function recommendReviewAjax(target, reviewId) {
         const request = new XMLHttpRequest();
@@ -105,7 +124,15 @@ function addReviewRecommendationEvent() {
         request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
-                    clearClickeState(target, ".no-recommendation__icon", ".no-recommendation__icon--clicked");
+                    // 추천 카운트 +1
+                    // 비추천 클릭되어 있었다면 비추천 카운트 - 1, 아니면 그대로
+                    const reviewPreference = target.closest(".review__preference");
+                    changeLikeCount(reviewPreference, 1);
+                    if (!isClicked(reviewPreference, ".no-recommendation__icon--clicked")) {
+                        changeDislikeCount(reviewPreference, -1);
+                    }
+
+                    clearClickState(target, ".no-recommendation__icon", ".no-recommendation__icon--clicked");
                     changeToClickState(target);
                 } else {
                     alert(request.response.message);
@@ -129,6 +156,7 @@ function addReviewRecommendationEvent() {
         request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
+                    changeLikeCount(target.closest(".review__preference"), -1);
                     changeToUnclickState(target);
                 } else {
                     alert(request.response.message);
@@ -152,7 +180,12 @@ function addReviewRecommendationEvent() {
         request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
-                    clearClickeState(target, ".recommendation__icon", ".recommendation__icon--clicked");
+                    const reviewPreference = target.closest(".review__preference");
+                    changeDislikeCount(reviewPreference, 1);
+                    if (!isClicked(reviewPreference, ".recommendation__icon--clicked")) {
+                        changeLikeCount(reviewPreference, -1);
+                    }
+                    clearClickState(target, ".recommendation__icon", ".recommendation__icon--clicked");
                     changeToClickState(target);
                 } else {
                     alert(request.response.message);
@@ -176,6 +209,7 @@ function addReviewRecommendationEvent() {
         request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
+                    changeDislikeCount(target.closest(".review__preference"), -1);
                     changeToUnclickState(target);
                 } else {
                     alert(request.response.message);
@@ -198,7 +232,7 @@ function addReviewRecommendationEvent() {
         target.classList.add("unvisible");
     }
 
-    function clearClickeState(target, unclickStateSelector, clickStateSelector) {
+    function clearClickState(target, unclickStateSelector, clickStateSelector) {
         const reviewPreference = target.closest(".review__preference");
 
         reviewPreference.querySelector(unclickStateSelector).classList.remove("unvisible");
