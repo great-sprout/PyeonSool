@@ -19,6 +19,14 @@ public class ReviewApiController {
 
     private final ReviewService reviewService;
 
+    @GetMapping("/{reviewId}/recommend")
+    public ResponseEntity<ReviewRecommendCountResponse> getRecommendCount(
+            @PathVariable Long reviewId) {
+
+        return ResponseEntity.ok().body(new ReviewRecommendCountResponse(
+                reviewService.getLikeCount(reviewId), reviewService.getDislikeCount(reviewId)));
+    }
+
     @PostMapping("/{reviewId}/recommend")
     public ResponseEntity<Void> recommendReview(
             @PathVariable Long reviewId,
