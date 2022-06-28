@@ -7,4 +7,6 @@ public interface PreferredAlcoholCustomRepository {
     List<Long> getMyList(Long memberId);
     
     List<Long> getAlcoholIds();
+
+    List<Long> getMemberId(Long i);
 }

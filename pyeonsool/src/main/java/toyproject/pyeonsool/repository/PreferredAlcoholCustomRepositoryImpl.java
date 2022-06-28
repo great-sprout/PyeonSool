@@ -4,6 +4,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 import toyproject.pyeonsool.domain.QAlcohol;
+import toyproject.pyeonsool.domain.QMember;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import static toyproject.pyeonsool.domain.QAlcohol.*;
 import java.util.List;
 
 
+import static toyproject.pyeonsool.domain.QMember.*;
 import static toyproject.pyeonsool.domain.QPreferredAlcohol.*;
 
 @RequiredArgsConstructor
@@ -40,5 +42,14 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .orderBy(preferredAlcohol.id.count().desc())
                 .limit(12)
                 .fetch();
+    }
+
+    public List<Long> getMemberId(Long alcoholId){
+        return queryFactory
+                .select(preferredAlcohol.member.id)
+                .from(preferredAlcohol)
+                .where(preferredAlcohol.alcohol.id.eq(alcoholId))
+                .fetch();
+
     }
 }
