@@ -224,7 +224,7 @@ public class initDB {
                     5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르"));
             beers.add(new Alcohol(BEER, "budweiser.png", "버드와이저", 2500,
                     5f, null, null, "앤하이저부시", "미국"));
-            beers.add(new Alcohol(BEER, "gomyo.png", "곰표 밀맥주", 2500,
+            beers.add(new Alcohol(BEER, "gompyo.png", "곰표 밀맥주", 2500,
                     4.5f, null, null, "세븐브로이맥주", "한국"));
             beers.add(new Alcohol(BEER, "hite-extra-cold.png", "하이트 엑스트라 콜드", 2800,
                     4.5f, null, null, "하이트진로", "한국"));
