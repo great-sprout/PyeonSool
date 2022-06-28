@@ -17,7 +17,7 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
     //마이페이지 내Like 리스트 쿼리dsl문
     @Override
     public List<Long> getMyList(Long memberId){
-        return queryFactory.select(alcohol.id)
+        return queryFactory.select(preferredAlcohol.id)
                 .from(preferredAlcohol)
                 .join(preferredAlcohol.alcohol, alcohol)
                 .where(preferredAlcohol.member.id.eq(memberId))
