@@ -12,11 +12,4 @@ public interface PreferredAlcoholRepository  extends JpaRepository<PreferredAlco
     boolean existsByMemberAndAlcohol(Member member, Alcohol alcohol);
 
     void removeByMemberAndAlcohol(Member member, Alcohol alcohol);
-
-    //마이페이지 에서 내 Like 리스트 전체 조회
-    List<PreferredAlcohol> findAllPreferredAlcoholsByMember(Member member);
-
-
-
-
 }
