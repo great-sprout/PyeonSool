@@ -119,8 +119,10 @@ class AlcoholServiceTest {
 
         //then
         assertThat(likeList.getAlcoholIds().size()).isEqualTo(3);
-
+    }
     void typeAlcohol(){
+
+
         Alcohol alcohol1 = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠a", 3000,
                 5f, null, null, "산미구엘 브루어리", "필리핀");
         Alcohol alcohol2 = new Alcohol(WINE, "san-miguel.png", "산미구엘 페일필젠s", 3000,
