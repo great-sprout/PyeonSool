@@ -84,7 +84,7 @@
     <div id="container">
         <main>
             <article>
-                <p class="alcohol-title" ></p>
+                <p class="alcohol-title" id="alcoholTitle" ></p>
                 <div class="best-group">
                     <span class="best-text">추천베스트</span>
                     <span clas="best-buttons">
@@ -283,7 +283,7 @@
                     </div>
                   </div>
                   <div class="alcohol-info">
-                    <p class="alcohol-info__name" th:text="${type.name}" >테라 500mL</p>
+                      <div class="alcohol-info__name"><p  th:text="${type.name}" >테라 500mL</p></div>
                     <p class="alcohol-info__cost" th:text="${#numbers.formatInteger(type.price,3,'COMMA')+'원'}">4,400원</p>
                     <p class="alcohol-info__abv" th:text="${#numbers.formatInteger(type.abv,2,'COMMA')+'도'}">도</p>
                   </div>
