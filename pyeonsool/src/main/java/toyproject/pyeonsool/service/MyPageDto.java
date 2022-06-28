@@ -7,28 +7,22 @@ import lombok.ToString;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
 
+import java.util.List;
+
 @Data
 public class MyPageDto {
     private Long memberId;
-    private Long alcoholId;
-    private Long preferredAlcoholId;
-    private String imagePath;
+    private List<Long> alcoholIds;
+
+    private List<String> imagePaths;
 
 
     //값만띄워서 값전달
 
-    public MyPageDto(Long memberId, Long alcoholId, Long preferredAlcoholId, String imagePath) {
+    public MyPageDto(Long memberId, List<Long> alcoholIds, List<String> imagePaths) {
         this.memberId = memberId;
-        this.alcoholId = alcoholId;
-        this.preferredAlcoholId = preferredAlcoholId;
-        this.imagePath = imagePath;
+        this.alcoholIds = alcoholIds;
+        this.imagePaths = imagePaths;
 
-    }
-
-    public MyPageDto(PreferredAlcohol pa, String imagePath) {
-        this(pa.getMember().getId(),
-                pa.getAlcohol().getId(),
-                pa.getId(),
-                imagePath);
     }
 }
