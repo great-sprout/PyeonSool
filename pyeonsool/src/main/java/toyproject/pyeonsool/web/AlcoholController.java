@@ -11,22 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.Pagination;
 import toyproject.pyeonsool.SessionConst;
-import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.service.AlcoholDetailsDto;
-import toyproject.pyeonsool.service.AlcoholService;
+import toyproject.pyeonsool.service.*;
 
-import toyproject.pyeonsool.service.AlcoholTypeDto;
-
-import java.util.ArrayList;
 import java.util.List;
 
-import toyproject.pyeonsool.service.ReviewDto;
-import toyproject.pyeonsool.service.ReviewService;
-
-
-import static java.util.Objects.*;
-import static toyproject.pyeonsool.domain.AlcoholType.BEER;
+import static java.util.Objects.isNull;
 
 @Controller
 @RequestMapping("/alcohols")
@@ -57,18 +47,22 @@ public class AlcoholController {
     public String getDetailPage(
             @PathVariable Long alcoholId,
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
-            @PageableDefault(sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
+            @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
 
         AlcoholDetailsDto alcoholDetails =
-                alcoholService.getAlcoholDetails(alcoholId, isNull(loginMember) ? null : loginMember.getId());
+                alcoholService.getAlcoholDetails(alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("alcoholId", alcoholId);
         model.addAttribute("alcoholDetails", alcoholDetails);
         model.addAttribute("reviewSaveForm", new ReviewSaveForm(alcoholId));
-        Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId);
+        Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
         model.addAttribute("reviews", reviewPage.getContent());
 
         return "detailPage";
+    }
+
+    private Long getLoginMemberId(LoginMember loginMember) {
+        return isNull(loginMember) ? null : loginMember.getId();
     }
 }

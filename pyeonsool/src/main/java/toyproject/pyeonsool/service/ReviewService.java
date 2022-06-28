@@ -39,12 +39,49 @@ public class ReviewService {
         return review.getId();
     }
 
-    public Page<ReviewDto> getReviewPage(Pageable pageable, Long alcoholId) {
+    public Page<ReviewDto> getReviewPage(Pageable pageable, Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
 
         return reviewRepository.findReviewsByAlcohol(alcohol, pageable)
-                .map(ReviewDto::from);
+                .map(review -> ReviewDto.of(review,
+                        getLikeCount(review),
+                        getDislikeCount(review),
+                        getMyRecommendStatus(review, getMember(memberId))));
+    }
+
+    private Long getDislikeCount(Review review) {
+        Long dislikeCount =
+                recommendedReviewRepository.getRecommendCountGroupBy(review.getId(), RecommendStatus.DISLIKE);
+        return isNull(dislikeCount) ? 0 : dislikeCount;
+    }
+
+    private Long getLikeCount(Review review) {
+        Long likeCount = recommendedReviewRepository.getRecommendCountGroupBy(review.getId(), RecommendStatus.LIKE);
+        return isNull(likeCount) ? 0 : likeCount;
+    }
+
+    private RecommendStatus getMyRecommendStatus(Review review, Member member) {
+        if (isNull(member)) {
+            return null;
+        }
+
+        Optional<RecommendedReview> optionalRecommendedReview =
+                recommendedReviewRepository.findByMemberAndReview(member, review);
+
+        if (optionalRecommendedReview.isEmpty()) {
+            return null;
+        }
+
+        return optionalRecommendedReview.get().getStatus();
+    }
+
+    private Member getMember(Long memberId) {
+        if (isNull(memberId)) {
+            return null;
+        }
+
+        return memberRepository.findById(memberId).orElse(null);
     }
 
     public Long recommendReview(Long memberId, Long reviewId, RecommendStatus status) {
