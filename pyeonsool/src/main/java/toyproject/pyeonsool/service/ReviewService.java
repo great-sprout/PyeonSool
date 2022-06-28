@@ -50,29 +50,13 @@ public class ReviewService {
                         getMyRecommendStatus(review, getMember(memberId))));
     }
 
-    public long getLikeCount(Long reviewId) {
-        Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
-        // TODO 술, 회원 예외처리 필요
-
-        return getLikeCount(review);
-    }
-
-    public long getDislikeCount(Long reviewId) {
-        Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
-        // TODO 술, 회원 예외처리 필요
-
-        return getDislikeCount(review);
-    }
-
-    private long getDislikeCount(Review review) {
+    private Long getDislikeCount(Review review) {
         Long dislikeCount =
                 recommendedReviewRepository.getRecommendCountGroupBy(review.getId(), RecommendStatus.DISLIKE);
         return isNull(dislikeCount) ? 0 : dislikeCount;
     }
 
-    private long getLikeCount(Review review) {
+    private Long getLikeCount(Review review) {
         Long likeCount = recommendedReviewRepository.getRecommendCountGroupBy(review.getId(), RecommendStatus.LIKE);
         return isNull(likeCount) ? 0 : likeCount;
     }
