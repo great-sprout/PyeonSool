@@ -93,7 +93,7 @@ class AlcoholServiceTest {
     }
 
     @Test
-    void findLikeList() {
+    void MyPage() {
         //given
         Member member = new Member("nickname", "userId", "password", "01012345678");
         em.persist(member);
@@ -113,9 +113,9 @@ class AlcoholServiceTest {
         em.persist(new PreferredAlcohol(member, alcohol3));
 
         //when
-        List<MyPageDto> likeList = alcoholService.findLikeList(member);
+        MyPageDto likeList = alcoholService.MyPage(member.getNickname());
 
         //then
-        assertThat(likeList.size()).isEqualTo(3);
+        assertThat(likeList.getAlcoholIds().size()).isEqualTo(3);
     }
 }
