@@ -7,19 +7,28 @@ import lombok.ToString;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
 
-import java.util.List;
-
 @Data
 public class MyPageDto {
-    //마이페이지 dto이므로 이에 해당하는 멤버의 아이디가 들어가야한다.
-    //멤버가 좋아요누른 목록도 있어야 하므로 좋아요누른 술들의 아이디와 이미지 저장경로 작성
     private Long memberId;
-    private List<Long> alcoholIds;
-    private List<String> imagePaths;
+    private Long alcoholId;
+    private Long preferredAlcoholId;
+    private String imagePath;
 
-    public MyPageDto(Long memberId, List<Long> alcoholIds, List<String> imagePaths) {
+
+    //값만띄워서 값전달
+
+    public MyPageDto(Long memberId, Long alcoholId, Long preferredAlcoholId, String imagePath) {
         this.memberId = memberId;
-        this.alcoholIds = alcoholIds;
-        this.imagePaths = imagePaths;
+        this.alcoholId = alcoholId;
+        this.preferredAlcoholId = preferredAlcoholId;
+        this.imagePath = imagePath;
+
+    }
+
+    public MyPageDto(PreferredAlcohol pa, String imagePath) {
+        this(pa.getMember().getId(),
+                pa.getAlcohol().getId(),
+                pa.getId(),
+                imagePath);
     }
 }
