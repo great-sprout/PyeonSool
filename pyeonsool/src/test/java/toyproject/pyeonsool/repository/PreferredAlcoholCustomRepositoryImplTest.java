@@ -29,16 +29,6 @@ class PreferredAlcoholCustomRepositoryImplTest {
     @Test
     void getMyList() {
         //given
-
-        //when
-
-        //then
-
-    }
-
-    @Test
-    void findAllPreferredAlcoholsByMember(){
-        //given
         Member member = new Member("준영이","chlwnsdud121","1234","01012345678");
         em.persist(member);
 
@@ -56,8 +46,8 @@ class PreferredAlcoholCustomRepositoryImplTest {
         em.persist(new PreferredAlcohol(member,alcoholTwo));
 
         //then
-        Assertions.assertThat(preferredAlcoholRepository.findAllPreferredAlcoholsByMember(member).size())
+        Assertions.assertThat(preferredAlcoholRepository.getMyList(member.getId()).size())
                 .isEqualTo(3);
-    }
 
+    }
 }
