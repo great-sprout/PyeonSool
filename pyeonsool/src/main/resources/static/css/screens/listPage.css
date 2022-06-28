@@ -238,6 +238,8 @@
 }/*알콜 리스트 이미지 안 좋아요*/
 .alcohol-card__like i{
     color: var(--heart-color);
+    margin -left:3px;
+    margin-right:3px;
 }
 .alcohol-card__image img{
     width: 250px;

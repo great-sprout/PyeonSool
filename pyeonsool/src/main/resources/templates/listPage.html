@@ -278,8 +278,8 @@
                       <img src="/image/alcohol/calsberg.jpg" th:src="${type.image}" alt="i" />
                     </div>
                     <div class="alcohol-card__like">
-                      <p><i class="fab fa-gratipay"></i>
-                        345</p>
+                      <p><i class="fab fa-gratipay"></i><a th:text="${#lists.size(type.members)}">></a>
+                        </p>
                     </div>
                   </div>
                   <div class="alcohol-info">
