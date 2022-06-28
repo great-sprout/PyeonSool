@@ -3,6 +3,7 @@ package toyproject.pyeonsool.web;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -31,11 +32,12 @@ public class ReviewController {
 
         // TODO loginMember가 null인 경우 로그인 페이지로 이동하는 인터셉터 구현
         if (isNull(loginMember)) {
-            return "redirect:/members/login?redirectURL=alcohols/{alcoholId}";
+            return "redirect:/members/login?redirectURL=/alcohols/{alcoholId}";
         }
 
         reviewService.addReview(loginMember.getId(), form.getAlcoholId(), form.getGrade(), form.getContent());
 
         return "redirect:/alcohols/{alcoholId}";
     }
+
 }

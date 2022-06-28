@@ -1,17 +1,17 @@
 package toyproject.pyeonsool.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.domain.Alcohol;
+import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
 import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
 import java.util.*;
-import java.util.stream.Collectors;
-
 import static java.util.Objects.*;
 
 @Service
@@ -114,7 +114,8 @@ public class AlcoholService {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
         }
     }
-    public  MyPageDto MyPage(String nickname){
+   
+   public MyPageDto MyPage(String nickname){
         Member findMember = memberRepository.findByNickname(nickname);
         Long memberId = findMember.getId();
         List<Long> alcoholIds = preferredAlcoholCustomRepositoryImpl.getMyList(memberId);
@@ -130,5 +131,30 @@ public class AlcoholService {
 
         MyPageDto myLikeList = new MyPageDto(memberId,alcoholIds,imagePaths);
         return myLikeList;
+    }
+
+    public List<AlcoholTypeDto> findTypeAlcohol(AlcoholType byType) {
+        List<Alcohol> alcoholsList = alcoholRepository.findAllByType(byType);//알콜 정보 리스트
+        List<AlcoholTypeDto> result =new ArrayList<>();
+        List<String> imagePathList = new ArrayList<>();//알콜 사진 리스트
+        List<String> keywordList = new ArrayList<>();
+        List<String> vendorList = new ArrayList<>();
+        for(int i=0;i<alcoholsList.size();i++){
+            System.out.println("list num = "+i);
+            Alcohol tempAlcohol = alcoholsList.get(i);
+            String alcoholImagePath = fileManager.getAlcoholImagePath(tempAlcohol.getType(), tempAlcohol.getFileName());
+            List<String> alcoholKeywords = new ArrayList<>();//각 알콜의 편의점 리스트를 담아두는 곳
+            Map<String, String> keywordMap = createKeywordMap();
+            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(tempAlcohol.getId())) {
+                alcoholKeywords.add(keywordMap.get(keyword));
+            }
+            List<String> alcoholVendors = vendorRepository.getAlcoholVendors(tempAlcohol.getId());
+            AlcoholTypeDto tempDto = new AlcoholTypeDto(alcoholsList.get(i),
+                    alcoholImagePath,
+                    alcoholKeywords,
+                    alcoholVendors);
+            result.add(tempDto);
+        }
+        return result;
     }
 }

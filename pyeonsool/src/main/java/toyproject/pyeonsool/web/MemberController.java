@@ -50,7 +50,7 @@ public class MemberController {
         HttpSession session = request.getSession(true);
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
-        return "redirect:/" + redirectURL;
+        return "redirect:" + redirectURL;
     }
 
 }

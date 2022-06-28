@@ -3,6 +3,7 @@ package toyproject.pyeonsool.service;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+import toyproject.pyeonsool.domain.RecommendStatus;
 import toyproject.pyeonsool.domain.Review;
 
 import java.time.LocalDateTime;
@@ -16,17 +17,19 @@ public class ReviewDto {
     private Byte grade;
     private String content;
     private LocalDateTime lastModifiedDate;
-    private int likeCount;
-    private int dislikeCount;
+    private Long likeCount;
+    private Long dislikeCount;
+    private RecommendStatus myRecommendStatus;
 
-    public static ReviewDto from(Review review) {
+    public static ReviewDto of(Review review, Long likeCount, Long dislikeCount, RecommendStatus status) {
         return new ReviewDto(review.getId(),
                 review.getMember().getId(),
                 review.getMember().getNickname(),
                 review.getGrade(),
                 review.getContent(),
                 review.getLastModifiedDate(),
-                0,
-                0);
+                likeCount,
+                dislikeCount,
+                status);
     }
 }
