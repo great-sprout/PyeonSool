@@ -9,10 +9,7 @@ import toyproject.pyeonsool.domain.PreferredAlcohol;
 import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.*;
@@ -29,6 +26,7 @@ public class AlcoholService {
     private final VendorRepository vendorRepository;
     private final ReviewRepository reviewRepository;
     private final FileManager fileManager;
+    private final PreferredAlcoholCustomRepositoryImpl preferredAlcoholCustomRepositoryImpl;
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
@@ -116,17 +114,22 @@ public class AlcoholService {
         }
     }
 
-    //MyPageDto변환
-    public List<MyPageDto> findLikeList(Member member){
-        List<PreferredAlcohol> preferredAlcohols = preferredAlcoholRepository.findAllPreferredAlcoholsByMember(member);
-        List<MyPageDto> result = preferredAlcohols.stream()
-                .map(pa -> new MyPageDto(pa, getAlcoholImagePath(pa)))
-                .collect(Collectors.toList());
 
-        return result;
-    }
+    //마이페이지 내 Like 리스트 목록
+    public MyPageDto MyPage(String nickname){
+        Member findMember = memberRepository.findByNickname(nickname);
+        Long memberId = findMember.getId();
+        List<Long> alcoholIds =preferredAlcoholCustomRepositoryImpl.getMyList(memberId);
+        List<String> imagePaths = new ArrayList<>();
 
-    private String getAlcoholImagePath(PreferredAlcohol pa) {
-        return fileManager.getAlcoholImagePath(pa.getAlcohol().getType(), pa.getAlcohol().getFileName());
+        for(int i = 0 ; i<alcoholIds.size(); i++){
+            Optional<Alcohol> alcohol = alcoholRepository.findById(alcoholIds.get(i));
+            String imagePath=fileManager.getAlcoholImagePath(alcohol.get().getType(),alcohol.get().getFileName());
+            imagePaths.add(imagePath);
+        }
+        System.out.println("imagePaths = " + imagePaths);
+        System.out.println("alcoholIds = " + alcoholIds);
+        MyPageDto myLikeList= new MyPageDto(memberId,alcoholIds,imagePaths);
+        return myLikeList;
     }
 }
