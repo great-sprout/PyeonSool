@@ -298,18 +298,18 @@
               <div class="listpage__page">
                   <div class="page">
                       <a class="page__left" th:if="${!typeListPagination.isFirstBlock()}"
-                         th:href ="|/alcohols?alcoholType=${typeList[0].type}?page=${typeListPagination.startPagePerBlock - typeListPagination.blockSize -1}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|"
+                         th:href ="|/alcohols?alcoholType=${typeList[0].type}&page=${typeListPagination.startPagePerBlock - typeListPagination.blockSize -1}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|"
                       >&lt;</a>
 
                       <th:block
                               th:each="page : ${#numbers.sequence(typeListPagination.startPagePerBlock,
                     typeListPagination.isLastBlock() ? typeListPagination.totalPages : typeListPagination.endPagePerBlock)}">
-                          <a th:href="|/alcohols?alcoholTypes=${typeList[0].type}?page=${page - 1}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|" class="page__number"
-                             th:text="${page}" th:classappend="${typeListPagination.currentPage == page} ? 'page__number&#--clicked'">1</a>
+                          <a th:href="|/alcohols?alcoholType=${typeList[0].type}&page=${page - 1}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|" class="page__number"
+                             th:text="${page}" th:classappend="${typeListPagination.currentPage == page} ? 'page__number--clicked'">1</a>
                       </th:block>
 
                       <a class="page__right" th:if="${!typeListPagination.isLastBlock()}"
-                         th:href="|/alcohols?alcoholType=${typeList[0].type}?page=${typeListPagination.endPagePerBlock}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|">&gt;</a>
+                         th:href="|/alcohols?alcoholType=${typeList[0].type}&page=${typeListPagination.endPagePerBlock}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|">&gt;</a>
                   </div>
               </div>
           </article>
