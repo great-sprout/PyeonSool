@@ -1,7 +1,8 @@
 package toyproject.pyeonsool.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.domain.Alcohol;
@@ -134,28 +135,26 @@ public class AlcoholService {
         return myLikeList;
     }
 
-    public List<AlcoholTypeDto> findTypeAlcohol(AlcoholType byType) {
-        List<Alcohol> alcoholsList = alcoholRepository.findAllByType(byType);//알콜 정보 리스트
-        List<AlcoholTypeDto> result = new ArrayList<>();
-        for (int i = 0; i < alcoholsList.size(); i++) {
-            System.out.println("list num = " + i);
-            Alcohol tempAlcohol = alcoholsList.get(i);
-            String alcoholImagePath = fileManager.getAlcoholImagePath(tempAlcohol.getType(), tempAlcohol.getFileName());
-            List<String> alcoholKeywords = new ArrayList<>();//각 알콜의 편의점 리스트를 담아두는 곳
-            Map<String, String> keywordMap = createKeywordMap();
-            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(tempAlcohol.getId())) {
-                alcoholKeywords.add(keywordMap.get(keyword));
-            }
-            List<String> alcoholVendors = vendorRepository.getAlcoholVendors(tempAlcohol.getId());
-            Long preferredMembers = preferredAlcoholRepository.getMemberId(tempAlcohol.getId());
-            AlcoholTypeDto tempDto = new AlcoholTypeDto(alcoholsList.get(i),
-                    alcoholImagePath,
-                    alcoholKeywords,
-                    alcoholVendors,
-                    preferredMembers);
-            result.add(tempDto);
+    public Page<AlcoholDto> findAlcoholPage(AlcoholType alcoholType, Pageable pageable) {
+        return alcoholRepository.findAllByType(alcoholType, pageable)
+                .map(alcohol -> new AlcoholDto(alcohol,
+                        getAlcoholImagePath(alcohol),
+                        getAlcoholKeywords(alcohol),
+                        vendorRepository.getAlcoholVendors(alcohol.getId()),
+                        preferredAlcoholRepository.getLikeCount(alcohol.getId())));
+    }
+
+    private List<String> getAlcoholKeywords(Alcohol alcohol) {
+        List<String> alcoholKeywords = new ArrayList<>();
+        for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcohol.getId())) {
+            alcoholKeywords.add(createKeywordMap().get(keyword));
         }
-        return result;
+
+        return alcoholKeywords;
+    }
+
+    private String getAlcoholImagePath(Alcohol alcohol) {
+        return fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
     }
 
     public List<MainPageDto> getMonthAlcohols() {
