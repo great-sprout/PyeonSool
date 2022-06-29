@@ -227,6 +227,8 @@
 .best-like__alcohol-name {
     margin: 10px;
     font-size: 15px;
+    width: 150px;
+    height: 40px;
 }
 .best-like__alcohol-price {
     margin: 10px;
@@ -247,7 +249,7 @@
     font-size: 13px;
 }
 .best-like__alcohol-tag {
-    padding-top: 110px;
+    padding-top: 90px;
     padding-left: 5px;
     display: flex;
     gap: 5px;
