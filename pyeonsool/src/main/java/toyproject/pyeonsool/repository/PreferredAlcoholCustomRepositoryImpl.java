@@ -3,7 +3,6 @@ package toyproject.pyeonsool.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.QMember;
 
 import java.util.List;
 
