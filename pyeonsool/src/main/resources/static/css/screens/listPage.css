@@ -66,19 +66,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  
+    border: 0.5px solid var(--light-gray);
     border-radius: 15px;
     cursor: pointer;
     position: relative;
 }/*베스트 리스트 하나의 카드 li*/
 .best-list__image{
     position: absolute;
-    width:272px;
-    height: 323.5px;
-    border: 0.5px solid var(--light-gray);
+    max-height: 300px;
+    max-width:250px;
     margin-left: 10px;
     border-radius:18px;
-    
+    cursor: pointer;
 }/*베스트 리스트 카드 안 이미지*/
 .best-list__mark{
     background-color: black;

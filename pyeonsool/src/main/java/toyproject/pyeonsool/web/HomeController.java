@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
+import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.repository.PreferredAlcoholCustomRepositoryImpl;
 import toyproject.pyeonsool.service.AlcoholDetailsDto;
 import toyproject.pyeonsool.service.AlcoholService;
@@ -34,10 +35,10 @@ public class HomeController {
         //이달의 추천
         List<MainPageDto> monthAlcohols = alcoholService.getMonthAlcohols();
         //베스트 Like
-        ArrayList<List<MainPageDto>> bestLikes = alcoholService.getBestLike();
-        List<MainPageDto> sojus = bestLikes.get(0);
-        List<MainPageDto> beers = bestLikes.get(1);
-        List<MainPageDto> wines = bestLikes.get(2);
+
+        List<MainPageDto> sojus = alcoholService.getBestLike(AlcoholType.SOJU);
+        List<MainPageDto> beers = alcoholService.getBestLike(AlcoholType.BEER);
+        List<MainPageDto> wines = alcoholService.getBestLike(AlcoholType.WINE);
 
         model.addAttribute("monthAlcohols", monthAlcohols);
         model.addAttribute("sojus", sojus);

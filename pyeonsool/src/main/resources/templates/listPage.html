@@ -42,68 +42,18 @@
             <article class="best-list">
                 <div class="best-list__wrap">
                     <ul class="best-list__ul">
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/cass.png"
-                            />
-                        </li>
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/calsberg.jpg"
-                            />
-                        </li>
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/jinlo.png"
-                            />
-                        </li>
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/guinness.png"
-                            />
-                        </li>
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/gyeongbokgung.jpeg"
-                            />
-                        </li>
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/heineken.jpg"
-                            />
-                        </li>
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/surfing-high.png"
-                            />
-                        </li>
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/gyeongbokgung.jpeg"
-                            />
-                        </li>
-                        <li class="best-list__li">
-                            <p class="best-list__mark">best</p>
-                            <img
-                                    class="best-list__image"
-                                    src="/image/alcohol/somersby-apple.png"
-                            />
+                        <li th:each="best:${bestList}">
+                            <a href = "#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${best.alcoholId})}">
+                                <div class="best-list__li">
+                                <p class="best-list__mark">best</p>
+                                        <img
+                                                class="best-list__image"
+                                                src="/image/alcohol/cass.png"
+                                                th:src="${best.imagePath}"
+                                        />
+
+                                </div>
+                            </a>
                         </li>
                     </ul>
                 </div>
