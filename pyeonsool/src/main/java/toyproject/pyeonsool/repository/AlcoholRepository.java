@@ -10,6 +10,6 @@ import java.util.List;
 
 
 public interface AlcoholRepository  extends JpaRepository<Alcohol, Long> {
-    List<Alcohol> findAllByType(AlcoholType alcoholType, Pageable pageable);
+    Page<Alcohol> findAllByType(AlcoholType alcoholType, Pageable pageable);
 
 }

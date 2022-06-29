@@ -19,6 +19,7 @@ import javax.persistence.EntityManager;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
 
 @DataJpaTest
@@ -66,12 +67,13 @@ class AlcoholRepositoryTest {
         em.persist(alcohol10);
         int SIZE = 8;
         //when
-        List<Alcohol> alcoholType = alcoholRepository.findAllByType(BEER,PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
+        Page<Alcohol> alcoholPage = alcoholRepository
+                .findAllByType(BEER,PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
 
 
         //then
-        for(Alcohol a : alcoholType) {
-            System.out.println("alcoholType = " + a.getName());
-        }
+        assertThat(alcoholPage.isLast()).isFalse();
+        assertThat(alcoholPage.isFirst()).isTrue();
+        assertThat(alcoholPage.getTotalElements()).isEqualTo(10);
     }
 }
