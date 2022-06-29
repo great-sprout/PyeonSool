@@ -19,62 +19,7 @@
   </head>
   <body>
     <div id="wrap">
-      <header class="header">
-        <nav class="header__nav">
-          <i class="fas fa-bars"></i>
-          <i class="fas fa-times unvisible"></i>
-
-          <ul class="list-nav unvisible">
-            <li class="list-nav__item">
-              <a href="/alcohols">소주</a>
-            </li>
-            <li class="list-nav__item">
-              <a href="/alcohols">맥주</a>
-            </li>
-            <li class="list-nav__item">
-              <a href="/alcohols">와인</a>
-            </li>
-          </ul>
-        </nav>
-
-        <div class="header__logo">
-          <a href="/" class="logo-link">
-            <img
-              src="/image/components/pyeonsool-logo.svg"
-              alt="편술 로고"
-              class="logo"
-            />
-          </a>
-        </div>
-
-        <div class="header__profile">
-          <i class="far fa-user-circle"></i>
-
-          <div class="header-profile unvisible">
-            <div class="header-profile__triangle"></div>
-
-            <div class="header-profile__content">
-              <div class="header-profile__link">
-                <a class="header-profile__mypage">마이페이지</a>
-                <div class="header-profile__divider"></div>
-                <span class="header-profile__logout">로그아웃</span>
-              </div>
-
-              <div class="header-profile__keywords">
-                <span class="keyword">#달콤함</span>
-                <span class="keyword">#깔끔함</span>
-                <span class="keyword">#묵직함</span>
-              </div>
-
-              <div class="header-profile__select-again-keyword-wrap">
-                <span class="header-profile__select-again-keyword"
-                  >다시 고르기</span
-                >
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      <header th:replace="~{fragment/header :: header}"></header>
 
       <div id="container">
         <main>
@@ -486,7 +431,6 @@
                   <a class="page__right" th:if="${!reviewPagination.isLastBlock()}"
                      th:href="|/alcohols/${alcoholId}?page=${reviewPagination.endPagePerBlock}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&gt;</a>
                 </div>
-<!--              /members?page=0&size=3&sort=id,desc&sort=username,des-->
 
               </div>
             </div>
@@ -494,67 +438,9 @@
         </section>
       </div>
 
-      <footer class="footer">
-        <div class="footer__inner">
-          <div class="footer__content">
-            <div class="footer-column">
-              <h2 class="footer-column__title">프로젝트 조원</h2>
+      <aside th:replace="~{fragment/keywordModal :: keywordModal}"></aside>
 
-              <div class="footer-column__content">
-                <a
-                  href="https://github.com/JunYoung-C"
-                  class="footer-column__text"
-                  >최준영 : https://github.com/JunYoung-C</a
-                ><br />
-                <a href="https://github.com/wyu950" class="footer-column__text"
-                  >원연욱 : https://github.com/wyu950</a
-                ><br />
-                <a href="https://github.com/Jangsue" class="footer-column__text"
-                  >장수빈 : https://github.com/Jangsue</a
-                ><br />
-                <a href="https://github.com/sjihwa" class="footer-column__text"
-                  >신지환 : https://github.com/sjihwan</a
-                >
-              </div>
-            </div>
-
-            <div class="footer-column">
-              <h2 class="footer-column__title">SKILLS</h2>
-
-              <div class="footer-column__content">
-                <span class="footer-column__text">HTML, CSS, JavaScript</span
-                ><br />
-                <span class="footer-column__text">JAVA, Spring, JPA</span><br />
-                <span class="footer-column__text">MySQL, H2</span>
-              </div>
-            </div>
-
-            <div class="footer-column">
-              <h2 class="footer-column__title">GitHub</h2>
-
-              <div class="footer-column__content">
-                <a
-                  href="https://github.com/great-sprout/PyeonSool"
-                  class="footer-column__text"
-                  >https://github.com/great-sprout/PyeonSool</a
-                >
-              </div>
-            </div>
-
-            <div class="footer-column">
-              <h2 class="footer-column__title">고객센터</h2>
-
-              <div class="footer-column__content">
-                <span class="footer-column__text">02-333-3333</span>
-              </div>
-            </div>
-          </div>
-
-          <span class="footer__rights"
-            >© 2022 Final Project - PyeonSool. All rights reserved.</span
-          >
-        </div>
-      </footer>
+      <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
 
     <script
