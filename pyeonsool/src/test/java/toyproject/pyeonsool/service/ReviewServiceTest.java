@@ -139,7 +139,7 @@ class ReviewServiceTest {
                     5f, null, null, "산미구엘 브루어리", "필리핀");
             em.persist(alcohol);
 
-            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰");
+            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰", 0L, 1L);
             em.persist(review);
 
             RecommendedReview recommendedReview = new RecommendedReview(member, review, RecommendStatus.DISLIKE);
@@ -151,6 +151,8 @@ class ReviewServiceTest {
             //then
             assertThat(em.find(RecommendedReview.class, recommendReviewId).getStatus())
                     .isEqualTo(RecommendStatus.LIKE);
+            assertThat(review.getRecommendCount()).isEqualTo(1);
+            assertThat(review.getNotRecommendCount()).isEqualTo(0);
         }
 
         @Test
@@ -173,6 +175,8 @@ class ReviewServiceTest {
             //then
             assertThat(em.find(RecommendedReview.class, recommendReviewId).getStatus())
                     .isEqualTo(RecommendStatus.LIKE);
+            assertThat(review.getRecommendCount()).isEqualTo(1);
+            assertThat(review.getNotRecommendCount()).isEqualTo(0);
         }
     }
 
@@ -187,7 +191,7 @@ class ReviewServiceTest {
                 5f, null, null, "산미구엘 브루어리", "필리핀");
         em.persist(alcohol);
 
-        Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰");
+        Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰", 1L, 0L);
         em.persist(review);
 
         //when
@@ -195,6 +199,8 @@ class ReviewServiceTest {
 
         //then
         assertThat(recommendedReviewRepository.findByMemberAndReview(member, review)).isEmpty();
+        assertThat(review.getRecommendCount()).isEqualTo(1);
+        assertThat(review.getNotRecommendCount()).isEqualTo(0);
     }
 
 }
