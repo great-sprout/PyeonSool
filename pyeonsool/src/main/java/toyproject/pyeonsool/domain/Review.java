@@ -1,6 +1,7 @@
 package toyproject.pyeonsool.domain;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -41,10 +42,19 @@ public class Review {
     @LastModifiedDate
     private LocalDateTime lastModifiedDate;
 
-    public Review(Member member, Alcohol alcohol, Byte grade, String content) {
+    private Long recommendCount;
+    private Long notRecommendCount;
+
+    public Review(Member member, Alcohol alcohol, Byte grade, String content, Long recommendCount, Long notRecommendCount) {
         this.member = member;
         this.alcohol = alcohol;
         this.grade = grade;
         this.content = content;
+        this.recommendCount = recommendCount;
+        this.notRecommendCount = notRecommendCount;
+    }
+
+    public Review(Member member, Alcohol alcohol, Byte grade, String content) {
+        this(member, alcohol, grade, content, 0L, 0L);
     }
 }
