@@ -78,11 +78,11 @@ class ReviewRepositoryTest {
 
             //when
             Page<Review> reviewPage = reviewRepository.findReviewsByAlcohol(alcohol,
-                    PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
+                    PageRequest.of(0, SIZE, Sort.by(Sort.Direction.DESC, "id")));
             List<Review> latestOrderReviews = reviewPage.getContent();
 
             //then
-            assertThat(latestOrderReviews).isSortedAccordingTo((o1, o2) -> o1.getId().compareTo(o2.getId()));
+            assertThat(latestOrderReviews).isSortedAccordingTo((o1, o2) -> o2.getId().compareTo(o1.getId()));
             assertThat(latestOrderReviews.get(0).getRecommendCount()).isEqualTo(10);
             assertThat(latestOrderReviews.get(0).getNotRecommendCount()).isEqualTo(0);
             assertThat(reviewPage.isFirst()).isTrue();

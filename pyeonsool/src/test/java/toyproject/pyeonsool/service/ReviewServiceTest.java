@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import toyproject.pyeonsool.domain.*;
 import toyproject.pyeonsool.repository.RecommendedReviewRepository;
-import toyproject.pyeonsool.repository.ReviewRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -59,12 +57,10 @@ class ReviewServiceTest {
                     5f, null, null, "산미구엘 브루어리", "필리핀");
             em.persist(alcohol);
 
-            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰");
+            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰", 0L, 1L);
             em.persist(review);
 
-            RecommendedReview recommendedReview = new RecommendedReview(member, review, RecommendStatus.DISLIKE);
-            em.persist(recommendedReview);
-
+            em.persist(new RecommendedReview(member, review, RecommendStatus.DISLIKE));
             //when
             ReviewDto reviewDto = reviewService
                     .getReviewPage(PageRequest.of(0, 1), alcohol.getId(), member.getId())
@@ -72,8 +68,8 @@ class ReviewServiceTest {
 
             //then
             assertThat(reviewDto.getMyRecommendStatus()).isEqualTo(RecommendStatus.DISLIKE);
-            assertThat(reviewDto.getDislikeCount()).isEqualTo(1);
-            assertThat(reviewDto.getLikeCount()).isEqualTo(0);
+            assertThat(reviewDto.getNotRecommendCount()).isEqualTo(1);
+            assertThat(reviewDto.getRecommendCount()).isEqualTo(0);
         }
 
         @Test
@@ -87,7 +83,7 @@ class ReviewServiceTest {
                     5f, null, null, "산미구엘 브루어리", "필리핀");
             em.persist(alcohol);
 
-            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰");
+            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰", 1L, 0L);
             em.persist(review);
 
             RecommendedReview recommendedReview = new RecommendedReview(member, review, RecommendStatus.LIKE);
@@ -100,8 +96,8 @@ class ReviewServiceTest {
 
             //then
             assertThat(reviewDto.getMyRecommendStatus()).isEqualTo(RecommendStatus.LIKE);
-            assertThat(reviewDto.getDislikeCount()).isEqualTo(0);
-            assertThat(reviewDto.getLikeCount()).isEqualTo(1);
+            assertThat(reviewDto.getNotRecommendCount()).isEqualTo(0);
+            assertThat(reviewDto.getRecommendCount()).isEqualTo(1);
         }
 
         @Test
@@ -125,8 +121,8 @@ class ReviewServiceTest {
 
             //then
             assertThat(reviewDto.getMyRecommendStatus()).isNull();
-            assertThat(reviewDto.getDislikeCount()).isEqualTo(0);
-            assertThat(reviewDto.getLikeCount()).isEqualTo(0);
+            assertThat(reviewDto.getNotRecommendCount()).isEqualTo(0);
+            assertThat(reviewDto.getRecommendCount()).isEqualTo(0);
         }
     }
 
