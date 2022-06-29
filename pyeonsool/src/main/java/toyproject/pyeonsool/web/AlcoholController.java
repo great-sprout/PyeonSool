@@ -30,14 +30,15 @@ public class AlcoholController {
 
     @GetMapping
     public String getListPage(@RequestParam String alcoholType,
-                              @PageableDefault(sort = "id",size = 8, direction = Sort.Direction.DESC) Pageable pageable,
+                              @PageableDefault(sort = "id",size = 8, page =0,direction = Sort.Direction.DESC) Pageable pageable,
                               Model model) {
-        List<AlcoholTypeDto> findTypeAlcohol= alcoholService.findTypeAlcohol(AlcoholType.valueOf(alcoholType),pageable);
-        model.addAttribute("typeList",findTypeAlcohol);
+        Page<AlcoholTypeDto> findTypeAlcohol= alcoholService.findTypeAlcohol(AlcoholType.valueOf(alcoholType), pageable);
+        model.addAttribute("typeList",findTypeAlcohol.getContent());
+        model.addAttribute("typeListPagination",Pagination.of(findTypeAlcohol,5));
         /*최신 등록순*/
-        for (AlcoholTypeDto a : findTypeAlcohol){
-            System.out.println(alcoholType + "= "+a);
-        }
+
+            System.out.println(alcoholType + "= "+Pagination.of(findTypeAlcohol,5));
+
         return "listPage";
 
     }

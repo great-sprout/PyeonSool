@@ -285,7 +285,7 @@
                   <div class="alcohol-info">
                       <div class="alcohol-info__name"><p  th:text="${type.name}" >테라 500mL</p></div>
                     <p class="alcohol-info__cost" th:text="${#numbers.formatInteger(type.price,3,'COMMA')+'원'}">4,400원</p>
-                    <p class="alcohol-info__abv" th:text="${#numbers.formatInteger(type.abv,2,'COMMA')+'도'}">도</p>
+                    <p class="alcohol-info__abv" th:text="${#numbers.formatInteger(type.abv,1,'COMMA')+'도'}">도</p>
                   </div>
                     <div class="alcohol-info__keyword" >
                         <button th:each ="keyword:${type.keywords}" th:text="${keyword}">heavy</button>
@@ -295,13 +295,17 @@
             </ul>
             <div class="listpage__page">
               <div class="page">
-                <a href="#" class="page__left">&lt;</a>
-                <a href="#" class="page__number page__number--clicked">1</a>
-                <a href="#" class="page__number">2</a>
-                <a href="#" class="page__number">3</a>
-                <a href="#" class="page__number">4</a>
-                <a href="#" class="page__number">5</a>
-                <a href="#" class="page__right">&gt;</a>
+                <a class="page__left" th:if="${!typeListPagination.isFirstBlock()}"
+                    th:href ="|/alcohols?alcoholType=${typeList[0].type}?page=${typeListPagination.startPagePerBlock - typeListPagination.blockSize -1}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|"
+                ><</a>
+                 <th:block
+                    th:each="page : ${#numbers.sequence(typeList.startPagePerBlock,
+                    typeListPagination.isLastBlock() ? typeListPagination.totalPages : typeListPagination.endPagePerBlock)}">
+                    <a th:href="|/alcohols?alcoholTypes=${typeList[0].type}?page=${page - 1}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|" class="page__number"
+                       th:text="${page}" th:classappend="${typeListPagination.currentPage == page} ? 'page__number&#--clicked'">1</a>
+                </th:block>
+                  <a class="page__right" th:if="${!typeListPagination.isLastBlock()}"
+                     th:href="|/alcohols?alcoholType=${typeList[0].type}?page=${typeListPagination.endPagePerBlock}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|">&gt;</a>
               </div>
             </div>
           </article>

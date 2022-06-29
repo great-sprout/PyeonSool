@@ -191,7 +191,7 @@ class AlcoholServiceTest {
 
         int SIZE = 8;
         //when
-        List<AlcoholTypeDto> alcoholType = alcoholService.findTypeAlcohol(BEER, PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
+        Page<AlcoholTypeDto> alcoholType = alcoholService.findTypeAlcohol(BEER, PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
 
 
 

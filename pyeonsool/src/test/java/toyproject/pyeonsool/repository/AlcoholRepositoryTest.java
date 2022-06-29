@@ -66,14 +66,12 @@ class AlcoholRepositoryTest {
         em.persist(alcohol10);
         int SIZE = 8;
         //when
-        Page<Alcohol> alcoholType = alcoholRepository.findAllByType(BEER,PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
+        List<Alcohol> alcoholType = alcoholRepository.findAllByType(BEER,PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
 
 
         //then
         for(Alcohol a : alcoholType) {
             System.out.println("alcoholType = " + a.getName());
         }
-
-
     }
 }

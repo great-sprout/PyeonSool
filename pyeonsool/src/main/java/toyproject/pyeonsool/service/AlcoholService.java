@@ -2,6 +2,7 @@ package toyproject.pyeonsool.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
@@ -135,12 +136,12 @@ public class AlcoholService {
         return myLikeList;
     }
 
-    public List<AlcoholTypeDto> findTypeAlcohol(AlcoholType byType, Pageable pageable) {
-        Page<Alcohol> alcoholsList = alcoholRepository.findAllByType(byType,pageable);//알콜 정보 리스트
+    public Page<AlcoholTypeDto> findTypeAlcohol(AlcoholType byType, Pageable pageable) {
+        List<Alcohol> alcoholsList = alcoholRepository.findAllByType(byType,pageable);//알콜 정보 리스트
         List<AlcoholTypeDto> result =new ArrayList<>();
-        for(int i=0;i<alcoholsList.getSize();i++){
+        for(int i=0;i<alcoholsList.size();i++){
             System.out.println("list num = "+i);
-            Alcohol tempAlcohol = alcoholsList.getContent().get(i);
+            Alcohol tempAlcohol = alcoholsList.get(i);
             String alcoholImagePath = fileManager.getAlcoholImagePath(tempAlcohol.getType(), tempAlcohol.getFileName());
             List<String> alcoholKeywords = new ArrayList<>();//각 알콜의 편의점 리스트를 담아두는 곳
             Map<String, String> keywordMap = createKeywordMap();
@@ -149,13 +150,16 @@ public class AlcoholService {
             }
             List<String> alcoholVendors = vendorRepository.getAlcoholVendors(tempAlcohol.getId());
             Long preferredMembers = preferredAlcoholRepository.getMemberId(tempAlcohol.getId());
-            AlcoholTypeDto tempDto = new AlcoholTypeDto(alcoholsList.getContent().get(i),
+            AlcoholTypeDto tempDto = new AlcoholTypeDto(alcoholsList.get(i),
                     alcoholImagePath,
                     alcoholKeywords,
                     alcoholVendors,
                     preferredMembers);
             result.add(tempDto);
         }
-        return result;
+        int start = (int)pageable.getOffset();
+        int end = Math.min((start+pageable.getPageSize()),result.size());
+        Page<AlcoholTypeDto> pageResult = new PageImpl<>(result.subList(start,end),pageable,result.size());
+        return pageResult;
     }
 }
