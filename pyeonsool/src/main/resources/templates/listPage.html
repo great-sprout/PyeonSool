@@ -278,20 +278,27 @@
                       <img src="/image/alcohol/calsberg.jpg" th:src="${type.image}" alt="i" />
                     </div>
                     <div class="alcohol-card__like">
-                      <p><i class="fab fa-gratipay"></i>
-                        345</p>
+                      <p><i class="fab fa-gratipay"></i><a th:text="${#lists.size(type.members)}">></a>
+                        </p>
                     </div>
                   </div>
                   <div class="alcohol-info">
                       <div class="alcohol-info__name"><p  th:text="${type.name}" >테라 500mL</p></div>
                     <p class="alcohol-info__cost" th:text="${#numbers.formatInteger(type.price,3,'COMMA')+'원'}">4,400원</p>
+
                     <p class="alcohol-info__abv" th:text="${#numbers.formatInteger(type.abv,2,'COMMA')+'도'}">도</p>
                   </div>
                   <div class="alcohol-info__keyword"  >
                     <button th:text="${type.keywords[0]}">heavy</button>
                     <button th:text="${type.keywords[1]}">sweet</button>
                     <button th:text="${type.keywords[2]}">시원함</button>
+
+                      <p class="alcohol-info__abv" th:text="${#numbers.formatInteger(type.abv,1,'COMMA')+'도'}">도</p>
+
                   </div>
+                    <div class="alcohol-info__keyword" >
+                        <button th:each ="keyword:${type.keywords}" th:text="${keyword}">heavy</button>
+                    </div>
                 </div>
               </li>
             </ul>

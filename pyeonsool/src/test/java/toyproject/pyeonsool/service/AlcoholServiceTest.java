@@ -95,7 +95,41 @@ class AlcoholServiceTest {
     }
 
     @Test
+    void MyPage() {
+        //given
+        Member member = new Member("nickname", "userId", "password", "01012345678");
+        em.persist(member);
+
+        Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        Alcohol alcohol2 = new Alcohol(AlcoholType.SOJU, "test.jpg", "옐로우테일2", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        Alcohol alcohol3 = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일3", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        em.persist(alcohol);
+        em.persist(alcohol2);
+        em.persist(alcohol3);
+
+        em.persist(new PreferredAlcohol(member, alcohol));
+        em.persist(new PreferredAlcohol(member, alcohol2));
+        em.persist(new PreferredAlcohol(member, alcohol3));
+
+        //when
+        MyPageDto likeList = alcoholService.MyPage(member.getNickname());
+
+        //then
+        assertThat(likeList.getAlcoholIds().size()).isEqualTo(3);
+    }
+    @Test
     void typeAlcohol(){
+        Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+        Member member1 = new Member("영준이", "chldudwns121", "1234", "01012341234");
+        Member member2 = new Member("춘향이", "cnsgiddl121", "1234", "01055556666");
+
+        em.persist(member);
+        em.persist(member1);
+        em.persist(member2);
+
         Alcohol alcohol1 = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠a", 3000,
                 5f, null, null, "산미구엘 브루어리", "필리핀");
         Alcohol alcohol2 = new Alcohol(WINE, "san-miguel.png", "산미구엘 페일필젠s", 3000,
@@ -113,13 +147,20 @@ class AlcoholServiceTest {
         em.persist(alcohol4);
         em.persist(alcohol5);
 
+        em.persist(new PreferredAlcohol(member, alcohol1));
+        em.persist(new PreferredAlcohol(member1, alcohol1));
+        em.persist(new PreferredAlcohol(member2, alcohol1));
+        em.persist(new PreferredAlcohol(member, alcohol2));
+        em.persist(new PreferredAlcohol(member2, alcohol2));
+        em.persist(new PreferredAlcohol(member, alcohol3));
         //when
-        List<AlcoholTypeDto> alcoholType = alcoholService.findTypeAlcohol(WINE);
+
+        List<AlcoholTypeDto> alcoholType = alcoholService.findTypeAlcohol(BEER);
 
 
         //then
         for (AlcoholTypeDto a : alcoholType){
-            System.out.println("hello = "+a.getName());
+            System.out.println("hello = "+a.getMembers());
         }
     }
 }

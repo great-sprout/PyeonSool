@@ -238,6 +238,8 @@
 }/*알콜 리스트 이미지 안 좋아요*/
 .alcohol-card__like i{
     color: var(--heart-color);
+    margin -left:3px;
+    margin-right:3px;
 }
 .alcohol-card__image img{
     width: 250px;
@@ -248,7 +250,7 @@
 }/*알콜 리스트 이미지 */
 
 .alcohol-info p{
-    margin-top: 7px;
+    margin-top: 10px;
     margin-bottom: 10px;
     padding-left: 10px;
 }
@@ -270,5 +272,5 @@
     border:1px solid rgb(117, 59, 252);
     color:rgb(117, 59, 252);
     border-radius: 5px;
-    
+    margin-right:5px;
 }

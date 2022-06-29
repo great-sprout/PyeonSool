@@ -11,12 +11,7 @@ import toyproject.pyeonsool.domain.PreferredAlcohol;
 import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
+import java.util.*;
 import static java.util.Objects.*;
 
 @Service
@@ -31,6 +26,8 @@ public class AlcoholService {
     private final VendorRepository vendorRepository;
     private final ReviewRepository reviewRepository;
     private final FileManager fileManager;
+
+    private final PreferredAlcoholCustomRepositoryImpl preferredAlcoholCustomRepositoryImpl;
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
@@ -117,14 +114,28 @@ public class AlcoholService {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
         }
     }
+   
+   public MyPageDto MyPage(String nickname){
+        Member findMember = memberRepository.findByNickname(nickname);
+        Long memberId = findMember.getId();
+        List<Long> alcoholIds = preferredAlcoholCustomRepositoryImpl.getMyList(memberId);
+        List<String> imagePaths = new ArrayList<>();
 
+        for(int i = 0; i<alcoholIds.size(); i++){
+            Optional<Alcohol> alcohol = alcoholRepository.findById(alcoholIds.get(i));
+            String imagePath= fileManager.getAlcoholImagePath(alcohol.get().getType(),alcohol.get().getFileName());
+            imagePaths.add(imagePath);
+        }
+        System.out.println("imagePaths = " + imagePaths);
+        System.out.println("alcoholIds = " + alcoholIds);
+
+        MyPageDto myLikeList = new MyPageDto(memberId,alcoholIds,imagePaths);
+        return myLikeList;
+    }
 
     public List<AlcoholTypeDto> findTypeAlcohol(AlcoholType byType) {
         List<Alcohol> alcoholsList = alcoholRepository.findAllByType(byType);//알콜 정보 리스트
         List<AlcoholTypeDto> result =new ArrayList<>();
-        List<String> imagePathList = new ArrayList<>();//알콜 사진 리스트
-        List<String> keywordList = new ArrayList<>();
-        List<String> vendorList = new ArrayList<>();
         for(int i=0;i<alcoholsList.size();i++){
             System.out.println("list num = "+i);
             Alcohol tempAlcohol = alcoholsList.get(i);
@@ -135,15 +146,14 @@ public class AlcoholService {
                 alcoholKeywords.add(keywordMap.get(keyword));
             }
             List<String> alcoholVendors = vendorRepository.getAlcoholVendors(tempAlcohol.getId());
+            List<Long> preferredMembers = preferredAlcoholRepository.getMemberId(tempAlcohol.getId());
             AlcoholTypeDto tempDto = new AlcoholTypeDto(alcoholsList.get(i),
                     alcoholImagePath,
                     alcoholKeywords,
-                    alcoholVendors);
+                    alcoholVendors,
+                    preferredMembers);
             result.add(tempDto);
         }
-
         return result;
-
     }
-
 }
