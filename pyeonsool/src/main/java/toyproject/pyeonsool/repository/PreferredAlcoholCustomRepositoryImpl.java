@@ -65,7 +65,7 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .select(preferredAlcohol.member.id.count())
                 .from(preferredAlcohol)
                 .where(preferredAlcohol.alcohol.id.eq(alcoholId))
-                .fetchCount();
+                .fetchOne();
     }
 
 }

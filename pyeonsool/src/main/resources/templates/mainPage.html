@@ -15,59 +15,6 @@
 </head>
 <body>
 <div id="wrap">
-    <header class="header">
-        <nav class="header__nav">
-            <i class="fas fa-bars"></i>
-            <i class="fas fa-times unvisible"></i>
-
-            <ul class="list-nav unvisible">
-                <li class="list-nav__item">
-                    <a href="/alcohols">소주</a>
-                </li>
-                <li class="list-nav__item">
-                    <a href="/alcohols">맥주</a>
-                </li>
-                <li class="list-nav__item">
-                    <a href="/alcohols">와인</a>
-                </li>
-            </ul>
-        </nav>
-
-        <div class="header__logo">
-            <a href="/" class="logo-link">
-                <img
-                        src="/image/components/pyeonsool-logo.svg"
-                        alt="편술 로고"
-                        class="logo"
-                />
-            </a>
-        </div>
-
-        <div class="header__profile">
-            <i class="far fa-user-circle"></i>
-            <div class="header-profile unvisible">
-                <div class="header-profile__triangle"></div>
-                <div class="header-profile__content">
-                    <div class="header-profile__link">
-                        <!-- TODO 파라미터 memberId 수정 -->
-                        <a href="/members/1" class="header-profile__mypage">마이페이지</a>
-                        <div class="header-profile__divider"></div>
-                        <span class="header-profile__logout">로그아웃</span>
-                    </div>
-
-                    <div class="header-profile__keywords">
-                        <span class="keyword">#달콤함</span>
-                        <span class="keyword">#깔끔함</span>
-                        <span class="keyword">#묵직함</span>
-                    </div>
-
-                    <div class="header-profile__select-again-keyword-wrap">
-                        <span class="header-profile__select-again-keyword">다시 고르기</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
 
     <header th:replace="~{fragment/header :: header}"></header>
 
@@ -252,7 +199,7 @@
                         </span>
                         <span class="best-like__see-all">
                             <!-- TODO alcohol.type값을 넘겨주어야 함 -->
-                            <a href="/alcohols" class="best-like__button--see-all">모두보기 &gt;</a>
+                            <a href="/alcohols?alcoholType=SOJU" class="best-like__button--see-all">모두보기 &gt;</a>
                         </span>
                     </div>
                 </div>
@@ -262,16 +209,16 @@
                     <div class="best-like__list-first-row">
                         <th:block th:each="soju : ${sojus}" th:if="${sojuStat.index}<2">
                             <div class="best-like__item">
-                                <div class="best-like__image-box">
-                                    <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${soju.alcoholId})}">
+                                <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${soju.alcoholId})}">
+                                    <div class="best-like__image-box">
                                         <img
                                                 src="/image/alcohol/soju/chamisul.png"
                                                 th:src="${soju.imagePath}"
                                                 alt=""
                                                 class="best-like__image"
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                                 <div class="best-like__alcohol-info">
                                     <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${soju.alcoholId})}">
                                         <div class="best-like__alcohol-name" th:text="${soju.name}">
@@ -303,16 +250,16 @@
                     <div class="best-like__list-second-row">
                         <th:block th:each="soju : ${sojus}" th:if="${sojuStat.index}>1">
                             <div class="best-like__item">
-                                <div class="best-like__image-box">
-                                    <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${soju.alcoholId})}">
+                                <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${soju.alcoholId})}">
+                                    <div class="best-like__image-box">
                                         <img
                                                 src="/image/alcohol/soju/chamisul.png"
                                                 th:src="${soju.imagePath}"
                                                 alt=""
                                                 class="best-like__image"
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                                 <div class="best-like__alcohol-info">
                                     <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${soju.alcoholId})}">
                                         <div class="best-like__alcohol-name" th:text="${soju.name}">
@@ -347,16 +294,16 @@
                     <div class="best-like__list-first-row">
                         <th:block th:each="beer : ${beers}" th:if="${beerStat.index}<2">
                             <div class="best-like__item">
-                                <div class="best-like__image-box">
-                                    <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${beer.alcoholId})}">
+                                <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${beer.alcoholId})}">
+                                    <div class="best-like__image-box">
                                         <img
                                                 src="/image/alcohol/beer/guinness-draught.png"
                                                 th:src="${beer.imagePath}"
                                                 alt=""
                                                 class="best-like__image"
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                                 <div class="best-like__alcohol-info">
                                     <div>
                                         <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${beer.alcoholId})}">
@@ -389,16 +336,16 @@
                     <div class="best-like__list-second-row">
                         <th:block th:each="beer : ${beers}" th:if="${beerStat.index}>1">
                             <div class="best-like__item">
-                                <div class="best-like__image-box">
-                                    <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${beer.alcoholId})}">
+                                <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${beer.alcoholId})}">
+                                    <div class="best-like__image-box">
                                         <img
                                                 src="/image/alcohol/beer/guinness-draught.png"
                                                 th:src="${beer.imagePath}"
                                                 alt=""
                                                 class="best-like__image"
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                                 <div class="best-like__alcohol-info">
                                     <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${beer.alcoholId})}">
                                         <div class="best-like__alcohol-name" th:text="${beer.name}">
@@ -433,16 +380,16 @@
                     <div class="best-like__list-first-row">
                         <th:block th:each="wine : ${wines}" th:if="${wineStat.index}<2">
                             <div class="best-like__item">
-                                <div class="best-like__image-box">
-                                    <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${wine.alcoholId})}">
+                                <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${wine.alcoholId})}">
+                                    <div class="best-like__image-box">
                                         <img
                                                 src="/image/alcohol/wine/babich.png"
                                                 th:src="${wine.imagePath}"
                                                 alt=""
                                                 class="best-like__image"
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                                 <div class="best-like__alcohol-info">
                                     <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${wine.alcoholId})}">
                                         <div class="best-like__alcohol-name" th:text="${wine.name}">
@@ -474,16 +421,16 @@
                     <div class="best-like__list-second-row">
                         <th:block th:each="wine : ${wines}" th:if="${wineStat.index}>1">
                             <div class="best-like__item">
-                                <div class="best-like__image-box">
-                                    <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${wine.alcoholId})}">
+                                <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${wine.alcoholId})}">
+                                    <div class="best-like__image-box">
                                         <img
                                                 src="/image/alcohol/wine/babich.png"
                                                 th:src="${wine.imagePath}"
                                                 alt=""
                                                 class="best-like__image"
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                                 <div class="best-like__alcohol-info">
                                     <a href="#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${wine.alcoholId})}">
                                         <div class="best-like__alcohol-name" th:text="${wine.name}">
@@ -520,13 +467,13 @@
 
     <footer th:replace="~{fragment/footer :: footer}"></footer>
 
-  </div>
-  <script
+</div>
+<script
         src="https://kit.fontawesome.com/b17793764c.js"
         crossorigin="anonymous"
-  ></script>
-  <script src="/js/header.js"></script>
-  <script src="/js/SlideController.js"></script>
-  <script src="/js/mainPage.js"></script>
+></script>
+<script src="/js/header.js"></script>
+<script src="/js/SlideController.js"></script>
+<script src="/js/mainPage.js"></script>
 </body>
 </html>

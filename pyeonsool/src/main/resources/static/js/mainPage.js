@@ -108,36 +108,43 @@ function addBestLikeSwitchEvent() {
   const bestLikeListBeer = document.querySelector(".best-like__list-beer");
   const wineTitle = document.querySelector(".best-like__wine-title");
   const bestLikeListWine = document.querySelector(".best-like__list-wine");
+  const seeAll = document.querySelector(".best-like__button--see-all");
   const BEST_SELECTED_TITLE = "best-like__selected-title";
   
   sojuTitle.addEventListener("click", function(event){
     sojuTitle.classList.add(BEST_SELECTED_TITLE);
     beerTitle.classList.remove(BEST_SELECTED_TITLE);
     wineTitle.classList.remove(BEST_SELECTED_TITLE);
-   
+
     bestLikeListSoju.classList.remove("unvisible");
     bestLikeListBeer.classList.add("unvisible");
     bestLikeListWine.classList.add("unvisible");
+
+    seeAll.href="/alcohols?alcoholType=SOJU";
   });
   
   beerTitle.addEventListener("click", function(event){
     sojuTitle.classList.remove(BEST_SELECTED_TITLE);
     beerTitle.classList.add(BEST_SELECTED_TITLE);
     wineTitle.classList.remove(BEST_SELECTED_TITLE);
-  
+
     bestLikeListSoju.classList.add("unvisible");
     bestLikeListBeer.classList.remove("unvisible");
     bestLikeListWine.classList.add("unvisible");
+
+    seeAll.href="/alcohols?alcoholType=BEER";
   });
   
   wineTitle.addEventListener("click", function(event){
     sojuTitle.classList.remove(BEST_SELECTED_TITLE);
     beerTitle.classList.remove(BEST_SELECTED_TITLE);
     wineTitle.classList.add(BEST_SELECTED_TITLE);
-  
+
     bestLikeListSoju.classList.add("unvisible");
     bestLikeListBeer.classList.add("unvisible");
     bestLikeListWine.classList.remove("unvisible");
+
+    seeAll.href="/alcohols?alcoholType=WINE";
   });
   
 }
