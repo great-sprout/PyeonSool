@@ -146,7 +146,7 @@ public class AlcoholService {
                 alcoholKeywords.add(keywordMap.get(keyword));
             }
             List<String> alcoholVendors = vendorRepository.getAlcoholVendors(tempAlcohol.getId());
-            List<Long> preferredMembers = preferredAlcoholRepository.getMemberId(tempAlcohol.getId());
+            Long preferredMembers = preferredAlcoholRepository.getMemberId(tempAlcohol.getId());
             AlcoholTypeDto tempDto = new AlcoholTypeDto(alcoholsList.get(i),
                     alcoholImagePath,
                     alcoholKeywords,

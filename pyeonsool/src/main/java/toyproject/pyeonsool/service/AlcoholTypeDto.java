@@ -24,7 +24,7 @@ public class AlcoholTypeDto {
     private List<String> keywords;
     private List<String> vendors;
 
-    private List<Long> members;
+    private Long members;
 
 
     /*public AlcoholTypeDto (
@@ -38,7 +38,7 @@ public class AlcoholTypeDto {
             this.vendors = alcoholVendors;
     }*/
 @QueryProjection
-    public AlcoholTypeDto(Alcohol alcohol,String imagePath,List<String> alcoholKeywords,List<String> alcoholVendors, List<Long> prferredMembers){
+    public AlcoholTypeDto(Alcohol alcohol,String imagePath,List<String> alcoholKeywords,List<String> alcoholVendors, Long prferredMembers){
         type= alcohol.getType();
         id = alcohol.getId();
         image = imagePath;
