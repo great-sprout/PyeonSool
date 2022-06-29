@@ -10,6 +10,7 @@ import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.repository.PreferredAlcoholCustomRepositoryImpl;
 import toyproject.pyeonsool.service.AlcoholDetailsDto;
 import toyproject.pyeonsool.service.AlcoholService;
+import toyproject.pyeonsool.service.MainPageDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,45 +32,18 @@ public class HomeController {
             Model model)
     {
         //이달의 추천
-        List<Long> preferAlcohols = preferAlcohol.getAlcoholIds();
-        List<AlcoholDetailsDto> alcoholDetailsList = new ArrayList<>();
-        for (int i = 0; i < preferAlcohols.size(); i++) {
-            AlcoholDetailsDto alcoholDetails =
-                    alcoholService.getAlcoholDetails(preferAlcohols.get(i),
-                    isNull(loginMember) ? null : loginMember.getId());
-            alcoholDetailsList.add(alcoholDetails);
-        }
-
+        List<MainPageDto> monthAlcohols = alcoholService.getMonthAlcohols();
         //베스트 Like
-        List<Long> preferSojus = preferAlcohol.getSojus();
-        List<AlcoholDetailsDto> sojuDetailsList = new ArrayList<>();
-        for (int i = 0; i < preferSojus.size(); i++) {
-            AlcoholDetailsDto alcoholDetails =
-                    alcoholService.getAlcoholDetails(preferSojus.get(i),
-                    isNull(loginMember) ? null : loginMember.getId());
-            sojuDetailsList.add(alcoholDetails);
-        }
-        List<Long> preferBeers = preferAlcohol.getBeers();
-        List<AlcoholDetailsDto> beerDetailsList = new ArrayList<>();
-        for (int i = 0; i < preferBeers.size(); i++) {
-            AlcoholDetailsDto alcoholDetails =
-                    alcoholService.getAlcoholDetails(preferBeers.get(i),
-                            isNull(loginMember) ? null : loginMember.getId());
-            beerDetailsList.add(alcoholDetails);
-        }
-        List<Long> preferWines = preferAlcohol.getWines();
-        List<AlcoholDetailsDto> wineDetailsList = new ArrayList<>();
-        for (int i = 0; i < preferWines.size(); i++) {
-            AlcoholDetailsDto alcoholDetails =
-                    alcoholService.getAlcoholDetails(preferWines.get(i),
-                            isNull(loginMember) ? null : loginMember.getId());
-            wineDetailsList.add(alcoholDetails);
-        }
+        ArrayList<List<MainPageDto>> bestLikes = alcoholService.getBestLike();
+        List<MainPageDto> sojus = bestLikes.get(0);
+        List<MainPageDto> beers = bestLikes.get(1);
+        List<MainPageDto> wines = bestLikes.get(2);
 
-        model.addAttribute("alcoholDetailsList", alcoholDetailsList);
-        model.addAttribute("sojuDetailsList", sojuDetailsList);
-        model.addAttribute("beerDetailsList", beerDetailsList);
-        model.addAttribute("wineDetailsList", wineDetailsList);
+        model.addAttribute("monthAlcohols", monthAlcohols);
+        model.addAttribute("sojus", sojus);
+        model.addAttribute("beers", beers);
+        model.addAttribute("wines", wines);
+
         return "mainPage";
     }
 }

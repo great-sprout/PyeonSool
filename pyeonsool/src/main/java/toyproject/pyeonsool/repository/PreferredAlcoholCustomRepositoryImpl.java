@@ -3,7 +3,6 @@ package toyproject.pyeonsool.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.QMember;
 
 import java.util.List;
 
@@ -27,9 +26,8 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetch();
       }
 
-
     @Override
-    public List<Long> getAlcoholIds() {
+    public List<Long> getAlcoholIds() { //모두가 좋아하는 술(alcohol_id)
         return queryFactory
                 .select(preferredAlcohol.alcohol.id)
                 .from(preferredAlcohol)
@@ -39,52 +37,35 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetch();
     }
 
-    //타입별 좋아하는 술 아이디
     @Override
-    public List<Long> getSojus() {
+    public List<Long> getAlcoholByType(AlcoholType type) { //타입별 좋아하는 술(alcohol_id)
         return queryFactory
                 .select(preferredAlcohol.alcohol.id)
                 .from(preferredAlcohol)
                 .join(preferredAlcohol.alcohol, alcohol)
-                .where(alcohol.type.eq(AlcoholType.SOJU))
+                .where(alcohol.type.eq(type))
                 .groupBy(preferredAlcohol.alcohol.id)
                 .orderBy(preferredAlcohol.alcohol.id.count().desc())
                 .limit(4)
                 .fetch();
     }
 
-    @Override
-    public List<Long> getBeers() {
-        return queryFactory
-                .select(preferredAlcohol.alcohol.id)
-                .from(preferredAlcohol)
-                .join(preferredAlcohol.alcohol, alcohol)
-                .where(alcohol.type.eq(AlcoholType.BEER))
-                .groupBy(preferredAlcohol.alcohol.id)
-                .orderBy(preferredAlcohol.alcohol.id.count().desc())
-                .limit(4)
-                .fetch();
-    }
-
-    @Override
-    public List<Long> getWines() {
-        return queryFactory
-                .select(preferredAlcohol.alcohol.id)
-                .from(preferredAlcohol)
-                .join(preferredAlcohol.alcohol, alcohol)
-                .where(alcohol.type.eq(AlcoholType.WINE))
-                .groupBy(preferredAlcohol.alcohol.id)
-                .orderBy(preferredAlcohol.alcohol.id.count().desc())
-                .limit(4)
-                .fetch();
-    }
-
-    public Long getLikeCount(Long alcoholId){
+    public Long getMemberId(Long alcoholId){
         return queryFactory
                 .select(preferredAlcohol.member.id.count())
                 .from(preferredAlcohol)
                 .where(preferredAlcohol.alcohol.id.eq(alcoholId))
                 .fetchOne();
+    }
+
+    @Override
+    public Long getLikeCount(Long alcoholId) {
+
+        return queryFactory
+                .select(preferredAlcohol.member.id.count())
+                .from(preferredAlcohol)
+                .where(preferredAlcohol.alcohol.id.eq(alcoholId))
+                .fetchCount();
     }
 
 }

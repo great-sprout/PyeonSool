@@ -32,18 +32,18 @@ public class AlcoholService {
     private final PreferredAlcoholCustomRepositoryImpl preferredAlcoholCustomRepositoryImpl;
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
-        String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
-        List<String> alcoholKeywords = new ArrayList<>();
-        Map<String, String> keywordMap = createKeywordMap();
+        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null); //Alcohol 엔티티
+        String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName()); //imagePath
+        List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
+        Map<String, String> keywordMap = createKeywordMap(); //keyword Map(영어)
         for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcoholId)) {
-            alcoholKeywords.add(keywordMap.get(keyword));
+            alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
         }
 
-        List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId);
-        String grade = getFormattedTotalGrade(reviewRepository.getReviewGrades(alcoholId));
+        List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId); //제조업체
+        String grade = getFormattedTotalGrade(reviewRepository.getReviewGrades(alcoholId)); //별점
 
-        if (isNull(memberId)) {
+        if (isNull(memberId)) { //비로그인 상태이면
             return AlcoholDetailsDto.of(alcohol, alcoholImagePath, grade, alcoholKeywords, alcoholVendors);
         }
 
@@ -57,7 +57,7 @@ public class AlcoholService {
     }
 
     private String getFormattedTotalGrade(List<Byte> reviewGrades) {
-        if (reviewGrades.size() != 0) {
+        if (reviewGrades.size() != 0) { //리뷰가 있다면
             double ratingAvg = (double) reviewGrades.stream().mapToLong(rating -> rating).sum() / reviewGrades.size();
             return String.format("%.1f", ratingAvg);
         }
@@ -155,5 +155,87 @@ public class AlcoholService {
 
     private String getAlcoholImagePath(Alcohol alcohol) {
         return fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+    }
+
+    public List<MainPageDto> getMonthAlcohols() {
+        //이달의 추천
+        List<Long> preferAlcohols = preferredAlcoholCustomRepositoryImpl.getAlcoholIds(); //alcohol_id List
+        List<MainPageDto> alcoholDetailsList = new ArrayList<>(); //해당 술 DTO List
+        //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
+        for (Long preferAlcohol : preferAlcohols) {
+            Alcohol alcohol = alcoholRepository.findById(preferAlcohol).orElse(null);
+            String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+
+            List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
+            Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
+            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(preferAlcohol)) {
+                alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
+            }
+
+            alcoholDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
+                    preferredAlcoholCustomRepositoryImpl.getLikeCount(preferAlcohol)));
+        }
+        return alcoholDetailsList;
+    }
+
+    public ArrayList<List<MainPageDto>> getBestLike() { //각 타입별 술 DTO 반환
+        //베스트 Like
+        ArrayList<List<MainPageDto>> alcoholDetailsList = new ArrayList<>(); //해당 술 DTO List
+        //소주
+        List<Long> preferSojus = preferredAlcoholCustomRepositoryImpl.getAlcoholByType(AlcoholType.SOJU); //alcohol_id List
+        List<MainPageDto> sojuDetailsList = new ArrayList<>();
+        //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
+        for (Long soju : preferSojus) {
+            Alcohol alcohol = alcoholRepository.findById(soju).orElse(null);
+            String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+
+            List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
+            Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
+            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(soju)) {
+                alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
+            }
+
+            sojuDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
+                    preferredAlcoholCustomRepositoryImpl.getLikeCount(soju)));
+        }
+        //맥주
+        List<Long> preferBeers = preferredAlcoholCustomRepositoryImpl.getAlcoholByType(AlcoholType.BEER); //alcohol_id List
+        List<MainPageDto> beerDetailsList = new ArrayList<>();
+        //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
+        for (Long beer : preferBeers) {
+            Alcohol alcohol = alcoholRepository.findById(beer).orElse(null);
+            String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+
+            List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
+            Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
+            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(beer)) {
+                alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
+            }
+
+            beerDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
+                    preferredAlcoholCustomRepositoryImpl.getLikeCount(beer)));
+        }
+        //와인
+        List<Long> preferWines = preferredAlcoholCustomRepositoryImpl.getAlcoholByType(AlcoholType.WINE); //alcohol_id List
+        List<MainPageDto> wineDetailsList = new ArrayList<>();
+        //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
+        for (Long wine : preferWines) {
+            Alcohol alcohol = alcoholRepository.findById(wine).orElse(null);
+            String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+
+            List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
+            Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
+            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(wine)) {
+                alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
+            }
+
+            wineDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
+                    preferredAlcoholCustomRepositoryImpl.getLikeCount(wine)));
+        }
+
+        alcoholDetailsList.add(sojuDetailsList);
+        alcoholDetailsList.add(beerDetailsList);
+        alcoholDetailsList.add(wineDetailsList);
+        return alcoholDetailsList;
     }
 }
