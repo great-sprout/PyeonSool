@@ -8,5 +8,10 @@ public interface PreferredAlcoholCustomRepository {
     
     List<Long> getAlcoholIds();
 
+    List<Long> getSojus();
+    List<Long> getBeers();
+    List<Long> getWines();
+
     List<Long> getMemberId(Long i);
+
 }

@@ -1,7 +1,5 @@
 package toyproject.pyeonsool.repository;
 
-
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +13,7 @@ import toyproject.pyeonsool.domain.PreferredAlcohol;
 
 import javax.persistence.EntityManager;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static toyproject.pyeonsool.domain.QPreferredAlcohol.preferredAlcohol;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @DataJpaTest

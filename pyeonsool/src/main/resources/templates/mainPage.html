@@ -113,9 +113,11 @@
                     <div class="slide-button slide-button--right">&gt;</div>
                     <div class="recommend__items-wrap">
                         <ul class="recommend__items">
-                            <li th:each="alcoholDetail, alcoholStat : ${alcoholDetailsList}" class="recommend__item" onclick="location.href='#'">
+                            <li th:each="alcoholDetail : ${alcoholDetailsList}" class="recommend__item"
+                                onclick="location.href='#'">
                                 <img
                                         th:src="${alcoholDetail.imagePath}"
+                                        src=""
                                         alt="alcohol"
                                         class="recommend__image"
                                 />
@@ -255,377 +257,226 @@
                 </div>
                 <!-- 베스트 Like 리스트 소주 부분 -->
                 <div class="best-like__list-soju">
-                    <!-- TODO thymeleaf: 파라미터 변수로 데이터 받기 -->
+                    <!-- TODO thymeleaf: 타입별로 데이터 받기 -->
                     <div class="best-like__list-first-row">
-                        <div class="best-like__item">
-                            <a href="#">
-                                <div class="best-like__image-box">
+                        <th:block th:each="soju : ${sojuDetailsList}" th:if="${sojuStat.index}<2">
+                            <div class="best-like__item">
+                                <div class="best-like__image-box" onclick="location.href='#'">
                                     <div class="best-like__image-wrap">
                                         <img
                                                 src="/image/alcohol/soju/chamisul.png"
-                                                th:src="@{/image/alcohol/soju/chamisul.png}"
-                                                alt="참이슬"
+                                                th:src="${soju.imagePath}"
+                                                alt=""
                                                 class="best-like__image"
                                         >
                                     </div>
                                 </div>
-                            </a>
-                            <div class="best-like__alcohol-info">
-                                <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                <div class="best-like__alcohol-info">
+                                    <div class="best-like__alcohol-name" th:text="${soju.name}"></div>
+                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(soju.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-abv" th:text="${soju.abv}+'도'"></div>
+                                    <div class="best-like__alcohol-like">
+                                        <img class="best-like__alcohol-like-image" src="/image/components/heart-circle.png">
+                                        <!--좋아요 수-->
+                                        <span class="best-like__alcohol-like-count">1732</span>
                                     </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="best-like__item">
-                            <a href="#">
-                                <div class="best-like__image-box">
-                                    <div class="best-like__image-wrap">
-                                        <img
-                                                src="/image/alcohol/soju/chamisul.png"
-                                                th:src="@{/image/alcohol/soju/chamisul.png}"
-                                                alt="참이슬"
-                                                class="best-like__image"
+                                    <div class="best-like__alcohol-tag">
+                                        <div class="best-like__alcohol-tag-box"
+                                             th:each="keyword : ${soju.keywords}"
+                                             th:if="${keywordStat.index}<3"
                                         >
-                                    </div>
-                                </div>
-                            </a>
-                            <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
-                                    </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                            <span class="best-like__alcohol-tag-name" th:text="${keyword}">시원함</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </th:block>
                     </div>
-
+                    <!--second-row-->
                     <div class="best-like__list-second-row">
+                        <th:block th:each="soju : ${sojuDetailsList}" th:if="${sojuStat.index}>1">
                         <div class="best-like__item">
                             <div class="best-like__image-box">
                                 <div class="best-like__image-wrap">
                                     <img
                                             src="/image/alcohol/soju/chamisul.png"
-                                            th:src="@{/image/alcohol/soju/chamisul.png}"
+                                            th:src="${soju.imagePath}"
                                             alt=""
                                             class="best-like__image"
                                     >
                                 </div>
                             </div>
                             <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
-                                    </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                                    </div>
+                                <div class="best-like__alcohol-name" th:text="${soju.name}"></div>
+                                <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(soju.price,3,'COMMA')+'원'}"></div>
+                                <div class="best-like__alcohol-abv" th:text="${soju.abv}+'도'"></div>
+                                <div class="best-like__alcohol-like">
+                                    <img class="best-like__alcohol-like-image"
+                                         src="/image/components/heart-circle.png">
+                                    <!--좋아요 수-->
+                                    <span class="best-like__alcohol-like-count">1732</span>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="best-like__item">
-                            <div class="best-like__image-box">
-                                <div class="best-like__image-wrap">
-                                    <img
-                                            src="/image/alcohol/soju/chamisul.png"
-                                            th:src="@{/image/alcohol/soju/chamisul.png}"
-                                            alt="참이슬"
-                                            class="best-like__image"
+                                <div class="best-like__alcohol-tag">
+                                    <div class="best-like__alcohol-tag-box"
+                                         th:each="keyword : ${soju.keywords}"
+                                         th:if="${keywordStat.index}<3"
                                     >
-                                </div>
-                            </div>
-                            <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
-                                    </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                        <span class="best-like__alcohol-tag-name" th:text="${keyword}">시원함</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </th:block>
                     </div>
                 </div>
 
                 <!--베스트 Like 리스트 맥주 부분-->
                 <div class="best-like__list-beer unvisible">
                     <div class="best-like__list-first-row">
-                        <div class="best-like__item">
-                            <a href="#">
+                        <th:block th:each="beer : ${beerDetailsList}" th:if="${beerStat.index}<2">
+                            <div class="best-like__item">
                                 <div class="best-like__image-box">
                                     <div class="best-like__image-wrap">
                                         <img
-                                                src="/image/alcohol/beer/guinness-draught.png"
-                                                th:src="@{/image/alcohol/beer/guinness-draught.png}"
-                                                alt="기네스"
-                                                class="best-like__image"
-                                        >
+                                             src="/image/alcohol/beer/guinness-draught.png"
+                                             th:src="${beer.imagePath}"
+                                             alt=""
+                                             class="best-like__image"
+                                     >
                                     </div>
                                 </div>
-                            </a>
-                            <div class="best-like__alcohol-info">
-                                <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                <div class="best-like__alcohol-info">
+                                    <div>
+                                    <div class="best-like__alcohol-name" th:text="${beer.name}"></div>
                                     </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(beer.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-abv" th:text="${beer.abv}+'도'"></div>
+                                    <div class="best-like__alcohol-like">
+                                        <img class="best-like__alcohol-like-image" src="/image/components/heart-circle.png">
+                                        <span class="best-like__alcohol-like-count">1732</span>
+                                    </div>
+                                    <div class="best-like__alcohol-tag">
+                                        <div class="best-like__alcohol-tag-box"
+                                             th:each="keyword : ${beer.keywords}"
+                                             th:if="${keywordStat.index}<3"
+                                        >
+                                            <span class="best-like__alcohol-tag-name" th:text="${keyword}">시원함</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="best-like__item">
-                            <a href="#">
+                        </th:block>
+                    </div>
+                    <!--second-row-->
+                    <div class="best-like__list-second-row">
+                        <th:block th:each="beer : ${beerDetailsList}" th:if="${beerStat.index}>1">
+                            <div class="best-like__item">
                                 <div class="best-like__image-box">
                                     <div class="best-like__image-wrap">
                                         <img
                                                 src="/image/alcohol/beer/guinness-draught.png"
-                                                th:src="@{/image/alcohol/beer/guinness-draught.png}"
+                                                th:src="${beer.imagePath}"
                                                 alt=""
                                                 class="best-like__image"
                                         >
                                     </div>
                                 </div>
-                            </a>
-                            <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                <div class="best-like__alcohol-info">
+                                    <div class="best-like__alcohol-name" th:text="${beer.name}"></div>
+                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(beer.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-abv" th:text="${beer.abv}+'도'"></div>
+                                    <div class="best-like__alcohol-like">
+                                        <img class="best-like__alcohol-like-image"
+                                             src="/image/components/heart-circle.png">
+                                        <!--좋아요 수-->
+                                        <span class="best-like__alcohol-like-count">1732</span>
                                     </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="best-like__list-second-row">
-                        <div class="best-like__item">
-                            <div class="best-like__image-box">
-                                <div class="best-like__image-wrap">
-                                    <img
-                                            src="/image/alcohol/guinness-draught.png"
-                                            th:src="@{/image/alcohol/beer/guinness-draught.png}"
-                                            alt=""
-                                            class="best-like__image"
-                                    >
-                                </div>
-                            </div>
-                            <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
-                                    </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    <div class="best-like__alcohol-tag">
+                                        <div class="best-like__alcohol-tag-box"
+                                             th:each="keyword : ${beer.keywords}"
+                                             th:if="${keywordStat.index}<3"
+                                        >
+                                            <span class="best-like__alcohol-tag-name" th:text="${keyword}">시원함</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="best-like__item">
-                            <div class="best-like__image-box">
-                                <div class="best-like__image-wrap">
-                                    <img
-                                            src="/image/alcohol/guinness-draught.png"
-                                            th:src="@{/image/alcohol/beer/guinness-draught.png}"
-                                            alt="참이슬"
-                                            class="best-like__image"
-                                    >
-                                </div>
-                            </div>
-                            <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
-                                    </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </th:block>
                     </div>
                 </div>
 
                 <!--베스트 Like 리스트 와인 부분-->
                 <div class="best-like__list-wine unvisible">
                     <div class="best-like__list-first-row">
-                        <div class="best-like__item">
-                            <a href="#">
+                        <th:block th:each="wine : ${wineDetailsList}" th:if="${wineStat.index}<2">
+                            <div class="best-like__item">
                                 <div class="best-like__image-box">
                                     <div class="best-like__image-wrap">
                                         <img
                                                 src="/image/alcohol/wine/babich.png"
-                                                th:src="@{/image/alcohol/wine/babich.png}"
-                                                alt="참이슬"
+                                                th:src="${wine.imagePath}"
+                                                alt=""
                                                 class="best-like__image"
                                         >
                                     </div>
                                 </div>
-                            </a>
-                            <div class="best-like__alcohol-info">
-                                <a href="#"><p class="best-like__alcohol-name">참이슬</p></a>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                <div class="best-like__alcohol-info">
+                                    <div class="best-like__alcohol-name" th:text="${wine.name}"></div>
+                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(wine.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-abv" th:text="${wine.abv}+'도'"></div>
+                                    <div class="best-like__alcohol-like">
+                                        <img class="best-like__alcohol-like-image"
+                                            src="/image/components/heart-circle.png">
+                                        <!--좋아요 수-->
+                                        <span class="best-like__alcohol-like-count">1732</span>
                                     </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    <div class="best-like__alcohol-tag">
+                                        <div class="best-like__alcohol-tag-box"
+                                             th:each="keyword : ${wine.keywords}"
+                                             th:if="${keywordStat.index}<3"
+                                        >
+                                            <span class="best-like__alcohol-tag-name" th:text="${keyword}">시원함</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="best-like__item">
-                            <a href="#">
+                        </th:block>
+                    </div>
+                    <!--second-row-->
+                    <div class="best-like__list-second-row">
+                        <th:block th:each="wine : ${wineDetailsList}" th:if="${wineStat.index}>1">
+                            <div class="best-like__item">
                                 <div class="best-like__image-box">
                                     <div class="best-like__image-wrap">
                                         <img
-                                                src="/image/alcohol/wine.png"
-                                                th:src="@{/image/alcohol/wine/babich.png}"
-                                                alt="참이슬"
+                                                src="/image/alcohol/wine/babich.png"
+                                                th:src="${wine.imagePath}"
+                                                alt=""
                                                 class="best-like__image"
                                         >
                                     </div>
                                 </div>
-                            </a>
-                            <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
+                                <div class="best-like__alcohol-info">
+                                    <div class="best-like__alcohol-name" th:text="${wine.name}"></div>
+                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(wine.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-abv" th:text="${wine.abv}+'도'"></div>
+                                    <div class="best-like__alcohol-like">
+                                        <img class="best-like__alcohol-like-image"
+                                             src="/image/components/heart-circle.png">
+                                        <!--좋아요 수-->
+                                        <span class="best-like__alcohol-like-count">1732</span>
                                     </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="best-like__list-second-row">
-                        <div class="best-like__item">
-                            <div class="best-like__image-box">
-                                <div class="best-like__image-wrap">
-                                    <img
-                                            src="/image/alcohol/wine.png"
-                                            th:src="@{/image/alcohol/wine/babich.png}"
-                                            alt=""
-                                            class="best-like__image"
-                                    >
-                                </div>
-                            </div>
-                            <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
-                                    </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
+                                    <div class="best-like__alcohol-tag">
+                                        <div class="best-like__alcohol-tag-box"
+                                             th:each="keyword : ${wine.keywords}"
+                                             th:if="${keywordStat.index}<3"
+                                        >
+                                            <span class="best-like__alcohol-tag-name" th:text="${keyword}">시원함</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="best-like__item">
-                            <div class="best-like__image-box">
-                                <div class="best-like__image-wrap">
-                                    <img
-                                            src="/image/alcohol/wine.png"
-                                            th:src="@{/image/alcohol/wine/babich.png}"
-                                            alt="참이슬"
-                                            class="best-like__image"
-                                    >
-                                </div>
-                            </div>
-                            <div class="best-like__alcohol-info">
-                                <p class="best-like__alcohol-name">참이슬</p>
-                                <p class="best-like__alcohol-price">1,280 원</p>
-                                <p class="best-like__alcohol-abv">20.1 도</p>
-                                <p class="best-like__alcohol-like"><img class="best-like__alcohol-like-image"
-                                                                        src="/image/components/heart-circle.png"><span
-                                        class="best-like__alcohol-like-count">1732</span></p>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">시원함</p>
-                                    </div>
-                                    <div class="best-like__alcohol-tag-box">
-                                        <p class="best-like__alcohol-tag-name">깔끔함</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </th:block>
                     </div>
                 </div>
             </article>

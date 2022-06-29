@@ -81,7 +81,7 @@ public class initDB {
             persistWineKeywords(keywords, wines);
             persistWineVendors(wines);
 
-            PreferredAlcohol[] preferredAlcohols = new PreferredAlcohol[12];
+            PreferredAlcohol[] preferredAlcohols = new PreferredAlcohol[15];
             setPreferredAlcohols(members, sojus, beers, wines, preferredAlcohols);
             for (PreferredAlcohol preferredAlcohol : preferredAlcohols) {
                 em.persist(preferredAlcohol);
@@ -128,6 +128,9 @@ public class initDB {
             preferredAlcohols[9] = new PreferredAlcohol(members[2], wines.get(3));
             preferredAlcohols[10] = new PreferredAlcohol(members[3], wines.get(4));
             preferredAlcohols[11] = new PreferredAlcohol(members[4], wines.get(6));
+            preferredAlcohols[12] = new PreferredAlcohol(members[3], sojus.get(6));
+            preferredAlcohols[13] = new PreferredAlcohol(members[4], sojus.get(7));
+            preferredAlcohols[14] = new PreferredAlcohol(members[4], beers.get(6));
         }
 
         private void setMembers(Member[] members) {
