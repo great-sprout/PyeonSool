@@ -102,13 +102,14 @@ public class initDB {
         }
 
         private void setReviews(Member[] members, Alcohol alcohol, List<Review> reviews) {
-            reviews.add(new Review(members[1], alcohol, (byte) 5, "목넘김이 시원하네요!"));
-            reviews.add(new Review(members[2], alcohol, (byte) 3, "평범하네요"));
+            reviews.add(new Review(members[1], alcohol, (byte) 5, "목넘김이 시원하네요!", 4L, 1L));
+            reviews.add(new Review(members[2], alcohol, (byte) 3, "평범하네요", 3L, 2L));
             reviews.add(new Review(members[0], alcohol, (byte) 2,
                     "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. " +
                             "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. " +
-                            "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. "));
-
+                            "그저 그래요. 그저 그래요. 그저 그래요. 그저 그래요. ", 2L, 3L));
+            reviews.add(new Review(members[1], alcohol, (byte) 5, "너무 좋아요", 1L, 4L));
+            reviews.add(new Review(members[2], alcohol, (byte) 1, "최악의 술입니다...", 0L, 5L));
             for (int i = 0; i < 65; i++) {
                 reviews.add(new Review(
                         members[i % 3], alcohol, (byte) (5 - (i % 5)), "테스트 리뷰 " + i));
