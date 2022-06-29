@@ -431,13 +431,14 @@
                   <a class="page__right" th:if="${!reviewPagination.isLastBlock()}"
                      th:href="|/alcohols/${alcoholId}?page=${reviewPagination.endPagePerBlock}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&gt;</a>
                 </div>
-<!--              /members?page=0&size=3&sort=id,desc&sort=username,des-->
 
               </div>
             </div>
           </article>
         </section>
       </div>
+
+      <aside th:replace="~{fragment/keywordModal :: keywordModal}"></aside>
 
       <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
