@@ -8,6 +8,7 @@ import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.PreferredAlcohol;
+import toyproject.pyeonsool.repository.MemberRepository;
 import toyproject.pyeonsool.service.AlcoholService;
 import toyproject.pyeonsool.service.MemberService;
 import toyproject.pyeonsool.service.MyPageDto;
@@ -29,9 +30,11 @@ public class MemberController {
     //로그인 세션값이 필요하다
     public String getMyPage(
             @PathVariable String nickname,
-            @SessionAttribute(name= SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
+            @SessionAttribute(name= SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,HttpServletRequest request,
             Model model) {
-        model.addAttribute("myLikeList",alcoholService.MyPage(nickname));
+        MyPageDto attributeValue = alcoholService.MyPage(nickname);
+        model.addAttribute("myLikeList", attributeValue);
+        //System.out.println("attributeValue = " + attributeValue);
         return "myPage";
     }
 
