@@ -3,6 +3,7 @@ package toyproject.pyeonsool.repository;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.domain.QMember;
 
 import java.util.List;
 
@@ -78,13 +79,12 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetch();
     }
 
-    public List<Long> getMemberId(Long alcoholId){
+    public Long getMemberId(Long alcoholId){
         return queryFactory
-                .select(preferredAlcohol.member.id)
+                .select(preferredAlcohol.member.id.count())
                 .from(preferredAlcohol)
                 .where(preferredAlcohol.alcohol.id.eq(alcoholId))
-                .fetch();
-
+                .fetchOne();
     }
 
 }
