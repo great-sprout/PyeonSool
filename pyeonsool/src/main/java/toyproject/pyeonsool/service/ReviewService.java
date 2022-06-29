@@ -44,21 +44,7 @@ public class ReviewService {
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
 
         return reviewRepository.findReviewsByAlcohol(alcohol, pageable)
-                .map(review -> ReviewDto.of(review,
-                        getLikeCount(review),
-                        getDislikeCount(review),
-                        getMyRecommendStatus(review, getMember(memberId))));
-    }
-
-    private Long getDislikeCount(Review review) {
-        Long dislikeCount =
-                recommendedReviewRepository.getRecommendCountGroupBy(review.getId(), RecommendStatus.DISLIKE);
-        return isNull(dislikeCount) ? 0 : dislikeCount;
-    }
-
-    private Long getLikeCount(Review review) {
-        Long likeCount = recommendedReviewRepository.getRecommendCountGroupBy(review.getId(), RecommendStatus.LIKE);
-        return isNull(likeCount) ? 0 : likeCount;
+                .map(review -> ReviewDto.of(review, getMyRecommendStatus(review, getMember(memberId))));
     }
 
     private RecommendStatus getMyRecommendStatus(Review review, Member member) {
