@@ -14,6 +14,6 @@ public interface PreferredAlcoholCustomRepository {
 
     Long getLikeCount(Long alcoholId);
 
-    Long getLikeCount(Long alcoholId);
+
 
 }
