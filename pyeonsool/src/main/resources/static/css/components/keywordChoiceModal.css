@@ -9,6 +9,19 @@
   border-radius: 10px;
 }
 
+.keyword-choice__cancel-wrap {
+  width: 100%;
+  display:flex;
+  justify-content: flex-end;
+  margin-right: 90px;
+  font-size: 35px;
+}
+
+.keyword-choice__cancel {
+  color: var(--main-color);
+  cursor: pointer;
+}
+
 .keyword-choice__title {
   display: flex;
   align-items: center;
@@ -23,7 +36,7 @@
 .keyword-choice__title-text {
   font-size: 32px;
   font-weight: bold;
-  margin: 3px 0 0 5px;
+  margin: 0 0 2px 5px;
 }
 
 .keyword-choice__description {

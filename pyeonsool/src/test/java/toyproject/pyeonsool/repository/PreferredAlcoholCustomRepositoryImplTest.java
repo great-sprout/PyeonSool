@@ -114,7 +114,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
         em.persist(new PreferredAlcohol(member2, alcohol1));
         em.persist(new PreferredAlcohol(member, alcohol2));
         
-        assertThat(preferredAlcoholRepository.getMemberId(alcohol.getId())).size().isEqualTo(3);
+        assertThat(preferredAlcoholRepository.getMemberId(alcohol.getId())).isEqualTo(3);
 
     }
 }
