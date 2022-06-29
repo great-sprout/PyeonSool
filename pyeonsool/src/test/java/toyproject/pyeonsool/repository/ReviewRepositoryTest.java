@@ -1,6 +1,7 @@
 package toyproject.pyeonsool.repository;
 
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,7 @@ class ReviewRepositoryTest {
     @Nested
     class findReviewsByAlcoholTest {
         @Test
+        @DisplayName("최신순 리뷰 목록 조회")
         void success_latest_order() {
             //given
             Member member =
@@ -89,8 +91,8 @@ class ReviewRepositoryTest {
             assertThat(reviewPage.hasNext()).isTrue();
         }
 
-        //TODO 리뷰 추천, 비추천 개수 조회 구현 후 테스트 코드 작성
         @Test
+        @DisplayName("추천순 리뷰 목록 조회")
         void success_recommended_order() {
             //given
             Member member =
@@ -101,20 +103,25 @@ class ReviewRepositoryTest {
                     5f, null, null, "산미구엘 브루어리", "필리핀");
             em.persist(alcohol);
 
-            for (int i = 0; i < 5; i++) {
-                Review review = new Review(member, alcohol, (byte) (i % 5 + 1), "테스트 리뷰 " + i);
-                em.persist(review);
-
+            for (int i = 0; i < 24; i++) {
+                em.persist(new Review(member, alcohol, (byte)(i % 5 + 1), "테스트 리뷰 " + i));
             }
+
+            em.persist(new Review(member, alcohol, (byte) 4, "테스트 리뷰", 10L, 0L));
 
             int SIZE = 10;
 
             //when
-            List<Review> latestOrderReviews = reviewRepository.findReviewsByAlcohol(alcohol,
-                    PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id"))).getContent();
+            Page<Review> reviewPage = reviewRepository.findReviewsByAlcohol(alcohol,
+                    PageRequest.of(0, SIZE, Sort.by(Sort.Direction.DESC, "recommendCount")));
+            List<Review> recommendedOrderReviews = reviewPage.getContent();
 
             //then
-            assertThat(latestOrderReviews).isSortedAccordingTo((o1, o2) -> o1.getId().compareTo(o2.getId()));
+            assertThat(recommendedOrderReviews).isSortedAccordingTo((o1, o2) -> o2.getRecommendCount().compareTo(o1.getRecommendCount()));
+            assertThat(recommendedOrderReviews.get(0).getRecommendCount()).isEqualTo(10);
+            assertThat(recommendedOrderReviews.get(0).getNotRecommendCount()).isEqualTo(0);
+            assertThat(reviewPage.isFirst()).isTrue();
+            assertThat(reviewPage.hasNext()).isTrue();
         }
     }
 }

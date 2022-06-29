@@ -354,7 +354,9 @@
                   >최신순</a
                 >
                 <div class="review-area__order-divider"></div>
-                <a href="#" class="review-area__recommended-order">추천순</a>
+                <a href="#"
+                   th:href="|/alcohols/${alcoholId}?sort=recommendCount,DESC|"
+                   class="review-area__recommended-order">추천순</a>
               </div>
 
               <div class="reviews">
