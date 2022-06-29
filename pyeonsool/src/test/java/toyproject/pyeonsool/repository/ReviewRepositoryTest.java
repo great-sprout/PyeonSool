@@ -10,10 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.RecommendStatus;
-import toyproject.pyeonsool.domain.Review;
+import toyproject.pyeonsool.domain.*;
 
 import javax.persistence.EntityManager;
 
@@ -71,19 +68,23 @@ class ReviewRepositoryTest {
                     5f, null, null, "산미구엘 브루어리", "필리핀");
             em.persist(alcohol);
 
-            for (int i = 0; i < 25; i++) {
+            for (int i = 0; i < 24; i++) {
                 em.persist(new Review(member, alcohol, (byte)(i % 5 + 1), "테스트 리뷰 " + i));
             }
+
+            em.persist(new Review(member, alcohol, (byte) 4, "테스트 리뷰", 10L, 0L));
 
             int SIZE = 10;
 
             //when
             Page<Review> reviewPage = reviewRepository.findReviewsByAlcohol(alcohol,
-                    PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
+                    PageRequest.of(0, SIZE, Sort.by(Sort.Direction.DESC, "id")));
             List<Review> latestOrderReviews = reviewPage.getContent();
 
             //then
-            assertThat(latestOrderReviews).isSortedAccordingTo((o1, o2) -> o1.getId().compareTo(o2.getId()));
+            assertThat(latestOrderReviews).isSortedAccordingTo((o1, o2) -> o2.getId().compareTo(o1.getId()));
+            assertThat(latestOrderReviews.get(0).getRecommendCount()).isEqualTo(10);
+            assertThat(latestOrderReviews.get(0).getNotRecommendCount()).isEqualTo(0);
             assertThat(reviewPage.isFirst()).isTrue();
             assertThat(reviewPage.hasNext()).isTrue();
         }
