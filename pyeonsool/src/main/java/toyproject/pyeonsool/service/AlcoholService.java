@@ -178,64 +178,28 @@ public class AlcoholService {
         return alcoholDetailsList;
     }
 
-    public ArrayList<List<MainPageDto>> getBestLike() { //각 타입별 술 DTO 반환
+    public List<MainPageDto> getBestLike(AlcoholType alcoholType) { //각 타입별 술 DTO 반환
         //베스트 Like
-        ArrayList<List<MainPageDto>> alcoholDetailsList = new ArrayList<>(); //해당 술 DTO List
+        List<MainPageDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
         //소주
-        List<Long> preferSojus = preferredAlcoholCustomRepositoryImpl.getAlcoholByType(AlcoholType.SOJU); //alcohol_id List
-        List<MainPageDto> sojuDetailsList = new ArrayList<>();
+        List<Long> preferList= preferredAlcoholCustomRepositoryImpl.getAlcoholByType(alcoholType); //alcohol_id List
         //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
-        for (Long soju : preferSojus) {
-            Alcohol alcohol = alcoholRepository.findById(soju).orElse(null);
-            String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+        for (Long alcoholId : preferList) {
+            Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
+            String alcoholImagePath = fileManager.getAlcoholImagePath(alcoholType, alcohol.getFileName());
 
             List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
             Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
-            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(soju)) {
+            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcoholId)) {
                 alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
             }
 
-            sojuDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
-                    preferredAlcoholCustomRepositoryImpl.getLikeCount(soju)));
+            alcoholTypeDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
+                    preferredAlcoholCustomRepositoryImpl.getLikeCount(alcoholId)));
         }
         //맥주
-        List<Long> preferBeers = preferredAlcoholCustomRepositoryImpl.getAlcoholByType(AlcoholType.BEER); //alcohol_id List
-        List<MainPageDto> beerDetailsList = new ArrayList<>();
-        //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
-        for (Long beer : preferBeers) {
-            Alcohol alcohol = alcoholRepository.findById(beer).orElse(null);
-            String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
 
-            List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
-            Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
-            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(beer)) {
-                alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
-            }
 
-            beerDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
-                    preferredAlcoholCustomRepositoryImpl.getLikeCount(beer)));
-        }
-        //와인
-        List<Long> preferWines = preferredAlcoholCustomRepositoryImpl.getAlcoholByType(AlcoholType.WINE); //alcohol_id List
-        List<MainPageDto> wineDetailsList = new ArrayList<>();
-        //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
-        for (Long wine : preferWines) {
-            Alcohol alcohol = alcoholRepository.findById(wine).orElse(null);
-            String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
-
-            List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
-            Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
-            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(wine)) {
-                alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
-            }
-
-            wineDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
-                    preferredAlcoholCustomRepositoryImpl.getLikeCount(wine)));
-        }
-
-        alcoholDetailsList.add(sojuDetailsList);
-        alcoholDetailsList.add(beerDetailsList);
-        alcoholDetailsList.add(wineDetailsList);
-        return alcoholDetailsList;
+        return alcoholTypeDetailsList;
     }
 }
