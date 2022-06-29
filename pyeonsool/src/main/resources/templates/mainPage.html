@@ -64,9 +64,7 @@
                     </div>
 
                     <div class="header-profile__select-again-keyword-wrap">
-                <span class="header-profile__select-again-keyword"
-                >다시 고르기</span
-                >
+                        <span class="header-profile__select-again-keyword">다시 고르기</span>
                     </div>
                 </div>
             </div>
@@ -113,18 +111,19 @@
                     <div class="slide-button slide-button--right">&gt;</div>
                     <div class="recommend__items-wrap">
                         <ul class="recommend__items">
-                            <li th:each="alcoholDetail : ${alcoholDetailsList}" class="recommend__item"
-                                onclick="location.href='#'">
-                                <img
-                                        th:src="${alcoholDetail.imagePath}"
-                                        src=""
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
+                            <th:block>
+                                <li th:each="monthAlcohol : ${monthAlcohols}" class="recommend__item"
+                                    onclick="location.href='/alcohols/${monthAlcohol.alcoholId}'">
+                                    <img
+                                            th:src="${monthAlcohol.imagePath}"
+                                            src=""
+                                            alt="alcohol"
+                                            class="recommend__image"
+                                    />
+                                </li>
+                            </th:block>
                         </ul>
                     </div>
-
                     <div class="recommend__count-circles"></div>
                 </div>
 
@@ -244,22 +243,22 @@
                 <div class="best-like__title">
                     <h1 class="best-like__h1--main-title">베스트 Like</h1>
                     <div class="best-like__sub-title">
-                <span class="best-like__category">
-                  <h2 class="best-like__soju-title best-like__selected-title">소주</h2>
-                  <h2 class="best-like__beer-title">맥주</h2>
-                  <h2 class="best-like__wine-title">와인</h2>
-                </span>
+                        <span class="best-like__category">
+                            <h2 class="best-like__soju-title best-like__selected-title">소주</h2>
+                            <h2 class="best-like__beer-title">맥주</h2>
+                            <h2 class="best-like__wine-title">와인</h2>
+                        </span>
                         <span class="best-like__see-all">
-                  <!-- TODO alcohol.type값을 넘겨주어야 함 -->
-                  <a href="/alcohols" class="best-like__button--see-all">모두보기 &gt;</a>
-                </span>
+                            <!-- TODO alcohol.type값을 넘겨주어야 함 -->
+                            <a href="/alcohols" class="best-like__button--see-all">모두보기 &gt;</a>
+                        </span>
                     </div>
                 </div>
                 <!-- 베스트 Like 리스트 소주 부분 -->
                 <div class="best-like__list-soju">
                     <!-- TODO thymeleaf: 타입별로 데이터 받기 -->
                     <div class="best-like__list-first-row">
-                        <th:block th:each="soju : ${sojuDetailsList}" th:if="${sojuStat.index}<2">
+                        <th:block th:each="soju : ${sojus}" th:if="${sojuStat.index}<2">
                             <div class="best-like__item">
                                 <div class="best-like__image-box" onclick="location.href='#'">
                                     <div class="best-like__image-wrap">
@@ -273,12 +272,14 @@
                                 </div>
                                 <div class="best-like__alcohol-info">
                                     <div class="best-like__alcohol-name" th:text="${soju.name}"></div>
-                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(soju.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-price"
+                                         th:text="${#numbers.formatInteger(soju.price,3,'COMMA')+'원'}"></div>
                                     <div class="best-like__alcohol-abv" th:text="${soju.abv}+'도'"></div>
                                     <div class="best-like__alcohol-like">
-                                        <img class="best-like__alcohol-like-image" src="/image/components/heart-circle.png">
+                                        <img class="best-like__alcohol-like-image"
+                                             src="/image/components/heart-circle.png">
                                         <!--좋아요 수-->
-                                        <span class="best-like__alcohol-like-count">1732</span>
+                                        <span class="best-like__alcohol-like-count" th:text="${#numbers.formatInteger(soju.likeCount,1)}">1732</span>
                                     </div>
                                     <div class="best-like__alcohol-tag">
                                         <div class="best-like__alcohol-tag-box"
@@ -294,38 +295,39 @@
                     </div>
                     <!--second-row-->
                     <div class="best-like__list-second-row">
-                        <th:block th:each="soju : ${sojuDetailsList}" th:if="${sojuStat.index}>1">
-                        <div class="best-like__item">
-                            <div class="best-like__image-box">
-                                <div class="best-like__image-wrap">
-                                    <img
-                                            src="/image/alcohol/soju/chamisul.png"
-                                            th:src="${soju.imagePath}"
-                                            alt=""
-                                            class="best-like__image"
-                                    >
+                        <th:block th:each="soju : ${sojus}" th:if="${sojuStat.index}>1">
+                            <div class="best-like__item">
+                                <div class="best-like__image-box">
+                                    <div class="best-like__image-wrap">
+                                        <img
+                                                src="/image/alcohol/soju/chamisul.png"
+                                                th:src="${soju.imagePath}"
+                                                alt=""
+                                                class="best-like__image"
+                                        >
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="best-like__alcohol-info">
-                                <div class="best-like__alcohol-name" th:text="${soju.name}"></div>
-                                <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(soju.price,3,'COMMA')+'원'}"></div>
-                                <div class="best-like__alcohol-abv" th:text="${soju.abv}+'도'"></div>
-                                <div class="best-like__alcohol-like">
-                                    <img class="best-like__alcohol-like-image"
-                                         src="/image/components/heart-circle.png">
-                                    <!--좋아요 수-->
-                                    <span class="best-like__alcohol-like-count">1732</span>
-                                </div>
-                                <div class="best-like__alcohol-tag">
-                                    <div class="best-like__alcohol-tag-box"
-                                         th:each="keyword : ${soju.keywords}"
-                                         th:if="${keywordStat.index}<3"
-                                    >
-                                        <span class="best-like__alcohol-tag-name" th:text="${keyword}">시원함</span>
+                                <div class="best-like__alcohol-info">
+                                    <div class="best-like__alcohol-name" th:text="${soju.name}"></div>
+                                    <div class="best-like__alcohol-price"
+                                         th:text="${#numbers.formatInteger(soju.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-abv" th:text="${soju.abv}+'도'"></div>
+                                    <div class="best-like__alcohol-like">
+                                        <img class="best-like__alcohol-like-image"
+                                             src="/image/components/heart-circle.png">
+                                        <!--좋아요 수-->
+                                        <span class="best-like__alcohol-like-count" th:text="${#numbers.formatInteger(soju.likeCount,1)}">1732</span>
+                                    </div>
+                                    <div class="best-like__alcohol-tag">
+                                        <div class="best-like__alcohol-tag-box"
+                                             th:each="keyword : ${soju.keywords}"
+                                             th:if="${keywordStat.index}<3"
+                                        >
+                                            <span class="best-like__alcohol-tag-name" th:text="${keyword}">시원함</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         </th:block>
                     </div>
                 </div>
@@ -333,27 +335,29 @@
                 <!--베스트 Like 리스트 맥주 부분-->
                 <div class="best-like__list-beer unvisible">
                     <div class="best-like__list-first-row">
-                        <th:block th:each="beer : ${beerDetailsList}" th:if="${beerStat.index}<2">
+                        <th:block th:each="beer : ${beers}" th:if="${beerStat.index}<2">
                             <div class="best-like__item">
                                 <div class="best-like__image-box">
                                     <div class="best-like__image-wrap">
                                         <img
-                                             src="/image/alcohol/beer/guinness-draught.png"
-                                             th:src="${beer.imagePath}"
-                                             alt=""
-                                             class="best-like__image"
-                                     >
+                                                src="/image/alcohol/beer/guinness-draught.png"
+                                                th:src="${beer.imagePath}"
+                                                alt=""
+                                                class="best-like__image"
+                                        >
                                     </div>
                                 </div>
                                 <div class="best-like__alcohol-info">
                                     <div>
-                                    <div class="best-like__alcohol-name" th:text="${beer.name}"></div>
+                                        <div class="best-like__alcohol-name" th:text="${beer.name}"></div>
                                     </div>
-                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(beer.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-price"
+                                         th:text="${#numbers.formatInteger(beer.price,3,'COMMA')+'원'}"></div>
                                     <div class="best-like__alcohol-abv" th:text="${beer.abv}+'도'"></div>
                                     <div class="best-like__alcohol-like">
-                                        <img class="best-like__alcohol-like-image" src="/image/components/heart-circle.png">
-                                        <span class="best-like__alcohol-like-count">1732</span>
+                                        <img class="best-like__alcohol-like-image"
+                                             src="/image/components/heart-circle.png">
+                                        <span class="best-like__alcohol-like-count" th:text="${#numbers.formatInteger(beer.likeCount,1)}">1732</span>
                                     </div>
                                     <div class="best-like__alcohol-tag">
                                         <div class="best-like__alcohol-tag-box"
@@ -369,7 +373,7 @@
                     </div>
                     <!--second-row-->
                     <div class="best-like__list-second-row">
-                        <th:block th:each="beer : ${beerDetailsList}" th:if="${beerStat.index}>1">
+                        <th:block th:each="beer : ${beers}" th:if="${beerStat.index}>1">
                             <div class="best-like__item">
                                 <div class="best-like__image-box">
                                     <div class="best-like__image-wrap">
@@ -383,13 +387,14 @@
                                 </div>
                                 <div class="best-like__alcohol-info">
                                     <div class="best-like__alcohol-name" th:text="${beer.name}"></div>
-                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(beer.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-price"
+                                         th:text="${#numbers.formatInteger(beer.price,3,'COMMA')+'원'}"></div>
                                     <div class="best-like__alcohol-abv" th:text="${beer.abv}+'도'"></div>
                                     <div class="best-like__alcohol-like">
                                         <img class="best-like__alcohol-like-image"
                                              src="/image/components/heart-circle.png">
                                         <!--좋아요 수-->
-                                        <span class="best-like__alcohol-like-count">1732</span>
+                                        <span class="best-like__alcohol-like-count" th:text="${#numbers.formatInteger(beer.likeCount,1)}">1732</span>
                                     </div>
                                     <div class="best-like__alcohol-tag">
                                         <div class="best-like__alcohol-tag-box"
@@ -408,7 +413,7 @@
                 <!--베스트 Like 리스트 와인 부분-->
                 <div class="best-like__list-wine unvisible">
                     <div class="best-like__list-first-row">
-                        <th:block th:each="wine : ${wineDetailsList}" th:if="${wineStat.index}<2">
+                        <th:block th:each="wine : ${wines}" th:if="${wineStat.index}<2">
                             <div class="best-like__item">
                                 <div class="best-like__image-box">
                                     <div class="best-like__image-wrap">
@@ -422,13 +427,14 @@
                                 </div>
                                 <div class="best-like__alcohol-info">
                                     <div class="best-like__alcohol-name" th:text="${wine.name}"></div>
-                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(wine.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-price"
+                                         th:text="${#numbers.formatInteger(wine.price,3,'COMMA')+'원'}"></div>
                                     <div class="best-like__alcohol-abv" th:text="${wine.abv}+'도'"></div>
                                     <div class="best-like__alcohol-like">
                                         <img class="best-like__alcohol-like-image"
-                                            src="/image/components/heart-circle.png">
+                                             src="/image/components/heart-circle.png">
                                         <!--좋아요 수-->
-                                        <span class="best-like__alcohol-like-count">1732</span>
+                                        <span class="best-like__alcohol-like-count" th:text="${#numbers.formatInteger(wine.likeCount,1)}">1732</span>
                                     </div>
                                     <div class="best-like__alcohol-tag">
                                         <div class="best-like__alcohol-tag-box"
@@ -444,7 +450,7 @@
                     </div>
                     <!--second-row-->
                     <div class="best-like__list-second-row">
-                        <th:block th:each="wine : ${wineDetailsList}" th:if="${wineStat.index}>1">
+                        <th:block th:each="wine : ${wines}" th:if="${wineStat.index}>1">
                             <div class="best-like__item">
                                 <div class="best-like__image-box">
                                     <div class="best-like__image-wrap">
@@ -458,13 +464,14 @@
                                 </div>
                                 <div class="best-like__alcohol-info">
                                     <div class="best-like__alcohol-name" th:text="${wine.name}"></div>
-                                    <div class="best-like__alcohol-price" th:text="${#numbers.formatInteger(wine.price,3,'COMMA')+'원'}"></div>
+                                    <div class="best-like__alcohol-price"
+                                         th:text="${#numbers.formatInteger(wine.price,3,'COMMA')+'원'}"></div>
                                     <div class="best-like__alcohol-abv" th:text="${wine.abv}+'도'"></div>
                                     <div class="best-like__alcohol-like">
                                         <img class="best-like__alcohol-like-image"
                                              src="/image/components/heart-circle.png">
                                         <!--좋아요 수-->
-                                        <span class="best-like__alcohol-like-count">1732</span>
+                                        <span class="best-like__alcohol-like-count" th:text="${#numbers.formatInteger(wine.likeCount,1)}">1732</span>
                                     </div>
                                     <div class="best-like__alcohol-tag">
                                         <div class="best-like__alcohol-tag-box"
