@@ -12,7 +12,7 @@ public interface PreferredAlcoholCustomRepository {
 
     List<Long> getAlcoholByType(AlcoholType type);
 
-    List<Long> getMemberId(Long i);
+    Long getMemberId(Long i);
 
     Long getLikeCount(Long alcoholId);
 
