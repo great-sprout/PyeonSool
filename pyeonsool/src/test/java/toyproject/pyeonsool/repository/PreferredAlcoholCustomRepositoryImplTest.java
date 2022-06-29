@@ -1,24 +1,15 @@
 package toyproject.pyeonsool.repository;
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.PreferredAlcohol;
+import toyproject.pyeonsool.domain.*;
 
 import javax.persistence.EntityManager;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static toyproject.pyeonsool.domain.QPreferredAlcohol.preferredAlcohol;
 
 @DataJpaTest
 @Import(AppConfig.class)
