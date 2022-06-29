@@ -2,7 +2,6 @@ package toyproject.pyeonsool.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -30,15 +29,12 @@ public class AlcoholController {
 
     @GetMapping
     public String getListPage(@RequestParam String alcoholType,
-                              @PageableDefault(sort = "id",size = 8, page =0,direction = Sort.Direction.DESC) Pageable pageable,
+                              @PageableDefault(sort = "id", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
                               Model model) {
-        Page<AlcoholTypeDto> findTypeAlcohol= alcoholService.findTypeAlcohol(AlcoholType.valueOf(alcoholType), pageable);
-        model.addAttribute("typeList",findTypeAlcohol.getContent());
-        model.addAttribute("typeListPagination",Pagination.of(findTypeAlcohol,5));
+        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(AlcoholType.valueOf(alcoholType), pageable);
+        model.addAttribute("typeList", alcoholPage.getContent());
+        model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));
         /*최신 등록순*/
-
-            System.out.println(alcoholType + "= "+Pagination.of(findTypeAlcohol,5));
-
         return "listPage";
 
     }

@@ -11,8 +11,6 @@ import toyproject.pyeonsool.domain.*;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
@@ -59,7 +57,8 @@ class AlcoholServiceTest {
                 .as("로그인 상태가 아닌경우").isNotNull();
         assertThat(alcoholDetails.getGrade()).isEqualTo("3.3");
         assertThat(alcoholDetails.getKeywords()).containsOnly("달콤함", "청량함", "무거움");
-   */ }
+   */
+    }
 
     @Test
     void likeAlcohol() {
@@ -123,8 +122,9 @@ class AlcoholServiceTest {
         //then
         assertThat(likeList.getAlcoholIds().size()).isEqualTo(3);
     }
+
     @Test
-    void typeAlcohol(){
+    void typeAlcohol() {
         Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
         Member member1 = new Member("영준이", "chldudwns121", "1234", "01012341234");
         Member member2 = new Member("춘향이", "cnsgiddl121", "1234", "01055556666");
@@ -191,13 +191,14 @@ class AlcoholServiceTest {
 
         int SIZE = 8;
         //when
-        Page<AlcoholTypeDto> alcoholType = alcoholService.findTypeAlcohol(BEER, PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
-
+        Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(BEER,
+                PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
 
 
         //then
-        for (AlcoholTypeDto a : alcoholType){
-            System.out.println("hello = "+a);
+        assertThat(alcoholType.isLast()).isFalse();
+        for (AlcoholDto a : alcoholType) {
+            System.out.println("hello = " + a);
         }
     }
 }

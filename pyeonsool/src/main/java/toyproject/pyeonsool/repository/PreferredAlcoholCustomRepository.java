@@ -12,6 +12,6 @@ public interface PreferredAlcoholCustomRepository {
     List<Long> getBeers();
     List<Long> getWines();
 
-    Long getMemberId(Long i);
+    Long getLikeCount(Long alcoholId);
 
 }

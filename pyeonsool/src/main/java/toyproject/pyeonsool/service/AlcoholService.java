@@ -2,9 +2,7 @@ package toyproject.pyeonsool.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.domain.Alcohol;
@@ -15,6 +13,7 @@ import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
 import java.util.*;
+
 import static java.util.Objects.*;
 
 @Service
@@ -117,49 +116,44 @@ public class AlcoholService {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
         }
     }
-   
-   public MyPageDto MyPage(String nickname){
+
+    public MyPageDto MyPage(String nickname) {
         Member findMember = memberRepository.findByNickname(nickname);
         Long memberId = findMember.getId();
         List<Long> alcoholIds = preferredAlcoholCustomRepositoryImpl.getMyList(memberId);
         List<String> imagePaths = new ArrayList<>();
 
-        for(int i = 0; i<alcoholIds.size(); i++){
+        for (int i = 0; i < alcoholIds.size(); i++) {
             Optional<Alcohol> alcohol = alcoholRepository.findById(alcoholIds.get(i));
-            String imagePath= fileManager.getAlcoholImagePath(alcohol.get().getType(),alcohol.get().getFileName());
+            String imagePath = fileManager.getAlcoholImagePath(alcohol.get().getType(), alcohol.get().getFileName());
             imagePaths.add(imagePath);
         }
         System.out.println("imagePaths = " + imagePaths);
         System.out.println("alcoholIds = " + alcoholIds);
 
-        MyPageDto myLikeList = new MyPageDto(memberId,alcoholIds,imagePaths);
+        MyPageDto myLikeList = new MyPageDto(memberId, alcoholIds, imagePaths);
         return myLikeList;
     }
 
-    public Page<AlcoholTypeDto> findTypeAlcohol(AlcoholType byType, Pageable pageable) {
-        List<Alcohol> alcoholsList = alcoholRepository.findAllByType(byType,pageable);//알콜 정보 리스트
-        List<AlcoholTypeDto> result =new ArrayList<>();
-        for(int i=0;i<alcoholsList.size();i++){
-            System.out.println("list num = "+i);
-            Alcohol tempAlcohol = alcoholsList.get(i);
-            String alcoholImagePath = fileManager.getAlcoholImagePath(tempAlcohol.getType(), tempAlcohol.getFileName());
-            List<String> alcoholKeywords = new ArrayList<>();//각 알콜의 편의점 리스트를 담아두는 곳
-            Map<String, String> keywordMap = createKeywordMap();
-            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(tempAlcohol.getId())) {
-                alcoholKeywords.add(keywordMap.get(keyword));
-            }
-            List<String> alcoholVendors = vendorRepository.getAlcoholVendors(tempAlcohol.getId());
-            Long preferredMembers = preferredAlcoholRepository.getMemberId(tempAlcohol.getId());
-            AlcoholTypeDto tempDto = new AlcoholTypeDto(alcoholsList.get(i),
-                    alcoholImagePath,
-                    alcoholKeywords,
-                    alcoholVendors,
-                    preferredMembers);
-            result.add(tempDto);
+    public Page<AlcoholDto> findAlcoholPage(AlcoholType alcoholType, Pageable pageable) {
+        return alcoholRepository.findAllByType(alcoholType, pageable)
+                .map(alcohol -> new AlcoholDto(alcohol,
+                        getAlcoholImagePath(alcohol),
+                        getAlcoholKeywords(alcohol),
+                        vendorRepository.getAlcoholVendors(alcohol.getId()),
+                        preferredAlcoholRepository.getLikeCount(alcohol.getId())));
+    }
+
+    private List<String> getAlcoholKeywords(Alcohol alcohol) {
+        List<String> alcoholKeywords = new ArrayList<>();
+        for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcohol.getId())) {
+            alcoholKeywords.add(createKeywordMap().get(keyword));
         }
-        int start = (int)pageable.getOffset();
-        int end = Math.min((start+pageable.getPageSize()),result.size());
-        Page<AlcoholTypeDto> pageResult = new PageImpl<>(result.subList(start,end),pageable,result.size());
-        return pageResult;
+
+        return alcoholKeywords;
+    }
+
+    private String getAlcoholImagePath(Alcohol alcohol) {
+        return fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
     }
 }

@@ -79,7 +79,7 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetch();
     }
 
-    public Long getMemberId(Long alcoholId){
+    public Long getLikeCount(Long alcoholId){
         return queryFactory
                 .select(preferredAlcohol.member.id.count())
                 .from(preferredAlcohol)
