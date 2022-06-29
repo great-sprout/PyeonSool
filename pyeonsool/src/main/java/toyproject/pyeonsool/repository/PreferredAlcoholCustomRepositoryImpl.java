@@ -60,6 +60,7 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
 
     @Override
     public Long getLikeCount(Long alcoholId) {
+
         return queryFactory
                 .select(preferredAlcohol.member.id.count())
                 .from(preferredAlcohol)

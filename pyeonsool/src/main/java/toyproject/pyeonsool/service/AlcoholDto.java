@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-public class AlcoholTypeDto {
+public class AlcoholDto {
 
 
     private AlcoholType type;
@@ -38,7 +38,7 @@ public class AlcoholTypeDto {
             this.vendors = alcoholVendors;
     }*/
 @QueryProjection
-    public AlcoholTypeDto(Alcohol alcohol,String imagePath,List<String> alcoholKeywords,List<String> alcoholVendors, Long prferredMembers){
+    public AlcoholDto(Alcohol alcohol, String imagePath, List<String> alcoholKeywords, List<String> alcoholVendors, Long prferredMembers){
         type= alcohol.getType();
         id = alcohol.getId();
         image = imagePath;
