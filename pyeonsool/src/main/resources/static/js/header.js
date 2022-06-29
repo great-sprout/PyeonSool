@@ -29,6 +29,10 @@ function addKeywordChoiceModalEvent() {
     document.querySelector(".modal").classList.remove(UNVISIBLE);
   });
 
+  document.querySelector(".keyword-choice__cancel").addEventListener("click", function() {
+    document.querySelector(".modal").classList.add(UNVISIBLE);
+  });
+
   document.querySelector(".keyword-choice__confirm").addEventListener("click", function(event) {
     const checkedKeywords = document.querySelectorAll(".keyword-choice__keyword-input:checked");
 
