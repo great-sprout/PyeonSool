@@ -205,16 +205,13 @@
 
 /* 베스트 Like 이미지 */
 .best-like__image-box {
-    display: table;
+    display: flex;
     border: 1px solid var(--light-gray);
     border-radius: 15px;
     width: 255px;
     height: 255px;
-    text-align: center;
-}
-.best-like__image-wrap {
-    display: table-cell;
-    vertical-align: middle;
+    align-items: center;
+    justify-content: center;
 }
 .best-like__image {
     max-height: 206px;
