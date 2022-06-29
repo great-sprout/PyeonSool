@@ -80,7 +80,8 @@
           <article class="mypage-hello">
             <div class="mypage-hello__user">
               <h2 class="mypage-hello__hi">
-                <span class="mypage-hello__user-nickname">알콜홀릭</span>
+                <!-- <th:block th:if="${session.loginMember != null and session.loginMember.id eq review.writerId}">-->
+                <span th:text="${session.loginMember.nickname}"class="mypage-hello__user-nickname">알콜홀릭</span>
                 님 안녕하세요.
               </h2>
             </div>
@@ -94,9 +95,11 @@
 
             <div class="mypage-like__body">
               <ul class="mypage-like__items">
-                <li class="mypage-like__item">
+                <th:block th:each="myLike : ${myLikeList}">
+                  <th:block th:each="imagePath : ${myLike.imagePaths}">
+                  <li class="mypage-like__item">
                   <img
-                    src="/image/alcohol/calsberg.jpg"
+                    src="/image/alcohol/calsberg.jpg" th:src="${imagePath}"
                     alt=""
                     class="mypage-like__item-image"
                     onclick="location.href='#'"
@@ -109,150 +112,8 @@
                     </div>
                   </div>
                 </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/surfing-high.png"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/jinlo.png"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/wine.png"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/heineken.jpg"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/kloud.jpg"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/guinness.png"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/stella-artois.png"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
-
-                <li class="mypage-like__item">
-                  <img
-                    src="/image/alcohol/warka.png"
-                    alt=""
-                    class="mypage-like__item-image"
-                    onclick="location.href='#'"
-                  />
-
-                  <!--이미지위에 x버튼-->
-                  <div class="mypage-like__delete">
-                    <div class="mypage-like__delete-button">
-                      <i class="fa fa-x mypage-like__delete-icon"></i>
-                    </div>
-                  </div>
-                </li>
+                </th:block>
+                </th:block>
               </ul>
             </div>
           </article>
