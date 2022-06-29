@@ -50,7 +50,9 @@
                      th:href="@{/members/{nickname}(nickname=${session.loginMember.nickname})}">
                     마이페이지</a>
                   <div class="header-profile__divider"></div>
-                  <span class="header-profile__logout">로그아웃</span>
+                  <form method="post" action="/members/logout">
+                    <input type="submit" class="header-profile__logout" value="로그아웃">
+                  </form>
                 </div>
 
                 <div class="header-profile__keywords">
