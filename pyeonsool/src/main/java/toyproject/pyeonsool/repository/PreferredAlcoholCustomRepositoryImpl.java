@@ -46,7 +46,7 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .where(alcohol.type.eq(type))
                 .groupBy(preferredAlcohol.alcohol.id)
                 .orderBy(preferredAlcohol.alcohol.id.count().desc())
-                .limit(4)
+                .limit(6)
                 .fetch();
     }
 
