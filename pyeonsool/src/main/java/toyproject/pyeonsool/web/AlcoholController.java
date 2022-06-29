@@ -14,6 +14,7 @@ import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.service.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.isNull;
@@ -33,8 +34,13 @@ public class AlcoholController {
                               Model model) {
         Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(AlcoholType.valueOf(alcoholType), pageable);
         model.addAttribute("typeList", alcoholPage.getContent());
-        model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));
-        /*최신 등록순*/
+        model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/
+        //상품 목록
+
+        List<MainPageDto> bestLikes = alcoholService.getBestLike(AlcoholType.valueOf(alcoholType));
+        model.addAttribute("bestList",bestLikes);
+        //베스트 상품 목록 ( 아직 4개)
+
         return "listPage";
 
     }

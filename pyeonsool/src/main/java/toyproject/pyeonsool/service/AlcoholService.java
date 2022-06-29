@@ -181,9 +181,10 @@ public class AlcoholService {
     public List<MainPageDto> getBestLike(AlcoholType alcoholType) { //각 타입별 술 DTO 반환
         //베스트 Like
         List<MainPageDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
-        //소주
+
         List<Long> preferList= preferredAlcoholCustomRepositoryImpl.getAlcoholByType(alcoholType); //alcohol_id List
-        //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
+        //각각의 alcoholType에 맞는 DTO를 찾아 List에 담는다
+
         for (Long alcoholId : preferList) {
             Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
             String alcoholImagePath = fileManager.getAlcoholImagePath(alcoholType, alcohol.getFileName());
@@ -197,8 +198,6 @@ public class AlcoholService {
             alcoholTypeDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
                     preferredAlcoholCustomRepositoryImpl.getLikeCount(alcoholId)));
         }
-        //맥주
-
 
         return alcoholTypeDetailsList;
     }
