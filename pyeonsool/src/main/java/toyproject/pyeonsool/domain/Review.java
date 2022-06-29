@@ -57,4 +57,20 @@ public class Review {
     public Review(Member member, Alcohol alcohol, Byte grade, String content) {
         this(member, alcohol, grade, content, 0L, 0L);
     }
+
+    public void plusRecommendCount() {
+        this.recommendCount += 1;
+    }
+
+    public void minusRecommendCount() {
+        this.recommendCount -= 1;
+    }
+
+    public void plusNotRecommendCount() {
+        this.notRecommendCount += 1;
+    }
+
+    public void minusNotRecommendCount() {
+        this.notRecommendCount -= 1;
+    }
 }

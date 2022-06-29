@@ -77,14 +77,24 @@ public class ReviewService {
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
 
-        RecommendedReview recommendedReview =
-                recommendedReviewRepository.findByMemberAndReview(member, review)
-                        .orElseGet(() -> new RecommendedReview(member, review, status));
+        RecommendedReview recommendedReview = recommendedReviewRepository.findByMemberAndReview(member, review)
+                .orElseGet(() -> new RecommendedReview(member, review, status));
 
         if (isNull(recommendedReview.getId())) {
             recommendedReviewRepository.save(recommendedReview);
         } else {
             recommendedReview.changeStatus(status);
+            if (status == RecommendStatus.LIKE) {
+                review.minusNotRecommendCount();
+            } else {
+                review.minusRecommendCount();
+            }
+        }
+
+        if (status == RecommendStatus.LIKE) {
+            review.plusRecommendCount();
+        } else {
+            review.plusNotRecommendCount();
         }
 
         return recommendedReview.getId();
@@ -98,6 +108,13 @@ public class ReviewService {
         // TODO 술, 회원 예외처리 필요
 
         recommendedReviewRepository.findByMemberAndReviewAndStatus(member, review, status)
-                .ifPresent(recommendedReviewRepository::delete);
+                .ifPresent(entity -> {
+                    recommendedReviewRepository.delete(entity);
+                    if (status == RecommendStatus.LIKE) {
+                        review.minusRecommendCount();
+                    } else {
+                        review.minusNotRecommendCount();
+                    }
+                });
     }
 }
