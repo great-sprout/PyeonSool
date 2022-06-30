@@ -67,4 +67,10 @@ public class MemberController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/add")
+    public String getSignUpPage() {
+
+        return "signUp";
+    }
 }
