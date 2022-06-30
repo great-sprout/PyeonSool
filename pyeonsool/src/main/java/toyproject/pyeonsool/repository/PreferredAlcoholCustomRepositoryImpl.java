@@ -30,7 +30,7 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
     }
 
     @Override
-    public List<Long> getAlcoholByType(AlcoholType type) { //타입별 좋아하는 술(alcohol_id)
+    public List<Long> getAlcoholByType(AlcoholType type,int count) { //타입별 좋아하는 술(alcohol_id)
         return queryFactory
                 .select(preferredAlcohol.alcohol.id)
                 .from(preferredAlcohol)
@@ -38,7 +38,7 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .where(alcohol.type.eq(type))
                 .groupBy(preferredAlcohol.alcohol.id)
                 .orderBy(preferredAlcohol.alcohol.id.count().desc())
-                .limit(6)
+                .limit(count)
                 .fetch();
     }
 

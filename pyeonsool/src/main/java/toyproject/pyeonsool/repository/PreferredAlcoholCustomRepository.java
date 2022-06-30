@@ -8,7 +8,7 @@ import java.util.List;
 public interface PreferredAlcoholCustomRepository {
     List<Long> getAlcoholIds();
 
-    List<Long> getAlcoholByType(AlcoholType type);
+    List<Long> getAlcoholByType(AlcoholType type,int count);
 
     Long getLikeCount(Long alcoholId);
 

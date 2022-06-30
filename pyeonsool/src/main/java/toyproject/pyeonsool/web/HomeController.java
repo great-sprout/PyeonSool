@@ -36,9 +36,9 @@ public class HomeController {
         List<MainPageDto> monthAlcohols = alcoholService.getMonthAlcohols();
         //베스트 Like
 
-        List<MainPageDto> sojus = alcoholService.getBestLike(AlcoholType.SOJU);
-        List<MainPageDto> beers = alcoholService.getBestLike(AlcoholType.BEER);
-        List<MainPageDto> wines = alcoholService.getBestLike(AlcoholType.WINE);
+        List<MainPageDto> sojus = alcoholService.getBestLike(AlcoholType.SOJU,4);
+        List<MainPageDto> beers = alcoholService.getBestLike(AlcoholType.BEER,4);
+        List<MainPageDto> wines = alcoholService.getBestLike(AlcoholType.WINE,4);
 
         model.addAttribute("monthAlcohols", monthAlcohols);
         model.addAttribute("sojus", sojus);
