@@ -37,7 +37,7 @@ public class AlcoholController {
         model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/
         //상품 목록
 
-        List<MainPageDto> bestLikes = alcoholService.getBestLike(AlcoholType.valueOf(alcoholType));
+        List<MainPageDto> bestLikes = alcoholService.getBestLike(AlcoholType.valueOf(alcoholType),6);
         model.addAttribute("bestList",bestLikes);
         //베스트 상품 목록 ( 아직 4개)
 
