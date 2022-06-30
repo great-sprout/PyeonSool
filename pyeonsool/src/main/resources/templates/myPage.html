@@ -41,12 +41,14 @@
               <ul class="mypage-like__items">
                 <th:block th:each="myLike : ${myLikeList}">
                   <li class="mypage-like__item" th:number="${myLike.alcoholId}">
-                  <img
+                    <a href = "#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${myLike.alcoholId})}">
+                    <img
                     src="/image/alcohol/calsberg.jpg" th:src="${myLike.imagePath}"
                     alt=""
                     class="mypage-like__item-image"
                     onclick="location.href='#'"
                   />
+                    </a>
 
                   <!--이미지위에 x버튼-->
                   <div class="mypage-like__delete">
