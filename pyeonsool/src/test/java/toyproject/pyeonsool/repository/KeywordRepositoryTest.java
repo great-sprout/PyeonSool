@@ -10,6 +10,8 @@ import toyproject.pyeonsool.domain.Keyword;
 
 import javax.persistence.EntityManager;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -28,7 +30,7 @@ class KeywordRepositoryTest {
     @Test
     void findByName() {
         //given
-        Keyword[] keywords = new Keyword[3];
+        Keyword[] keywords = new Keyword[5];
         String[] keywordNames = {"sweet", "cool", "high", "low", "fresh"};
 
         for (int i = 0; i < keywords.length; i++) {
@@ -38,8 +40,7 @@ class KeywordRepositoryTest {
 
         //when
         //then
-        assertThat(keywordRepository.findByName("sweet")).isNotEmpty();
-        assertThat(keywordRepository.findByName("test")).isEmpty();
+        assertThat(keywordRepository.findKeywordsByNameIn(List.of(keywordNames)).size()).isEqualTo(5);
 
     }
 }
