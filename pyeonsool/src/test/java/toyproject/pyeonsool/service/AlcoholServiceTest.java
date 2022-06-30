@@ -7,9 +7,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
@@ -21,6 +24,7 @@ class AlcoholServiceTest {
 
     @Autowired
     AlcoholService alcoholService;
+    PreferredAlcoholRepository preferredAlcoholRepository;
 
     @Autowired
     EntityManager em;
@@ -97,7 +101,7 @@ class AlcoholServiceTest {
     }
 
     @Test
-    void MyPage() {
+    void getAlcoholImages() {
         //given
         Member member = new Member("nickname", "userId", "password", "01012345678");
         em.persist(member);
@@ -117,10 +121,10 @@ class AlcoholServiceTest {
         em.persist(new PreferredAlcohol(member, alcohol3));
 
         //when
-        MyPageDto likeList = alcoholService.MyPage(member.getNickname());
+        List<AlcoholImageDto> likeList = alcoholService.getAlcoholImages(member.getId());
 
         //then
-        assertThat(likeList.getAlcoholIds().size()).isEqualTo(3);
+        assertThat(likeList.size()).isEqualTo(3);
     }
 
     @Test
