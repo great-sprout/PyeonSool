@@ -178,7 +178,7 @@ public class AlcoholService {
         //베스트 Like
         List<MainPageDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
 
-        List<Long> preferList= preferredAlcoholCustomRepositoryImpl.getAlcoholByType(alcoholType,count); //alcohol_id List
+        List<Long> preferList= preferredAlcoholRepository.getAlcoholByType(alcoholType,count); //alcohol_id List
 
         //각각의 alcoholType에 맞는 DTO를 찾아 List에 담는다
 
