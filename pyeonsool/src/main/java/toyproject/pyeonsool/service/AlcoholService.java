@@ -29,8 +29,6 @@ public class AlcoholService {
     private final ReviewRepository reviewRepository;
     private final FileManager fileManager;
 
-    private final PreferredAlcoholCustomRepositoryImpl preferredAlcoholCustomRepositoryImpl;
-
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null); //Alcohol 엔티티
         String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName()); //imagePath
@@ -117,22 +115,20 @@ public class AlcoholService {
         }
     }
 
-    public MyPageDto MyPage(String nickname) {
-        Member findMember = memberRepository.findByNickname(nickname);
-        Long memberId = findMember.getId();
-        List<Long> alcoholIds = preferredAlcoholCustomRepositoryImpl.getMyList(memberId);
-        List<String> imagePaths = new ArrayList<>();
+    //내 Like 리스트 부분 서비스
+    public List<AlcoholImageDto> getAlcoholImages(Long memberId) {
+        return convertToAlcoholImage(preferredAlcoholRepository.getAlcohols(memberId, 12L));
+    }
 
-        for (int i = 0; i < alcoholIds.size(); i++) {
-            Optional<Alcohol> alcohol = alcoholRepository.findById(alcoholIds.get(i));
-            String imagePath = fileManager.getAlcoholImagePath(alcohol.get().getType(), alcohol.get().getFileName());
-            imagePaths.add(imagePath);
+    //내 Like 리스트 부분 서비스
+    private List<AlcoholImageDto> convertToAlcoholImage(List<Alcohol> alcohols) {
+        List<AlcoholImageDto> alcoholImages = new ArrayList<>();
+        for (Alcohol alcohol : alcohols) {
+            alcoholImages.add(new AlcoholImageDto(alcohol.getId(),
+                    fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName())));
         }
-        System.out.println("imagePaths = " + imagePaths);
-        System.out.println("alcoholIds = " + alcoholIds);
 
-        MyPageDto myLikeList = new MyPageDto(memberId, alcoholIds, imagePaths);
-        return myLikeList;
+        return alcoholImages;
     }
 
     public Page<AlcoholDto> findAlcoholPage(AlcoholType alcoholType, Pageable pageable) {
@@ -159,7 +155,7 @@ public class AlcoholService {
 
     public List<MainPageDto> getMonthAlcohols() {
         //이달의 추천
-        List<Long> preferAlcohols = preferredAlcoholCustomRepositoryImpl.getAlcoholIds(); //alcohol_id List
+        List<Long> preferAlcohols = preferredAlcoholRepository.getAlcoholIds(); //alcohol_id List
         List<MainPageDto> alcoholDetailsList = new ArrayList<>(); //해당 술 DTO List
         //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
         for (Long preferAlcohol : preferAlcohols) {
@@ -173,7 +169,7 @@ public class AlcoholService {
             }
 
             alcoholDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
-                    preferredAlcoholCustomRepositoryImpl.getLikeCount(preferAlcohol)));
+                    preferredAlcoholRepository.getLikeCount(preferAlcohol)));
         }
         return alcoholDetailsList;
     }
@@ -182,7 +178,7 @@ public class AlcoholService {
         //베스트 Like
         List<MainPageDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
 
-        List<Long> preferList= preferredAlcoholCustomRepositoryImpl.getAlcoholByType(alcoholType); //alcohol_id List
+        List<Long> preferList= preferredAlcoholRepository.getAlcoholByType(alcoholType); //alcohol_id List
         //각각의 alcoholType에 맞는 DTO를 찾아 List에 담는다
 
         for (Long alcoholId : preferList) {
@@ -196,7 +192,7 @@ public class AlcoholService {
             }
 
             alcoholTypeDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
-                    preferredAlcoholCustomRepositoryImpl.getLikeCount(alcoholId)));
+                    preferredAlcoholRepository.getLikeCount(alcoholId)));
         }
 
         return alcoholTypeDetailsList;
