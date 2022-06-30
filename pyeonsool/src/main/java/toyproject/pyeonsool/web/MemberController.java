@@ -69,8 +69,15 @@ public class MemberController {
     }
 
     @GetMapping("/add")
-    public String getSignUpPage() {
-
+    public String getSignupPage(MemberSaveForm memberSaveForm) {
         return "signUp";
+    }
+
+    @PostMapping("/add")
+    public String signup(MemberSaveForm memberSaveForm) {
+        memberService.signup(memberSaveForm.getNickname(), memberSaveForm.getUserId(),
+                memberSaveForm.getPassword(), memberSaveForm.getPhoneNumber(), memberSaveForm.getKeywords());
+
+        return "redirect:/";
     }
 }

@@ -26,7 +26,7 @@
                 onclick="location.href='/'"/>
             </h1>
 
-            <form action="" method="post" class="sign-up__form">
+            <form action="" method="post" class="sign-up__form" th:object="${memberSaveForm}">
               <div class="sign-up__nickname-wrap">
                 <h2 class="sign-up__nickname">닉네임</h2>
 
@@ -36,6 +36,7 @@
                   class="sign-up__nickname-input"
                   required
                   maxlength="20"
+                  th:field="*{nickname}"
                 />
               </div>
 
@@ -48,6 +49,7 @@
                   class="sign-up__id-input"
                   required
                   maxlength="20"
+                  th:field="*{userId}"
                 />
               </div>
 
@@ -61,6 +63,7 @@
                   required
                   minlength="4"
                   maxlength="20"
+                  th:field="*{password}"
                 />
               </div>
 
@@ -89,6 +92,7 @@
                   class="sign-up__phone-number-input"
                   required
                   maxlength="14"
+                  th:field="*{phoneNumber}"
                 />
               </div>
 
@@ -123,6 +127,7 @@
                         id="keyword-1"
                         type="checkbox"
                         value="sweet"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -137,6 +142,7 @@
                         id="keyword-2"
                         type="checkbox"
                         value="clear"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -151,6 +157,7 @@
                         id="keyword-3"
                         type="checkbox"
                         value="cool"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -165,6 +172,7 @@
                         id="keyword-4"
                         type="checkbox"
                         value="heavy"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -179,6 +187,7 @@
                         id="keyword-5"
                         type="checkbox"
                         value="light"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -193,6 +202,7 @@
                         id="keyword-6"
                         type="checkbox"
                         value="nutty"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -207,6 +217,7 @@
                         id="keyword-7"
                         type="checkbox"
                         value="fresh"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -221,6 +232,7 @@
                         id="keyword-8"
                         type="checkbox"
                         value="flower"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -235,6 +247,7 @@
                         id="keyword-9"
                         type="checkbox"
                         value="bitter"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -249,6 +262,7 @@
                         id="keyword-10"
                         type="checkbox"
                         value="unique"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -263,6 +277,7 @@
                         id="keyword-11"
                         type="checkbox"
                         value="strong"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -277,6 +292,7 @@
                         id="keyword-12"
                         type="checkbox"
                         value="middle"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -291,6 +307,7 @@
                         id="keyword-13"
                         type="checkbox"
                         value="mild"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -305,6 +322,7 @@
                         id="keyword-14"
                         type="checkbox"
                         value="white"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -319,6 +337,7 @@
                         id="keyword-15"
                         type="checkbox"
                         value="red"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -333,6 +352,7 @@
                         id="keyword-16"
                         type="checkbox"
                         value="astringent"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -347,6 +367,7 @@
                         id="keyword-17"
                         type="checkbox"
                         value="fruit"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
@@ -361,6 +382,7 @@
                         id="keyword-18"
                         type="checkbox"
                         value="nonAlcoholic"
+                        name="keywords"
                         class="keyword-choice__keyword-input"
                       />
                       <label
