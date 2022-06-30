@@ -27,7 +27,7 @@ function addMystyleSlidingEvent() {
   }
 
   //마이페이지 리뷰 수정,삭제
-  function addMyReviewEditStateEvent() {
+function addMyReviewEditStateEvent() {
     document.querySelector(".myreviews").addEventListener("click", function(event) {
       const myreview = event.target.closest(".my-review");
       if (myreview === null) {
@@ -68,7 +68,47 @@ function addMystyleSlidingEvent() {
     });
   }
 
+//마이페이지 내Like 리스트  LIKE취소
+function addDisLikeClickEvent(){
+
+    document.addEventListener("click", function (event) {
+        console.log(event.target.closest(".mypage-like__item"));
+        if (!event.target.classList.contains("mypage-like__delete-icon")) {
+            console.log(event.target)
+            return;
+        }
+        dislikeAlcoholAjax(event.target.closest(".mypage-like__item"));
+
+
+    });
+
+    function dislikeAlcoholAjax(mypageLikeItem) {
+        const request = new XMLHttpRequest();
+        if (!request) {
+            alert("XMLHTTP 인스턴스 생성 불가");
+            return false;
+        }
+
+        request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+
+                    mypageLikeItem.parentNode.removeChild(mypageLikeItem);
+                } else {
+                    alert(request.response.message);
+                }
+            }
+        }
+
+        request.open("POST", "/alcohols/" + mypageLikeItem.getAttribute("number") +"/dislike");
+        request.responseType = "json";
+        request.send();
+    }
+
+ }
+
 
   //호출
   addMystyleSlidingEvent();
   addMyReviewEditStateEvent();
+  addDisLikeClickEvent();
