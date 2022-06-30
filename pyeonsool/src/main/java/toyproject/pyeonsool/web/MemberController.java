@@ -6,17 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.PreferredAlcohol;
-import toyproject.pyeonsool.repository.MemberRepository;
 import toyproject.pyeonsool.service.AlcoholService;
 import toyproject.pyeonsool.service.MemberService;
-import toyproject.pyeonsool.service.MyPageDto;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
-import java.util.Objects;
 
 import static java.util.Objects.*;
 
@@ -35,9 +29,8 @@ public class MemberController {
             @PathVariable String nickname,
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember, HttpServletRequest request,
             Model model) {
-        MyPageDto attributeValue = alcoholService.MyPage(nickname);
-        model.addAttribute("myLikeList", attributeValue);
-        //System.out.println("attributeValue = " + attributeValue);
+        // TODO loginMember null값 검증
+        model.addAttribute("myLikeList", alcoholService.getAlcoholImages(loginMember.getId()));
         return "myPage";
     }
 
