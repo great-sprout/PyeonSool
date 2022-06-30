@@ -141,7 +141,7 @@ class AlcoholRepositoryTest {
                 null,"리",GS25);
         Page<Alcohol> result4 = alcoholRepository.findAllByType(BEER,
                 PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
-                null,"리",null);
+                null,null,CU);
 
         assertThat(result.getContent().size()).isEqualTo(1);
         assertThat(result1.getContent().size()).isEqualTo(7);

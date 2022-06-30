@@ -5,10 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.FileManager;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.PreferredAlcohol;
+import toyproject.pyeonsool.domain.*;
 import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
@@ -135,8 +132,9 @@ public class AlcoholService {
         return myLikeList;
     }
 
-    public Page<AlcoholDto> findAlcoholPage(AlcoholType alcoholType, Pageable pageable) {
-        return alcoholRepository.findAllByType(alcoholType, pageable)
+    public Page<AlcoholDto> findAlcoholPage(AlcoholType alcoholType, Pageable pageable,
+                                            List<String> keywords, String search, VendorName vendorName) {
+        return alcoholRepository.findAllByType(alcoholType, pageable,keywords,search,vendorName)
                 .map(alcohol -> new AlcoholDto(alcohol,
                         getAlcoholImagePath(alcohol),
                         getAlcoholKeywords(alcohol),

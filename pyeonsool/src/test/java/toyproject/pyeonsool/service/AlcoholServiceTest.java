@@ -11,9 +11,13 @@ import toyproject.pyeonsool.domain.*;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
+import static toyproject.pyeonsool.domain.VendorName.GS25;
 
 @SpringBootTest
 @Transactional
@@ -191,9 +195,12 @@ class AlcoholServiceTest {
 
         int SIZE = 8;
         //when
+        List<String> typeKeyword = new ArrayList<>();
+        typeKeyword.add("cool");
+        typeKeyword.add("clear");
         Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(BEER,
-                PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
-
+                PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")),
+                typeKeyword,"리",GS25);
 
         //then
         assertThat(alcoholType.isLast()).isFalse();

@@ -35,17 +35,17 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 .offset(pageable.getOffset())
                 .fetch();*/
         List<Alcohol> result = queryFactory.selectFrom(alcohol)
-                .where(keywordAlcoholIdIn(keywords),
+                .where(
                         vendorAlcoholIdEq(vendorName),
-                        alcoholNameLike(search),
+
                         alcoholTypeEq(alcoholType))
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
                 .fetch();
 
         JPAQuery<Long> countQuery = queryFactory.select(alcohol.count())
-                .where(keywordAlcoholIdIn(keywords),
-                        alcoholNameLike(search),
+                .where(
+
                         vendorAlcoholIdEq(vendorName),
                         alcoholTypeEq(alcoholType)
                 );

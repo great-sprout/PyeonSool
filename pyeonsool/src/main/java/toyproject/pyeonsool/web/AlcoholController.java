@@ -12,6 +12,7 @@ import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.Pagination;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.domain.VendorName;
 import toyproject.pyeonsool.service.*;
 
 import java.util.ArrayList;
@@ -29,16 +30,21 @@ public class AlcoholController {
 
 
     @GetMapping
-    public String getListPage(@RequestParam String alcoholType,
+    public String getListPage(@ModelAttribute AlcoholSearchForm alcoholSearchForm,
                               @PageableDefault(sort = "id", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
                               Model model) {
-        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(AlcoholType.valueOf(alcoholType), pageable);
+        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(
+                AlcoholType.valueOf(alcoholSearchForm.getAlcoholType()),
+                pageable,
+                alcoholSearchForm.getKeywords(),
+                alcoholSearchForm.getSearch(),
+                alcoholSearchForm.getVendorName() != null ? VendorName.valueOf(alcoholSearchForm.getVendorName()) : VendorName.CU);
         model.addAttribute("typeList", alcoholPage.getContent());
         model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/
         //상품 목록
 
-        List<MainPageDto> bestLikes = alcoholService.getBestLike(AlcoholType.valueOf(alcoholType),6);
-        model.addAttribute("bestList",bestLikes);
+        model.addAttribute("bestList", alcoholService
+                .getBestLike(AlcoholType.valueOf(alcoholSearchForm.getAlcoholType()),6));
         //베스트 상품 목록 ( 아직 4개)
 
         return "listPage";
