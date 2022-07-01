@@ -7,16 +7,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
+import static toyproject.pyeonsool.domain.VendorName.GS25;
 
 @SpringBootTest
 @Transactional
@@ -195,14 +197,11 @@ class AlcoholServiceTest {
 
         int SIZE = 8;
         //when
-        Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(BEER,
-                PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
-
+        Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(
+                PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")),
+                new AlcoholSearchConditionDto(BEER, List.of("cool", "clear"), "리", GS25));
 
         //then
-        assertThat(alcoholType.isLast()).isFalse();
-        for (AlcoholDto a : alcoholType) {
-            System.out.println("hello = " + a);
-        }
+        assertThat(alcoholType.isLast()).isTrue();
     }
 }
