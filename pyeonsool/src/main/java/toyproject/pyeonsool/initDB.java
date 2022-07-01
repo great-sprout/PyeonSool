@@ -96,6 +96,32 @@ public class initDB {
                     em.persist(new RecommendedReview(members[i], reviews.get(j), RecommendStatus.DISLIKE));
                 }
             }
+            MyKeyword memberKeyword1 = new MyKeyword(members[0],keywords[0]);
+            MyKeyword memberKeyword2 = new MyKeyword(members[0],keywords[1]);
+            MyKeyword memberKeyword3 = new MyKeyword(members[0],keywords[2]);
+            MyKeyword memberKeyword4 = new MyKeyword(members[1],keywords[3]);
+            MyKeyword memberKeyword5 = new MyKeyword(members[1],keywords[4]);
+            MyKeyword memberKeyword6 = new MyKeyword(members[1],keywords[5]);
+            MyKeyword memberKeyword7 = new MyKeyword(members[2],keywords[6]);
+            MyKeyword memberKeyword8 = new MyKeyword(members[2],keywords[7]);
+            MyKeyword memberKeyword9 = new MyKeyword(members[2],keywords[8]);
+            MyKeyword memberKeyword10 = new MyKeyword(members[3],keywords[9]);
+            MyKeyword memberKeyword11 = new MyKeyword(members[3],keywords[10]);
+            MyKeyword memberKeyword12 = new MyKeyword(members[3],keywords[11]);
+
+            em.persist(memberKeyword1);
+            em.persist(memberKeyword2);
+            em.persist(memberKeyword3);
+            em.persist(memberKeyword4);
+            em.persist(memberKeyword5);
+            em.persist(memberKeyword6);
+            em.persist(memberKeyword7);
+            em.persist(memberKeyword8);
+            em.persist(memberKeyword9);
+            em.persist(memberKeyword10);
+            em.persist(memberKeyword11);
+            em.persist(memberKeyword12);
+
 
             em.flush();
             em.clear();
@@ -414,5 +440,7 @@ public class initDB {
             }
 
         }
+        
+
     }
 }
