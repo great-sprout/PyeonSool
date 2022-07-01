@@ -128,9 +128,8 @@ public class AlcoholService {
         return alcoholImages;
     }
 
-    public Page<AlcoholDto> findAlcoholPage(AlcoholType alcoholType, Pageable pageable,
-                                            List<String> keywords, String search, VendorName vendorName) {
-        return alcoholRepository.findAllByType(alcoholType, pageable,keywords,search,vendorName)
+    public Page<AlcoholDto> findAlcoholPage(Pageable pageable, AlcoholSearchConditionDto condition) {
+        return alcoholRepository.findAllByType(pageable, condition)
                 .map(alcohol -> new AlcoholDto(alcohol,
                         getAlcoholImagePath(alcohol),
                         getAlcoholKeywords(alcohol),
@@ -172,11 +171,11 @@ public class AlcoholService {
         return alcoholDetailsList;
     }
 
-    public List<MainPageDto> getBestLike(AlcoholType alcoholType,int count) { //각 타입별 술 DTO 반환
+    public List<MainPageDto> getBestLike(AlcoholType alcoholType, int count) { //각 타입별 술 DTO 반환
         //베스트 Like
         List<MainPageDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
 
-        List<Long> preferList= preferredAlcoholRepository.getAlcoholByType(alcoholType,count); //alcohol_id List
+        List<Long> preferList = preferredAlcoholRepository.getAlcoholByType(alcoholType, count); //alcohol_id List
 
         //각각의 alcoholType에 맞는 DTO를 찾아 List에 담는다
 

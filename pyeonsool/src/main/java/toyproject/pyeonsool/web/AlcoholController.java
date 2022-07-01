@@ -7,12 +7,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.Pagination;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.VendorName;
+import toyproject.pyeonsool.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.service.*;
 
 import java.util.ArrayList;
@@ -33,22 +35,39 @@ public class AlcoholController {
     public String getListPage(@ModelAttribute AlcoholSearchForm alcoholSearchForm,
                               @PageableDefault(sort = "id", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
                               Model model) {
-        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(
-                AlcoholType.valueOf(alcoholSearchForm.getAlcoholType()),
-                pageable,
-                alcoholSearchForm.getKeywords(),
-                alcoholSearchForm.getSearch(),
-                alcoholSearchForm.getVendorName() != null ? VendorName.valueOf(alcoholSearchForm.getVendorName()) : VendorName.CU);
+        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(pageable,
+                new AlcoholSearchConditionDto(
+                        getAlcoholType(alcoholSearchForm),
+                        alcoholSearchForm.getKeywords(),
+                        alcoholSearchForm.getSearch(),
+                        getVendorName(alcoholSearchForm)));
+
         model.addAttribute("typeList", alcoholPage.getContent());
         model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/
         //상품 목록
-
-        model.addAttribute("bestList", alcoholService
-                .getBestLike(AlcoholType.valueOf(alcoholSearchForm.getAlcoholType()),6));
+        System.out.println("getAlcoholType(alcoholSearchForm) = " + getAlcoholType(alcoholSearchForm));
+        model.addAttribute(
+                "bestList", alcoholService.getBestLike(getAlcoholType(alcoholSearchForm), 6));
         //베스트 상품 목록 ( 아직 4개)
 
         return "listPage";
 
+    }
+
+    private AlcoholType getAlcoholType(AlcoholSearchForm alcoholSearchForm) {
+        if (!StringUtils.hasText(alcoholSearchForm.getAlcoholType())) {
+            return null;
+        }
+
+        return AlcoholType.valueOf(alcoholSearchForm.getAlcoholType());
+    }
+
+    private VendorName getVendorName(AlcoholSearchForm alcoholSearchForm) {
+        if (!StringUtils.hasText(alcoholSearchForm.getVendorName())) {
+            return null;
+        }
+
+        return VendorName.valueOf(alcoholSearchForm.getVendorName());
     }
 
     @GetMapping("/{alcoholId}")

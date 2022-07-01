@@ -66,7 +66,7 @@ class AlcoholRepositoryTest {
         int SIZE = 8;
         //when
         Page<Alcohol> alcoholPage = alcoholRepository
-                .findAllByType(BEER,PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
+                .findAllByType(BEER, PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
 
 
         //then
@@ -76,7 +76,37 @@ class AlcoholRepositoryTest {
     }
 
     @Test
-    void getFindAllByTypeTest(){
+    void getFindAllByTypeTest() {
+        //given
+        initData();
+        List<String> typeKeyword = List.of("cool", "clear");
+
+        //when
+        AlcoholSearchConditionDto[] conditions = new AlcoholSearchConditionDto[]{
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null),
+                new AlcoholSearchConditionDto(BEER, null, "리", GS25),
+                new AlcoholSearchConditionDto(BEER, null, null, null),
+                new AlcoholSearchConditionDto(BEER, null, null, null)
+        };
+
+        ArrayList<Page<Alcohol>> alcoholPages = new ArrayList<>();
+        for (AlcoholSearchConditionDto condition : conditions) {
+            alcoholPages.add(alcoholRepository.findAllByType(
+                    PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")), condition));
+        }
+
+        //then
+        assertThat(alcoholPages.get(0).getContent().size()).isEqualTo(1);
+        assertThat(alcoholPages.get(1).getContent().size()).isEqualTo(7);
+        assertThat(alcoholPages.get(2).getContent().size()).isEqualTo(1);
+        assertThat(alcoholPages.get(3).getContent().size()).isEqualTo(1);
+        assertThat(alcoholPages.get(4).getContent().size()).isEqualTo(8);
+        assertThat(alcoholPages.get(5).getContent().size()).isEqualTo(8);
+    }
+
+    private void initData() {
         Member[] members = new Member[5];
         setMembers(members);
         for (Member m : members) {
@@ -108,7 +138,6 @@ class AlcoholRepositoryTest {
         persistBeerKeywords(keywords, beers);
         persistBeerVendors(beers);
 
-        //와인 데이터 넣기
         ArrayList<Alcohol> wines = new ArrayList<>();
         setWines(wines);
         for (Alcohol alcohol : wines) {
@@ -122,40 +151,6 @@ class AlcoholRepositoryTest {
         for (PreferredAlcohol preferredAlcohol : preferredAlcohols) {
             em.persist(preferredAlcohol);
         }
-        System.out.println("bye");
-        List<String> typeKeyword = new ArrayList<>();
-        typeKeyword.add("cool");
-        typeKeyword.add("clear");
-
-        Page<Alcohol> result = alcoholRepository.findAllByType(BEER,
-                PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
-                typeKeyword,"리",GS25);
-        Page<Alcohol> result1 = alcoholRepository.findAllByType(BEER,
-                PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
-                typeKeyword,null,GS25);
-        Page<Alcohol> result2 = alcoholRepository.findAllByType(BEER,
-                PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
-                typeKeyword,"리",null);
-        Page<Alcohol> result3 = alcoholRepository.findAllByType(BEER,
-                PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
-                null,"리",GS25);
-        Page<Alcohol> result4 = alcoholRepository.findAllByType(BEER,
-                PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
-                null,null, GS25);
-        Page<Alcohol> result5 = alcoholRepository.findAllByType(BEER,
-                PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
-                null,null, null);
-
-        assertThat(result.getContent().size()).isEqualTo(1);
-        assertThat(result1.getContent().size()).isEqualTo(7);
-        assertThat(result2.getContent().size()).isEqualTo(1);
-        assertThat(result3.getContent().size()).isEqualTo(1);
-        assertThat(result4.getContent().size()).isEqualTo(8);
-        assertThat(result5.getContent().size()).isEqualTo(8);
-
-
-        System.out.println("result2 = " + result2.getContent().get(0).getName());
-
     }
 
     private void setPreferredAlcohols(Member[] members, ArrayList<Alcohol> sojus, ArrayList<Alcohol> beers, ArrayList<Alcohol> wines, PreferredAlcohol[] preferredAlcohols) {

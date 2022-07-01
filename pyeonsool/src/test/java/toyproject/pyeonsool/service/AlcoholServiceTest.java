@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 
 import javax.persistence.EntityManager;
@@ -196,17 +197,11 @@ class AlcoholServiceTest {
 
         int SIZE = 8;
         //when
-        List<String> typeKeyword = new ArrayList<>();
-        typeKeyword.add("cool");
-        typeKeyword.add("clear");
-        Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(BEER,
+        Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(
                 PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")),
-                typeKeyword,"리",GS25);
+                new AlcoholSearchConditionDto(BEER, List.of("cool", "clear"), "리", GS25));
 
         //then
-        assertThat(alcoholType.isLast()).isFalse();
-        for (AlcoholDto a : alcoholType) {
-            System.out.println("hello = " + a);
-        }
+        assertThat(alcoholType.isLast()).isTrue();
     }
 }

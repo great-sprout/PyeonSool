@@ -9,6 +9,5 @@ import toyproject.pyeonsool.domain.VendorName;
 import java.util.List;
 
 public interface AlcoholCustomRepository {
-    Page<Alcohol> findAllByType(AlcoholType alcoholType, Pageable pageable,
-                                List<String> keywords, String search, VendorName vendorName);
+    Page<Alcohol> findAllByType(Pageable pageable, AlcoholSearchConditionDto condition);
 }

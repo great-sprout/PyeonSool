@@ -23,25 +23,23 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Page<Alcohol> findAllByType(AlcoholType alcoholType, Pageable pageable,
-                                       List<String> keywords, String search, VendorName vendorName) {
+    public Page<Alcohol> findAllByType(Pageable pageable, AlcoholSearchConditionDto condition) {
 
         List<Alcohol> result = queryFactory.selectFrom(alcohol)
-                .where(keywordAlcoholIdIn(keywords),
-                        vendorAlcoholIdEq(vendorName),
-                        alcoholNameContains(search),
-                        alcoholTypeEq(alcoholType))
+                .where(keywordAlcoholIdIn(condition.getKeywords()),
+                        vendorAlcoholIdEq(condition.getVendorName()),
+                        alcoholNameContains(condition.getSearch()),
+                        alcoholTypeEq(condition.getAlcoholType()))
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
                 .fetch();
 
         JPAQuery<Long> countQuery = queryFactory.select(alcohol.count())
                 .from(alcohol)
-                .where(keywordAlcoholIdIn(keywords),
-                        vendorAlcoholIdEq(vendorName),
-                        alcoholNameContains(search),
-                        alcoholTypeEq(alcoholType)
-                );
+                .where(keywordAlcoholIdIn(condition.getKeywords()),
+                        vendorAlcoholIdEq(condition.getVendorName()),
+                        alcoholNameContains(condition.getSearch()),
+                        alcoholTypeEq(condition.getAlcoholType()));
 
         return PageableExecutionUtils.getPage(result, pageable, countQuery::fetchOne);
     }
