@@ -1,7 +1,11 @@
 package toyproject.pyeonsool.repository;
 
+import com.querydsl.jpa.impl.JPAQuery;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.support.PageableExecutionUtils;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Review;
 import toyproject.pyeonsool.service.QReviewImageDto;
@@ -26,22 +30,29 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
     }
 
     @Override
-    public List<Review> getReviewImage(Long memberId, Long limit){
-            List<ReviewImageDto> result = queryFactory
+    public Page<ReviewImageDto> getReviewImage(Long memberId, Pageable pageable) {
+        List<ReviewImageDto> result = queryFactory
                 .select(new QReviewImageDto(
-                        review.reviewId,
-                        image,
+                        review.id,
+                        alcohol.fileName,
                         review.lastModifiedDate,
                         review.grade,
                         review.content,
                         review.recommendCount,
                         review.notRecommendCount))
                 .from(review)
-                .join(review.alcohol,alcohol)
+                .join(review.alcohol, alcohol)
                 .where(review.member.id.eq(memberId))
-                .limit(limit)
+                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset())
+                .orderBy(review.id.desc())
                 .fetch();
 
-            return result;
+        JPAQuery<Long> countQuery = queryFactory
+                .select(review.count())
+                .from(review)
+                .where(review.member.id.eq(memberId));
+
+        return PageableExecutionUtils.getPage(result, pageable, countQuery::fetchOne);
     }
 }
