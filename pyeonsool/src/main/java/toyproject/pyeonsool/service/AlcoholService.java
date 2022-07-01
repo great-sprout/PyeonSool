@@ -174,7 +174,7 @@ public class AlcoholService {
     }
     
     //나의 키워드 조회
-    public List<Long> getMykeywords(Long loginId) {
+    public List<Long> getMyKeywords(Long loginId) {
         return myKeywordRepository.getMyKeywords(loginId); //memberId=1L로 들어감
     }
     //나의 키워드에 맞는 알콜 조회
@@ -182,22 +182,22 @@ public class AlcoholService {
         return alcoholKeywordRepository.getAlcoholByKeyword(mykeywords);
     }
     //나의 키워드가 포함된 추천 알콜 조회
-    public List<MainPageDto> getYourAlcohols(List<Long> alcohols) {
-        List<Long> yourAlcohols = preferredAlcoholRepository.getPreferredAlcoholByKeyword(alcohols);
+    public List<MainPageDto> getYourAlcohols(List<Long> alcoholIds) {
+        List<Long> yourAlcoholIds = preferredAlcoholRepository.getPreferredAlcoholByKeyword(alcoholIds);
         List<MainPageDto> alcoholDetailsList = new ArrayList<>(); //해당 술 DTO List
         //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
-        for (Long pyeonsool : yourAlcohols) {
-            Alcohol alcohol = alcoholRepository.findById(pyeonsool).orElse(null);
+        for (Long yourAlcoholId : yourAlcoholIds) {
+            Alcohol alcohol = alcoholRepository.findById(yourAlcoholId).orElse(null);
             String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
 
             List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
             Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
-            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(pyeonsool)) {
+            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(yourAlcoholId)) {
                 alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
             }
 
             alcoholDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
-                    preferredAlcoholRepository.getLikeCount(pyeonsool)));
+                    preferredAlcoholRepository.getLikeCount(yourAlcoholId)));
         }
         return alcoholDetailsList;
     }

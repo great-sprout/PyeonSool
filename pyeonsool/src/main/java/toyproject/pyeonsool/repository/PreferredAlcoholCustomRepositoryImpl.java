@@ -61,11 +61,11 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
     }
 
     @Override //나의 키워드가 포함된 알콜과 일치하는 선호하는 알콜 조회
-    public List<Long> getPreferredAlcoholByKeyword(List<Long> keywordAlcohol) {
+    public List<Long> getPreferredAlcoholByKeyword(List<Long> keywordAlcoholId) {
         return queryFactory
                 .select(preferredAlcohol.alcohol.id)
                 .from(preferredAlcohol)
-                .where(preferredAlcohol.alcohol.id.in(keywordAlcohol))
+                .where(preferredAlcohol.alcohol.id.in(keywordAlcoholId))
                 .fetch();
     }
 }

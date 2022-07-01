@@ -30,38 +30,27 @@ public class HomeController {
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
             Model model) {
 
-        //이달의 추천
-        List<MainPageDto> monthAlcohols = alcoholService.getMonthAlcohols();
-        //베스트 Like
-        List<MainPageDto> sojus = alcoholService.getBestLike(AlcoholType.SOJU, 4);
-        List<MainPageDto> beers = alcoholService.getBestLike(AlcoholType.BEER, 4);
-        List<MainPageDto> wines = alcoholService.getBestLike(AlcoholType.WINE, 4);
+        model.addAttribute("sojus", alcoholService.getBestLike(AlcoholType.SOJU, 4));
+        model.addAttribute("beers", alcoholService.getBestLike(AlcoholType.BEER, 4));
+        model.addAttribute("wines", alcoholService.getBestLike(AlcoholType.WINE, 4));
 
         //블럭처리할 이미지 전달
         if (loginMember == null) {
-            List<MainPageDto> pyeonsools = alcoholService.getMonthAlcohols();
             model.addAttribute("isLogin", false);
-            model.addAttribute("monthAlcohols", monthAlcohols);
-            model.addAttribute("pyeonsools", pyeonsools);
-            model.addAttribute("sojus", sojus);
-            model.addAttribute("beers", beers);
-            model.addAttribute("wines", wines);
+            model.addAttribute("monthAlcohols", alcoholService.getMonthAlcohols());
+            model.addAttribute("pyeonsools", alcoholService.getMonthAlcohols()); // 수정 필요
+
             return "mainPage";
         }
 
         //당신의 편술
-        List<Long> mykeywords = alcoholService.getMykeywords(loginMember.getId());
-        List<Long> alcohols = alcoholService.getAlcohols(mykeywords);
-        List<MainPageDto> pyeonsools = alcoholService.getYourAlcohols(alcohols);
+        List<Long> mykeywords = alcoholService.getMyKeywords(loginMember.getId());
+        List<Long> alcoholIds = alcoholService.getAlcohols(mykeywords);
+        List<MainPageDto> pyeonsools = alcoholService.getYourAlcohols(alcoholIds);
 
         model.addAttribute("isLogin", true);
-//        model.addAttribute("loginmember", loginMember);
-//        model.addAttribute("selectkeywords", mykeywords);
-        model.addAttribute("monthAlcohols", monthAlcohols);
+        model.addAttribute("monthAlcohols", alcoholService.getMonthAlcohols());
         model.addAttribute("pyeonsools", pyeonsools);
-        model.addAttribute("sojus", sojus);
-        model.addAttribute("beers", beers);
-        model.addAttribute("wines", wines);
 
         /*마이 키워드*/
         if (loginMember!=null) {

@@ -16,6 +16,6 @@ public interface PreferredAlcoholCustomRepository {
     List<Alcohol> getAlcohols(Long memberId, Long limit);
 
     //나의 키워드가 포함된 선호하는 알콜 조회
-    List<Long> getPreferredAlcoholByKeyword(List<Long> keywordAlcohol);
+    List<Long> getPreferredAlcoholByKeyword(List<Long> keywordAlcoholId);
 
 }
