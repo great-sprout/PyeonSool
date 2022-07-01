@@ -141,13 +141,17 @@ class AlcoholRepositoryTest {
                 null,"리",GS25);
         Page<Alcohol> result4 = alcoholRepository.findAllByType(BEER,
                 PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
-                null,null,CU);
+                null,null, GS25);
+        Page<Alcohol> result5 = alcoholRepository.findAllByType(BEER,
+                PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")),
+                null,null, null);
 
         assertThat(result.getContent().size()).isEqualTo(1);
         assertThat(result1.getContent().size()).isEqualTo(7);
         assertThat(result2.getContent().size()).isEqualTo(1);
         assertThat(result3.getContent().size()).isEqualTo(1);
-        assertThat(result4.getContent().size()).isEqualTo(1);
+        assertThat(result4.getContent().size()).isEqualTo(8);
+        assertThat(result5.getContent().size()).isEqualTo(8);
 
 
         System.out.println("result2 = " + result2.getContent().get(0).getName());

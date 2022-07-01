@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
-import org.springframework.util.StringUtils;
 import toyproject.pyeonsool.domain.*;
 
 import java.util.List;
@@ -26,57 +25,61 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
     @Override
     public Page<Alcohol> findAllByType(AlcoholType alcoholType, Pageable pageable,
                                        List<String> keywords, String search, VendorName vendorName) {
-       /* List<Alcohol> result = queryFactory.selectFrom(alcohol)
-                .where(keywordAlcoholIdIn(keywords),
-                        alcoholNameLike(search),
-                        vendorAlcoholIdEq(vendorName),
-                        alcoholTypeEq(alcoholType))
-                .limit(pageable.getPageSize())
-                .offset(pageable.getOffset())
-                .fetch();*/
-        List<Alcohol> result = queryFactory.selectFrom(alcohol)
-                .where(
-                        vendorAlcoholIdEq(vendorName),
 
+        List<Alcohol> result = queryFactory.selectFrom(alcohol)
+                .where(keywordAlcoholIdIn(keywords),
+                        vendorAlcoholIdEq(vendorName),
+                        alcoholNameContains(search),
                         alcoholTypeEq(alcoholType))
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
                 .fetch();
 
         JPAQuery<Long> countQuery = queryFactory.select(alcohol.count())
-                .where(
-
+                .from(alcohol)
+                .where(keywordAlcoholIdIn(keywords),
                         vendorAlcoholIdEq(vendorName),
+                        alcoholNameContains(search),
                         alcoholTypeEq(alcoholType)
                 );
-        System.out.println("keywordAlcoholIdIn(keywords) = " + keywordAlcoholIdIn(keywords));
-        System.out.println("alcoholNameLike(search) = " + alcoholNameLike(search));
-        System.out.println("vendorAlcoholIdEq(vendorName) = " + vendorAlcoholIdEq(vendorName));
-        System.out.println("alcoholTypeEq(alcoholType) = " + alcoholTypeEq(alcoholType));
+
         return PageableExecutionUtils.getPage(result, pageable, countQuery::fetchOne);
     }
 
     private BooleanExpression alcoholTypeEq(AlcoholType alcoholType) {
-        return alcoholType != null ? alcohol.type.eq(alcoholType) : null;
+        if (alcoholType == null) {
+            return null;
+        }
+        return alcohol.type.eq(alcoholType);
     }
 
     private BooleanExpression vendorAlcoholIdEq(VendorName vendorName) {
-        return vendorName != null ? alcohol.id.in(JPAExpressions
+        if (vendorName == null) {
+            return null;
+        }
+
+        return alcohol.id.in(JPAExpressions
                 .select(vendor.alcohol.id)
                 .from(vendor)
-                .where(vendor.name.eq(vendorName))) : null;
+                .where(vendor.name.eq(vendorName)));
     }
 
-    private BooleanExpression alcoholNameLike(String search) {
-
-        return hasText(search) ? alcohol.name.contains(search) :null;
+    private BooleanExpression alcoholNameContains(String search) {
+        if (!hasText(search)) {
+            return null;
+        }
+        return alcohol.name.contains(search);
     }
 
     private BooleanExpression keywordAlcoholIdIn(List<String> keywords) {
-        return keywords != null ? alcohol.id.in(queryFactory
+        if (keywords == null || keywords.isEmpty()) {
+            return null;
+        }
+
+        return alcohol.id.in(queryFactory
                 .select(alcoholKeyword.alcohol.id)
                 .from(alcoholKeyword)
                 .join(alcoholKeyword.keyword, keyword)
-                .where(alcoholKeyword.keyword.name.in(keywords))) : null;
+                .where(alcoholKeyword.keyword.name.in(keywords)));
     }
 }
