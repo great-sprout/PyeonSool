@@ -18,6 +18,7 @@ import static toyproject.pyeonsool.domain.AlcoholType.*;
 import static toyproject.pyeonsool.domain.AlcoholType.WINE;
 
 
+
 @DataJpaTest
 @Import(AppConfig.class)
 class PreferredAlcoholCustomRepositoryImplTest {
@@ -30,7 +31,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
 
 
     @Test
-    void getMyList() {
+    void getAlcohols() {
         //given
         Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
         em.persist(member);
@@ -49,7 +50,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
         em.persist(new PreferredAlcohol(member, alcoholTwo));
 
         //then
-        Assertions.assertThat(preferredAlcoholRepository.getMyList(member.getId()).size())
+        Assertions.assertThat(preferredAlcoholRepository.getAlcohols(member.getId(),12L).size())
                 .isEqualTo(3);
     }
 
