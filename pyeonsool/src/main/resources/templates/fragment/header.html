@@ -55,10 +55,10 @@
                   </form>
                 </div>
 
-                <div class="header-profile__keywords">
-                  <span class="keyword">#달콤함</span>
-                  <span class="keyword">#깔끔함</span>
-                  <span class="keyword">#묵직함</span>
+                <div class="header-profile__keywords" >
+                  <th:blcok th:each="keyword:${personalKeywords}">
+                  <span class="keyword" th:text="${keyword}">#달콤함</span>
+                  </th:blcok>
                 </div>
 
                 <div class="header-profile__select-again-keyword-wrap">
