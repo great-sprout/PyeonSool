@@ -45,13 +45,10 @@ public class AlcoholController {
         model.addAttribute("typeList", alcoholPage.getContent());
         model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/
         //상품 목록
-        System.out.println("getAlcoholType(alcoholSearchForm) = " + getAlcoholType(alcoholSearchForm));
         model.addAttribute(
                 "bestList", alcoholService.getBestLike(getAlcoholType(alcoholSearchForm), 6));
         //베스트 상품 목록 ( 아직 4개)
-
         return "listPage";
-
     }
 
     private AlcoholType getAlcoholType(AlcoholSearchForm alcoholSearchForm) {
