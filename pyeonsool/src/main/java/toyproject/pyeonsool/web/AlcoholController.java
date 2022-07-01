@@ -26,10 +26,12 @@ public class AlcoholController {
 
     private final AlcoholService alcoholService;
     private final ReviewService reviewService;
+    private final MemberService memberService;
 
 
     @GetMapping
     public String getListPage(@RequestParam String alcoholType,
+                              @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
                               @PageableDefault(sort = "id", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
                               Model model) {
         Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(AlcoholType.valueOf(alcoholType), pageable);
@@ -40,7 +42,11 @@ public class AlcoholController {
         List<MainPageDto> bestLikes = alcoholService.getBestLike(AlcoholType.valueOf(alcoholType),6);
         model.addAttribute("bestList",bestLikes);
         //베스트 상품 목록 ( 아직 4개)
-
+        /*마이 키워드*/
+        if (loginMember!=null) {
+            List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
+            model.addAttribute("personalKeywords", myKeywords);
+        }
         return "listPage";
 
     }
@@ -60,7 +66,11 @@ public class AlcoholController {
         Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
         model.addAttribute("reviews", reviewPage.getContent());
-
+        /*마이 키워드*/
+        if (loginMember!=null) {
+            List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
+            model.addAttribute("personalKeywords", myKeywords);
+        }
         return "detailPage";
     }
 
