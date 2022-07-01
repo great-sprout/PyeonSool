@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.service.AlcoholImageDto;
 
 import java.util.List;
 
@@ -79,5 +80,10 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 .from(alcoholKeyword)
                 .join(alcoholKeyword.keyword, keyword)
                 .where(alcoholKeyword.keyword.name.in(keywords)));
+    }
+
+    @Override
+    public List<AlcoholImageDto> alcoholImagesByMemberId(Long memberId) {
+        return null;
     }
 }
