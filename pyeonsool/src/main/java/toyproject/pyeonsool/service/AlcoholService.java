@@ -63,7 +63,7 @@ public class AlcoholService {
         return "-";
     }
 
-    private Map<String, String> createKeywordMap() {
+    public static Map<String, String> createKeywordMap() {
         Map<String, String> keywordMap = new HashMap<>();
         keywordMap.put("sweet", "달콤함");
         keywordMap.put("clear", "깔끔함");

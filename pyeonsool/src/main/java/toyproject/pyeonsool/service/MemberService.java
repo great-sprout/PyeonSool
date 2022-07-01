@@ -12,7 +12,9 @@ import toyproject.pyeonsool.repository.*;
 import toyproject.pyeonsool.web.MemberSaveForm;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,5 +63,16 @@ public class MemberService {
         if (memberRepository.existsByPhoneNumber(phoneNumber)) {
             throw new IllegalArgumentException("이미 사용중인 핸드폰 번호입니다.");
         }
+    }
+
+    public List<String> getMyKeywordsKOR(Long memberId) {
+        List<String> myKeywords = new ArrayList<>(); //keyword List(한글)
+        Map<String, String> keywordMap = AlcoholService.createKeywordMap(); //keyword Map(key, Value)
+
+        for (String keyword : myKeywordRepository.myKeywordList(memberId)) {
+            myKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
+        }
+        return myKeywords;
+
     }
 }
