@@ -94,10 +94,19 @@ class AlcoholRepositoryTest {
         ArrayList<Page<Alcohol>> alcoholPages = new ArrayList<>();
         for (AlcoholSearchConditionDto condition : conditions) {
             alcoholPages.add(alcoholRepository.findAllByType(
-                    PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")), condition));
+                    PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")), condition,"price","asc"));
         }
 
         //then
+        int i=1;
+        for (Page<Alcohol> a: alcoholPages) {
+            System.out.println(i);
+            for(Alcohol s : a) {
+                System.out.println("hello = " + s.getName() + " price : " + s.getPrice());
+            }
+            i++;
+            System.out.println("------------------");
+        }
         assertThat(alcoholPages.get(0).getContent().size()).isEqualTo(1);
         assertThat(alcoholPages.get(1).getContent().size()).isEqualTo(7);
         assertThat(alcoholPages.get(2).getContent().size()).isEqualTo(1);

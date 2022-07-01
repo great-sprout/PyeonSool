@@ -1,5 +1,6 @@
 package toyproject.pyeonsool.repository;
 
+import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -16,6 +17,7 @@ import static org.springframework.util.StringUtils.*;
 import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
 import static toyproject.pyeonsool.domain.QAlcoholKeyword.alcoholKeyword;
 import static toyproject.pyeonsool.domain.QKeyword.keyword;
+import static toyproject.pyeonsool.domain.QPreferredAlcohol.preferredAlcohol;
 import static toyproject.pyeonsool.domain.QVendor.vendor;
 
 @RequiredArgsConstructor
@@ -23,13 +25,14 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Page<Alcohol> findAllByType(Pageable pageable, AlcoholSearchConditionDto condition) {
+    public Page<Alcohol> findAllByType(Pageable pageable, AlcoholSearchConditionDto condition,String sortType,String standard) {
 
         List<Alcohol> result = queryFactory.selectFrom(alcohol)
                 .where(keywordAlcoholIdIn(condition.getKeywords()),
                         vendorAlcoholIdEq(condition.getVendorName()),
                         alcoholNameContains(condition.getSearch()),
                         alcoholTypeEq(condition.getAlcoholType()))
+                .orderBy(bySort(sortType,standard))
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
                 .fetch();
@@ -80,4 +83,24 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 .join(alcoholKeyword.keyword, keyword)
                 .where(alcoholKeyword.keyword.name.in(keywords)));
     }
+    private OrderSpecifier<?> bySort(String sortType, String standard){
+        if(sortType.equals("abv")){
+            if (standard.equals("desc")){
+                return alcohol.abv.desc();
+            }
+            else{
+                return alcohol.abv.asc();
+            }
+        }
+       else if(sortType.equals("price")){
+           if(standard.equals("desc")){
+               return alcohol.price.desc();
+           }
+           else{
+               return alcohol.price.asc();
+           }
+        }
+       else{ return null;}
+    }
+
 }
