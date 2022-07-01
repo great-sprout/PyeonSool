@@ -2,14 +2,10 @@ package toyproject.pyeonsool.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import toyproject.pyeonsool.domain.Keyword;
-import toyproject.pyeonsool.domain.QKeyword;
-import toyproject.pyeonsool.domain.QMember;
-import toyproject.pyeonsool.domain.QMyKeyword;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.QKeyword.*;
+import static toyproject.pyeonsool.domain.QKeyword.keyword;
 import static toyproject.pyeonsool.domain.QMember.member;
 import static toyproject.pyeonsool.domain.QMyKeyword.myKeyword;
 
@@ -26,4 +22,12 @@ public class MyKeywordCustomRepositoryImpl implements MyKeywordCustomRepository 
                 .fetch();
     }
 
+    @Override //나의 키워드 조회
+    public List<Long> getMyKeywords(Long loginId) {
+        return queryFactory
+                .select(keyword.id)
+                .from(myKeyword)
+                .where(member.id.eq(loginId))
+                .fetch();
+    }
 }

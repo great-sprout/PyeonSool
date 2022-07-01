@@ -15,5 +15,7 @@ public interface PreferredAlcoholCustomRepository {
     //내 Like 리스트 반환값
     List<Alcohol> getAlcohols(Long memberId, Long limit);
 
+    //나의 키워드가 포함된 선호하는 알콜 조회
+    List<Long> getPreferredAlcoholByKeyword(List<Long> keywordAlcohol);
 
 }
