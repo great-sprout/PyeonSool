@@ -123,6 +123,9 @@ public class initDB {
             em.persist(memberKeyword12);
 
 
+            //나의 키워드 초기값
+            persistMyKeywords(keywords, members);
+
             em.flush();
             em.clear();
         }
@@ -438,7 +441,14 @@ public class initDB {
             for (int i = 0; i < keywords.length; i++) {
                 keywords[i] = new Keyword(keywordNames[i]);
             }
+        }
 
+
+        //나의 키워드
+        private void persistMyKeywords(Keyword[] keywords, Member[] members) {
+            em.persist(new MyKeyword(members[0], keywords[1])); //준영,clear
+            em.persist(new MyKeyword(members[0], keywords[2])); //준영,cool
+            em.persist(new MyKeyword(members[0], keywords[4])); //준영,light
         }
         
 

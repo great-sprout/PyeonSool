@@ -25,6 +25,8 @@ public class AlcoholService {
     private final VendorRepository vendorRepository;
     private final ReviewRepository reviewRepository;
     private final FileManager fileManager;
+    private final MyKeywordRepository myKeywordRepository;
+
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null); //Alcohol 엔티티
@@ -170,15 +172,42 @@ public class AlcoholService {
         }
         return alcoholDetailsList;
     }
+    
+    //나의 키워드 조회
+    public List<Long> getMykeywords(Long loginId) {
+        return myKeywordRepository.getMyKeywords(loginId); //memberId=1L로 들어감
+    }
+    //나의 키워드에 맞는 알콜 조회
+    public List<Long> getAlcohols(List<Long> mykeywords) {
+        return alcoholKeywordRepository.getAlcoholByKeyword(mykeywords);
+    }
+    //나의 키워드가 포함된 추천 알콜 조회
+    public List<MainPageDto> getYourAlcohols(List<Long> alcohols) {
+        List<Long> yourAlcohols = preferredAlcoholRepository.getPreferredAlcoholByKeyword(alcohols);
+        List<MainPageDto> alcoholDetailsList = new ArrayList<>(); //해당 술 DTO List
+        //각각의 alcohol_id에 맞는 DTO를 찾아 List에 담는다
+        for (Long pyeonsool : yourAlcohols) {
+            Alcohol alcohol = alcoholRepository.findById(pyeonsool).orElse(null);
+            String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+
+            List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
+            Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
+            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(pyeonsool)) {
+                alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
+            }
+
+            alcoholDetailsList.add(MainPageDto.of(alcohol, alcoholImagePath, alcoholKeywords,
+                    preferredAlcoholRepository.getLikeCount(pyeonsool)));
+        }
+        return alcoholDetailsList;
+    }
 
     public List<MainPageDto> getBestLike(AlcoholType alcoholType, int count) { //각 타입별 술 DTO 반환
         //베스트 Like
         List<MainPageDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
 
-        List<Long> preferList = preferredAlcoholRepository.getAlcoholByType(alcoholType, count); //alcohol_id List
-
+        List<Long> preferList= preferredAlcoholRepository.getAlcoholByType(alcoholType,count); //alcohol_id List
         //각각의 alcoholType에 맞는 DTO를 찾아 List에 담는다
-
         for (Long alcoholId : preferList) {
             Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
             String alcoholImagePath = fileManager.getAlcoholImagePath(alcoholType, alcohol.getFileName());

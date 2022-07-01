@@ -53,6 +53,7 @@
                     <h2 class="recommend__yours-title">당신의 편술</h2>
                 </div>
                 <!-- 슬라이딩 리스트 -->
+                <!-- 이달의 추천 -->
                 <div class="recommend__list recommend__list--month">
                     <div class="slide-button slide-button--left">&lt;</div>
                     <div class="slide-button slide-button--right">&gt;</div>
@@ -75,111 +76,40 @@
                     </div>
                     <div class="recommend__count-circles"></div>
                 </div>
-
+                <!-- 당신의 편술 -->
                 <div class="recommend__list recommend__list--yours unvisible">
                     <div class="slide-button slide-button--left">&lt;</div>
                     <div class="slide-button slide-button--right">&gt;</div>
 
                     <div class="recommend__items-wrap">
                         <ul class="recommend__items">
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/beer/carlsberg.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
+                            <th:block th:if="${isLogin}" th:each="pyeonsool : ${pyeonsools}">
+                                <li class="recommend__item">
+                                    <a href="#"
+                                       th:href="@{/alcohols/{alcoholId}(alcoholId = ${pyeonsool.alcoholId})}">
+                                        <img
+                                                src="/image/alcohol/beer/carlsberg.png"
+                                                th:src="${pyeonsool.imagePath}"
+                                                alt="alcohol"
+                                                class="recommend__image"
+                                        />
+                                    </a>
+                                </li>
+                            </th:block>
+                            <th:block th:unless="${isLogin}" th:each="num : ${#numbers.sequence(1,12)}">
+                                <li class="recommend__item">
+                                    <a href="#"
+                                       th:href="@{#}">
+                                        <img
+                                                src="/image/alcohol/beer/carlsberg.png"
+                                                th:src="@{/image/alcohol/beer/carlsberg.png}"
+                                                alt="alcohol"
+                                                class="recommend__image blur"
+                                        />
+                                    </a>
+                                </li>
+                            </th:block>
 
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/soju/chamisul.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/soju/chamisul.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/soju/chamisul.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/beer/calsberg.jpg"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/beer/cass-fresh.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/beer/cass-fresh.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/beer/cass-fresh.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/beer/cass-fresh.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/beer/cass-fresh.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
-
-                            <li class="recommend__item" onclick="location.href='#'">
-                                <img
-                                        src="/image/alcohol/beer/cass-fresh.png"
-                                        th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                        alt="alcohol"
-                                        class="recommend__image"
-                                />
-                            </li>
                         </ul>
                     </div>
 
