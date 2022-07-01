@@ -12,6 +12,8 @@ import toyproject.pyeonsool.service.MemberService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import java.util.List;
+
 import static java.util.Objects.*;
 
 @Controller
@@ -31,6 +33,12 @@ public class MemberController {
             Model model) {
         // TODO loginMember null값 검증
         model.addAttribute("myLikeList", alcoholService.getAlcoholImages(loginMember.getId()));
+        /*마이 키워드*/
+        if (loginMember!=null) {
+            List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
+            model.addAttribute("personalKeywords", myKeywords);
+        }
+
         return "myPage";
     }
 
