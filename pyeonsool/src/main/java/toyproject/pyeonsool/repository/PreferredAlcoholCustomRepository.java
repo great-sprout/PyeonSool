@@ -14,6 +14,7 @@ public interface PreferredAlcoholCustomRepository {
 
     Long getLikeCount(Long alcoholId);
 
-
+    //나의 키워드가 포함된 선호하는 알콜 조회
+    List<Long> getPreferredAlcoholByKeyword(List<Long> keywordAlcohol);
 
 }

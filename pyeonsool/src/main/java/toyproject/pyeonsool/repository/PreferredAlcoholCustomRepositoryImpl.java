@@ -50,14 +50,6 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetch();
     }
 
-    public Long getMemberId(Long alcoholId){
-        return queryFactory
-                .select(preferredAlcohol.member.id.count())
-                .from(preferredAlcohol)
-                .where(preferredAlcohol.alcohol.id.eq(alcoholId))
-                .fetchOne();
-    }
-
     @Override
     public Long getLikeCount(Long alcoholId) {
 
@@ -68,4 +60,12 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetchOne();
     }
 
+    @Override //나의 키워드가 포함된 알콜과 일치하는 선호하는 알콜 조회
+    public List<Long> getPreferredAlcoholByKeyword(List<Long> keywordAlcohol) {
+        return queryFactory
+                .select(preferredAlcohol.alcohol.id)
+                .from(preferredAlcohol)
+                .where(preferredAlcohol.alcohol.id.in(keywordAlcohol))
+                .fetch();
+    }
 }
