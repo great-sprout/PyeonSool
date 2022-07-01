@@ -1,5 +1,8 @@
 package toyproject.pyeonsool.repository;
 
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -17,6 +20,8 @@ import static org.springframework.util.StringUtils.*;
 import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
 import static toyproject.pyeonsool.domain.QAlcoholKeyword.alcoholKeyword;
 import static toyproject.pyeonsool.domain.QKeyword.keyword;
+import static toyproject.pyeonsool.domain.QMyKeyword.*;
+import static toyproject.pyeonsool.domain.QPreferredAlcohol.*;
 import static toyproject.pyeonsool.domain.QVendor.vendor;
 
 @RequiredArgsConstructor
@@ -84,6 +89,30 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
 
     @Override
     public List<AlcoholImageDto> alcoholImagesByMemberId(Long memberId) {
-        return null;
+        //서브쿼리문 별칭!!!!!!!!!
+        List<Tuple> list_count = queryFactory
+                .select(preferredAlcohol.alcohol.id,
+                        preferredAlcohol.alcohol.id.count().as("count"))
+                .from(preferredAlcohol)
+                .groupBy(preferredAlcohol.alcohol.id)
+                .fetch();
+        return queryFactory
+                .select(alcohol.id, alcohol.fileName)
+                .from(alcohol)
+                .leftJoin(ExpressionUtils.as(JPAExpressions
+                        .select(preferredAlcohol.alcohol.id, preferredAlcohol.alcohol.id.count().as("count"))
+                        .from(preferredAlcohol)
+                        .groupBy(preferredAlcohol.alcohol.id), "like_count"))
+                .on(like_count.alcohol.id.eq(alcohol.id))
+                .where(alcohol.id.in(JPAExpressions
+                        .select(ak.id)
+                        .from(myKeyword.as("mk"))
+                        .join(alcoholKeyword.as("ak"))
+                        .on(ak.keyword.id.eq(mk.keyword.id))
+                        .where()))
+                .fetch();
+
+
+
     }
 }
