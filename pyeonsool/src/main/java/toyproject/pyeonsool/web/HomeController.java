@@ -12,6 +12,7 @@ import toyproject.pyeonsool.repository.PreferredAlcoholCustomRepositoryImpl;
 import toyproject.pyeonsool.service.AlcoholDetailsDto;
 import toyproject.pyeonsool.service.AlcoholService;
 import toyproject.pyeonsool.service.MainPageDto;
+import toyproject.pyeonsool.service.MemberService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ import static java.util.Objects.isNull;
 public class HomeController {
 
     private final AlcoholService alcoholService;
+    private final MemberService memberService;
     private final PreferredAlcoholCustomRepositoryImpl preferAlcohol;
 
 
@@ -45,6 +47,11 @@ public class HomeController {
         model.addAttribute("beers", beers);
         model.addAttribute("wines", wines);
 
+        /*마이 키워드*/
+        if (loginMember!=null) {
+            List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
+            model.addAttribute("personalKeywords", myKeywords);
+        }
         return "mainPage";
     }
 }
