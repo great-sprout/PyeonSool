@@ -3,6 +3,7 @@ package toyproject.pyeonsool.service;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Review;
 
 import java.time.LocalDateTime;

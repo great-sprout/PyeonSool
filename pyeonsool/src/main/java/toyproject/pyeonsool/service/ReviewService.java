@@ -2,16 +2,17 @@ package toyproject.pyeonsool.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import toyproject.pyeonsool.FileManager;
 import toyproject.pyeonsool.domain.*;
-import toyproject.pyeonsool.repository.AlcoholRepository;
-import toyproject.pyeonsool.repository.MemberRepository;
-import toyproject.pyeonsool.repository.RecommendedReviewRepository;
-import toyproject.pyeonsool.repository.ReviewRepository;
+import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static java.util.Objects.*;
@@ -25,6 +26,7 @@ public class ReviewService {
     private final AlcoholRepository alcoholRepository;
     private final MemberRepository memberRepository;
     private final RecommendedReviewRepository recommendedReviewRepository;
+
 
     public long addReview(long memberId, long alcoholId, byte grade, String content) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId)
@@ -116,5 +118,17 @@ public class ReviewService {
                         review.minusNotRecommendCount();
                     }
                 });
+    }
+    //마이페이지 내 리뷰 리스트 서비스
+   public Page<ReviewImageDto> getReviewImages(Long memberId, Pageable pageable){
+        return reviewRepository.getReviewImage(memberId, pageable)
+                .map(review -> new ReviewImageDto(review.getReviewId(),
+                        review.getFileName(),
+                        review.getLastModifiedDate(),
+                        review.getGrade(),
+                        review.getContent(),
+                        review.getRecommendCount(),
+                        review.getNotRecommendCount()
+                        ));
     }
 }
