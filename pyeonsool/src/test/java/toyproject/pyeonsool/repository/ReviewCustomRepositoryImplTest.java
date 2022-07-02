@@ -60,8 +60,7 @@ public class ReviewCustomRepositoryImplTest {
         assertThat(reviewImage.getContent().size()).isEqualTo(3);
         assertThat(reviewImage.isFirst()).isTrue();
         assertThat(reviewImage.hasNext()).isFalse();
-        assertThat(reviewImage.getContent().size()).isEqualTo(3);
 
 
-
+    }
 }
