@@ -43,7 +43,7 @@ public class AlcoholController {
                         alcoholSearchForm.getKeywords(),
                         alcoholSearchForm.getSearch(),
                         getVendorName(alcoholSearchForm),
-                        null, null));
+                         null));
 
         model.addAttribute("typeList", alcoholPage.getContent());
         model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/

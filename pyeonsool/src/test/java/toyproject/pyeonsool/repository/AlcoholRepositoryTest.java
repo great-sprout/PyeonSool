@@ -83,12 +83,12 @@ class AlcoholRepositoryTest {
 
         //when
         AlcoholSearchConditionDto[] conditions = new AlcoholSearchConditionDto[]{
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25,null,null),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25,null,null),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null,null,null),
-                new AlcoholSearchConditionDto(BEER, null, "리", GS25,null,null),
-                new AlcoholSearchConditionDto(BEER, null, null, null ,"price","asc"),
-                new AlcoholSearchConditionDto(BEER, null, null, null ,"abv","desc")
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25,null),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25,null),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null,null),
+                new AlcoholSearchConditionDto(BEER, null, "리", GS25,null),
+                new AlcoholSearchConditionDto(BEER, null, null, null ,"priceAsc"),
+                new AlcoholSearchConditionDto(BEER, null, null, null ,"abvDesc")
         };
 
         ArrayList<Page<Alcohol>> alcoholPages = new ArrayList<>();
@@ -102,7 +102,7 @@ class AlcoholRepositoryTest {
         for (Page<Alcohol> a: alcoholPages) {
             System.out.println(i);
             for(Alcohol s : a) {
-                System.out.println("hello = " + s.getName() + " price : " + s.getPrice());
+                System.out.println("hello = " + s.getName() +" abv : " + s.getAbv()+ " price : " + s.getPrice()+" likecount : " + s.getLikeCount()) ;
             }
             i++;
             System.out.println("------------------");

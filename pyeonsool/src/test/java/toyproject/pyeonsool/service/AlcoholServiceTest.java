@@ -199,7 +199,7 @@ class AlcoholServiceTest {
         //when
         Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(
                 PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")),
-                new AlcoholSearchConditionDto(BEER, List.of("cool", "clear"), "리", GS25, null, null));
+                new AlcoholSearchConditionDto(BEER, List.of("cool", "clear"), "리", GS25, null));
 
         //then
         assertThat(alcoholType.isLast()).isTrue();

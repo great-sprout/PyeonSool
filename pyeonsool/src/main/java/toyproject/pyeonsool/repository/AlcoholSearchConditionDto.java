@@ -16,5 +16,4 @@ public class AlcoholSearchConditionDto {
     private String search;
     private VendorName vendorName;
     private String sortType;
-    private String standard;
 }
