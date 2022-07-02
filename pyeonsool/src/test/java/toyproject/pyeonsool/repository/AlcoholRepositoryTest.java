@@ -83,12 +83,12 @@ class AlcoholRepositoryTest {
 
         //when
         AlcoholSearchConditionDto[] conditions = new AlcoholSearchConditionDto[]{
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25,null,null),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25,null,null),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null,null,null),
-                new AlcoholSearchConditionDto(BEER, null, "리", GS25,null,null),
-                new AlcoholSearchConditionDto(BEER, null, null, null ,"price","asc"),
-                new AlcoholSearchConditionDto(BEER, null, null, null ,"abv","desc")
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25, null, null),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25, null, null),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null, null, null),
+                new AlcoholSearchConditionDto(BEER, null, "리", GS25, null, null),
+                new AlcoholSearchConditionDto(BEER, null, null, null, "price", "asc"),
+                new AlcoholSearchConditionDto(BEER, null, null, null, "abv", "desc")
         };
 
         ArrayList<Page<Alcohol>> alcoholPages = new ArrayList<>();
@@ -98,10 +98,10 @@ class AlcoholRepositoryTest {
         }
 
         //then
-        int i=1;
-        for (Page<Alcohol> a: alcoholPages) {
+        int i = 1;
+        for (Page<Alcohol> a : alcoholPages) {
             System.out.println(i);
-            for(Alcohol s : a) {
+            for (Alcohol s : a) {
                 System.out.println("hello = " + s.getName() + " price : " + s.getPrice());
             }
             i++;
@@ -121,9 +121,7 @@ class AlcoholRepositoryTest {
         List<Member> members = List.of(
                 new Member("준영이", "chlwnsdud121", "1234", "01012345678"),
                 new Member("영준이", "chldudwns121", "1234", "01023456789"),
-                new Member("춘향이", "chlcnsgid121", "1234", "01043218765"),
-                new Member("지환이", "tlswlghks121", "1234", "01012341234"),
-                new Member("몽룡이", "dlahdfyd121", "1234", "01043214321")
+                new Member("춘향이", "chlcnsgid121", "1234", "01043218765")
         );
         for (Member m : members) {
             em.persist(m);
@@ -140,29 +138,41 @@ class AlcoholRepositoryTest {
 
         List<Alcohol> alcoholList = List.of(
                 new Alcohol(SOJU, "jinro.jpg", "진로 이즈 백", 1800, 16.5f,
-                        null, null, "하이트 진로(주)", "대한민국"),
+                        null, null, "하이트 진로(주)", "대한민국", 0L),
                 new Alcohol(SOJU, "jamong-chamisul.jpg", "자몽에 이슬", 1900, 13f,
-                        null, null, "하이트 진로(주)", "대한민국"),
+                        null, null, "하이트 진로(주)", "대한민국", 0L),
                 new Alcohol(SOJU, "chamisul.png", "참이슬", 1950, 16.5f,
-                        null, null, "하이트 진로(주)", "대한민국")
+                        null, null, "하이트 진로(주)", "대한민국", 0L),
+                new Alcohol(SOJU, "like-first.jpg", "처음처럼", 1950, 16.5f,
+                        null, null, "롯데칠성음료(주)", "대한민국", 0L)
         );
 
         for (Alcohol alcohol : alcoholList) {
             em.persist(alcohol);
         }
 
+        em.persist(new PreferredAlcohol(members.get(0), alcoholList.get(1)));
+        em.persist(new PreferredAlcohol(members.get(1), alcoholList.get(1)));
+        em.persist(new PreferredAlcohol(members.get(2), alcoholList.get(2)));
+        alcoholList.get(1).plusLikeCount();
+        alcoholList.get(1).plusLikeCount();
+        alcoholList.get(2).plusLikeCount();
+
         em.persist(new AlcoholKeyword(keywords.get(0), alcoholList.get(0)));
         em.persist(new AlcoholKeyword(keywords.get(1), alcoholList.get(0)));
         em.persist(new AlcoholKeyword(keywords.get(2), alcoholList.get(0)));
         em.persist(new AlcoholKeyword(keywords.get(0), alcoholList.get(1)));
-        em.persist(new AlcoholKeyword(keywords.get(1), alcoholList.get(1)));
+        em.persist(new AlcoholKeyword(keywords.get(1), alcoholList.get(3)));
         em.persist(new AlcoholKeyword(keywords.get(2), alcoholList.get(2)));
 
         //when
         List<Alcohol> relatedAlcohols = alcoholRepository.findRelatedAlcohols(alcoholList.get(0).getId(), 12);
 
         //then
-        assertThat(relatedAlcohols.size()).isEqualTo(2);
+        assertThat(relatedAlcohols.size()).isEqualTo(3);
+        assertThat(relatedAlcohols).extracting("name")
+                .containsExactly("자몽에 이슬", "참이슬", "처음처럼");
+        assertThat(relatedAlcohols).isSortedAccordingTo((o1, o2) -> (int)(o2.getLikeCount() - o1.getLikeCount()));
     }
 
 
