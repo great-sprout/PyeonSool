@@ -10,6 +10,7 @@ import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.*;
 
@@ -29,18 +30,18 @@ public class AlcoholService {
 
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null); //Alcohol 엔티티
-        String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName()); //imagePath
-        List<String> alcoholKeywords = new ArrayList<>(); //keyword List(한글)
-        Map<String, String> keywordMap = createKeywordMap(); //keyword Map(영어)
+        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
+        String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
+        List<String> alcoholKeywords = new ArrayList<>();
+        Map<String, String> keywordMap = createKeywordMap();
         for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcoholId)) {
-            alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
+            alcoholKeywords.add(keywordMap.get(keyword));
         }
 
-        List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId); //제조업체
-        String grade = getFormattedTotalGrade(reviewRepository.getReviewGrades(alcoholId)); //별점
+        List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId);
+        String grade = getFormattedTotalGrade(reviewRepository.getReviewGrades(alcoholId));
 
-        if (isNull(memberId)) { //비로그인 상태이면
+        if (isNull(memberId)) {
             return AlcoholDetailsDto.of(alcohol, alcoholImagePath, grade, alcoholKeywords, alcoholVendors);
         }
 
@@ -54,7 +55,7 @@ public class AlcoholService {
     }
 
     private String getFormattedTotalGrade(List<Byte> reviewGrades) {
-        if (reviewGrades.size() != 0) { //리뷰가 있다면
+        if (reviewGrades.size() != 0) {
             double ratingAvg = (double) reviewGrades.stream().mapToLong(rating -> rating).sum() / reviewGrades.size();
             return String.format("%.1f", ratingAvg);
         }
@@ -98,6 +99,9 @@ public class AlcoholService {
 
         PreferredAlcohol preferredAlcohol = new PreferredAlcohol(member, alcohol);
         preferredAlcoholRepository.save(preferredAlcohol);
+        alcohol.plusLikeCount();
+        System.out.println("plus : " + alcohol.getName() + "cnt : " +alcohol.getLikeCount());
+
 
         return preferredAlcohol.getId();
     }
@@ -111,6 +115,8 @@ public class AlcoholService {
 
         if (preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol)) {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
+            alcohol.minusLikeCount();
+            System.out.println("minus : " + alcohol.getName()+"cnt : "+alcohol.getLikeCount());
         }
     }
 
@@ -155,7 +161,7 @@ public class AlcoholService {
     public List<AlcoholImageDto> getMonthAlcohols() { //이달의 추천
         return convertToAlcoholImage(preferredAlcoholRepository.getMonthAlcohols());
     }
-    
+
     //나의 키워드가 포함된 추천 알콜 조회
     public List<AlcoholImageDto> getYourAlcohols(Long loginMember) {
         return convertToAlcoholImage(preferredAlcoholRepository.getPreferredAlcoholByKeyword(loginMember));
@@ -164,7 +170,7 @@ public class AlcoholService {
     public List<BestLikeDto> getBestLike(AlcoholType alcoholType, int count) { //베스트 Like
         List<BestLikeDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
 
-        List<Long> preferList= preferredAlcoholRepository.getAlcoholByType(alcoholType,count); //alcohol_id List
+        List<Long> preferList = preferredAlcoholRepository.getAlcoholByType(alcoholType, count); //alcohol_id List
         //각각의 alcoholType에 맞는 DTO를 찾아 List에 담는다
         for (Long alcoholId : preferList) {
             Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
@@ -181,5 +187,16 @@ public class AlcoholService {
         }
 
         return alcoholTypeDetailsList;
+    }
+
+    public List<AlcoholImageDto> getRelatedAlcohols(Long alcoholId) {
+        int RELATED_ALCOHOLS_LIMIT = 12;
+        return alcoholRepository.findRelatedAlcohols(alcoholId, RELATED_ALCOHOLS_LIMIT).stream()
+                .map(alcohol -> new AlcoholImageDto(alcohol.getId(), getImagePath(alcohol)))
+                .collect(Collectors.toList());
+    }
+
+    private String getImagePath(Alcohol alcohol) {
+        return fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
     }
 }

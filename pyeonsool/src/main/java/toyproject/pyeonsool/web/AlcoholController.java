@@ -91,6 +91,8 @@ public class AlcoholController {
         Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
         model.addAttribute("reviews", reviewPage.getContent());
+        model.addAttribute("relatedAlcohols", alcoholService.getRelatedAlcohols(alcoholId));
+
         /*마이 키워드*/
         if (loginMember!=null) {
             List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());

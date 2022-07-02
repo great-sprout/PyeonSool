@@ -64,17 +64,17 @@
             </div>
           </article>
 
-          <!--취향저격 편술-->
+         <!-- &lt;!&ndash;취향저격 편술&ndash;&gt;
           <article class="mypage-mystyle">
             <div class="mypage-mystyle__title">
               <h1 class="mypage-mystyle__title-name">취향저격 편술</h1>
             </div>
 
-            <!--슬라이드 버튼-->
-            <div class="slide-button slide-button--left">&lt;</div>
-            <div class="slide-button slide-button--right">&gt;</div>
+            &lt;!&ndash;슬라이드 버튼&ndash;&gt;
+            <div class="slide-button slide-button&#45;&#45;left">&lt;</div>
+            <div class="slide-button slide-button&#45;&#45;right">&gt;</div>
             <div class="mypage-mystyle__body">
-              <!--취향저격 편술 이미지-->
+              &lt;!&ndash;취향저격 편술 이미지&ndash;&gt;
               <ul class="mypage-mystyle__items">
                 <li class="mypage-mystyle__item">
                   <img
@@ -194,18 +194,19 @@
                 </li>
               </ul>
             </div>
-          </article>
+          </article>-->
 
           <!--내 리뷰 리스트 -->
           <article class="mypage-review">
             <h2 class="mypage-review__title">내 리뷰 리스트</h2>
             <div class="myreviews">
-            <form class="my-review" num="1">
+              <th:block th:each="myReview : ${myReviewList}">
+            <form class="my-review" th:number="${myReview.reviewId}"th:object="${myReview}">
             <!--내 리뷰 리스트 이미지-->
             <div class="mypage-review__item">
               <div class="mypage-review__images">
                 <img
-                  src="/image/alcohol/chamisul.png"
+                  src="/image/alcohol/chamisul.png" th:src="${myReview.imagePath}"
                   alt=""
                   class="mypage-review__image"
                   onclick="location.href='#'"
@@ -216,7 +217,10 @@
                 <!--내 리뷰 리스트 정보-->
                 <!--날짜-->
                 <div class="mypage-review__date">
-                  <h2 class="mypage-review__edite-date">2022.01.29</h2>
+                  <h2
+                          class="mypage-review__edite-date"
+                          th:text="${#temporals.format(myReview.lastModifiedDate, 'yyyy.MM.dd')}"
+                  >2022.01.29</h2>
                 </div>
 
                 
@@ -224,106 +228,40 @@
                 <div class="my-review__fixed-stars">
                   <span
                     class="my-review__fixed-star my-review__fixed-star--selected"
+                    th:each="num : ${#numbers.sequence(1, myReview.grade)}"
                     >★</span
                   >
                   <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span class="my-review__fixed-star">★</span>
+                          class="my-review__fixed-star"
+                          th:if="${myReview.grade < 5}" ? th:each="num : ${#numbers.sequence(myReview.grade + 1, 5)}"
+                  >★</span>
                 </div>
 
                 <!-- 리뷰마다 id, for 값 다름에 유의 -->
                 <!--선택 별점-->
                 <div class="stars my-review__stars unvisible">
+                <th:block th:each="num : ${#numbers.sequence(5, 1)}">
                   <input
-                  type="radio"
-                  id="5-star--id-1"
-                  name="grade"
-                  value="5"
-                  class="stars__radio"
-                  required
-                />
-                <label
-                  for="5-star--id-1"
-                  class="stars__star my-review__star"
+                          type="radio"
+                          id="5-star--id-1"
+                          name="grade"
+                          value="5"
+                          class="stars__radio"
+                          required
+                          th:id="|${num}-star-id-*{reviewId}|"
+                  />
+                  <label
+                          for="5-star--id-1"
+                          th:for="|${num}-star-id-*{reviewId}|"
+                          class="stars__star review__star"
                   >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="4-star--id-1"
-                  name="grade"
-                  value="4"
-                  class="stars__radio"
-                />
-                <label
-                  for="4-star--id-1"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="3-star--id-1"
-                  name="grade"
-                  value="3"
-                  class="stars__radio"
-                />
-                <label
-                  for="3-star--id-1"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="2-star--id-1"
-                  name="grade"
-                  value="2"
-                  class="stars__radio"
-                />
-                <label
-                  for="2-star--id-1"
-                  class="stars__star review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="1-star--id-1"
-                  name="grade"
-                  value="1"
-                  class="stars__radio"
-                />
-                <label
-                  for="1-star--id-1"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
+                  >
+              </th:block>
                 </div>
 
                 <!--내용-->
-                <div class="my-review__content">
-                  역시 소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시
-                  소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  
+                <div class="my-review__content" th:text="*{content}">
+                  내용
                 </div>
                   <textarea
                   class="my-review__textarea unvisible"
@@ -337,19 +275,13 @@
                 <div class="mypage-review__preference">
                   <div class="mypage-recommendation">
                     <i class="far fa-thumbs-up recommendation__icon"></i>
-                    <i
-                      class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
-                    >
                     </i>
-                    <span class="recommendation__count">40</span>
+                    <span class="recommendation__count" th:text="*{getRecommendCount}">40</span>
                   </div>
 
                   <div class="mypage-norecommendation">
                     <i class="far fa-thumbs-down no-recommendation__icon"></i>
-                    <i
-                      class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
-                    ></i>
-                    <span class="no-recommendation__count">15</span>
+                    <span class="no-recommendation__count" th:text="*{getNotRecommendCount}">15</span>
                   </div>
                 </div>
               </div>
@@ -374,351 +306,25 @@
               </div>
             </div>
           </form>
+        </th:block>
+     </div>
 
-           <!--내 리뷰 리스트 두번째-->
-           <form class="my-review" num="2">
-            <!--내 리뷰 리스트 이미지-->
-            <div class="mypage-review__item">
-              <div class="mypage-review__images">
-                <img
-                  src="/image/alcohol/chamisul.png"
-                  alt=""
-                  class="mypage-review__image"
-                  onclick="location.href='#'"
-                />
-              </div>
-
-              <div class="mypage-info">
-                <!--내 리뷰 리스트 정보-->
-                <!--날짜-->
-                <div class="mypage-review__date">
-                  <h2 class="mypage-review__edite-date">2022.01.29</h2>
-                </div>
-
-                
-                <!--고정 별점-->
-                <div class="my-review__fixed-stars">
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span class="my-review__fixed-star">★</span>
-                </div>
-
-                <!-- 리뷰마다 id, for 값 다름에 유의 -->
-                <!--선택 별점-->
-                <div class="stars my-review__stars unvisible">
-                  <input
-                  type="radio"
-                  id="5-star--id-2"
-                  name="grade"
-                  value="5"
-                  class="stars__radio"
-                  required
-                />
-                <label
-                  for="5-star--id-2"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="4-star--id-2"
-                  name="grade"
-                  value="4"
-                  class="stars__radio"
-                />
-                <label
-                  for="4-star--id-2"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="3-star--id-2"
-                  name="grade"
-                  value="3"
-                  class="stars__radio"
-                />
-                <label
-                  for="3-star--id-2"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="2-star--id-2"
-                  name="grade"
-                  value="2"
-                  class="stars__radio"
-                />
-                <label
-                  for="2-star--id-2"
-                  class="stars__star review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="1-star--id-2"
-                  name="grade"
-                  value="1"
-                  class="stars__radio"
-                />
-                <label
-                  for="1-star--id-2"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-                </div>
-
-                <!--내용-->
-                <div class="my-review__content">
-                  역시 소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ
-                </div>
-                  <textarea
-                  class="my-review__textarea unvisible"
-                  maxlength="300"
-                  required
-                ></textarea>
-               
-
-                <!--추천,비추천-->
-
-                <div class="mypage-review__preference">
-                  <div class="mypage-recommendation">
-                    <i class="far fa-thumbs-up recommendation__icon"></i>
-                    <i
-                      class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
-                    >
-                    </i>
-                    <span class="recommendation__count">40</span>
-                  </div>
-
-                  <div class="mypage-norecommendation">
-                    <i class="far fa-thumbs-down no-recommendation__icon"></i>
-                    <i
-                      class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
-                    ></i>
-                    <span class="no-recommendation__count">15</span>
-                  </div>
-                </div>
-              </div>
-
-              <!--수정,삭제-->
-
-              <div class="my-review__buttons">
-                <span class="my-review__edit-status">수정</span>
-                <div class="my-review__divider"></div>
-                <span class="my-review__delete">삭제</span>
-              </div>
-
-              <!--수정 눌렀을 때 수정|삭제 -> 등록|취소 부분-->
-              <div class="my-review__editor unvisible">
-                <input
-                  type="submit"
-                  value="등록"
-                  class="my-review__edit"
-                />
-                <div class="my-review__divider"></div>
-                <span class="my-review__cancel">취소</span>
-              </div>
-            </div>
-          </form>
-
-           <!--내 리뷰 리스트 세번째-->
-           <form class="my-review" num="3">
-            <!--내 리뷰 리스트 이미지-->
-            <div class="mypage-review__item">
-              <div class="mypage-review__images">
-                <img
-                  src="/image/alcohol/chamisul.png"
-                  alt=""
-                  class="mypage-review__image"
-                  onclick="location.href='#'"
-                />
-              </div>
-
-              <div class="mypage-info">
-                <!--내 리뷰 리스트 정보-->
-                <!--날짜-->
-                <div class="mypage-review__date">
-                  <h2 class="mypage-review__edite-date">2022.01.29</h2>
-                </div>
-
-                
-                <!--고정 별점-->
-                <div class="my-review__fixed-stars">
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span class="my-review__fixed-star">★</span>
-                </div>
-
-                <!-- 리뷰마다 id, for 값 다름에 유의 -->
-                <!--선택 별점-->
-                <div class="stars my-review__stars unvisible">
-                  <input
-                  type="radio"
-                  id="5-star--id-3"
-                  name="grade"
-                  value="5"
-                  class="stars__radio"
-                  required
-                />
-                <label
-                  for="5-star--id-3"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="4-star--id-3"
-                  name="grade"
-                  value="4"
-                  class="stars__radio"
-                />
-                <label
-                  for="4-star--id-3"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="3-star--id-3"
-                  name="grade"
-                  value="3"
-                  class="stars__radio"
-                />
-                <label
-                  for="3-star--id-3"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="2-star--id-3"
-                  name="grade"
-                  value="2"
-                  class="stars__radio"
-                />
-                <label
-                  for="2-star--id-3"
-                  class="stars__star review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="1-star--id-3"
-                  name="grade"
-                  value="1"
-                  class="stars__radio"
-                />
-                <label
-                  for="1-star--id-3"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-                </div>
-
-                <!--내용-->
-                <div class="my-review__content">
-                  역시 소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ
-                </div>
-                  <textarea
-                  class="my-review__textarea unvisible"
-                  maxlength="300"
-                  required
-                ></textarea>
-               
-
-                <!--추천,비추천-->
-
-                <div class="mypage-review__preference">
-                  <div class="mypage-recommendation">
-                    <i class="far fa-thumbs-up recommendation__icon"></i>
-                    <i
-                      class="fas fa-thumbs-up recommendation__icon--clicked unvisible"
-                    >
-                    </i>
-                    <span class="recommendation__count">40</span>
-                  </div>
-
-                  <div class="mypage-norecommendation">
-                    <i class="far fa-thumbs-down no-recommendation__icon"></i>
-                    <i
-                      class="fas fa-thumbs-down no-recommendation__icon--clicked unvisible"
-                    ></i>
-                    <span class="no-recommendation__count">15</span>
-                  </div>
-                </div>
-              </div>
-
-              <!--수정,삭제-->
-
-              <div class="my-review__buttons">
-                <span class="my-review__edit-status">수정</span>
-                <div class="my-review__divider"></div>
-                <span class="my-review__delete">삭제</span>
-              </div>
-
-              <!--수정 눌렀을 때 수정|삭제 -> 등록|취소 부분-->
-              <div class="my-review__editor unvisible">
-                <input
-                  type="submit"
-                  value="등록"
-                  class="my-review__edit"
-                />
-                <div class="my-review__divider"></div>
-                <span class="my-review__cancel">취소</span>
-              </div>
-            </div>
-          </form>
-        </div>
           
        
 
             <div class="mypage__page">
               <div class="page">
-                <a href="#" class="page__left">&lt;</a>
-                <a href="#" class="page__number page__number--clicked">1</a>
-                <a href="#" class="page__number">2</a>
-                <a href="#" class="page__number">3</a>
-                <a href="#" class="page__number">4</a>
-                <a href="#" class="page__number">5</a>
-                <a href="#" class="page__right">&gt;</a>
+                <a class="page__left" th:if="${!MyReviewPagination.isFirstBlock()}"
+                   th:href="|/members/${nickname}?page=${MyReviewPagination.startPagePerBlock - MyReviewPagination.blockSize - 1}&sort=${MyReviewPagination.sortField},${MyReviewPagination.sortDirection}|">&lt;</a>
+                <th:block
+                        th:each="page : ${#numbers.sequence(MyReviewPagination.startPagePerBlock,
+                    MyReviewPagination.isLastBlock() ? MyReviewPagination.totalPages : MyReviewPagination.endPagePerBlock)}">
+                  <a th:href="|/members/${nickname}?page=${page - 1}&sort=${MyReviewPagination.sortField},${MyReviewPagination.sortDirection}|" class="page__number"
+                     th:text="${page}" th:classappend="${MyReviewPagination.currentPage == page} ? 'page__number&#45;&#45;clicked'">1</a>
+                </th:block>
+
+                <a class="page__right" th:if="${!MyReviewPagination.isLastBlock()}"
+                   th:href="|/members/${nickname}?page=${MyReviewPagination.endPagePerBlock}&sort=${MyReviewPagination.sortField},${MyReviewPagination.sortDirection}|">&gt;</a>
               </div>
             </div>
           </article>

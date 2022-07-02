@@ -1,13 +1,20 @@
 package toyproject.pyeonsool.web;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
+import toyproject.pyeonsool.Pagination;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.service.AlcoholService;
 import toyproject.pyeonsool.service.MemberService;
+import toyproject.pyeonsool.service.ReviewImagePathDto;
+import toyproject.pyeonsool.service.ReviewService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,6 +30,7 @@ public class MemberController {
 
     private final MemberService memberService;
     private final AlcoholService alcoholService;
+    private final ReviewService reviewService;
 
     //내 Like 리스트 컨트롤러
     @GetMapping("/{nickname}")
@@ -30,9 +38,13 @@ public class MemberController {
     public String getMyPage(
             @PathVariable String nickname,
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember, HttpServletRequest request,
+            @PageableDefault(sort = "id", size = 5, direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
         // TODO loginMember null값 검증
         model.addAttribute("myLikeList", alcoholService.getAlcoholImages(loginMember.getId()));
+        Page<ReviewImagePathDto> myReviewPage = reviewService.getReviewImagePathPage(loginMember.getId(),pageable);
+        model.addAttribute("MyReviewPagination", Pagination.of(myReviewPage, 5));
+        model.addAttribute("myReviewList",myReviewPage.getContent());
         /*마이 키워드*/
         if (loginMember!=null) {
             List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
