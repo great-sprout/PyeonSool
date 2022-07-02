@@ -17,7 +17,6 @@ import static org.springframework.util.StringUtils.*;
 import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
 import static toyproject.pyeonsool.domain.QAlcoholKeyword.alcoholKeyword;
 import static toyproject.pyeonsool.domain.QKeyword.keyword;
-import static toyproject.pyeonsool.domain.QPreferredAlcohol.preferredAlcohol;
 import static toyproject.pyeonsool.domain.QVendor.vendor;
 
 @RequiredArgsConstructor
@@ -25,14 +24,14 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public Page<Alcohol> findAllByType(Pageable pageable, AlcoholSearchConditionDto condition,String sortType,String standard) {
+    public Page<Alcohol> findAllByType(Pageable pageable, AlcoholSearchConditionDto condition) {
 
         List<Alcohol> result = queryFactory.selectFrom(alcohol)
                 .where(keywordAlcoholIdIn(condition.getKeywords()),
                         vendorAlcoholIdEq(condition.getVendorName()),
                         alcoholNameContains(condition.getSearch()),
                         alcoholTypeEq(condition.getAlcoholType()))
-                .orderBy(bySort(sortType,standard))
+                .orderBy(bySort(condition.getSortType(),condition.getStandard()))
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())
                 .fetch();
@@ -42,7 +41,8 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 .where(keywordAlcoholIdIn(condition.getKeywords()),
                         vendorAlcoholIdEq(condition.getVendorName()),
                         alcoholNameContains(condition.getSearch()),
-                        alcoholTypeEq(condition.getAlcoholType()));
+                        alcoholTypeEq(condition.getAlcoholType()))
+                .orderBy(bySort(condition.getSortType(),condition.getStandard()));
 
         return PageableExecutionUtils.getPage(result, pageable, countQuery::fetchOne);
     }
@@ -83,8 +83,11 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 .join(alcoholKeyword.keyword, keyword)
                 .where(alcoholKeyword.keyword.name.in(keywords)));
     }
-    private OrderSpecifier<?> bySort(String sortType, String standard){
-        if(sortType.equals("abv")){
+    private OrderSpecifier<?> bySort(String sort, String standard){
+        if(sort == null){
+            return null;
+        }
+        else if(sort.equals("abv")){
             if (standard.equals("desc")){
                 return alcohol.abv.desc();
             }
@@ -92,7 +95,7 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 return alcohol.abv.asc();
             }
         }
-       else if(sortType.equals("price")){
+       else if(sort.equals("price")){
            if(standard.equals("desc")){
                return alcohol.price.desc();
            }
@@ -100,7 +103,7 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                return alcohol.price.asc();
            }
         }
-       else{ return null;}
+        else return null;
     }
 
 }

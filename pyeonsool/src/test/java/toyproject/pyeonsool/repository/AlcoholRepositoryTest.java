@@ -83,18 +83,18 @@ class AlcoholRepositoryTest {
 
         //when
         AlcoholSearchConditionDto[] conditions = new AlcoholSearchConditionDto[]{
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null),
-                new AlcoholSearchConditionDto(BEER, null, "리", GS25),
-                new AlcoholSearchConditionDto(BEER, null, null, null),
-                new AlcoholSearchConditionDto(BEER, null, null, null)
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25,null,null),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25,null,null),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null,null,null),
+                new AlcoholSearchConditionDto(BEER, null, "리", GS25,null,null),
+                new AlcoholSearchConditionDto(BEER, null, null, null ,"price","asc"),
+                new AlcoholSearchConditionDto(BEER, null, null, null ,"abv","desc")
         };
 
         ArrayList<Page<Alcohol>> alcoholPages = new ArrayList<>();
         for (AlcoholSearchConditionDto condition : conditions) {
             alcoholPages.add(alcoholRepository.findAllByType(
-                    PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")), condition,"price","asc"));
+                    PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")), condition));
         }
 
         //then
