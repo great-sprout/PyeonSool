@@ -26,6 +26,7 @@ public class ReviewService {
     private final AlcoholRepository alcoholRepository;
     private final MemberRepository memberRepository;
     private final RecommendedReviewRepository recommendedReviewRepository;
+    private final FileManager fileManager;
 
 
     public long addReview(long memberId, long alcoholId, byte grade, String content) {
@@ -119,16 +120,14 @@ public class ReviewService {
                     }
                 });
     }
+
     //마이페이지 내 리뷰 리스트 서비스
-   public Page<ReviewImageDto> getReviewImages(Long memberId, Pageable pageable){
+    public Page<ReviewImagePathDto> getReviewImagePathPage(Long memberId, Pageable pageable) {
         return reviewRepository.getReviewImage(memberId, pageable)
-                .map(review -> new ReviewImageDto(review.getReviewId(),
-                        review.getFileName(),
-                        review.getLastModifiedDate(),
-                        review.getGrade(),
-                        review.getContent(),
-                        review.getRecommendCount(),
-                        review.getNotRecommendCount()
-                        ));
+                .map(reviewImageDto -> ReviewImagePathDto.of(reviewImageDto, getAlcoholImagePath(reviewImageDto)));
+    }
+
+    private String getAlcoholImagePath(ReviewImageDto reviewImageDto) {
+        return fileManager.getAlcoholImagePath(reviewImageDto.getType(), reviewImageDto.getFileName());
     }
 }
