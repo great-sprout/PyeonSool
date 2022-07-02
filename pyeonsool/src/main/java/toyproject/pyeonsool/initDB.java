@@ -180,23 +180,23 @@ public class initDB {
 
         private void setSojuList(ArrayList<Alcohol> sojus) {
             sojus.add(new Alcohol(SOJU, "jinro.jpg",
-                    "진로 이즈 백", 1800, 16.5f, null, null, "하이트 진로(주)", "대한민국"));
+                    "진로 이즈 백", 1800, 16.5f, null, null, "하이트 진로(주)", "대한민국",0L));
             sojus.add(new Alcohol(SOJU, "jamong-chamisul.jpg",
-                    "자몽에 이슬", 1900, 13f, null, null, "하이트 진로(주)", "대한민국"));
+                    "자몽에 이슬", 1900, 13f, null, null, "하이트 진로(주)", "대한민국",0L));
             sojus.add(new Alcohol(SOJU, "chamisul.png",
-                    "참이슬", 1950, 16.5f, null, null, "하이트 진로(주)", "대한민국"));
+                    "참이슬", 1950, 16.5f, null, null, "하이트 진로(주)", "대한민국",0L));
             sojus.add(new Alcohol(SOJU, "like-first.jpg",
-                    "처음처럼", 1950, 16.5f, null, null, "롯데칠성음료(주)", "대한민국"));
+                    "처음처럼", 1950, 16.5f, null, null, "롯데칠성음료(주)", "대한민국",0L));
             sojus.add(new Alcohol(SOJU, "hanlla.png",
-                    "한라산", 1900, 17.5f, null, null, "(주)한라산", "대한민국"));
+                    "한라산", 1900, 17.5f, null, null, "(주)한라산", "대한민국",0L));
             sojus.add(new Alcohol(SOJU, "rabbit-white.jpg",
-                    "토끼 소주 화이트", 38000, 23f, null, null, "농업회사법인 토끼소주(주)", "대한민국"));
+                    "토끼 소주 화이트", 38000, 23f, null, null, "농업회사법인 토끼소주(주)", "대한민국",0L));
             sojus.add(new Alcohol(SOJU, "munbae.jpg",
-                    "문배술", 10260, 40f, null, null, "문배주양조원", "대한민국"));
+                    "문배술", 10260, 40f, null, null, "문배주양조원", "대한민국",0L));
             sojus.add(new Alcohol(SOJU, "gosori.png",
-                    "제주 고소리술", 22800, 29f, null, null, "제주샘영농조합", "대한민국"));
+                    "제주 고소리술", 22800, 29f, null, null, "제주샘영농조합", "대한민국",0L));
             sojus.add(new Alcohol(SOJU, "hwayo.jpg",
-                    "화요", 8500, 25f, null, null, "(주)화요", "대한민국"));
+                    "화요", 8500, 25f, null, null, "(주)화요", "대한민국",0L));
         }
 
         private void persistSojuKeywords(Keyword[] keywords, ArrayList<Alcohol> sojus) {
@@ -271,23 +271,23 @@ public class initDB {
 
         private void setBeers(ArrayList<Alcohol> beers) {
             beers.add(new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀"));
+                    5f, null, null, "산미구엘 브루어리", "필리핀",0L));
             beers.add(new Alcohol(BEER, "tiger.jpg", "타이거 아시안 라거", 2500,
-                    5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르"));
+                    5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르",0L));
             beers.add(new Alcohol(BEER, "budweiser.png", "버드와이저", 2500,
-                    5f, null, null, "앤하이저부시", "미국"));
+                    5f, null, null, "앤하이저부시", "미국",0L));
             beers.add(new Alcohol(BEER, "gompyo.png", "곰표 밀맥주", 2500,
-                    4.5f, null, null, "세븐브로이맥주", "한국"));
+                    4.5f, null, null, "세븐브로이맥주", "한국",0L));
             beers.add(new Alcohol(BEER, "hite-extra-cold.png", "하이트 엑스트라 콜드", 2800,
-                    4.5f, null, null, "하이트진로", "한국"));
+                    4.5f, null, null, "하이트진로", "한국",0L));
             beers.add(new Alcohol(BEER, "kozel-premium-lager.png", "코젤 프리미엄 라거", 2500,
-                    4.6f, null, null, "필젠스키 프레즈드로이", "체코"));
+                    4.6f, null, null, "필젠스키 프레즈드로이", "체코",0L));
             beers.add(new Alcohol(BEER, "somersby.png", "서머스비(사과)", 4200,
-                    4.5f, null, null, "칼스버그 서플라이", "덴마크"));
+                    4.5f, null, null, "칼스버그 서플라이", "덴마크",0L));
             beers.add(new Alcohol(BEER, "stella-artois.png", "스텔라 아르투아", 3000,
-                    5f, null, null, "스텔라 아르투아 브루어리", "벨기에"));
+                    5f, null, null, "스텔라 아르투아 브루어리", "벨기에",0L));
             beers.add(new Alcohol(BEER, "guinness-draught.png", "기네스 드래프트", 3000,
-                    4.2f, null, null, "디아지오 아일랜드", "아일랜드"));
+                    4.2f, null, null, "디아지오 아일랜드", "아일랜드",0L));
         }
 
         private void persistBeerKeywords(Keyword[] keywords, ArrayList<Alcohol> beers) {
@@ -338,23 +338,23 @@ public class initDB {
 
         private void setWines(ArrayList<Alcohol> wines) {
             wines.add(new Alcohol(WINE, "louis-jadot.png", "루이자도 부르고뉴 샤르도네", 35000,
-                    13f, (byte) 1, (byte) 3, "루이 자도", "프랑스 부르고뉴"));
+                    13f, (byte) 1, (byte) 3, "루이 자도", "프랑스 부르고뉴",0L));
             wines.add(new Alcohol(WINE, "michele-le-orme.png", "미켈레 레오르메", 40000,
-                    13f, (byte) 0, (byte) 5, "프레스코발디", "이탈리아"));
+                    13f, (byte) 0, (byte) 5, "프레스코발디", "이탈리아",0L));
             wines.add(new Alcohol(WINE, "frescobaldi-remole-bianco.png", "프레스코발디 레몰레 비앙코", 29000,
-                    12.5f, (byte) 0, (byte) 2, "미켈레 끼아를로", "이탈리아"));
+                    12.5f, (byte) 0, (byte) 2, "미켈레 끼아를로", "이탈리아",0L));
             wines.add(new Alcohol(WINE, "tignanello-grappa.png", "티냐넬로그라파", 190000,
-                    42f, (byte) 1, (byte) 5, "마르케시 안토리니", "이탈리아"));
+                    42f, (byte) 1, (byte) 5, "마르케시 안토리니", "이탈리아",0L));
             wines.add(new Alcohol(WINE, "della-trappola.png", "리카솔리 안티코 페우도 델라 트라폴라 토스카나 IGT", 50000,
-                    14f, (byte) 1, (byte) 5, "리카솔리", "이탈리아"));
+                    14f, (byte) 1, (byte) 5, "리카솔리", "이탈리아",0L));
             wines.add(new Alcohol(WINE, "gancia-moscato-dasti.png", "간치아 모스카토 다스티 DO", 20680,
-                    7.5f, (byte) 3, (byte) 2, "간치아", "이탈리아"));
+                    7.5f, (byte) 3, (byte) 2, "간치아", "이탈리아",0L));
             wines.add(new Alcohol(WINE, "nederburg-duet-shiraz-pinotage.png", "니더버그듀엣 쉬라즈 & 피노타지", 16280,
-                    14.5f, (byte) 1, (byte) 4, "니더버그", "남아프리카공화국"));
+                    14.5f, (byte) 1, (byte) 4, "니더버그", "남아프리카공화국",0L));
             wines.add(new Alcohol(WINE, "canti-moscato-dasti.png", "칸티 모스카토 다스티", 22000,
-                    7f, (byte) 4, (byte) 2, "칸티", "이탈리아"));
+                    7f, (byte) 4, (byte) 2, "칸티", "이탈리아",0L));
             wines.add(new Alcohol(WINE, "sierra-cantabria-rose.png", "시에라 칸따브리아 로제", 30000,
-                    13.5f, (byte) 1, (byte) 3, "시에라", "스페인"));
+                    13.5f, (byte) 1, (byte) 3, "시에라", "스페인",0L));
         }
 
         private void persistWineKeywords(Keyword[] keywords, ArrayList<Alcohol> wines) {
