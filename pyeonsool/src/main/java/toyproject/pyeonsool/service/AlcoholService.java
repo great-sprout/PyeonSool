@@ -10,6 +10,7 @@ import toyproject.pyeonsool.repository.*;
 
 import javax.transaction.Transactional;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.*;
 
@@ -177,15 +178,17 @@ public class AlcoholService {
         }
         return alcoholDetailsList;
     }
-    
+
     //나의 키워드 조회
     public List<Long> getMykeywords(Long loginId) {
         return myKeywordRepository.getMyKeywords(loginId); //memberId=1L로 들어감
     }
+
     //나의 키워드에 맞는 알콜 조회
     public List<Long> getAlcohols(List<Long> mykeywords) {
         return alcoholKeywordRepository.getAlcoholByKeyword(mykeywords);
     }
+
     //나의 키워드가 포함된 추천 알콜 조회
     public List<MainPageDto> getYourAlcohols(List<Long> alcohols) {
         List<Long> yourAlcohols = preferredAlcoholRepository.getPreferredAlcoholByKeyword(alcohols);
@@ -211,7 +214,7 @@ public class AlcoholService {
         //베스트 Like
         List<MainPageDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
 
-        List<Long> preferList= preferredAlcoholRepository.getAlcoholByType(alcoholType,count); //alcohol_id List
+        List<Long> preferList = preferredAlcoholRepository.getAlcoholByType(alcoholType, count); //alcohol_id List
         //각각의 alcoholType에 맞는 DTO를 찾아 List에 담는다
         for (Long alcoholId : preferList) {
             Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
@@ -228,5 +231,16 @@ public class AlcoholService {
         }
 
         return alcoholTypeDetailsList;
+    }
+
+    public List<AlcoholImageDto> getRelatedAlcohols(Long alcoholId) {
+        int RELATED_ALCOHOLS_LIMIT = 12;
+        return alcoholRepository.findRelatedAlcohols(alcoholId, RELATED_ALCOHOLS_LIMIT).stream()
+                .map(alcohol -> new AlcoholImageDto(alcohol.getId(), getImagePath(alcohol)))
+                .collect(Collectors.toList());
+    }
+
+    private String getImagePath(Alcohol alcohol) {
+        return fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
     }
 }
