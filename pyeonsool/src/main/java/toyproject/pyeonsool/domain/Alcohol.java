@@ -38,19 +38,10 @@ public class Alcohol {
 
     public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent,
                    Byte body, String manufacturer, String origin) {
-        this.type = type;
-        this.fileName = fileName;
-        this.name = name;
-        this.price = price;
-        this.abv = abv;
-        this.sugarContent = sugarContent;
-        this.body = body;
-        this.manufacturer = manufacturer;
-        this.origin = origin;
+        this(type, fileName, name, price, abv, sugarContent, body, manufacturer, origin, 0L);
     }
 
     public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent, Byte body, String manufacturer, String origin, Long likeCount) {
-        this.id = id;
         this.type = type;
         this.fileName = fileName;
         this.name = name;
