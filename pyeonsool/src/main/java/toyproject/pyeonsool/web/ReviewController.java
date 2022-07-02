@@ -40,4 +40,7 @@ public class ReviewController {
         return "redirect:/alcohols/{alcoholId}";
     }
 
+    //마이페이지 리뷰 리스트 목록 조회 컨트롤 부분
+
+
 }
