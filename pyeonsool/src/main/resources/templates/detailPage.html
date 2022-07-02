@@ -147,106 +147,20 @@
 
             <div class="alcohol-recommendation__body">
               <ul class="alcohol-recommendation__items">
+                <th:block th:each="relatedAlcohol : ${relatedAlcohols}">
                 <li
                   class="alcohol-recommendation__item"
                   onclick="location.href='#'"
+                  th:onclick="|location.href='@{/alcohols/{alcoholId}(alcoholId=${relatedAlcohol.alcoholId})}'|"
                 >
                   <img
                     src="/image/alcohol/chamisul.png"
+                    th:src="${relatedAlcohol.imagePath}"
                     alt="alcohol"
                     class="alcohol-recommendation__image"
                   />
                 </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
+                </th:block>
               </ul>
             </div>
           </article>
