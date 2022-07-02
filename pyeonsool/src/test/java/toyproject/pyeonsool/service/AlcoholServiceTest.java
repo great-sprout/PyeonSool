@@ -90,7 +90,7 @@ class AlcoholServiceTest {
         em.persist(member);
 
         Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
-                (byte) 3, (byte) 2, "우리집", "대한민국");
+                (byte) 3, (byte) 2, "우리집", "대한민국", 0L);
         em.persist(alcohol);
 
         Long likeAlcoholId = alcoholService.likeAlcohol(alcohol.getId(), member.getId());
@@ -199,7 +199,7 @@ class AlcoholServiceTest {
         //when
         Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(
                 PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")),
-                new AlcoholSearchConditionDto(BEER, List.of("cool", "clear"), "리", GS25));
+                new AlcoholSearchConditionDto(BEER, List.of("cool", "clear"), "리", GS25, null, null));
 
         //then
         assertThat(alcoholType.isLast()).isTrue();
