@@ -1,13 +1,18 @@
 package toyproject.pyeonsool.repository;
 
+import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.domain.QAlcoholKeyword;
+import toyproject.pyeonsool.domain.QMyKeyword;
 
 import java.util.List;
 
 import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
+import static toyproject.pyeonsool.domain.QAlcoholKeyword.*;
+import static toyproject.pyeonsool.domain.QMyKeyword.*;
 import static toyproject.pyeonsool.domain.QPreferredAlcohol.preferredAlcohol;
 
 @RequiredArgsConstructor
@@ -60,12 +65,30 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetch();
     }
 
+    //select pa.alcohol_id from preferred_alcohol pa left join alcohol_keyword ak
+    //on pa.alcohol_id = ak.alcohol_id
+    //where pa.alcohol_id in (select alcohol_id from alcohol_keyword
+    //where keyword_id in (select keyword_id from my_keyword where member_id=1))
+    //group by pa.alcohol_id
+    //limit 12;
     @Override //나의 키워드가 포함된 알콜과 일치하는 선호하는 알콜 조회
-    public List<Long> getPreferredAlcoholByKeyword(List<Long> keywordAlcoholId) {
+    public List<Long> getPreferredAlcoholByKeyword(Long loginMember) {
         return queryFactory
                 .select(preferredAlcohol.alcohol.id)
-                .from(preferredAlcohol)
-                .where(preferredAlcohol.alcohol.id.in(keywordAlcoholId))
+                .from(preferredAlcohol, alcoholKeyword) //세타 조인
+                .where(preferredAlcohol.alcohol.id.in(
+                        JPAExpressions
+                                .select(alcoholKeyword.alcohol.id)
+                                .from(alcoholKeyword)
+                                .where(alcoholKeyword.keyword.id.in(
+                                        JPAExpressions
+                                                .select(myKeyword.keyword.id)
+                                                .from(myKeyword)
+                                                .where(myKeyword.member.id.eq(loginMember))
+                                ))
+                ))
+                .groupBy(preferredAlcohol.alcohol.id)
+                .limit(12)
                 .fetch();
     }
 }

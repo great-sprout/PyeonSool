@@ -86,33 +86,4 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 .join(alcoholKeyword.keyword, keyword)
                 .where(alcoholKeyword.keyword.name.in(keywords)));
     }
-
-    @Override
-    public List<AlcoholImageDto> alcoholImagesByMemberId(Long memberId) {
-        //서브쿼리문 별칭!!!!!!!!!
-        List<Tuple> list_count = queryFactory
-                .select(preferredAlcohol.alcohol.id,
-                        preferredAlcohol.alcohol.id.count().as("count"))
-                .from(preferredAlcohol)
-                .groupBy(preferredAlcohol.alcohol.id)
-                .fetch();
-        return queryFactory
-                .select(alcohol.id, alcohol.fileName)
-                .from(alcohol)
-                .leftJoin(ExpressionUtils.as(JPAExpressions
-                        .select(preferredAlcohol.alcohol.id, preferredAlcohol.alcohol.id.count().as("count"))
-                        .from(preferredAlcohol)
-                        .groupBy(preferredAlcohol.alcohol.id), "like_count"))
-                .on(like_count.alcohol.id.eq(alcohol.id))
-                .where(alcohol.id.in(JPAExpressions
-                        .select(ak.id)
-                        .from(myKeyword.as("mk"))
-                        .join(alcoholKeyword.as("ak"))
-                        .on(ak.keyword.id.eq(mk.keyword.id))
-                        .where()))
-                .fetch();
-
-
-
-    }
 }
