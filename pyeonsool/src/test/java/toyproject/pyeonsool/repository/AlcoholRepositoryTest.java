@@ -94,7 +94,7 @@ class AlcoholRepositoryTest {
         ArrayList<Page<Alcohol>> alcoholPages = new ArrayList<>();
         for (AlcoholSearchConditionDto condition : conditions) {
             alcoholPages.add(alcoholRepository.findAllByType(
-                    PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "id")), condition));
+                    PageRequest.of(0, 8, Sort.by(Sort.Direction.ASC, "likeCount")), condition));
         }
 
         //then
@@ -338,13 +338,13 @@ class AlcoholRepositoryTest {
 
     private void setBeers(ArrayList<Alcohol> beers) {
         beers.add(new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                5f, null, null, "산미구엘 브루어리", "필리핀"));
+                5f, null, null, "산미구엘 브루어리", "필리핀", 3L));
         beers.add(new Alcohol(BEER, "tiger.jpg", "타이거 아시안 라거", 2500,
-                5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르"));
+                5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르", 5L));
         beers.add(new Alcohol(BEER, "budweiser.png", "버드와이저", 2500,
-                5f, null, null, "앤하이저부시", "미국"));
+                5f, null, null, "앤하이저부시", "미국", 10L));
         beers.add(new Alcohol(BEER, "gompyo.png", "곰표 밀맥주", 2500,
-                4.5f, null, null, "세븐브로이맥주", "한국"));
+                4.5f, null, null, "세븐브로이맥주", "한국", 1L));
         beers.add(new Alcohol(BEER, "hite-extra-cold.png", "하이트 엑스트라 콜드", 2800,
                 4.5f, null, null, "하이트진로", "한국"));
         beers.add(new Alcohol(BEER, "kozel-premium-lager.png", "코젤 프리미엄 라거", 2500,
