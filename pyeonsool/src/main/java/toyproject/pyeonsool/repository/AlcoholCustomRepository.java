@@ -10,4 +10,5 @@ import java.util.List;
 
 public interface AlcoholCustomRepository {
     Page<Alcohol> findAllByType(Pageable pageable, AlcoholSearchConditionDto condition);
+    List<Alcohol> findRelatedAlcohols(Long alcoholId, int limit);
 }
