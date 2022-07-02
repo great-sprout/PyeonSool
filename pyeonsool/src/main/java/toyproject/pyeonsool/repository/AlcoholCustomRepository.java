@@ -5,6 +5,7 @@ import org.springframework.data.domain.Pageable;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.VendorName;
+import toyproject.pyeonsool.service.AlcoholImageDto;
 
 import java.util.List;
 

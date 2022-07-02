@@ -10,12 +10,8 @@ import toyproject.pyeonsool.domain.*;
 
 import javax.persistence.EntityManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static toyproject.pyeonsool.domain.AlcoholType.*;
-import static toyproject.pyeonsool.domain.AlcoholType.WINE;
+import static toyproject.pyeonsool.domain.AlcoholType.SOJU;
 
 
 
@@ -55,7 +51,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
     }
 
     @Test
-    void getAlcoholIds() {
+    void getMonthAlcohols() {
         //given
         Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
         Member member1 = new Member("영준이", "chldudwns121", "1234", "01012341234");
@@ -85,7 +81,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
         em.persist(new PreferredAlcohol(member, alcohol2));
 
         //then
-        assertThat(preferredAlcoholRepository.getAlcoholIds().size())
+        assertThat(preferredAlcoholRepository.getMonthAlcohols().size())
                 .isEqualTo(3);
     }
     @Test
@@ -120,6 +116,53 @@ class PreferredAlcoholCustomRepositoryImplTest {
         assertThat(preferredAlcoholRepository.getLikeCount(alcohol.getId())).isEqualTo(3);
         assertThat(preferredAlcoholRepository.getLikeCount(alcohol1.getId())).isEqualTo(2);
         assertThat(preferredAlcoholRepository.getLikeCount(alcohol2.getId())).isEqualTo(1);
+    }
 
+    @Test
+    void getPreferredAlcoholByKeyword() {
+        //given
+        Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+        em.persist(member);
+
+        Keyword keyword = new Keyword("sweet");
+        Keyword keyword1 = new Keyword("clear");
+        Keyword keyword2 = new Keyword("cool");
+        em.persist(keyword);
+        em.persist(keyword1);
+        em.persist(keyword2);
+
+        MyKeyword myKeyword = new MyKeyword(member, keyword);
+        MyKeyword myKeyword1 = new MyKeyword(member, keyword1);
+        MyKeyword myKeyword2 = new MyKeyword(member, keyword2);
+        em.persist(myKeyword);
+        em.persist(myKeyword1);
+        em.persist(myKeyword2);
+
+        Alcohol alcohol = new Alcohol(SOJU, "jinro.jpg", "진로 이즈 백", 1800, 16.5f,
+                null, null, "하이트 진로(주)", "대한민국");
+        Alcohol alcohol1 = new Alcohol(SOJU, "chamisul.png", "참이슬", 1950, 16.5f,
+                null, null, "하이트 진로(주)", "대한민국");
+        em.persist(alcohol);
+        em.persist(alcohol1);
+
+        AlcoholKeyword alcoholKeyword = new AlcoholKeyword(keyword, alcohol);
+        AlcoholKeyword alcoholKeyword1 = new AlcoholKeyword(keyword1, alcohol);
+        AlcoholKeyword alcoholKeyword2 = new AlcoholKeyword(keyword2, alcohol);
+        AlcoholKeyword alcoholKeyword3 = new AlcoholKeyword(keyword, alcohol1);
+        AlcoholKeyword alcoholKeyword4 = new AlcoholKeyword(keyword1, alcohol1);
+        AlcoholKeyword alcoholKeyword5 = new AlcoholKeyword(keyword2, alcohol1);
+        em.persist(alcoholKeyword);
+        em.persist(alcoholKeyword1);
+        em.persist(alcoholKeyword2);
+        em.persist(alcoholKeyword3);
+        em.persist(alcoholKeyword4);
+        em.persist(alcoholKeyword5);
+
+        //when
+        em.persist(new PreferredAlcohol(member, alcohol));
+        em.persist(new PreferredAlcohol(member, alcohol1));
+
+        //then
+        assertThat(preferredAlcoholRepository.getPreferredAlcoholByKeyword(member.getId()).size()).isEqualTo(2);
     }
 }

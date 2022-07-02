@@ -10,7 +10,6 @@ import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.repository.PreferredAlcoholCustomRepositoryImpl;
 import toyproject.pyeonsool.service.AlcoholService;
-import toyproject.pyeonsool.service.MainPageDto;
 import toyproject.pyeonsool.service.MemberService;
 
 import java.util.List;
@@ -31,43 +30,27 @@ public class HomeController {
             Model model) {
 
         //이달의 추천
-        List<MainPageDto> monthAlcohols = alcoholService.getMonthAlcohols();
+        model.addAttribute("monthAlcohols", alcoholService.getMonthAlcohols());
         //베스트 Like
-        List<MainPageDto> sojus = alcoholService.getBestLike(AlcoholType.SOJU, 4);
-        List<MainPageDto> beers = alcoholService.getBestLike(AlcoholType.BEER, 4);
-        List<MainPageDto> wines = alcoholService.getBestLike(AlcoholType.WINE, 4);
-
-        //블럭처리할 이미지 전달
-        if (loginMember == null) {
-            List<MainPageDto> pyeonsools = alcoholService.getMonthAlcohols();
-            model.addAttribute("isLogin", false);
-            model.addAttribute("monthAlcohols", monthAlcohols);
-            model.addAttribute("pyeonsools", pyeonsools);
-            model.addAttribute("sojus", sojus);
-            model.addAttribute("beers", beers);
-            model.addAttribute("wines", wines);
-            return "mainPage";
-        }
+        model.addAttribute("sojus", alcoholService.getBestLike(AlcoholType.SOJU, 4));
+        model.addAttribute("beers", alcoholService.getBestLike(AlcoholType.BEER, 4));
+        model.addAttribute("wines", alcoholService.getBestLike(AlcoholType.WINE, 4));
 
         //당신의 편술
-        List<Long> mykeywords = alcoholService.getMykeywords(loginMember.getId());
-        List<Long> alcohols = alcoholService.getAlcohols(mykeywords);
-        List<MainPageDto> pyeonsools = alcoholService.getYourAlcohols(alcohols);
-
+        if (loginMember == null) {
+            model.addAttribute("isLogin", false);
+            model.addAttribute("pyeonsools", alcoholService.getMonthAlcohols()); // 수정 필요
+            return "mainPage";
+        }
         model.addAttribute("isLogin", true);
-//        model.addAttribute("loginmember", loginMember);
-//        model.addAttribute("selectkeywords", mykeywords);
-        model.addAttribute("monthAlcohols", monthAlcohols);
-        model.addAttribute("pyeonsools", pyeonsools);
-        model.addAttribute("sojus", sojus);
-        model.addAttribute("beers", beers);
-        model.addAttribute("wines", wines);
+        model.addAttribute("pyeonsools", alcoholService.getYourAlcohols(loginMember.getId()));
 
         /*마이 키워드*/
         if (loginMember!=null) {
             List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
             model.addAttribute("personalKeywords", myKeywords);
         }
+
         return "mainPage";
     }
 }

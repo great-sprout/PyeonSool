@@ -25,9 +25,9 @@ public class MyKeywordCustomRepositoryImpl implements MyKeywordCustomRepository 
     @Override //나의 키워드 조회
     public List<Long> getMyKeywords(Long loginId) {
         return queryFactory
-                .select(keyword.id)
+                .select(myKeyword.keyword.id)
                 .from(myKeyword)
-                .where(member.id.eq(loginId))
+                .where(myKeyword.member.id.eq(loginId))
                 .fetch();
     }
 }

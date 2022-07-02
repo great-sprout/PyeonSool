@@ -93,20 +93,23 @@
                                                 alt="alcohol"
                                                 class="recommend__image"
                                         />
+
                                     </a>
                                 </li>
                             </th:block>
-                            <th:block th:unless="${isLogin}" th:each="num : ${#numbers.sequence(1,12)}">
-                                <li class="recommend__item">
-                                    <a href="#"
-                                       th:href="@{#}">
-                                        <img
-                                                src="/image/alcohol/beer/carlsberg.png"
-                                                th:src="@{/image/alcohol/beer/carlsberg.png}"
-                                                alt="alcohol"
-                                                class="recommend__image blur"
-                                        />
-                                    </a>
+                            <th:block th:unless="${isLogin}">
+                                <li class="">
+                                    <img
+                                            src="/image/components/blur-pyeonsool.png"
+                                            th:src="@{/image/components/blur-pyeonsool.png}"
+                                            alt="alcohol"
+                                            class=""
+                                    />
+                                    <div class="recommend__button-box">
+                                        <button class="recommend__login" onclick="location.href='/members/login'">
+                                            로그인하고 당신의 편술 보기
+                                        </button>
+                                    </div>
                                 </li>
                             </th:block>
 

@@ -1,5 +1,8 @@
 package toyproject.pyeonsool.repository;
 
+import com.querydsl.core.Tuple;
+import com.querydsl.core.types.ExpressionUtils;
+import com.querydsl.core.types.Projections;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.JPAExpressions;
@@ -11,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.service.AlcoholImageDto;
 
 import java.util.List;
 
@@ -18,6 +22,8 @@ import static org.springframework.util.StringUtils.*;
 import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
 import static toyproject.pyeonsool.domain.QAlcoholKeyword.alcoholKeyword;
 import static toyproject.pyeonsool.domain.QKeyword.keyword;
+import static toyproject.pyeonsool.domain.QMyKeyword.*;
+import static toyproject.pyeonsool.domain.QPreferredAlcohol.*;
 import static toyproject.pyeonsool.domain.QVendor.vendor;
 
 @RequiredArgsConstructor
