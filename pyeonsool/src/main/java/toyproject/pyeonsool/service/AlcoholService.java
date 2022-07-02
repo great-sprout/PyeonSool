@@ -98,6 +98,9 @@ public class AlcoholService {
 
         PreferredAlcohol preferredAlcohol = new PreferredAlcohol(member, alcohol);
         preferredAlcoholRepository.save(preferredAlcohol);
+        alcohol.plusLikeCount();
+        System.out.println("plus : " + alcohol.getName() + "cnt : " +alcohol.getLikeCount());
+
 
         return preferredAlcohol.getId();
     }
@@ -111,6 +114,8 @@ public class AlcoholService {
 
         if (preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol)) {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
+            alcohol.minusLikeCount();
+            System.out.println("minus : " + alcohol.getName()+"cnt : "+alcohol.getLikeCount());
         }
     }
 
