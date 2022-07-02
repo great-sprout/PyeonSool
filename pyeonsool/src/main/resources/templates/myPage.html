@@ -228,106 +228,40 @@
                 <div class="my-review__fixed-stars">
                   <span
                     class="my-review__fixed-star my-review__fixed-star--selected"
+                    th:each="num : ${#numbers.sequence(1, myReview.grade)}"
                     >★</span
                   >
                   <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span
-                    class="my-review__fixed-star my-review__fixed-star--selected"
-                    >★</span
-                  >
-                  <span class="my-review__fixed-star">★</span>
+                          class="my-review__fixed-star"
+                          th:if="${myReview.grade < 5}" ? th:each="num : ${#numbers.sequence(myReview.grade + 1, 5)}"
+                  >★</span>
                 </div>
 
                 <!-- 리뷰마다 id, for 값 다름에 유의 -->
                 <!--선택 별점-->
                 <div class="stars my-review__stars unvisible">
+                <th:block th:each="num : ${#numbers.sequence(5, 1)}">
                   <input
-                  type="radio"
-                  id="5-star--id-1"
-                  name="grade"
-                  value="5"
-                  class="stars__radio"
-                  required
-                />
-                <label
-                  for="5-star--id-1"
-                  class="stars__star my-review__star"
+                          type="radio"
+                          id="5-star--id-1"
+                          name="grade"
+                          value="5"
+                          class="stars__radio"
+                          required
+                          th:id="|${num}-star-id-*{reviewId}|"
+                  />
+                  <label
+                          for="5-star--id-1"
+                          th:for="|${num}-star-id-*{reviewId}|"
+                          class="stars__star review__star"
                   >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="4-star--id-1"
-                  name="grade"
-                  value="4"
-                  class="stars__radio"
-                />
-                <label
-                  for="4-star--id-1"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="3-star--id-1"
-                  name="grade"
-                  value="3"
-                  class="stars__radio"
-                />
-                <label
-                  for="3-star--id-1"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="2-star--id-1"
-                  name="grade"
-                  value="2"
-                  class="stars__radio"
-                />
-                <label
-                  for="2-star--id-1"
-                  class="stars__star review__star"
-                  >★</label
-                >
-
-                <input
-                  type="radio"
-                  id="1-star--id-1"
-                  name="grade"
-                  value="1"
-                  class="stars__radio"
-                />
-                <label
-                  for="1-star--id-1"
-                  class="stars__star my-review__star"
-                  >★</label
-                >
+                  >
+              </th:block>
                 </div>
 
                 <!--내용-->
-                <div class="my-review__content">
-                  역시 소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시
-                  소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-                  참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
-
+                <div class="my-review__content" th:text="*{content}">
+                  내용
                 </div>
                   <textarea
                   class="my-review__textarea unvisible"
@@ -342,12 +276,12 @@
                   <div class="mypage-recommendation">
                     <i class="far fa-thumbs-up recommendation__icon"></i>
                     </i>
-                    <span class="recommendation__count">40</span>
+                    <span class="recommendation__count" th:text="*{getRecommendCount}">40</span>
                   </div>
 
                   <div class="mypage-norecommendation">
                     <i class="far fa-thumbs-down no-recommendation__icon"></i>
-                    <span class="no-recommendation__count">15</span>
+                    <span class="no-recommendation__count" th:text="*{getNotRecommendCount}">15</span>
                   </div>
                 </div>
               </div>
