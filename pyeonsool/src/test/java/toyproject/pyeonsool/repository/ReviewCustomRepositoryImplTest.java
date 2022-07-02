@@ -51,6 +51,7 @@ public class ReviewCustomRepositoryImplTest {
         em.persist(new Review(member, alcohols.get(0), (byte) 5, "맛있어요"));
         em.persist(new Review(member, alcohols.get(1), (byte) 3, "평범해요"));
         em.persist(new Review(member, alcohols.get(2), (byte) 2, "별로에요"));
+
         //when
         Page<ReviewImageDto> reviewImage =
                 reviewRepository.getReviewImage(member.getId(), PageRequest.of(0, 5));

@@ -34,6 +34,8 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
         List<ReviewImageDto> result = queryFactory
                 .select(new QReviewImageDto(
                         review.id,
+                        alcohol.id,
+                        alcohol.type,
                         alcohol.fileName,
                         review.lastModifiedDate,
                         review.grade,
