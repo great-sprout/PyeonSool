@@ -109,6 +109,6 @@ function addDisLikeClickEvent(){
 
 
   //호출
-  addMystyleSlidingEvent();
+  //addMystyleSlidingEvent();
   addMyReviewEditStateEvent();
   addDisLikeClickEvent();
