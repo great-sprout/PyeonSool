@@ -43,6 +43,8 @@ function addLikeClickEvent() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     alcoholInfoLikeButton.classList.remove(LIKE_STATUS_CLASS);
+                } else if (request.status === 401) {
+                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -66,7 +68,9 @@ function addLikeClickEvent() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     alcoholInfoLikeButton.classList.add(LIKE_STATUS_CLASS);
-                } else {
+                }  else if (request.status === 401) {
+                    alert("로그인 후 이용해주세요.");
+                }else {
                     alert(request.response.message);
                 }
             }
@@ -134,6 +138,8 @@ function addReviewRecommendationEvent() {
 
                     clearClickState(target, ".no-recommendation__icon", ".no-recommendation__icon--clicked");
                     changeToClickState(target);
+                } else if (request.status === 401) {
+                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -158,6 +164,8 @@ function addReviewRecommendationEvent() {
                 if (request.status === 200) {
                     changeLikeCount(target.closest(".review__preference"), -1);
                     changeToUnclickState(target);
+                } else if (request.status === 401) {
+                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -187,6 +195,8 @@ function addReviewRecommendationEvent() {
                     }
                     clearClickState(target, ".recommendation__icon", ".recommendation__icon--clicked");
                     changeToClickState(target);
+                } else if (request.status === 401) {
+                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -211,6 +221,8 @@ function addReviewRecommendationEvent() {
                 if (request.status === 200) {
                     changeDislikeCount(target.closest(".review__preference"), -1);
                     changeToUnclickState(target);
+                } else if (request.status === 401) {
+                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
