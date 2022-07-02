@@ -83,12 +83,12 @@ class AlcoholRepositoryTest {
 
         //when
         AlcoholSearchConditionDto[] conditions = new AlcoholSearchConditionDto[]{
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null),
-                new AlcoholSearchConditionDto(BEER, null, "리", GS25),
-                new AlcoholSearchConditionDto(BEER, null, null, null),
-                new AlcoholSearchConditionDto(BEER, null, null, null)
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25,null,null),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25,null,null),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null,null,null),
+                new AlcoholSearchConditionDto(BEER, null, "리", GS25,null,null),
+                new AlcoholSearchConditionDto(BEER, null, null, null ,"price","asc"),
+                new AlcoholSearchConditionDto(BEER, null, null, null ,"abv","desc")
         };
 
         ArrayList<Page<Alcohol>> alcoholPages = new ArrayList<>();
@@ -98,6 +98,15 @@ class AlcoholRepositoryTest {
         }
 
         //then
+        int i=1;
+        for (Page<Alcohol> a: alcoholPages) {
+            System.out.println(i);
+            for(Alcohol s : a) {
+                System.out.println("hello = " + s.getName() + " price : " + s.getPrice());
+            }
+            i++;
+            System.out.println("------------------");
+        }
         assertThat(alcoholPages.get(0).getContent().size()).isEqualTo(1);
         assertThat(alcoholPages.get(1).getContent().size()).isEqualTo(7);
         assertThat(alcoholPages.get(2).getContent().size()).isEqualTo(1);
