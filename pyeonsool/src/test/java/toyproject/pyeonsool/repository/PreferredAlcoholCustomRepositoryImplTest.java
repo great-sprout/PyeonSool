@@ -10,12 +10,8 @@ import toyproject.pyeonsool.domain.*;
 
 import javax.persistence.EntityManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static toyproject.pyeonsool.domain.AlcoholType.*;
-import static toyproject.pyeonsool.domain.AlcoholType.WINE;
+import static toyproject.pyeonsool.domain.AlcoholType.SOJU;
 
 
 
@@ -55,7 +51,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
     }
 
     @Test
-    void getAlcoholIds() {
+    void getMonthAlcohols() {
         //given
         Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
         Member member1 = new Member("영준이", "chldudwns121", "1234", "01012341234");
@@ -85,7 +81,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
         em.persist(new PreferredAlcohol(member, alcohol2));
 
         //then
-        assertThat(preferredAlcoholRepository.getAlcoholIds().size())
+        assertThat(preferredAlcoholRepository.getMonthAlcohols().size())
                 .isEqualTo(3);
     }
     @Test

@@ -21,10 +21,10 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
     private final JPAQueryFactory queryFactory;
 
 
-    @Override //모두가 좋아하는 술(alcohol_id)
-    public List<Long> getAlcoholIds() {
+    @Override //모두가 좋아하는 술(Alcohol)
+    public List<Alcohol> getMonthAlcohols() {
         return queryFactory
-                .select(preferredAlcohol.alcohol.id)
+                .select(preferredAlcohol.alcohol)
                 .from(preferredAlcohol)
                 .groupBy(preferredAlcohol.alcohol.id)
                 .orderBy(preferredAlcohol.id.count().desc())
@@ -72,9 +72,9 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
     //group by pa.alcohol_id
     //limit 12;
     @Override //나의 키워드가 포함된 알콜과 일치하는 선호하는 알콜 조회
-    public List<Long> getPreferredAlcoholByKeyword(Long loginMember) {
+    public List<Alcohol> getPreferredAlcoholByKeyword(Long loginMember) {
         return queryFactory
-                .select(preferredAlcohol.alcohol.id)
+                .select(preferredAlcohol.alcohol)
                 .from(preferredAlcohol, alcoholKeyword) //세타 조인
                 .where(preferredAlcohol.alcohol.id.in(
                         JPAExpressions
