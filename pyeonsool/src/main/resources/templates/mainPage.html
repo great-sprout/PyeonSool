@@ -93,26 +93,21 @@
                                                 alt="alcohol"
                                                 class="recommend__image"
                                         />
-
                                     </a>
                                 </li>
                             </th:block>
                             <th:block th:unless="${isLogin}">
                                 <li class="">
-                                    <img
-                                            src="/image/components/blur-pyeonsool.png"
-                                            th:src="@{/image/components/blur-pyeonsool.png}"
-                                            alt="alcohol"
-                                            class=""
-                                    />
-                                    <div class="recommend__button-box">
-                                        <button class="recommend__login" onclick="location.href='/members/login'">
-                                            로그인하고 당신의 편술 보기
-                                        </button>
+                                    <div class="recommend__view-hidden">
+                                        <div class="recommend__button-box">
+                                            <button class="recommend__button--login"
+                                                    onclick="location.href='/members/login'">
+                                                로그인하고 당신의 편술 보기
+                                            </button>
+                                        </div>
                                     </div>
                                 </li>
                             </th:block>
-
                         </ul>
                     </div>
 
