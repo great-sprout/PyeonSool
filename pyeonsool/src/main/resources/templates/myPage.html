@@ -206,12 +206,14 @@
             <!--내 리뷰 리스트 이미지-->
             <div class="mypage-review__item">
               <div class="mypage-review__images">
+                <a href = "#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${myReview.alcoholId})}">
                 <img
                   src="/image/alcohol/chamisul.png" th:src="${myReview.imagePath}"
                   alt=""
                   class="mypage-review__image"
                   onclick="location.href='#'"
                 />
+                </a>
               </div>
 
               <div class="mypage-info">
@@ -282,7 +284,7 @@
                   </div>
 
                   <div class="mypage-norecommendation">
-                    <i class="fas fa-thumbs-down no-recommendation__icon"></i>
+                    <i class="far fa-thumbs-down no-recommendation__icon"></i>
                     <span class="no-recommendation__count" th:text="*{getNotRecommendCount}">15</span>
                   </div>
                 </div>
