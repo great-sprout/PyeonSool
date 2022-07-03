@@ -87,3 +87,9 @@
   gap: 30px;
   font-size: 14px;
 }
+.error-msg
+{
+  margin-top: 10px;
+  margin-left: 5px;
+  color: var(--error-color);
+}
