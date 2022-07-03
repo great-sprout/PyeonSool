@@ -587,7 +587,7 @@ public class initDB {
                     13.5f, (byte) 1, (byte) 3, "조셉 드루앙", "프랑스",0L));
             wines.add(new Alcohol(WINE, "misty-cove-estate.png", "미스티 코브 에스테이브 소비뇽 블랑", 23900,
                     14f, (byte) 1, (byte) 2, "미스티 코브 와인즈", "뉴질랜드",0L));
-            wines.add(new Alcohol(WINE, "sbodegas-lan-reserva.png", "보데가스 란 리제르바", 34000,
+            wines.add(new Alcohol(WINE, "bodegas-lan-reserva.png", "보데가스 란 리제르바", 34000,
                     13f, (byte) 1, (byte) 4, "보데가스 란", "스페인",0L));
         }
 
@@ -727,10 +727,10 @@ public class initDB {
             em.persist(new AlcoholKeyword(keywords[20], wines.get(24))); //낮은 산도
             em.persist(new AlcoholKeyword(keywords[13], wines.get(24))); //화이트
 
-            em.persist(new AlcoholKeyword(keywords[4], wines.get(27))); //과일향
-            em.persist(new AlcoholKeyword(keywords[11], wines.get(27))); //도수 중간
-            em.persist(new AlcoholKeyword(keywords[18], wines.get(27))); //높은 산도
-            em.persist(new AlcoholKeyword(keywords[13], wines.get(27))); //화이트
+            em.persist(new AlcoholKeyword(keywords[4], wines.get(25))); //과일향
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(25))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[18], wines.get(25))); //높은 산도
+            em.persist(new AlcoholKeyword(keywords[13], wines.get(25))); //화이트
 
             em.persist(new AlcoholKeyword(keywords[4], wines.get(26))); //과일향
             em.persist(new AlcoholKeyword(keywords[11], wines.get(26))); //도수 중간
