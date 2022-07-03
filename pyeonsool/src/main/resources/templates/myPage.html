@@ -201,7 +201,8 @@
             <h2 class="mypage-review__title">내 리뷰 리스트</h2>
             <div class="myreviews">
               <th:block th:each="myReview : ${myReviewList}">
-            <form th:action="|/reviews/${myReview.reviewId}/edit|" method="post" class="my-review" th:number="${myReview.reviewId}"th:object="${myReview}">
+            <form th:action="@{/reviews/{reviewId}/edit?requestURI=members/(reviewId=${myReview.reviewId})}"
+                  method="post" class="my-review" th:number="${myReview.reviewId}"th:object="${myReview}">
             <!--내 리뷰 리스트 이미지-->
             <div class="mypage-review__item">
               <div class="mypage-review__images">
