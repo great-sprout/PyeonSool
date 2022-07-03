@@ -83,7 +83,12 @@
   font-size: 14px;
 }
 
-.errors {
+.nickname-error_msg,
+.id-error_msg,
+.password-error_msg,
+.phoneNumber-error_msg
+{
   margin-top: 10px;
+  margin-left: 5px;
   color: var(--error-color);
 }

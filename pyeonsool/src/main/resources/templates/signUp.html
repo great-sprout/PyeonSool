@@ -38,10 +38,12 @@
                   maxlength="20"
                   th:field="*{nickname}"
                 />
+                <div class="nickname-error_msg" th:errors="*{nickname}">
+                </div>
               </div>
 
               <div class="sign-up__id-wrap">
-                <h2 class="sign-up__id">아이디</h2>
+                <h2  class="sign-up__id">아이디</h2>
 
                 <input
                   type="text"
@@ -50,7 +52,10 @@
                   required
                   maxlength="20"
                   th:field="*{userId}"
+                  th:errorclass = "id-error"
                 />
+                <div class="id-error_msg" th:errors="*{userId}">
+                </div>
               </div>
 
               <div class="sign-up__password-wrap">
@@ -64,7 +69,10 @@
                   minlength="4"
                   maxlength="20"
                   th:field="*{password}"
+                  th:errorclass = "password-error"
                 />
+              </div>
+              <div class="password-error_msg" th:errors="*{password}">
               </div>
 
               <div class="sign-up__password-confirm-wrap">
@@ -93,8 +101,12 @@
                   required
                   maxlength="14"
                   th:field="*{phoneNumber}"
+                  th:errorclass = "phoneNumber-error"
                 />
+                <div class="phoneNumber-error_msg" th:errors="*{phoneNumber}">
+                </div>
               </div>
+
 
               <input type="button" value="회원가입" class="sign-up__submit" />
 

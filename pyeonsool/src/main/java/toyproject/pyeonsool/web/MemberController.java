@@ -100,6 +100,7 @@ public class MemberController {
         return "signUp";
     }
 
+    @PostMapping("/add")
     public String signup(@Valid MemberSaveForm memberSaveForm, BindingResult bindingResult) {
         try{
             if(!bindingResult.hasFieldErrors()){
@@ -111,7 +112,7 @@ public class MemberController {
             bindingResult.reject(e.getMessage());//?
         }
         if(bindingResult.hasErrors()){
-            return "/";
+            return "signUp";
         }
 
         return "redirect:/";
