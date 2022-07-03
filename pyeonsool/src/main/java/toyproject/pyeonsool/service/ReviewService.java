@@ -42,6 +42,28 @@ public class ReviewService {
         return review.getId();
     }
 
+    //리뷰 수정
+    public void editReview(long reviewId, byte grade, String content){
+        Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
+
+        // TODO 술, 회원 예외처리 필요
+        // save함수는 id를 전달하지 않으면 insert를 해준다
+        // save함수는 id를 전달하면 해당 id에 대한 데이터가 있으면 update를 해준다
+        // save함수는 id를 전달하면 해당 id에 대한 데이터가 없으면 insert를 한다.
+
+        //유지할 내용들
+        /*review.getMember();
+        review.getAlcohol();
+        review.getRecommendCount();
+        review.getNotRecommendCount();*/
+
+        review.changeGrade(grade);
+        review.changeContent(content);
+
+
+    }
+
     public Page<ReviewDto> getReviewPage(Pageable pageable, Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
