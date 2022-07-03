@@ -23,23 +23,6 @@ class KeywordRepositoryTest {
     EntityManager em;
 
     @Test
-    void findKeywordsBy() {
-        //given
-        Keyword keyword = new Keyword("sweet");
-        Keyword keyword2 = new Keyword("clear");
-        Keyword keyword1 = new Keyword("cool");
-
-        //when
-        em.persist(keyword);
-        em.persist(keyword1);
-        em.persist(keyword2);
-
-        //then
-        assertThat(keywordRepository.findAllBy().size()).isEqualTo(3);
-    }
-
-
-    @Test
     void findByName() {
         //given
         Keyword[] keywords = new Keyword[5];

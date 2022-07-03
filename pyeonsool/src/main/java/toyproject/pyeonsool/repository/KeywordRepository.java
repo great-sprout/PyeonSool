@@ -7,7 +7,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface KeywordRepository  extends JpaRepository<Keyword, Long> {
-    List<Keyword> findAllBy();
-
     List<Keyword> findKeywordsByNameIn(List<String> names);
 }
