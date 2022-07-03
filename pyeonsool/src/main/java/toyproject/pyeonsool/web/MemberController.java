@@ -45,6 +45,9 @@ public class MemberController {
         Page<ReviewImagePathDto> myReviewPage = reviewService.getReviewImagePathPage(loginMember.getId(),pageable);
         model.addAttribute("MyReviewPagination", Pagination.of(myReviewPage, 5));
         model.addAttribute("myReviewList",myReviewPage.getContent());
+        model.addAttribute("myReviewUpdateForm", new ReviewUpdateForm());
+        //model.addAttribute("reviewSaveForm", new ReviewSaveForm(alcoholId));
+
         /*마이 키워드*/
         if (loginMember!=null) {
             List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());

@@ -201,7 +201,7 @@
             <h2 class="mypage-review__title">내 리뷰 리스트</h2>
             <div class="myreviews">
               <th:block th:each="myReview : ${myReviewList}">
-            <form class="my-review" th:number="${myReview.reviewId}"th:object="${myReview}">
+            <form th:action="/reviews/{reviewId}/edit" method="post" class="my-review" th:number="${myReview.reviewId}"th:object="${myReview}">
             <!--내 리뷰 리스트 이미지-->
             <div class="mypage-review__item">
               <div class="mypage-review__images">
@@ -223,7 +223,7 @@
                   >2022.01.29</h2>
                 </div>
 
-                
+
                 <!--고정 별점-->
                 <div class="my-review__fixed-stars">
                   <span
@@ -266,9 +266,10 @@
                   <textarea
                   class="my-review__textarea unvisible"
                   maxlength="300"
+                  name="content"
                   required
                 ></textarea>
-               
+
 
                 <!--추천,비추천-->
 

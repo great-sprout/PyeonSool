@@ -41,6 +41,17 @@ public class ReviewController {
     }
 
     //마이페이지 리뷰 리스트 목록 조회 컨트롤 부분
+    @PostMapping("/{reviewId}/edit")
+    public String editReview(
+            @PathVariable Long reviewId,
+            @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
+            ReviewUpdateForm form,RedirectAttributes redirectAttributes) {
 
+        redirectAttributes.addAttribute("nickname",loginMember.getNickname());
+        reviewService.editReview(reviewId,form.getGrade(), form.getContent());
 
+        return "redirect:/members/{nickname}";
+    }
 }
+
+
