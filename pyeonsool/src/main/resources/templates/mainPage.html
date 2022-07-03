@@ -60,9 +60,9 @@
                     <div class="recommend__items-wrap">
                         <ul class="recommend__items">
                             <th:block>
-                                <li th:each="monthAlcohol : ${monthAlcohols}" class="recommend__item">
-                                    <a href="#"
-                                       th:href="@{/alcohols/{alcoholId}(alcoholId = ${monthAlcohol.alcoholId})}">
+                                <li th:each="monthAlcohol : ${monthAlcohols}" class="recommend__item"
+                                th:onclick="|location.href='@{/alcohols/{alcoholId}(alcoholId = ${monthAlcohol.alcoholId})}'|">
+                                    <a href="#">
                                         <img
                                                 th:src="${monthAlcohol.imagePath}"
                                                 src=""
