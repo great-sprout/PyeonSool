@@ -673,6 +673,84 @@ public class initDB {
             em.persist(new AlcoholKeyword(keywords[3], wines.get(14))); //무거움
             em.persist(new AlcoholKeyword(keywords[18], wines.get(14))); //높은 산도
             em.persist(new AlcoholKeyword(keywords[11], wines.get(14))); //중간 도수
+
+            em.persist(new AlcoholKeyword(keywords[16], wines.get(15))); //과일향
+            em.persist(new AlcoholKeyword(keywords[0], wines.get(15))); //달콤함
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(15))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[3], wines.get(15))); //무거움
+            em.persist(new AlcoholKeyword(keywords[13], wines.get(15))); //화이트
+
+            em.persist(new AlcoholKeyword(keywords[16], wines.get(16))); //과일향
+            em.persist(new AlcoholKeyword(keywords[3], wines.get(16))); //무거움
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(16))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[14], wines.get(16))); //레드
+
+            em.persist(new AlcoholKeyword(keywords[16], wines.get(17))); //과일향
+            em.persist(new AlcoholKeyword(keywords[19], wines.get(17))); //중간 산도
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(17))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[14], wines.get(17))); //레드
+
+            em.persist(new AlcoholKeyword(keywords[16], wines.get(18))); //과일향
+            em.persist(new AlcoholKeyword(keywords[19], wines.get(18))); //중간 산도
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(18))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[14], wines.get(18))); //레드
+
+            em.persist(new AlcoholKeyword(keywords[16], wines.get(19))); //과일향
+            em.persist(new AlcoholKeyword(keywords[19], wines.get(19))); //중간 산도
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(19))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[14], wines.get(19))); //레드
+
+            em.persist(new AlcoholKeyword(keywords[16], wines.get(20))); //과일향
+            em.persist(new AlcoholKeyword(keywords[19], wines.get(20))); //중간 산도
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(20))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[14], wines.get(20))); //레드
+
+            em.persist(new AlcoholKeyword(keywords[16], wines.get(21))); //과일향
+            em.persist(new AlcoholKeyword(keywords[18], wines.get(21))); //높은 산도
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(21))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[13], wines.get(21))); //화이트
+
+            em.persist(new AlcoholKeyword(keywords[4], wines.get(22))); //과일향
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(22))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[3], wines.get(22))); //무거움
+            em.persist(new AlcoholKeyword(keywords[14], wines.get(22))); //달콤함
+            em.persist(new AlcoholKeyword(keywords[7], wines.get(22))); //꽃향
+            em.persist(new AlcoholKeyword(keywords[13], wines.get(22))); //화이트
+
+            em.persist(new AlcoholKeyword(keywords[4], wines.get(23))); //과일향
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(23))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[19], wines.get(23))); //중간 산도
+            em.persist(new AlcoholKeyword(keywords[14], wines.get(23))); //레드
+
+            em.persist(new AlcoholKeyword(keywords[7], wines.get(24))); //꽃향
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(24))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[20], wines.get(24))); //낮은 산도
+            em.persist(new AlcoholKeyword(keywords[13], wines.get(24))); //화이트
+
+            em.persist(new AlcoholKeyword(keywords[4], wines.get(27))); //과일향
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(27))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[18], wines.get(27))); //높은 산도
+            em.persist(new AlcoholKeyword(keywords[13], wines.get(27))); //화이트
+
+            em.persist(new AlcoholKeyword(keywords[4], wines.get(26))); //과일향
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(26))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[3], wines.get(26))); //무거움
+            em.persist(new AlcoholKeyword(keywords[14], wines.get(26))); //레드
+            em.persist(new AlcoholKeyword(keywords[15], wines.get(26))); //떫음
+
+            em.persist(new AlcoholKeyword(keywords[4], wines.get(27))); //과일향
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(27))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[18], wines.get(27))); //높은 산도
+            em.persist(new AlcoholKeyword(keywords[13], wines.get(27))); //화이트
+
+            em.persist(new AlcoholKeyword(keywords[4], wines.get(28))); //가벼움
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(28))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[18], wines.get(28))); //높은 산도
+
+            em.persist(new AlcoholKeyword(keywords[3], wines.get(29))); //무거움
+            em.persist(new AlcoholKeyword(keywords[11], wines.get(29))); //도수 중간
+            em.persist(new AlcoholKeyword(keywords[19], wines.get(29))); //중간 산도
+
         }
 
         private void persistWineVendors(ArrayList<Alcohol> wines) {
