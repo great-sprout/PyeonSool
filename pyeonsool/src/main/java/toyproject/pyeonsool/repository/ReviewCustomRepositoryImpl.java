@@ -6,8 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.Review;
 import toyproject.pyeonsool.service.QReviewImageDto;
 import toyproject.pyeonsool.service.ReviewImageDto;
 
