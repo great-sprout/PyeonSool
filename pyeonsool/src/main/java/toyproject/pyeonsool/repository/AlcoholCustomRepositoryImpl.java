@@ -122,6 +122,7 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
         return queryFactory.selectFrom(alcohol)
                 .where(alcohol.id.in(relatedAlcoholIds(alcoholId)), alcohol.id.ne(alcoholId))
                 .groupBy(alcohol.id)
+                .orderBy(alcohol.likeCount.desc())
                 .limit(limit)
                 .fetch();
     }

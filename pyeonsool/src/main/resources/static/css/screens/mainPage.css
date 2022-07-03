@@ -119,6 +119,12 @@
   -webkit-filter: blur(15px);
 }*/
 
+.recommend__view-hidden {
+    width: 1120px;
+    height: 248px;
+    background-image: url("../../image/components/blur-pyeonsool.png");
+}
+
 .recommend__button-box {
     position: absolute;
     top: 50px;
@@ -132,16 +138,22 @@
     background: white;
 }
 
-.recommend__login {
-    border: 1px solid blueviolet;
+.recommend__button--login {
+    border: none;
     border-radius: 3px;
     cursor: pointer;
     font-weight: 900;
     font-size: 14px;
     padding: 13px 25px 10px 25px;
     text-align: center;
-    color: #753BFC;
+    color: white;
     line-height: 22px;
+    background: #753BFC;
+    font-family: 'NanumSquareRound',sans-serif;
+}
+
+.recommend__button--login:hover {
+    background: #600FFF;
 }
 
 .recommend__count-circles {

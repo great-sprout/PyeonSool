@@ -477,4 +477,12 @@ section {
 .review-area__page {
   margin-top: 70px;
 }
+
+.review-area__no-review {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
 /* alcohol-review 끝 */
