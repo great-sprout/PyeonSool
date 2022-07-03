@@ -1,10 +1,9 @@
 package toyproject.pyeonsool.repository;
 
-import com.querydsl.core.Tuple;
-import com.querydsl.core.types.ExpressionUtils;
-import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.Order;
 import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.PathBuilder;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQuery;
@@ -12,9 +11,9 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.support.PageableExecutionUtils;
 import toyproject.pyeonsool.domain.*;
-import toyproject.pyeonsool.service.AlcoholImageDto;
 
 import java.util.List;
 
@@ -22,8 +21,6 @@ import static org.springframework.util.StringUtils.*;
 import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
 import static toyproject.pyeonsool.domain.QAlcoholKeyword.alcoholKeyword;
 import static toyproject.pyeonsool.domain.QKeyword.keyword;
-import static toyproject.pyeonsool.domain.QMyKeyword.*;
-import static toyproject.pyeonsool.domain.QPreferredAlcohol.*;
 import static toyproject.pyeonsool.domain.QVendor.vendor;
 
 @RequiredArgsConstructor
@@ -33,25 +30,28 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
     @Override
     public Page<Alcohol> findAllByType(Pageable pageable, AlcoholSearchConditionDto condition) {
 
-        List<Alcohol> result = queryFactory.selectFrom(alcohol)
+        JPAQuery<Alcohol> query = queryFactory.selectFrom(alcohol)
                 .where(keywordAlcoholIdIn(condition.getKeywords()),
                         vendorAlcoholIdEq(condition.getVendorName()),
                         alcoholNameContains(condition.getSearch()),
                         alcoholTypeEq(condition.getAlcoholType()))
-                .orderBy(bySort(condition.getSortType(),condition.getStandard()))
                 .limit(pageable.getPageSize())
-                .offset(pageable.getOffset())
-                .fetch();
+                .offset(pageable.getOffset());
+
+        for (Sort.Order o : pageable.getSort()) {
+            PathBuilder pathBuilder = new PathBuilder(alcohol.getType(), alcohol.getMetadata());
+            query.orderBy(new OrderSpecifier(o.isAscending() ? Order.ASC : Order.DESC,
+                    pathBuilder.get(o.getProperty())));
+        }
 
         JPAQuery<Long> countQuery = queryFactory.select(alcohol.count())
                 .from(alcohol)
                 .where(keywordAlcoholIdIn(condition.getKeywords()),
                         vendorAlcoholIdEq(condition.getVendorName()),
                         alcoholNameContains(condition.getSearch()),
-                        alcoholTypeEq(condition.getAlcoholType()))
-                .orderBy(bySort(condition.getSortType(),condition.getStandard()));
+                        alcoholTypeEq(condition.getAlcoholType()));
 
-        return PageableExecutionUtils.getPage(result, pageable, countQuery::fetchOne);
+        return PageableExecutionUtils.getPage(query.fetch(), pageable, countQuery::fetchOne);
     }
 
     private BooleanExpression alcoholTypeEq(AlcoholType alcoholType) {
@@ -90,27 +90,29 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 .join(alcoholKeyword.keyword, keyword)
                 .where(alcoholKeyword.keyword.name.in(keywords)));
     }
-    private OrderSpecifier<?> bySort(String sort, String standard){
-        if(sort == null){
-            return null;
+    private OrderSpecifier<String> bySort(String sort){
+        OrderSpecifier o = alcohol.likeCount.desc();
+        if(sort=="abvDesc"){
+            o = alcohol.abv.desc();
+
         }
-        else if(sort.equals("abv")){
-            if (standard.equals("desc")){
-                return alcohol.abv.desc();
-            }
-            else{
-                return alcohol.abv.asc();
-            }
+        else if(sort=="abvAsc"){
+            o = alcohol.abv.asc();
         }
-       else if(sort.equals("price")){
-           if(standard.equals("desc")){
-               return alcohol.price.desc();
-           }
-           else{
-               return alcohol.price.asc();
-           }
+        else if(sort=="priceAsc"){
+            o = alcohol.price.asc();
         }
-        else return null;
+        else if(sort=="priceDesc"){
+            o = alcohol.price.desc();
+        }
+        else if(sort=="likeCount"){
+            o = alcohol.likeCount.desc();
+        }
+        else if (sort==null)
+        {
+            o = alcohol.likeCount.desc();
+        }
+        return o ;
     }
 
 

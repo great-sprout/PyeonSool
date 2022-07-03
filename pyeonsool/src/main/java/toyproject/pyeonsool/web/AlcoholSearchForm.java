@@ -11,4 +11,5 @@ public class AlcoholSearchForm {
     private String search;
     private List<String> keywords;
     private String vendorName;
+    private String bySort;
 }

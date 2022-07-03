@@ -26,6 +26,8 @@ public class AlcoholDto {
 
     private Long members;
 
+    private Long likeCount;
+
 
     /*public AlcoholTypeDto (
             AlcoholType alcoholType, String imagePath, Integer price,String grade,String abvs, List<String> alcoholKeywords,
@@ -48,6 +50,7 @@ public class AlcoholDto {
         keywords = alcoholKeywords;
         vendors = alcoholVendors;
         members = prferredMembers;
+        likeCount=alcohol.getLikeCount();
     }
 
 
