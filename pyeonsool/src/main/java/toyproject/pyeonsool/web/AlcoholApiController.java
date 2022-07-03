@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
+import toyproject.pyeonsool.repository.AlcoholRepository;
+import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 import toyproject.pyeonsool.service.AlcoholService;
 
 import static java.util.Objects.isNull;
@@ -15,6 +17,7 @@ import static java.util.Objects.isNull;
 @RequestMapping("/alcohols")
 public class AlcoholApiController {
     private final AlcoholService alcoholService;
+    private final PreferredAlcoholRepository preferredAlcoholRepository;
 
     @PostMapping("/{alcoholId}/like")
     public ResponseEntity<Void> likeAlcohol(
@@ -24,6 +27,11 @@ public class AlcoholApiController {
         if (isNull(loginMember)) {
             // TODO advice 클래스 생성 후 예외 통합 관리
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        System.out.println("preferredAlcoholRepository.countByMemberIdAndAlcoholId = " + preferredAlcoholRepository.countByMemberId(loginMember.getId()));
+        if (preferredAlcoholRepository.countByMemberId(loginMember.getId()) >= 12) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
         alcoholService.likeAlcohol(alcoholId, loginMember.getId());
 

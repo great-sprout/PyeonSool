@@ -15,6 +15,7 @@ import toyproject.pyeonsool.Pagination;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.VendorName;
+import toyproject.pyeonsool.repository.AlcoholRepository;
 import toyproject.pyeonsool.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.service.*;
 
@@ -61,26 +62,6 @@ public class AlcoholController {
         }
 
         return "listPage";
-    }
-
-    private Sort getSortTypeSelect(String sort) {
-        if(sort==null){
-            return Sort.by(Sort.Direction.DESC, "likeCount");
-        }
-        else if(sort.equals("abvDesc")) {
-            return Sort.by(Sort.Direction.DESC, "abv");
-        }
-        else if(sort.equals("abvAsc")) {
-            return Sort.by(Sort.Direction.ASC, "abv");
-        }
-        else if(sort.equals("priceDesc")) {
-            return Sort.by(Sort.Direction.DESC, "price");
-        }
-        else if(sort.equals("priceAsc")) {
-            return Sort.by(Sort.Direction.ASC, "price");
-        }
-
-        return Sort.by(Sort.Direction.DESC, "likeCount");
     }
 
     private AlcoholType getAlcoholType(AlcoholSearchForm alcoholSearchForm) {

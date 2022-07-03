@@ -10,4 +10,6 @@ public interface PreferredAlcoholRepository  extends JpaRepository<PreferredAlco
     boolean existsByMemberAndAlcohol(Member member, Alcohol alcohol);
 
     void removeByMemberAndAlcohol(Member member, Alcohol alcohol);
+
+    Long countByMemberId(Long memberId);
 }

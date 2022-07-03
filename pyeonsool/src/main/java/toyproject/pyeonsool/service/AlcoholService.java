@@ -26,7 +26,6 @@ public class AlcoholService {
     private final VendorRepository vendorRepository;
     private final ReviewRepository reviewRepository;
     private final FileManager fileManager;
-    private final MyKeywordRepository myKeywordRepository;
 
 
     public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
@@ -96,6 +95,8 @@ public class AlcoholService {
         Member member = memberRepository.findById(memberId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
+
+
 
         PreferredAlcohol preferredAlcohol = new PreferredAlcohol(member, alcohol);
         preferredAlcoholRepository.save(preferredAlcohol);

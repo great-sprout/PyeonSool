@@ -68,7 +68,9 @@ function addLikeClickEvent() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     alcoholInfoLikeButton.classList.add(LIKE_STATUS_CLASS);
-                }  else if (request.status === 401) {
+                } else if (request.status === 400) {
+                    alert("Like 술은 12개까지 가능합니다.");
+                } else if (request.status === 401) {
                     alert("로그인 후 이용해주세요.");
                 }else {
                     alert(request.response.message);
