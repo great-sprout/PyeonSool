@@ -36,15 +36,16 @@ public class AlcoholController {
     @GetMapping
     public String getListPage(@ModelAttribute AlcoholSearchForm alcoholSearchForm,
                               @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
-                              @PageableDefault(sort = "LikeCount", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
+                              @PageableDefault(sort = {"likeCount"}, size = 8, direction = Sort.Direction.DESC) Pageable pageable,
                               Model model) {
-        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(PageRequest.of(0, 8, getSortTypeSelect(alcoholSearchForm.getBySort())),
+        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(
+                pageable,
                 new AlcoholSearchConditionDto(
                         getAlcoholType(alcoholSearchForm),
                         alcoholSearchForm.getKeywords(),
                         alcoholSearchForm.getSearch(),
                         getVendorName(alcoholSearchForm)
-                        ));
+                ));
 
         model.addAttribute("typeList", alcoholPage.getContent());
         model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/

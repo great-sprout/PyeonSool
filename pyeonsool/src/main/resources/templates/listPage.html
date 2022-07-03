@@ -382,12 +382,12 @@
                             7-eleven
                           </option>
                 </select>
-                        <select class="sort-option" name="bySort">
-                          <option value="LikeCount" th:selected="${alcoholSearchForm.bySort} == 'LikeCount'">좋아요순</option>
-                          <option value="priceAsc" th:selected="${alcoholSearchForm.bySort} == 'priceAsc'">낮은 가격순</option>
-                          <option value="priceDesc" th:selected="${alcoholSearchForm.bySort} == 'priceDesc'">높은 가격순</option>
-                          <option value="abvAsc" th:selected="${alcoholSearchForm.bySort} == 'abvAsc'">낮은 도수순</option>
-                          <option value="abvDesc" th:selected="${alcoholSearchForm.bySort} == 'abvDesc'">높은 도수순</option>
+                        <select class="sort-option" name="sort">
+                          <option value="likeCount,DESC" th:selected="${alcoholSearchForm.bySort} == 'likeCount,DESC'">좋아요순</option>
+                          <option value="price,ASC" th:selected="${alcoholSearchForm.bySort} == 'price,ASC'">낮은 가격순</option>
+                          <option value="price,DESC" th:selected="${alcoholSearchForm.bySort} == 'price,DESC'">높은 가격순</option>
+                          <option value="abv,ASC" th:selected="${alcoholSearchForm.bySort} == 'abv,ASC'">낮은 도수순</option>
+                          <option value="abv,DESC" th:selected="${alcoholSearchForm.bySort} == 'abv,DESC'">높은 도수순</option>
                         </select  >
                     </span>
 
