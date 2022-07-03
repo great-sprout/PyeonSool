@@ -74,4 +74,19 @@ public class ReviewApiController {
 
         return ResponseEntity.ok().build();
     }
+
+    //리뷰 삭제 컨트롤러
+    @DeleteMapping("/{reviewId}/delete")
+    public ResponseEntity<Void> deleteReview(
+            @PathVariable Long reviewId,
+            @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
+
+        if (isNull(loginMember)) {
+            // TODO advice 클래스 생성 후 예외 통합 관리
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        reviewService.deleteReview(reviewId);
+
+        return ResponseEntity.ok().build();
+    }
 }

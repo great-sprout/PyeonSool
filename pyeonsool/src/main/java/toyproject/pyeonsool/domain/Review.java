@@ -58,6 +58,10 @@ public class Review {
         this(member, alcohol, grade, content, 0L, 0L);
     }
 
+    public Review(Long id){
+        this.id = id;
+    }
+
     public void plusRecommendCount() { this.recommendCount += 1;
     }
 

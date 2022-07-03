@@ -74,6 +74,30 @@ class ReviewServiceTest {
         assertThat(em.find(Review.class, review.getId()).getContent()).isEqualTo("수정댓글");
         assertThat(em.find(Review.class, review.getId()).getGrade()).isEqualTo((byte)3);
     }
+
+    //리뷰 삭제 테스트
+    @Test
+    void deleteReview(){
+
+        //given
+        Member member = new Member("nickname", "userId", "password", "01012345678");
+        em.persist(member);
+
+        Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        em.persist(alcohol);
+
+        Review review = new Review(member, alcohol, (byte)5, "댓글");
+        em.persist(review);
+
+        //when
+        reviewService.deleteReview(review.getId());
+
+        //then
+        assertThat(em.find(Review.class, review.getId())).isNull();
+
+    }
+
     @Nested
     class getReviewPageTest {
         @Test
