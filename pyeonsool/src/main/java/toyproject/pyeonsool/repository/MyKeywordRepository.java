@@ -6,6 +6,6 @@ import toyproject.pyeonsool.domain.MyKeyword;
 
 import java.util.List;
 
-public interface MyKeywordRepository extends JpaRepository<MyKeyword, Long> {
+public interface MyKeywordRepository  extends JpaRepository<MyKeyword, Long>,MyKeywordCustomRepository {
     List<Long> findByMember(LoginMember loginMember);
 }

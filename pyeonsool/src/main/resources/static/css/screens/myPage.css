@@ -94,6 +94,13 @@
   width: 40px;
   height: 40px;
 }
+.mypage-like__delete-dislikebutton{
+    background: white;
+    border: none;
+}
+.mypage-like__delete-dislikebuttonstatus{
+
+}
 
 .mypage-like__delete-icon{
   visibility: hidden;
@@ -368,12 +375,19 @@
     width: 0.5px;
     height: 13px;
     background-color: rgb(102, 102, 102);;
-  }
+}
 
-  /*페이징*/
-  .mypage__page {
+/*페이징*/
+.mypage__page {
     margin-top: 70px;
     margin-left: 20px;
-  }
+}
 
+.mypage__page__no-review {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
 /*내리뷰 리스트 끝*/

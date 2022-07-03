@@ -104,13 +104,14 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: start;
-    align-items: center;
+    align-items: flex-start;
 
 }/*알콜 리스트 정렬에 관련된 기능 묶음*/
 .sort-list__find {
     display: flex;
     align-items: center;
     background-color: rgba(117, 59, 252,0.33);
+    width: 193px;
     height: 28px;
     border-radius: 7px;
 }
@@ -125,18 +126,20 @@
 }/*알콜 검색 창*/
 .sort-list__find i{
     padding-top: 2px;
-    width: 23px;
+    font-size: 16px;
+    cursor: pointer;
 }
 .sort-list__keyword{
     width: 65%;
     margin-left: 1%;
-    height:28px;
+    /*height:28px;*/
     display:flex;
     flex-wrap:wrap;
     gap:6px;
 }/*알콜 키워드 묶음 */
 .sort-choice__keyword{
     padding-top:7px;
+    margin-bottom: 8px;
 }/*알콜 키워드 버튼 input & label*/
 .sort-choice__keyword-input {
   display: none;
@@ -159,7 +162,6 @@
 /*키워드 박스 선택시 변경*/
 .sort-list__select select{
     height: 34px;
-    width: flex;
     border-radius: 5px;
     padding:4px 3px 4px 3px;
     margin-right: 7px;
@@ -169,7 +171,6 @@
     -moz-text-align-last: center;
     font-size: 12.5px;
 }/*알콜 키워드 정렬 셀렉트 박스*/
-
 
 
 .alcohol-list{
@@ -237,7 +238,7 @@
 }/*알콜 리스트 이미지 안 좋아요*/
 .alcohol-card__like i{
     color: var(--heart-color);
-    margin -left:3px;
+    margin-left:3px;
     margin-right:3px;
 }
 .alcohol-card__image img{

@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import toyproject.pyeonsool.domain.*;
 import toyproject.pyeonsool.repository.RecommendedReviewRepository;
+import toyproject.pyeonsool.repository.ReviewRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -23,6 +24,9 @@ class ReviewServiceTest {
 
     @Autowired
     RecommendedReviewRepository recommendedReviewRepository;
+
+    @Autowired
+    ReviewRepository reviewRepository;
 
     @Autowired
     EntityManager em;
@@ -44,6 +48,32 @@ class ReviewServiceTest {
         assertThat(em.find(Review.class, reviewId)).isNotNull();
     }
 
+    //수정 서비스 테스트
+    @Test
+    void editReview() {
+        //given
+        Member member = new Member("nickname", "userId", "password", "01012345678");
+        em.persist(member);
+
+        Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                (byte) 3, (byte) 2, "우리집", "대한민국");
+        em.persist(alcohol);
+
+        Review review = new Review(member, alcohol, (byte)5, "댓글");
+        em.persist(review);
+
+        em.flush();
+        em.clear();
+
+        //when
+        reviewService.editReview(review.getId(), (byte)3, "수정댓글");
+        em.flush();
+        em.clear();
+
+        //then
+        assertThat(em.find(Review.class, review.getId()).getContent()).isEqualTo("수정댓글");
+        assertThat(em.find(Review.class, review.getId()).getGrade()).isEqualTo((byte)3);
+    }
     @Nested
     class getReviewPageTest {
         @Test

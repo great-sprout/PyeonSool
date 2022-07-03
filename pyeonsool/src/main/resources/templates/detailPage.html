@@ -147,106 +147,20 @@
 
             <div class="alcohol-recommendation__body">
               <ul class="alcohol-recommendation__items">
+                <th:block th:each="relatedAlcohol : ${relatedAlcohols}">
                 <li
                   class="alcohol-recommendation__item"
                   onclick="location.href='#'"
+                  th:onclick="|location.href='@{/alcohols/{alcoholId}(alcoholId=${relatedAlcohol.alcoholId})}'|"
                 >
                   <img
                     src="/image/alcohol/chamisul.png"
+                    th:src="${relatedAlcohol.imagePath}"
                     alt="alcohol"
                     class="alcohol-recommendation__image"
                   />
                 </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/chamisul.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
-
-                <li class="alcohol-recommendation__item">
-                  <img
-                    src="/image/alcohol/cass.png"
-                    alt="alcohol"
-                    class="alcohol-recommendation__image"
-                    onclick="location.href='#'"
-                  />
-                </li>
+                </th:block>
               </ul>
             </div>
           </article>
@@ -305,8 +219,9 @@
               </div>
 
               <div class="reviews">
-                <th:block  th:each="review : ${reviews}">
-                  <form class="review" th:number="${review.reviewId}" th:object="${review}">
+                <th:block th:each="review : ${reviews}">
+                  <form th:action="@{/reviews/{reviewId}/edit?requestURI=alcohols/{alcoholId}(reviewId=${review.reviewId}, alcoholId=${alcoholId})}" method="post" class="review"
+                         th:number="${review.reviewId}" th:object="${review}">
                     <div class="review__left-column">
                       <div class="review__row">
                         <span class="review__nickname" th:text="*{nickname}">알코홀릭</span>
@@ -330,7 +245,7 @@
                                     type="radio"
                                     id="5-star--id-1"
                                     name="grade"
-                                    value="5"
+                                    th:value="${num}"
                                     class="stars__radio"
                                     required
                                     th:id="|${num}-star-id-*{reviewId}|"
@@ -378,6 +293,7 @@
 
                       <textarea
                               class="review__textarea unvisible"
+                              name="content"
                               maxlength="300"
                               required
                       ></textarea>
@@ -418,7 +334,10 @@
               </div>
 
               <div class="review-area__page">
-                <div class="page">
+                <div class="review-area__no-review" th:if="${reviewPagination.totalElements == 0}">
+                  <span>등록된 리뷰가 없습니다.</span>
+                </div>
+                <div class="page" th:if="${reviewPagination.totalElements != 0}">
                   <a class="page__left" th:if="${!reviewPagination.isFirstBlock()}"
                      th:href="|/alcohols/${alcoholId}?page=${reviewPagination.startPagePerBlock - reviewPagination.blockSize - 1}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&lt;</a>
                   <th:block

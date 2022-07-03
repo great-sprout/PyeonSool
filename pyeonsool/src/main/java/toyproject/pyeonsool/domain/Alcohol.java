@@ -34,8 +34,14 @@ public class Alcohol {
     private String manufacturer;
     private String origin;
 
+    private Long likeCount;
+
     public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent,
                    Byte body, String manufacturer, String origin) {
+        this(type, fileName, name, price, abv, sugarContent, body, manufacturer, origin, 0L);
+    }
+
+    public Alcohol(AlcoholType type, String fileName, String name, Integer price, Float abv, Byte sugarContent, Byte body, String manufacturer, String origin, Long likeCount) {
         this.type = type;
         this.fileName = fileName;
         this.name = name;
@@ -45,5 +51,14 @@ public class Alcohol {
         this.body = body;
         this.manufacturer = manufacturer;
         this.origin = origin;
+        this.likeCount = likeCount;
+    }
+
+    public void plusLikeCount(){this.likeCount +=1;}
+    public void minusLikeCount(){
+        if(this.likeCount != 0){
+            this.likeCount -=1;
+        }
+
     }
 }

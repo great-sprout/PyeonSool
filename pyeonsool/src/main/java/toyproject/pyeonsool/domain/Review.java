@@ -58,8 +58,7 @@ public class Review {
         this(member, alcohol, grade, content, 0L, 0L);
     }
 
-    public void plusRecommendCount() {
-        this.recommendCount += 1;
+    public void plusRecommendCount() { this.recommendCount += 1;
     }
 
     public void minusRecommendCount() {
@@ -72,5 +71,13 @@ public class Review {
 
     public void minusNotRecommendCount() {
         this.notRecommendCount -= 1;
+    }
+
+    public void changeContent(String content){
+        this.content = content;
+    }
+
+    public void changeGrade(Byte grade){
+        this.grade = grade;
     }
 }

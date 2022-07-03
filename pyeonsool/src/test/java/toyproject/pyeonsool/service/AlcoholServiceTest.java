@@ -7,13 +7,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.repository.AlcoholSearchConditionDto;
+import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
+import static toyproject.pyeonsool.domain.VendorName.GS25;
 
 @SpringBootTest
 @Transactional
@@ -21,6 +26,7 @@ class AlcoholServiceTest {
 
     @Autowired
     AlcoholService alcoholService;
+    PreferredAlcoholRepository preferredAlcoholRepository;
 
     @Autowired
     EntityManager em;
@@ -84,7 +90,7 @@ class AlcoholServiceTest {
         em.persist(member);
 
         Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
-                (byte) 3, (byte) 2, "우리집", "대한민국");
+                (byte) 3, (byte) 2, "우리집", "대한민국", 0L);
         em.persist(alcohol);
 
         Long likeAlcoholId = alcoholService.likeAlcohol(alcohol.getId(), member.getId());
@@ -97,7 +103,7 @@ class AlcoholServiceTest {
     }
 
     @Test
-    void MyPage() {
+    void getAlcoholImages() {
         //given
         Member member = new Member("nickname", "userId", "password", "01012345678");
         em.persist(member);
@@ -117,10 +123,10 @@ class AlcoholServiceTest {
         em.persist(new PreferredAlcohol(member, alcohol3));
 
         //when
-        MyPageDto likeList = alcoholService.MyPage(member.getNickname());
+        List<AlcoholImageDto> likeList = alcoholService.getAlcoholImages(member.getId());
 
         //then
-        assertThat(likeList.getAlcoholIds().size()).isEqualTo(3);
+        assertThat(likeList.size()).isEqualTo(3);
     }
 
     @Test
@@ -191,14 +197,33 @@ class AlcoholServiceTest {
 
         int SIZE = 8;
         //when
-        Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(BEER,
-                PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")));
-
-
-        //then
-        assertThat(alcoholType.isLast()).isFalse();
-        for (AlcoholDto a : alcoholType) {
-            System.out.println("hello = " + a);
+        Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(
+                PageRequest.of(0, SIZE, getSortTypeSelect("abvDesc")),
+                new AlcoholSearchConditionDto(BEER, List.of("nutty"), "선", GS25));
+        for (AlcoholDto a: alcoholType) {
+            System.out.println("hello name  = " + a.getName() + "abv = " + a.getAbv()
+                    + "price = " + a.getPrice()+ "likeCount = " + a.getLikeCount());
         }
+        //then
+        assertThat(alcoholType.isLast()).isTrue();
+    }
+    private Sort getSortTypeSelect(String sort) {
+        if(sort==null){
+            return Sort.by(Sort.Direction.DESC, "likeCount");
+        }
+        else if(sort.equals("abvDesc")) {
+            return Sort.by(Sort.Direction.DESC, "abv");
+        }
+        else if(sort.equals("abvAsc")) {
+            return Sort.by(Sort.Direction.ASC, "abv");
+        }
+        else if(sort.equals("priceDesc")) {
+            return Sort.by(Sort.Direction.DESC, "price");
+        }
+        else if(sort.equals("priceAsc")) {
+            return Sort.by(Sort.Direction.ASC, "price");
+        }
+
+        return Sort.by(Sort.Direction.DESC, "likeCount");
     }
 }

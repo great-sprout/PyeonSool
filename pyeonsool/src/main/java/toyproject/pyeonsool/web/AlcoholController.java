@@ -2,16 +2,20 @@ package toyproject.pyeonsool.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.Pagination;
 import toyproject.pyeonsool.SessionConst;
 import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.domain.VendorName;
+import toyproject.pyeonsool.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.service.*;
 
 import java.util.ArrayList;
@@ -26,23 +30,72 @@ public class AlcoholController {
 
     private final AlcoholService alcoholService;
     private final ReviewService reviewService;
+    private final MemberService memberService;
 
 
     @GetMapping
-    public String getListPage(@RequestParam String alcoholType,
-                              @PageableDefault(sort = "id", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
+    public String getListPage(@ModelAttribute AlcoholSearchForm alcoholSearchForm,
+                              @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
+                              @PageableDefault(sort = "LikeCount", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
                               Model model) {
-        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(AlcoholType.valueOf(alcoholType), pageable);
+        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(PageRequest.of(0, 8, getSortTypeSelect(alcoholSearchForm.getBySort())),
+                new AlcoholSearchConditionDto(
+                        getAlcoholType(alcoholSearchForm),
+                        alcoholSearchForm.getKeywords(),
+                        alcoholSearchForm.getSearch(),
+                        getVendorName(alcoholSearchForm)
+                        ));
+
         model.addAttribute("typeList", alcoholPage.getContent());
         model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/
         //상품 목록
-
-        List<MainPageDto> bestLikes = alcoholService.getBestLike(AlcoholType.valueOf(alcoholType),6);
-        model.addAttribute("bestList",bestLikes);
+        model.addAttribute(
+                "bestList", alcoholService.getBestLike(getAlcoholType(alcoholSearchForm), 6));
         //베스트 상품 목록 ( 아직 4개)
 
-        return "listPage";
+        /*마이 키워드*/
+        if (loginMember!=null) {
+            List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
+            model.addAttribute("personalKeywords", myKeywords);
+        }
 
+        return "listPage";
+    }
+
+    private Sort getSortTypeSelect(String sort) {
+        if(sort==null){
+            return Sort.by(Sort.Direction.DESC, "likeCount");
+        }
+        else if(sort.equals("abvDesc")) {
+            return Sort.by(Sort.Direction.DESC, "abv");
+        }
+        else if(sort.equals("abvAsc")) {
+            return Sort.by(Sort.Direction.ASC, "abv");
+        }
+        else if(sort.equals("priceDesc")) {
+            return Sort.by(Sort.Direction.DESC, "price");
+        }
+        else if(sort.equals("priceAsc")) {
+            return Sort.by(Sort.Direction.ASC, "price");
+        }
+
+        return Sort.by(Sort.Direction.DESC, "likeCount");
+    }
+
+    private AlcoholType getAlcoholType(AlcoholSearchForm alcoholSearchForm) {
+        if (!StringUtils.hasText(alcoholSearchForm.getAlcoholType())) {
+            return null;
+        }
+
+        return AlcoholType.valueOf(alcoholSearchForm.getAlcoholType());
+    }
+
+    private VendorName getVendorName(AlcoholSearchForm alcoholSearchForm) {
+        if (!StringUtils.hasText(alcoholSearchForm.getVendorName())) {
+            return null;
+        }
+
+        return VendorName.valueOf(alcoholSearchForm.getVendorName());
     }
 
     @GetMapping("/{alcoholId}")
@@ -60,7 +113,13 @@ public class AlcoholController {
         Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
         model.addAttribute("reviews", reviewPage.getContent());
+        model.addAttribute("relatedAlcohols", alcoholService.getRelatedAlcohols(alcoholId));
 
+        /*마이 키워드*/
+        if (loginMember!=null) {
+            List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
+            model.addAttribute("personalKeywords", myKeywords);
+        }
         return "detailPage";
     }
 

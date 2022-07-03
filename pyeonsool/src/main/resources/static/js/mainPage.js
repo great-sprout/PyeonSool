@@ -74,6 +74,17 @@ function addYoursRecommendSlideEvent() {
   createSlideCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, ".recommend__list--yours");
 }
 
+//function goToLogin() {
+//    const loginButton = document.querySelector(".recommend__login");
+//
+//    loginButton.addEventListener("mouseover", function(event) {
+//      event.target.style.background = "lightgray";
+//    })
+//    loginButton.addEventListener("mouseout", function(event) {
+//      event.target.style.background = "white";
+//    })
+//}
+
 function createSlideCircle(IMAGE_COUNT, SLIDE_IMAGE_COUNT, ROOT_CLASS) {
   const circleCount = IMAGE_COUNT / SLIDE_IMAGE_COUNT;
   for (let i = 0; i < circleCount; i++) {

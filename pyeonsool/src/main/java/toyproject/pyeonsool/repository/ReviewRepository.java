@@ -10,5 +10,6 @@ import java.util.List;
 
 public interface ReviewRepository  extends JpaRepository<Review, Long>, ReviewCustomRepository {
     Page<Review> findReviewsByAlcohol(Alcohol alcohol, Pageable pageable);
+
 }
 

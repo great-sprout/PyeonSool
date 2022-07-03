@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-public class MainPageDto {
+public class BestLikeDto {
     private Long alcoholId;
     private String imagePath;
     private AlcoholType type;
@@ -22,10 +22,10 @@ public class MainPageDto {
     private List<String> keywords;
     private Long likeCount;
 
-    public static MainPageDto of(
+    public static BestLikeDto of(
             Alcohol alcohol, String imagePath, List<String> alcoholKeywords,
             Long likeCount) {
-        return new MainPageDto(
+        return new BestLikeDto(
                 alcohol.getId(),
                 imagePath,
                 alcohol.getType(),
