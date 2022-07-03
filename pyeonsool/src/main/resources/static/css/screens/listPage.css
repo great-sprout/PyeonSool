@@ -278,3 +278,12 @@
 .alcohol-list__total{
     width:1200px;
 }
+
+.alcohol-list__no-exist {
+    display: flex;
+    width: 1200px;
+    margin-top: 50px;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+}
