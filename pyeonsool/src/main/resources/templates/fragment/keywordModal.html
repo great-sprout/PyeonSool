@@ -11,7 +11,7 @@
     <div id="wrap">
       <div id="container">
         <aside class="modal unvisible" th:fragment="keywordModal">
-          <form action="" method="post" class="keyword-choice">
+          <form action="/keywords/edit" method="post" class="keyword-choice">
             <div class="keyword-choice__cancel-wrap">
               <i class="fas fa-times keyword-choice__cancel"></i>
             </div>
@@ -40,217 +40,271 @@
             <div class="keyword-choice__keywords">
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-1"
-                  type="checkbox"
-                  value="sweet"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-1"
+                        type="checkbox"
+                        value="sweet"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-1" class="keyword-choice__keyword-label"
-                  >달콤함</label
+                <label
+                        for="keyword-1"
+                        class="keyword-choice__keyword-label"
+                >달콤함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-2"
-                  type="checkbox"
-                  value="clear"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-2"
+                        type="checkbox"
+                        value="clear"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-2" class="keyword-choice__keyword-label"
-                  >깥끔함</label
+                <label
+                        for="keyword-2"
+                        class="keyword-choice__keyword-label"
+                >깥끔함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-3"
-                  type="checkbox"
-                  value="cool"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-3"
+                        type="checkbox"
+                        value="cool"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-3" class="keyword-choice__keyword-label"
-                  >시원함</label
+                <label
+                        for="keyword-3"
+                        class="keyword-choice__keyword-label"
+                >청량함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-4"
-                  type="checkbox"
-                  value="heavy"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-4"
+                        type="checkbox"
+                        value="heavy"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-4" class="keyword-choice__keyword-label"
-                  >무거움</label
+                <label
+                        for="keyword-4"
+                        class="keyword-choice__keyword-label"
+                >무거움</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-5"
-                  type="checkbox"
-                  value="light"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-5"
+                        type="checkbox"
+                        value="light"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-5" class="keyword-choice__keyword-label"
-                  >가벼움</label
+                <label
+                        for="keyword-5"
+                        class="keyword-choice__keyword-label"
+                >가벼움</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-6"
-                  type="checkbox"
-                  value="nutty"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-6"
+                        type="checkbox"
+                        value="nutty"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-6" class="keyword-choice__keyword-label"
-                  >고소함</label
+                <label
+                        for="keyword-6"
+                        class="keyword-choice__keyword-label"
+                >고소함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-7"
-                  type="checkbox"
-                  value="fresh"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-7"
+                        type="checkbox"
+                        value="fresh"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-7" class="keyword-choice__keyword-label"
-                  >상큼함</label
+                <label
+                        for="keyword-7"
+                        class="keyword-choice__keyword-label"
+                >상큼함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-8"
-                  type="checkbox"
-                  value="flower"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-8"
+                        type="checkbox"
+                        value="flower"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-8" class="keyword-choice__keyword-label"
-                  >꽃향</label
+                <label
+                        for="keyword-8"
+                        class="keyword-choice__keyword-label"
+                >꽃향</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-9"
-                  type="checkbox"
-                  value="bitter"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-9"
+                        type="checkbox"
+                        value="bitter"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-9" class="keyword-choice__keyword-label"
-                  >쌉싸름함</label
+                <label
+                        for="keyword-9"
+                        class="keyword-choice__keyword-label"
+                >쌉싸름함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-10"
-                  type="checkbox"
-                  value="unique"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-10"
+                        type="checkbox"
+                        value="unique"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-10" class="keyword-choice__keyword-label"
-                  >독특함</label
+                <label
+                        for="keyword-10"
+                        class="keyword-choice__keyword-label"
+                >독특함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-11"
-                  type="checkbox"
-                  value="strong"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-11"
+                        type="checkbox"
+                        value="strong"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-11" class="keyword-choice__keyword-label"
-                  >도수 독함</label
+                <label
+                        for="keyword-11"
+                        class="keyword-choice__keyword-label"
+                >도수 독함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-12"
-                  type="checkbox"
-                  value="middle"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-12"
+                        type="checkbox"
+                        value="middle"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-12" class="keyword-choice__keyword-label"
-                  >도수 중간</label
+                <label
+                        for="keyword-12"
+                        class="keyword-choice__keyword-label"
+                >도수 중간</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-13"
-                  type="checkbox"
-                  value="mild"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-13"
+                        type="checkbox"
+                        value="mild"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-13" class="keyword-choice__keyword-label"
-                  >도수 순함</label
+                <label
+                        for="keyword-13"
+                        class="keyword-choice__keyword-label"
+                >도수 순함</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-14"
-                  type="checkbox"
-                  value="white"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-14"
+                        type="checkbox"
+                        value="white"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-14" class="keyword-choice__keyword-label"
-                  >화이트</label
+                <label
+                        for="keyword-14"
+                        class="keyword-choice__keyword-label"
+                >화이트</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-15"
-                  type="checkbox"
-                  value="red"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-15"
+                        type="checkbox"
+                        value="red"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-15" class="keyword-choice__keyword-label"
-                  >레드</label
+                <label
+                        for="keyword-15"
+                        class="keyword-choice__keyword-label"
+                >레드</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-16"
-                  type="checkbox"
-                  value="astringent"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-16"
+                        type="checkbox"
+                        value="astringent"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-16" class="keyword-choice__keyword-label"
-                  >떫음</label
+                <label
+                        for="keyword-16"
+                        class="keyword-choice__keyword-label"
+                >떫음</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-17"
-                  type="checkbox"
-                  value="fruit"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-17"
+                        type="checkbox"
+                        value="fruit"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-17" class="keyword-choice__keyword-label"
-                  >과일향</label
+                <label
+                        for="keyword-17"
+                        class="keyword-choice__keyword-label"
+                >과일향</label
                 >
               </div>
 
               <div class="keyword-choice__keyword">
                 <input
-                  id="keyword-18"
-                  type="checkbox"
-                  value="nonAlcoholic"
-                  class="keyword-choice__keyword-input"
+                        id="keyword-18"
+                        type="checkbox"
+                        value="nonAlcoholic"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
                 />
-                <label for="keyword-18" class="keyword-choice__keyword-label"
-                  >무알콜</label
+                <label
+                        for="keyword-18"
+                        class="keyword-choice__keyword-label"
+                >무알콜</label
                 >
               </div>
             </div>
