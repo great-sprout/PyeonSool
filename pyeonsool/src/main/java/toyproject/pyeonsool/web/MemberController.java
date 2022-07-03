@@ -44,7 +44,7 @@ public class MemberController {
             @PageableDefault(sort = "id", size = 5, direction = Sort.Direction.DESC) Pageable pageable,
             Model model) throws IOException {
 
-        if (memberService.getMemberId(nickname) != loginMember.getId()) {
+        if (!memberService.getMemberId(nickname).equals(loginMember.getId())) {
             response.sendError(500, "잘못된 접근입니다.");
         }
 
