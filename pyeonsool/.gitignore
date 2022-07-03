@@ -222,3 +222,6 @@ gradle-app.setting
 
 # Ignore code-workspaces
 *.code-workspace
+
+## private application
+application-server.yml

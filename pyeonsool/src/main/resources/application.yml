@@ -1,16 +1,8 @@
 spring:
   profiles:
-    active: local
-
-  datasource:
-    url: jdbc:h2:tcp://localhost/~/pyeonsool
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
+    active: server
 
   jpa:
-    hibernate:
-      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
