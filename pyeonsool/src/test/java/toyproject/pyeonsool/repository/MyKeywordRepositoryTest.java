@@ -45,7 +45,7 @@ class MyKeywordRepositoryTest {
         em.clear();
 
         //when
-        myKeywordRepository.deleteByMemberId(member.getId());
+        myKeywordRepository.deleteByMember(member);
 
         //then
         Assertions.assertThat(myKeywordRepository.findAll()).isEmpty();
