@@ -273,9 +273,9 @@ public class initDB {
             beers.add(new Alcohol(BEER, "budweiser.png", "버드와이저", 2500,
                     5f, null, null, "앤하이저부시", "미국",2L));
             beers.add(new Alcohol(BEER, "gompyo.png", "곰표 밀맥주", 2500,
-                    4.5f, null, null, "세븐브로이맥주", "한국",0L));
+                    4.5f, null, null, "세븐브로이맥주", "대한민국",0L));
             beers.add(new Alcohol(BEER, "hite-extra-cold.png", "하이트 엑스트라 콜드", 2800,
-                    4.5f, null, null, "하이트진로", "한국",0L));
+                    4.5f, null, null, "하이트진로", "대한민국",0L));
             beers.add(new Alcohol(BEER, "kozel-premium-lager.png", "코젤 프리미엄 라거", 2500,
                     4.6f, null, null, "필젠스키 프레즈드로이", "체코",0L));
             beers.add(new Alcohol(BEER, "somersby.png", "서머스비(사과)", 4200,
@@ -284,44 +284,135 @@ public class initDB {
                     5f, null, null, "스텔라 아르투아 브루어리", "벨기에",0L));
             beers.add(new Alcohol(BEER, "guinness-draught.png", "기네스 드래프트", 3000,
                     4.2f, null, null, "디아지오 아일랜드", "아일랜드",0L));
+            beers.add(new Alcohol(BEER, "heineken.png", "하이네켄 오리지널", 3900,
+                    5f, null, null, "하이네켄 네덜란트 서플라이", "네덜란드",0L));
+            beers.add(new Alcohol(BEER, "malpyo-greengrape.png", "말표 청포도", 3500,
+                    4f, null, null, "스퀴즈 브루어리", "대한민국",0L));
+            beers.add(new Alcohol(BEER, "malpyo-dark.png", "말표 흑맥주", 3500,
+                    4.5f, null, null, "스퀴즈 브루어리", "대한민국",0L));
+            beers.add(new Alcohol(BEER, "lets.png", "레츠", 1800,
+                    4.5f, null, null, "신세계L&B", "대한민국",0L));
+            beers.add(new Alcohol(BEER, "cass-fresh.png", "카스 프레쉬", 2700,
+                    4.5f, null, null, "오비맥주", "대한민국",0L));
+            beers.add(new Alcohol(BEER, "terra.png", "테라", 2500,
+                    4.6f, null, null, "하이트진로", "대한민국",0L));
+            beers.add(new Alcohol(BEER, "hanmac.png", "한맥", 2700,
+                    4.6f, null, null, "오비맥주", "대한민국",0L));
+            beers.add(new Alcohol(BEER, "hoegaarden.png", "호가든", 3000,
+                    4.9f, null, null, "오비맥주", "벨기에",0L));
+            beers.add(new Alcohol(BEER, "kronenbourg-1664-blanc.png", "크로넨버그 1664 블랑", 3200,
+                    5f, null, null, "칼스버그 서플라이", "덴마크",0L));
+            beers.add(new Alcohol(BEER, "edelweiss-snowfresh.png", "에델바이스 스노우프레쉬", 4000,
+                    5f, null, null, "하이네켄 네덜란드 서플라이", "네덜란드",0L));
+            beers.add(new Alcohol(BEER, "paulaner-munich-lager.png", "파울라너 뮌헨 라거", 3900,
+                    4.9f, null, null, "파울라너 브루어리", "독일",0L));
+            beers.add(new Alcohol(BEER, "calsberg.png", "칼스버그", 3000,
+                    5f, null, null, "칼스버그 서플라이", "덴마크",0L));
+            beers.add(new Alcohol(BEER, "tsingtao.png", "칭따오", 3200,
+                    4.7f, null, null, "칭따오 브루어리", "중국",0L));
+            beers.add(new Alcohol(BEER, "kozel-dark.png", "코젤 다크", 4000,
+                    3.8f, null, null, "필젠스키 프레즈드로이", "체코",0L));
+            beers.add(new Alcohol(BEER, "hoegaarden.png", "호가든 포멜로", 3000,
+                    3f, null, null, "오비맥주", "벨기에",0L));
         }
 
         private void persistBeerKeywords(Keyword[] keywords, ArrayList<Alcohol> beers) {
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(0)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(0))); //산미구엘
             em.persist(new AlcoholKeyword(keywords[5], beers.get(0)));
             em.persist(new AlcoholKeyword(keywords[2], beers.get(0)));
 
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(1)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(1))); //타이거
             em.persist(new AlcoholKeyword(keywords[5], beers.get(1)));
             em.persist(new AlcoholKeyword(keywords[2], beers.get(1)));
 
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(2)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(2))); //버드와이저
             em.persist(new AlcoholKeyword(keywords[1], beers.get(2)));
             em.persist(new AlcoholKeyword(keywords[5], beers.get(2)));
 
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(3)));
-            em.persist(new AlcoholKeyword(keywords[1], beers.get(3)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(3))); //곰표 밀맥주
             em.persist(new AlcoholKeyword(keywords[16], beers.get(3)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(3)));
 
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(4)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(4))); //하이트
             em.persist(new AlcoholKeyword(keywords[2], beers.get(4)));
             em.persist(new AlcoholKeyword(keywords[1], beers.get(4)));
 
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(5)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(5))); //코젤 라거
             em.persist(new AlcoholKeyword(keywords[2], beers.get(5)));
             em.persist(new AlcoholKeyword(keywords[1], beers.get(5)));
 
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(6)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(6))); //서머스비
             em.persist(new AlcoholKeyword(keywords[16], beers.get(6)));
             em.persist(new AlcoholKeyword(keywords[0], beers.get(6)));
 
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(7)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(7))); //스텔라
             em.persist(new AlcoholKeyword(keywords[1], beers.get(7)));
             em.persist(new AlcoholKeyword(keywords[7], beers.get(7)));
 
-            em.persist(new AlcoholKeyword(keywords[17], beers.get(8)));
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(8))); //기네스
             em.persist(new AlcoholKeyword(keywords[5], beers.get(8)));
             em.persist(new AlcoholKeyword(keywords[9], beers.get(8)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(9))); //하이네켄
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(9)));
+            em.persist(new AlcoholKeyword(keywords[0], beers.get(9)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(10))); //말표 청포도
+            em.persist(new AlcoholKeyword(keywords[16], beers.get(10)));
+            em.persist(new AlcoholKeyword(keywords[0], beers.get(10)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(11))); //말표 흑맥주
+            em.persist(new AlcoholKeyword(keywords[5], beers.get(11)));
+            em.persist(new AlcoholKeyword(keywords[9], beers.get(11)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(12))); //레츠
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(12)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(12)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(13))); //카스 프레쉬
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(13)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(13)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(14))); //테라
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(14)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(14)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(15))); //한맥
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(15)));
+            em.persist(new AlcoholKeyword(keywords[5], beers.get(15)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(16))); //호가든
+            em.persist(new AlcoholKeyword(keywords[16], beers.get(16)));
+            em.persist(new AlcoholKeyword(keywords[8], beers.get(16)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(17))); //블랑
+            em.persist(new AlcoholKeyword(keywords[16], beers.get(17)));
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(17)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(18))); //에델바이스
+            em.persist(new AlcoholKeyword(keywords[9], beers.get(18)));
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(18)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(19))); //파울라너
+            em.persist(new AlcoholKeyword(keywords[0], beers.get(19)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(19)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(20))); //칼스버그
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(20)));
+            em.persist(new AlcoholKeyword(keywords[1], beers.get(20)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(21))); //칭따오
+            em.persist(new AlcoholKeyword(keywords[2], beers.get(21)));
+            em.persist(new AlcoholKeyword(keywords[5], beers.get(21)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(22))); //코젤 다크
+            em.persist(new AlcoholKeyword(keywords[5], beers.get(22)));
+            em.persist(new AlcoholKeyword(keywords[0], beers.get(22)));
+            em.persist(new AlcoholKeyword(keywords[9], beers.get(22)));
+
+            em.persist(new AlcoholKeyword(keywords[12], beers.get(23))); //호가든 포멜로
+            em.persist(new AlcoholKeyword(keywords[16], beers.get(23)));
+            em.persist(new AlcoholKeyword(keywords[0], beers.get(23)));
         }
 
         private void persistBeerVendors(ArrayList<Alcohol> beers) {
