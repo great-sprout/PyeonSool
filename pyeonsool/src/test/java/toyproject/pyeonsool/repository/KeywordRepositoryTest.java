@@ -36,6 +36,6 @@ class KeywordRepositoryTest {
         em.persist(keyword2);
 
         //then
-        assertThat(keywordRepository.findKeywordsBy().size()).isEqualTo(3);
+        assertThat(keywordRepository.findAllBy().size()).isEqualTo(3);
     }
 }
