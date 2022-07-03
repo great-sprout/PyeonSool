@@ -38,9 +38,12 @@ public class ReviewController {
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
             ReviewUpdateForm form, RedirectAttributes redirectAttributes) {
 
-        redirectAttributes.addAttribute("nickname",loginMember.getNickname());
         reviewService.editReview(reviewId,form.getGrade(), form.getContent());
 
+        if (requestURI.equals("members/")) {
+            redirectAttributes.addAttribute("nickname",loginMember.getNickname());
+            return "redirect:/members/{nickname}"; // nickname 한글 깨짐 처리
+        }
         return "redirect:/" + requestURI;
     }
 }
