@@ -36,7 +36,7 @@ public class initDB {
 
         public void init() {
 
-            Member[] members = new Member[50];
+            Member[] members = new Member[40];
             setMembers(members);
             for (Member m : members) {
                 em.persist(m);
@@ -341,33 +341,33 @@ public class initDB {
             em.persist(new Vendor(sojus.get(8), VendorName.valueOf("CU")));
             em.persist(new Vendor(sojus.get(8), VendorName.valueOf("GS25")));
 
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("CU")));
-
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("CU")));
-
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("CU")));
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("GS25")));
-
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("CU")));
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("GS25")));
-
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("CU")));
-
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("CU")));
-
             em.persist(new Vendor(sojus.get(9), VendorName.valueOf("CU")));
-            em.persist(new Vendor(sojus.get(9), VendorName.valueOf("GS25")));
-            em.persist(new Vendor(sojus.get(9), VendorName.valueOf("SEVEN_ELEVEN")));
 
             em.persist(new Vendor(sojus.get(10), VendorName.valueOf("CU")));
-            em.persist(new Vendor(sojus.get(10), VendorName.valueOf("GS25")));
-            em.persist(new Vendor(sojus.get(10), VendorName.valueOf("SEVEN_ELEVEN")));
 
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("SEVEN_ELEVEN")));
+            em.persist(new Vendor(sojus.get(11), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(11), VendorName.valueOf("GS25")));
 
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("SEVEN_ELEVEN")));
+            em.persist(new Vendor(sojus.get(12), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(12), VendorName.valueOf("GS25")));
 
-            em.persist(new Vendor(sojus.get(8), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(sojus.get(13), VendorName.valueOf("CU")));
+
+            em.persist(new Vendor(sojus.get(14), VendorName.valueOf("CU")));
+
+            em.persist(new Vendor(sojus.get(15), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(15), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(sojus.get(15), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(16), VendorName.valueOf("CU")));
+            em.persist(new Vendor(sojus.get(16), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(sojus.get(16), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(17), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(18), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(sojus.get(19), VendorName.valueOf("GS25")));
         }
 
         private void setBeers(ArrayList<Alcohol> beers) {
