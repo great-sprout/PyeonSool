@@ -1,7 +1,6 @@
 package toyproject.pyeonsool;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import toyproject.pyeonsool.domain.*;
 
@@ -36,9 +35,13 @@ public class initDB {
 
         public void init() {
 
-            Member[] members = new Member[45];
-            setMembers(members);
+            Member[] members = new Member[5];
+            ArrayList<Member> testMembers = new ArrayList<>();
+            setMembers(members, testMembers);
             for (Member m : members) {
+                em.persist(m);
+            }
+            for (Member m : testMembers) {
                 em.persist(m);
             }
 
@@ -166,7 +169,7 @@ public class initDB {
             preferredAlcohols[20] = new PreferredAlcohol(members[0], sojus.get(5));
         }
 
-        private void setMembers(Member[] members) {
+        private void setMembers(Member[] members, ArrayList<Member> testMembers) {
             members[0] = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
             members[1] = new Member("영준이", "chldudwns121", "1234", "01023456789");
             members[2] = new Member("춘향이", "chlcnsgid121", "1234", "01043218765");
@@ -184,7 +187,7 @@ public class initDB {
                     "화월", "초아", "천령", "이슬", "서애"};
 
             for (int i = 0; i < nicknames.length; i++) {
-                members[5 + i] = new Member(nicknames[i], "testId" + i, "1234", "010123456" + i);
+                testMembers.add(new Member(nicknames[i], "testId" + i, "1234", "010123456" + i));
             }
         }
 
