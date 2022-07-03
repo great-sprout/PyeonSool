@@ -193,6 +193,29 @@ public class initDB {
                     "제주 고소리술", 22800, 29f, null, null, "제주샘영농조합", "대한민국",2L));
             sojus.add(new Alcohol(SOJU, "hwayo.jpg",
                     "화요", 8500, 25f, null, null, "(주)화요", "대한민국",0L));
+
+            sojus.add(new Alcohol(SOJU, "grape-chamisul.png",
+                    "청포도에 이슬", 1900,13f, null, null, "하이트진로(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "merona-chamisul.png",
+                    "메로나에 이슬", 1700,12f, null, null, "하이트진로(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "rabbit-black.jpg",
+                    "토기 소주 블랙", 40000,40f, null, null, "농업회사법인 토끼소주(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "secret-talk-24.jpg",
+                    "밀담 24도 ", 11500,24f, null, null, "농업회사법인 (주)착한농부", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "ryeo.jpg",
+                    "국순당려", 15000,25f, null, null, "국순당여주명주", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "barracks.png",
+                    "병영 소주", 36960,40f, null, null, "병영양조장", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "andong.jpg",
+                    "안동 소주 일품", 22800,21f, null, null, "안동소주일품(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "chungha.jpg",
+                    "청하", 2750,13f, null, null, "롯데칠성음료(주)", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "seoul-night.png",
+                    "서울의밤", 7200,13f, null, null, "(주)더한주류", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "myeongin-andong.jpg",
+                    "명인안동소주", 8500,35f, null, null, "명인안동소주", "대한민국"));
+            sojus.add(new Alcohol(SOJU, "gold-barley.png",
+                    "황금보리", 6200,17f, null, null, "황금보리(유)", "대한민국"));
         }
 
         private void persistSojuKeywords(Keyword[] keywords, ArrayList<Alcohol> sojus) {
@@ -231,6 +254,47 @@ public class initDB {
             em.persist(new AlcoholKeyword(keywords[1], sojus.get(8)));
             em.persist(new AlcoholKeyword(keywords[5], sojus.get(8)));
             em.persist(new AlcoholKeyword(keywords[10], sojus.get(8)));
+
+            em.persist(new AlcoholKeyword(keywords[16], sojus.get(9)));
+            em.persist(new AlcoholKeyword(keywords[0], sojus.get(9)));
+            em.persist(new AlcoholKeyword(keywords[6], sojus.get(9)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(9)));
+
+            em.persist(new AlcoholKeyword(keywords[16], sojus.get(10)));
+            em.persist(new AlcoholKeyword(keywords[0], sojus.get(10)));
+            em.persist(new AlcoholKeyword(keywords[6], sojus.get(10)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(10)));
+
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(11)));
+            em.persist(new AlcoholKeyword(keywords[0], sojus.get(11)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(11)));
+
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(12)));
+            em.persist(new AlcoholKeyword(keywords[6], sojus.get(12)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(12)));
+
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(13)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(13)));
+
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(14)));
+            em.persist(new AlcoholKeyword(keywords[0], sojus.get(14)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(14)));
+
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(15)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(15)));
+
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(16)));
+            em.persist(new AlcoholKeyword(keywords[0], sojus.get(16)));
+            em.persist(new AlcoholKeyword(keywords[12], sojus.get(16)));
+
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(17)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(17)));
+
+            em.persist(new AlcoholKeyword(keywords[3], sojus.get(18)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(18)));
+
+            em.persist(new AlcoholKeyword(keywords[1], sojus.get(19)));
+            em.persist(new AlcoholKeyword(keywords[11], sojus.get(19)));
         }
 
         private void persistSojuVendors(ArrayList<Alcohol> sojus) {
