@@ -138,4 +138,40 @@ class MemberServiceTest {
         List<String> memberKeywords1= memberService.getMyKeywordsKOR(member.getId());
         assertThat(memberKeywords1.get(1)).isEqualTo("도수 중간");
     }
+
+    @Test
+    void editMemberKeywords(){
+        //given
+        Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+        em.persist(member);
+
+        List<Keyword> keywords = List.of(
+                new Keyword("cool"),
+                new Keyword("fresh"),
+                new Keyword("middle"),
+                new Keyword("high"),
+                new Keyword("low")
+        );
+
+        for (Keyword keyword : keywords) {
+            em.persist(keyword);
+        }
+
+        for (int i = 0; i < 3; i++) {
+            em.persist(new MyKeyword(member, keywords.get(i)));
+
+        }
+        em.flush();
+        em.clear();
+
+        //when
+        memberService.editMemberKeywords(List.of("middle", "high", "low"), member.getId());
+
+        //then
+        assertThat(myKeywordRepository.findAll())
+                .extracting("keyword").extracting("name")
+                .contains("middle", "high", "low");
+    }
+
+
 }
