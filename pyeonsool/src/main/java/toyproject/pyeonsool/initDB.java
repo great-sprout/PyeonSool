@@ -36,7 +36,7 @@ public class initDB {
 
         public void init() {
 
-            Member[] members = new Member[5];
+            Member[] members = new Member[50];
             setMembers(members);
             for (Member m : members) {
                 em.persist(m);
@@ -172,6 +172,19 @@ public class initDB {
             members[2] = new Member("춘향이", "chlcnsgid121", "1234", "01043218765");
             members[3] = new Member("지환이", "tlswlghks121", "1234", "01012341234");
             members[4] = new Member("몽룡이", "dlahdfyd121", "1234", "01043214321");
+
+            String[] nicknames = new String[]{
+                    "연욱이", "수빈이", "다솜", "다온", "도담",
+                    "든해", "마리", "마루한", "마루", "맑은가람",
+                    "미리별", "미리", "미르", "밝음", "보예",
+                    "바론", "별찬", "별하", "아라", "엄지",
+                    "효림", "우람", "윤슬", "슬옹", "이든",
+                    "알", "예님", "우솔", "진아", "한울",
+                    "해은", "세비", "세화", "후연", "규서"};
+
+            for (int i = 0; i < nicknames.length; i++) {
+                members[5 + i] = new Member(nicknames[i], "testId" + i, "1234", "010123456" + i);
+            }
         }
 
         private void setSojuList(ArrayList<Alcohol> sojus) {
@@ -649,7 +662,14 @@ public class initDB {
             em.persist(new Vendor(wines.get(8), VendorName.valueOf("CU")));
             em.persist(new Vendor(wines.get(8), VendorName.valueOf("GS25")));
             em.persist(new Vendor(wines.get(8), VendorName.valueOf("SEVEN_ELEVEN")));
-
+            em.persist(new Vendor(wines.get(9), VendorName.valueOf("CU")));
+            em.persist(new Vendor(wines.get(10), VendorName.valueOf("CU")));
+            em.persist(new Vendor(wines.get(11), VendorName.valueOf("CU")));
+            em.persist(new Vendor(wines.get(11), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(12), VendorName.valueOf("CU")));
+            em.persist(new Vendor(wines.get(13), VendorName.valueOf("CU")));
+            em.persist(new Vendor(wines.get(13), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(13), VendorName.valueOf("SEVEN_ELEVEN")));
             em.persist(new Vendor(wines.get(14), VendorName.valueOf("GS25")));
             em.persist(new Vendor(wines.get(14), VendorName.valueOf("SEVEN_ELEVEN")));
             em.persist(new Vendor(wines.get(15), VendorName.valueOf("GS25")));
