@@ -36,7 +36,7 @@ public class initDB {
 
         public void init() {
 
-            Member[] members = new Member[40];
+            Member[] members = new Member[45];
             setMembers(members);
             for (Member m : members) {
                 em.persist(m);
@@ -180,7 +180,8 @@ public class initDB {
                     "바론", "별찬", "별하", "아라", "엄지",
                     "효림", "우람", "윤슬", "슬옹", "이든",
                     "알", "예님", "우솔", "진아", "한울",
-                    "해은", "세비", "세화", "후연", "규서"};
+                    "해은", "세비", "세화", "후연", "규서",
+                    "화월", "초아", "천령", "이슬", "서애"};
 
             for (int i = 0; i < nicknames.length; i++) {
                 members[5 + i] = new Member(nicknames[i], "testId" + i, "1234", "010123456" + i);
