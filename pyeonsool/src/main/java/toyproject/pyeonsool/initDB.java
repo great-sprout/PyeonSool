@@ -530,6 +530,26 @@ public class initDB {
             em.persist(new Vendor(wines.get(8), VendorName.valueOf("CU")));
             em.persist(new Vendor(wines.get(8), VendorName.valueOf("GS25")));
             em.persist(new Vendor(wines.get(8), VendorName.valueOf("SEVEN_ELEVEN")));
+
+            em.persist(new Vendor(wines.get(14), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(14), VendorName.valueOf("SEVEN_ELEVEN")));
+            em.persist(new Vendor(wines.get(15), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(16), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(17), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(18), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(19), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(20), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(21), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(22), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(23), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(24), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(25), VendorName.valueOf("SEVEN_ELEVEN")));
+            em.persist(new Vendor(wines.get(26), VendorName.valueOf("SEVEN_ELEVEN")));
+            em.persist(new Vendor(wines.get(27), VendorName.valueOf("SEVEN_ELEVEN")));
+            em.persist(new Vendor(wines.get(28), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(28), VendorName.valueOf("SEVEN_ELEVEN")));
+            em.persist(new Vendor(wines.get(29), VendorName.valueOf("GS25")));
+            em.persist(new Vendor(wines.get(29), VendorName.valueOf("SEVEN_ELEVEN")));
         }
 
         private void setKeywords(Keyword[] keywords) {
