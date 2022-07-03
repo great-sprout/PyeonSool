@@ -443,6 +443,48 @@ public class initDB {
                     7f, (byte) 4, (byte) 2, "칸티", "이탈리아",0L));
             wines.add(new Alcohol(WINE, "sierra-cantabria-rose.png", "시에라 칸따브리아 로제", 30000,
                     13.5f, (byte) 1, (byte) 3, "시에라", "스페인",0L));
+            wines.add(new Alcohol(WINE, "brown-brothers-moonstruck.png", "브라운 브라더스 문스트록 모스카토", 16390,
+                    5.5f, (byte) 3, (byte) 2, "브라운 브라더스", "호주",0L));
+            wines.add(new Alcohol(WINE, "michele-chiarlo-cipressi-nizza.png", "미켈레 끼아를로 치프레스 니짜", 60000,
+                    14f, (byte) 1, (byte) 4, "미켈레 끼아를로", "이탈리아",0L));
+            wines.add(new Alcohol(WINE, "gato-negro-cabernet.png", "가또 네그로 카베르네", 18000,
+                    13f, (byte) 1, (byte) 4, "산 페드로", "칠레",0L));
+            wines.add(new Alcohol(WINE, "novibolle-romagna.png", "노비볼레 로마냐 비앙코", 19000,
+                    12f, (byte) 1, (byte) 2, "까비로", "이탈리아",0L));
+            wines.add(new Alcohol(WINE, "babich.png", "배비치, 블랙 라벨 말보로 피노 누아", 23900,
+                    13.5f, (byte) 1, (byte) 4, "배비치", "뉴질랜드 사우스 아일랜드 말보로",0L));
+            wines.add(new Alcohol(WINE, "kilikannon.jpg", "킬리카눈 킬러맨즈런 쉬라즈", 25900,
+                    15f, (byte) 1, (byte) 4, "킬리카눈", "호주 남호주",0L));
+            wines.add(new Alcohol(WINE, "madame.jpg", "마담 드 레인", 72900,
+                    13.5f, (byte) 5, (byte) 4, "사또 레인 비뇨", "프랑스 보르도 소테른",0L));
+            wines.add(new Alcohol(WINE, "montalto.jpg", "몬탈토 아쿠아렐로 네로다볼라 DOC", 20000,
+                    13f, (byte) 2, (byte) 4, "바론 몬탈토", "이탈리아 시칠리아",0L));
+            wines.add(new Alcohol(WINE, "the-seasons-vivaldi-spring.png", "더시즌스 비발디 봄", 28000,
+                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
+            wines.add(new Alcohol(WINE, "the-seasons-vivaldi-summer.png", "더시즌스 비발디 여름", 28000,
+                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
+            wines.add(new Alcohol(WINE, "the-seasons-vivaldi-autumn.png", "더시즌스 비발디 가을", 28000,
+                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
+            wines.add(new Alcohol(WINE, "the-seasons-vivaldi-winter.png", "더시즌스 비발디 겨울", 28000,
+                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
+            wines.add(new Alcohol(WINE, "the-seasons-vivaldi-spring.png", "골든블랑 브뤼", 118900,
+                    12f, (byte) 1, (byte) 3, "볼레로", "프랑스 샹빠뉴",0L));
+            wines.add(new Alcohol(WINE, "Golden-Blanc-Brut-Rose.png", "골든블랑 로제", 145900,
+                    12f, (byte) 1, (byte) 3, "볼레로", "프랑스 샹빠뉴",0L));
+            wines.add(new Alcohol(WINE, "yellow-tail-shiraz.png", "옐로우테일 쉬라즈", 20000,
+                    13.5f, (byte) 1, (byte) 3, "옐로우 테일", "호주 뉴 사우스 웨일즈",0L));
+            wines.add(new Alcohol(WINE, "blumoon-moscato.jpg", "아바찌아, 블루문 모스카토", 15000,
+                    7f, (byte) 3, (byte) 1, "아바찌아", "이탈리아 피에몬테",0L));
+            wines.add(new Alcohol(WINE, "louis-m.jpg", "루이스 엠 마티니, 소노마 카운티", 27900,
+                    13f, (byte) 1, (byte) 5, "루이 마티니", "미국 캘리포니아 소노마 카운티",0L));
+            wines.add(new Alcohol(WINE, "bread-and-butter.png", "브레드 앤 버터 피노누아", 34500,
+                    13.5f, (byte) 1, (byte) 5, "브레드 앤 버터", "미국 캘리포니아 나파 밸리",0L));
+            wines.add(new Alcohol(WINE, "joseph-drouhin.png", "조셉 드루앙, 라포레 부르고뉴 블랑", 34900,
+                    13.5f, (byte) 1, (byte) 3, "조셉 드루앙", "프랑스",0L));
+            wines.add(new Alcohol(WINE, "misty-cove-estate.png", "미스티 코브 에스테이브 소비뇽 블랑", 23900,
+                    14f, (byte) 1, (byte) 2, "미스티 코브 와인즈", "뉴질랜드",0L));
+            wines.add(new Alcohol(WINE, "sbodegas-lan-reserva.png", "보데가스 란 리제르바", 34000,
+                    13f, (byte) 1, (byte) 4, "보데가스 란", "스페인",0L));
         }
 
         private void persistWineKeywords(Keyword[] keywords, ArrayList<Alcohol> wines) {
