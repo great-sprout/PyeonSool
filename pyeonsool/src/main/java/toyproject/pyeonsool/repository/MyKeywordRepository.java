@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface MyKeywordRepository  extends JpaRepository<MyKeyword, Long>,MyKeywordCustomRepository {
     List<Long> findByMember(LoginMember loginMember);
+    void deleteByMemberId(Long memberId);
 }
