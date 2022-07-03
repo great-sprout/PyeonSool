@@ -22,6 +22,11 @@ public class KeywordController {
             @RequestParam List<String> keywords,
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
+        //키워드 갯수 검증
+        if (keywords.size() != 3) {
+            return "redirect:/";
+        }
+
         memberService.editMemberKeywords(keywords, loginMember.getId());
 
         return "redirect:/";
