@@ -20,6 +20,8 @@ public class Pagination {
     private boolean isLastBlock;
     private String sortField; // 정렬 기준 필드
     private String sortDirection; // ASC 혹은 DESC
+    private boolean hasNextPage; // 다음 페이지 존재 여부
+    private Long totalElements; // 리뷰 총 개수
 
     public static <T> Pagination of(Page<T> page, int blockSize) {
         int startIndexPerBlock = page.getNumber() / blockSize * blockSize;
@@ -34,6 +36,8 @@ public class Pagination {
                 page.getNumber() / blockSize == 0,
                 page.getNumber() / blockSize == (page.getTotalPages() - 1) / blockSize,
                 sortInfo[0],
-                sortInfo[1]);
+                sortInfo[1],
+                page.hasNext(),
+                page.getTotalElements());
     }
 }

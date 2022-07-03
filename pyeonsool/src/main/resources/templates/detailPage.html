@@ -332,7 +332,10 @@
               </div>
 
               <div class="review-area__page">
-                <div class="page">
+                <div class="review-area__no-review" th:if="${reviewPagination.totalElements == 0}">
+                  <span>등록된 리뷰가 없습니다.</span>
+                </div>
+                <div class="page" th:if="${reviewPagination.totalElements != 0}">
                   <a class="page__left" th:if="${!reviewPagination.isFirstBlock()}"
                      th:href="|/alcohols/${alcoholId}?page=${reviewPagination.startPagePerBlock - reviewPagination.blockSize - 1}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&lt;</a>
                   <th:block
