@@ -15,6 +15,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,6 +26,18 @@ public class MemberService {
     private final MemberRepository memberRepository;
     private final KeywordRepository keywordRepository;
     private final MyKeywordRepository myKeywordRepository;
+
+    public Long getMemberId(String nickname) {
+        return getMemberIdByNickname(nickname);
+    }
+
+    private Long getMemberIdByNickname(String nickname) {
+        Optional<Member> optionalMember = memberRepository.findByNickname(nickname);
+        if (optionalMember.isEmpty()) {
+            return null;
+        }
+        return optionalMember.get().getId();
+    }
 
     public LoginMember findLoginMember(String userId, String password) {
         Member findMember = memberRepository.findByUserId(userId)
