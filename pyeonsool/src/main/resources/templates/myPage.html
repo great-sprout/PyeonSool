@@ -315,7 +315,10 @@
        
 
             <div class="mypage__page">
-              <div class="page">
+              <div class="mypage__page__no-review" th:if="${MyReviewPagination.totalElements == 0}">
+                <span>등록한 리뷰가 없습니다.</span>
+              </div>
+              <div class="page" th:if="${MyReviewPagination.totalElements != 0}">
                 <a class="page__left" th:if="${!MyReviewPagination.isFirstBlock()}"
                    th:href="|/members/${nickname}?page=${MyReviewPagination.startPagePerBlock - MyReviewPagination.blockSize - 1}&sort=${MyReviewPagination.sortField},${MyReviewPagination.sortDirection}|">&lt;</a>
                 <th:block
