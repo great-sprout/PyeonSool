@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.Pagination;
@@ -19,6 +20,7 @@ import toyproject.pyeonsool.service.ReviewService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import java.io.IOException;
 import java.util.List;
@@ -49,6 +51,7 @@ public class MemberController {
         }
 
         // TODO loginMember null값 검증
+
         model.addAttribute("myLikeList", alcoholService.getAlcoholImages(loginMember.getId()));
         Page<ReviewImagePathDto> myReviewPage = reviewService.getReviewImagePathPage(loginMember.getId(),pageable);
         model.addAttribute("MyReviewPagination", Pagination.of(myReviewPage, 5));
@@ -97,10 +100,19 @@ public class MemberController {
         return "signUp";
     }
 
-    @PostMapping("/add")
-    public String signup(MemberSaveForm memberSaveForm) {
-        memberService.signup(memberSaveForm.getNickname(), memberSaveForm.getUserId(),
-                memberSaveForm.getPassword(), memberSaveForm.getPhoneNumber(), memberSaveForm.getKeywords());
+    public String signup(@Valid MemberSaveForm memberSaveForm, BindingResult bindingResult) {
+        try{
+            if(!bindingResult.hasFieldErrors()){
+                memberService.signup(memberSaveForm.getNickname(), memberSaveForm.getUserId(),
+                        memberSaveForm.getPassword(), memberSaveForm.getPhoneNumber(), memberSaveForm.getKeywords());
+            }
+        }
+        catch (Exception e){
+            bindingResult.reject(e.getMessage());//?
+        }
+        if(bindingResult.hasErrors()){
+            return "/";
+        }
 
         return "redirect:/";
     }
