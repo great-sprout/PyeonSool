@@ -3,10 +3,7 @@ package toyproject.pyeonsool.web;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import toyproject.pyeonsool.LoginMember;
 import toyproject.pyeonsool.SessionConst;
@@ -37,14 +34,14 @@ public class ReviewController {
     //마이페이지 리뷰 리스트 목록 조회 컨트롤 부분
     @PostMapping("/{reviewId}/edit")
     public String editReview(
-            @PathVariable Long reviewId,
+            @PathVariable Long reviewId, @RequestParam String requestURI,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
-            ReviewUpdateForm form,RedirectAttributes redirectAttributes) {
+            ReviewUpdateForm form, RedirectAttributes redirectAttributes) {
 
         redirectAttributes.addAttribute("nickname",loginMember.getNickname());
         reviewService.editReview(reviewId,form.getGrade(), form.getContent());
 
-        return "redirect:/members/{nickname}";
+        return "redirect:/" + requestURI;
     }
 }
 
