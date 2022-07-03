@@ -36,7 +36,7 @@ public class initDB {
 
         public void init() {
 
-            Member[] members = new Member[50];
+            Member[] members = new Member[40];
             setMembers(members);
             for (Member m : members) {
                 em.persist(m);
@@ -411,7 +411,7 @@ public class initDB {
                     5f, null, null, "하이네켄 네덜란드 서플라이", "네덜란드",0L));
             beers.add(new Alcohol(BEER, "paulaner-munich-lager.png", "파울라너 뮌헨 라거", 3900,
                     4.9f, null, null, "파울라너 브루어리", "독일",0L));
-            beers.add(new Alcohol(BEER, "calsberg.png", "칼스버그", 3000,
+            beers.add(new Alcohol(BEER, "carlsberg.png", "칼스버그", 3000,
                     5f, null, null, "칼스버그 서플라이", "덴마크",0L));
             beers.add(new Alcohol(BEER, "tsingtao.png", "칭따오", 3200,
                     4.7f, null, null, "칭따오 브루어리", "중국",0L));
