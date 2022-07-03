@@ -15,7 +15,7 @@ import java.util.List;
 
 import static toyproject.pyeonsool.domain.AlcoholType.*;
 
-@Profile("server")
+
 @Component
 @RequiredArgsConstructor
 public class initDB {
