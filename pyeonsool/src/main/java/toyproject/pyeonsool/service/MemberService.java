@@ -88,4 +88,13 @@ public class MemberService {
         return myKeywords;
 
     }
+
+    public void editMemberKeywords(List<String> keywordNames, Long memberId) {
+        Member member = memberRepository.findById(memberId)
+                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
+
+        myKeywordRepository.deleteByMember(member);
+        keywordRepository.findKeywordsByNameIn(keywordNames)
+                .forEach(keyword -> myKeywordRepository.save(new MyKeyword(member, keyword)));
+    }
 }
