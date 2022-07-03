@@ -75,12 +75,24 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(LoginForm loginForm, @RequestParam(defaultValue = "/") String redirectURL,
-                        HttpServletRequest request) {
-        LoginMember loginMember = memberService.findLoginMember(loginForm.getUserId(), loginForm.getPassword());
+    public String login(@Valid LoginForm loginForm, @RequestParam(defaultValue = "/") String redirectURL,
+                        HttpServletRequest request,BindingResult bindingResult) {
+        LoginMember loginMember =null;
+        try{
+            if(!bindingResult.hasFieldErrors()){
+                loginMember = memberService.findLoginMember(loginForm.getUserId(), loginForm.getPassword());
+                HttpSession session = request.getSession(true);
+                session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+            }
+        }
+        catch (Exception e){
+            System.out.println("login error = " + e.getMessage());
 
-        HttpSession session = request.getSession(true);
-        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+            bindingResult.reject(e.getMessage());//?
+        }
+        if(bindingResult.hasErrors()){
+            return "signIn";
+        }
 
         return "redirect:" + redirectURL;
     }
