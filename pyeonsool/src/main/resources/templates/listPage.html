@@ -396,6 +396,9 @@
 
           <article>
             <ul class="alcohol-list">
+                <div class="alcohol-list__no-exist" th:if="${typeList.isEmpty()}">
+                    <span>조회된 술이 없습니다.</span>
+                </div>
               <li th:each="type :${typeList}">
                 <div class="alcohol-list__card" >
                   <div class="alcohol-card__vendor">
