@@ -17,8 +17,10 @@ import toyproject.pyeonsool.service.ReviewImagePathDto;
 import toyproject.pyeonsool.service.ReviewService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import java.io.IOException;
 import java.util.List;
 
 import static java.util.Objects.*;
@@ -37,9 +39,15 @@ public class MemberController {
     //로그인 세션값이 필요하다
     public String getMyPage(
             @PathVariable String nickname,
-            @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember, HttpServletRequest request,
+            @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
+            HttpServletResponse response,
             @PageableDefault(sort = "id", size = 5, direction = Sort.Direction.DESC) Pageable pageable,
-            Model model) {
+            Model model) throws IOException {
+
+        if (memberService.getMemberId(nickname) != loginMember.getId()) {
+            response.sendError(500, "잘못된 접근입니다.");
+        }
+
         // TODO loginMember null값 검증
         model.addAttribute("myLikeList", alcoholService.getAlcoholImages(loginMember.getId()));
         Page<ReviewImagePathDto> myReviewPage = reviewService.getReviewImagePathPage(loginMember.getId(),pageable);
