@@ -61,10 +61,11 @@
 }
 
 .sign-up__phone-number-wrap {
-  margin-bottom: 45px;
+  margin-bottom: 22.5px;
 }
 
 .sign-up__submit {
+  margin-top: 22.5px;
   width: 452px;
   height: 45px;
   border-radius: 10px;
@@ -90,5 +91,11 @@
 {
   margin-top: 10px;
   margin-left: 5px;
+  color: var(--error-color);
+}
+
+.error-msg
+{
+  text-align: center;
   color: var(--error-color);
 }

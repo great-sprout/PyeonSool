@@ -29,7 +29,6 @@ public class AlcoholApiController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
 
-        System.out.println("preferredAlcoholRepository.countByMemberIdAndAlcoholId = " + preferredAlcoholRepository.countByMemberId(loginMember.getId()));
         if (preferredAlcoholRepository.countByMemberId(loginMember.getId()) >= 12) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }

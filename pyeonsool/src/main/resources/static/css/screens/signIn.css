@@ -49,10 +49,11 @@
 }
 
 .sign-in__password-wrap {
-  margin-bottom: 45px;
+  margin-bottom: 22.5px;
 }
 
 .sign-in__submit {
+  margin-top: 22.5px;
   width: 452px;
   height: 45px;
   border-radius: 10px;
@@ -89,7 +90,6 @@
 }
 .error-msg
 {
-  margin-top: 10px;
-  margin-left: 5px;
+  text-align: center;
   color: var(--error-color);
 }

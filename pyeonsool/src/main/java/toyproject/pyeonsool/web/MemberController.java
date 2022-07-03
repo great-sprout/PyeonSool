@@ -53,14 +53,14 @@ public class MemberController {
         // TODO loginMember null값 검증
 
         model.addAttribute("myLikeList", alcoholService.getAlcoholImages(loginMember.getId()));
-        Page<ReviewImagePathDto> myReviewPage = reviewService.getReviewImagePathPage(loginMember.getId(),pageable);
+        Page<ReviewImagePathDto> myReviewPage = reviewService.getReviewImagePathPage(loginMember.getId(), pageable);
         model.addAttribute("MyReviewPagination", Pagination.of(myReviewPage, 5));
-        model.addAttribute("myReviewList",myReviewPage.getContent());
+        model.addAttribute("myReviewList", myReviewPage.getContent());
         model.addAttribute("myReviewUpdateForm", new ReviewUpdateForm());
         //model.addAttribute("reviewSaveForm", new ReviewSaveForm(alcoholId));
 
         /*마이 키워드*/
-        if (loginMember!=null) {
+        if (loginMember != null) {
             List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
             model.addAttribute("personalKeywords", myKeywords);
         }
@@ -76,21 +76,19 @@ public class MemberController {
 
     @PostMapping("/login")
     public String login(@Valid LoginForm loginForm, @RequestParam(defaultValue = "/") String redirectURL,
-                        HttpServletRequest request,BindingResult bindingResult) {
-        LoginMember loginMember =null;
-        try{
-            if(!bindingResult.hasFieldErrors()){
+                        HttpServletRequest request, BindingResult bindingResult) {
+        LoginMember loginMember = null;
+        if (!bindingResult.hasFieldErrors()) {
+            try {
                 loginMember = memberService.findLoginMember(loginForm.getUserId(), loginForm.getPassword());
                 HttpSession session = request.getSession(true);
                 session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+            } catch (Exception e) {
+                bindingResult.reject("globalError", e.getMessage());//?
             }
         }
-        catch (Exception e){
-            System.out.println("login error = " + e.getMessage());
 
-            bindingResult.reject(e.getMessage());//?
-        }
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "signIn";
         }
 
@@ -114,16 +112,17 @@ public class MemberController {
 
     @PostMapping("/add")
     public String signup(@Valid MemberSaveForm memberSaveForm, BindingResult bindingResult) {
-        try{
-            if(!bindingResult.hasFieldErrors()){
+
+        if (!bindingResult.hasFieldErrors()) {
+            try {
                 memberService.signup(memberSaveForm.getNickname(), memberSaveForm.getUserId(),
                         memberSaveForm.getPassword(), memberSaveForm.getPhoneNumber(), memberSaveForm.getKeywords());
+            } catch (Exception e) {
+                bindingResult.reject("globalError", e.getMessage());//?
             }
         }
-        catch (Exception e){
-            bindingResult.reject(e.getMessage());//?
-        }
-        if(bindingResult.hasErrors()){
+
+        if (bindingResult.hasErrors()) {
             return "signUp";
         }
 

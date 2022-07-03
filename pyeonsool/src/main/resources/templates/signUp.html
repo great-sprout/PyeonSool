@@ -107,6 +107,9 @@
                 </div>
               </div>
 
+              <div th:if="${#fields.hasGlobalErrors()}" class="error-msg">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">aaaaa</p>
+              </div>
 
               <input type="button" value="회원가입" class="sign-up__submit" />
 

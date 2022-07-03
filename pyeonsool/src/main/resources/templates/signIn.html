@@ -27,7 +27,7 @@
               />
             </h1>
 
-            <form th:action method="post" class="sign-in__form" th:object="${loginForm}" th:object="${loginForm}">
+            <form th:action method="post" class="sign-in__form" th:object="${loginForm}">
               <div class="sign-in__id-wrap">
                 <h2 class="sign-in__id">아이디</h2>
 
@@ -54,11 +54,10 @@
                   th:field="*{password}"
                 />
               </div>
-              
-              <div th:if="${#fields.hasGlobalErrors()}" >
+
+              <div th:if="${#fields.hasGlobalErrors()}" class="error-msg">
                 <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">aaaaa</p>
               </div>
-
 
               <input type="submit" value="로그인" class="sign-in__submit" />
 
