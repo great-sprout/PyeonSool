@@ -10,6 +10,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -45,6 +47,9 @@ public class Review {
     private Long recommendCount;
     private Long notRecommendCount;
 
+    @OneToMany(mappedBy = "review", cascade = CascadeType.REMOVE)
+    private List<RecommendedReview> recommendedReviews = new ArrayList<>();
+
     public Review(Member member, Alcohol alcohol, Byte grade, String content, Long recommendCount, Long notRecommendCount) {
         this.member = member;
         this.alcohol = alcohol;
@@ -56,6 +61,10 @@ public class Review {
 
     public Review(Member member, Alcohol alcohol, Byte grade, String content) {
         this(member, alcohol, grade, content, 0L, 0L);
+    }
+
+    public Review(Long id){
+        this.id = id;
     }
 
     public void plusRecommendCount() { this.recommendCount += 1;

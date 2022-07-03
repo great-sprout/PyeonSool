@@ -107,8 +107,47 @@ function addDisLikeClickEvent(){
 
  }
 
+ //마이페이지 내 리뷰 리스트 삭제 ajax
+ function addReviewDeleteClickEvent(){
+       document.addEventListener("click",function(event){
+
+      if (!event.target.classList.contains("my-review__delete")) {
+                  console.log(event.target)
+                  return;
+              }
+              deleteReviewAjax(event.target.closest(".my-review"));
+       });
+
+       function deleteReviewAjax(mypageReviewList){
+        const request = new XMLHttpRequest();
+               if (!request) {
+                   alert("XMLHTTP 인스턴스 생성 불가");
+                   return false;
+               }
+
+               request.onreadystatechange =function(){
+               if(request.readyState === XMLHttpRequest.DONE){
+                    if(request.status === 200){
+                      window.location.reload();
+                      mypageReviewList.parentNode.removeChild(mypageReviewList);
+                    }else if(request.status === 401){
+                          alert("로그인 후 이용해주세요")
+                    }else{
+                        alert(request.response.message);
+                    }
+                  }
+               }
+
+               request.open("DELETE","/reviews/" + mypageReviewList.getAttribute("number") + "/delete")
+               request.responseType = "json";
+               request.send();
+       }
+ }
+
+
 
   //호출
   //addMystyleSlidingEvent();
   addMyReviewEditStateEvent();
   addDisLikeClickEvent();
+  addReviewDeleteClickEvent();

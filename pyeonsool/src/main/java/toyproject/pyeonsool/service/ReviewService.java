@@ -64,6 +64,11 @@ public class ReviewService {
 
     }
 
+    //리뷰 삭제
+    public void deleteReview(long reviewId){
+        reviewRepository.findById(reviewId).ifPresent(review ->reviewRepository.delete(review) );
+    }
+
     public Page<ReviewDto> getReviewPage(Pageable pageable, Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
