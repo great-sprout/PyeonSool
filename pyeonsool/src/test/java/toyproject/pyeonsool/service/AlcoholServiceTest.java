@@ -198,10 +198,32 @@ class AlcoholServiceTest {
         int SIZE = 8;
         //when
         Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(
-                PageRequest.of(0, SIZE, Sort.by(Sort.Direction.ASC, "id")),
-                new AlcoholSearchConditionDto(BEER, List.of("cool", "clear"), "리", GS25, null));
-
+                PageRequest.of(0, SIZE, getSortTypeSelect("abvDesc")),
+                new AlcoholSearchConditionDto(BEER, List.of("nutty"), "선", GS25));
+        for (AlcoholDto a: alcoholType) {
+            System.out.println("hello name  = " + a.getName() + "abv = " + a.getAbv()
+                    + "price = " + a.getPrice()+ "likeCount = " + a.getLikeCount());
+        }
         //then
         assertThat(alcoholType.isLast()).isTrue();
+    }
+    private Sort getSortTypeSelect(String sort) {
+        if(sort==null){
+            return Sort.by(Sort.Direction.DESC, "likeCount");
+        }
+        else if(sort.equals("abvDesc")) {
+            return Sort.by(Sort.Direction.DESC, "abv");
+        }
+        else if(sort.equals("abvAsc")) {
+            return Sort.by(Sort.Direction.ASC, "abv");
+        }
+        else if(sort.equals("priceDesc")) {
+            return Sort.by(Sort.Direction.DESC, "price");
+        }
+        else if(sort.equals("priceAsc")) {
+            return Sort.by(Sort.Direction.ASC, "price");
+        }
+
+        return Sort.by(Sort.Direction.DESC, "likeCount");
     }
 }

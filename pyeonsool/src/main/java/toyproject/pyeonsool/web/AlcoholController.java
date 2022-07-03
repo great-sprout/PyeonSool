@@ -2,6 +2,7 @@ package toyproject.pyeonsool.web;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -35,15 +36,15 @@ public class AlcoholController {
     @GetMapping
     public String getListPage(@ModelAttribute AlcoholSearchForm alcoholSearchForm,
                               @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
-                              @PageableDefault(sort = "id", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
+                              @PageableDefault(sort = "LikeCount", size = 8, direction = Sort.Direction.DESC) Pageable pageable,
                               Model model) {
-        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(pageable,
+        Page<AlcoholDto> alcoholPage = alcoholService.findAlcoholPage(PageRequest.of(0, 8, getSortTypeSelect(alcoholSearchForm.getBySort())),
                 new AlcoholSearchConditionDto(
                         getAlcoholType(alcoholSearchForm),
                         alcoholSearchForm.getKeywords(),
                         alcoholSearchForm.getSearch(),
-                        getVendorName(alcoholSearchForm),
-                         null));
+                        getVendorName(alcoholSearchForm)
+                        ));
 
         model.addAttribute("typeList", alcoholPage.getContent());
         model.addAttribute("typeListPagination", Pagination.of(alcoholPage, 5));/*최신 등록순*/
@@ -59,6 +60,26 @@ public class AlcoholController {
         }
 
         return "listPage";
+    }
+
+    private Sort getSortTypeSelect(String sort) {
+        if(sort==null){
+            return Sort.by(Sort.Direction.DESC, "likeCount");
+        }
+        else if(sort.equals("abvDesc")) {
+            return Sort.by(Sort.Direction.DESC, "abv");
+        }
+        else if(sort.equals("abvAsc")) {
+            return Sort.by(Sort.Direction.ASC, "abv");
+        }
+        else if(sort.equals("priceDesc")) {
+            return Sort.by(Sort.Direction.DESC, "price");
+        }
+        else if(sort.equals("priceAsc")) {
+            return Sort.by(Sort.Direction.ASC, "price");
+        }
+
+        return Sort.by(Sort.Direction.DESC, "likeCount");
     }
 
     private AlcoholType getAlcoholType(AlcoholSearchForm alcoholSearchForm) {

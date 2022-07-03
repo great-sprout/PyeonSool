@@ -83,12 +83,12 @@ class AlcoholRepositoryTest {
 
         //when
         AlcoholSearchConditionDto[] conditions = new AlcoholSearchConditionDto[]{
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25,null),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25,null),
-                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null,null),
-                new AlcoholSearchConditionDto(BEER, null, "리", GS25,null),
-                new AlcoholSearchConditionDto(BEER, null, null, null ,"priceAsc"),
-                new AlcoholSearchConditionDto(BEER, null, null, null ,"abvDesc")
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", GS25),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25),
+                new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null),
+                new AlcoholSearchConditionDto(BEER, null, "리", GS25),
+                new AlcoholSearchConditionDto(BEER, null, null, null ),
+                new AlcoholSearchConditionDto(BEER, null, null, null )
         };
 
         ArrayList<Page<Alcohol>> alcoholPages = new ArrayList<>();
