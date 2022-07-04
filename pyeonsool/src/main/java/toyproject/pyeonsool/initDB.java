@@ -577,7 +577,7 @@ public class initDB {
                     13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
             wines.add(new Alcohol(WINE, "the-seasons-vivaldi-winter.png", "더시즌스 비발디 겨울", 28000,
                     13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
-            wines.add(new Alcohol(WINE, "the-seasons-vivaldi-spring.png", "골든블랑 브뤼", 118900,
+            wines.add(new Alcohol(WINE, "Golden-Blanc-Brut.png", "골든블랑 브뤼", 118900,
                     12f, (byte) 1, (byte) 3, "볼레로", "프랑스 샹빠뉴",0L));
             wines.add(new Alcohol(WINE, "Golden-Blanc-Brut-Rose.png", "골든블랑 로제", 145900,
                     12f, (byte) 1, (byte) 3, "볼레로", "프랑스 샹빠뉴",0L));
