@@ -127,6 +127,6 @@ public class MemberController {
             return "signUp";
         }
 
-        return "redirect:/";
+        return "redirect:/members/login";
     }
 }
