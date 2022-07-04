@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.domain.RecommendStatus;
 import toyproject.pyeonsool.domain.Review;
 
 import java.time.LocalDateTime;
@@ -20,11 +21,13 @@ public class ReviewImageDto {
     private String content;
     private Long recommendCount;
     private Long notRecommendCount;
+    private RecommendStatus myRecommendStatus;
 
     @QueryProjection
+
     public ReviewImageDto(Long reviewId, Long alcoholId, AlcoholType type, String fileName,
                           LocalDateTime lastModifiedDate, Byte grade, String content, Long recommendCount,
-                          Long notRecommendCount) {
+                          Long notRecommendCount, RecommendStatus myRecommendStatus) {
         this.reviewId = reviewId;
         this.alcoholId = alcoholId;
         this.type = type;
@@ -34,5 +37,6 @@ public class ReviewImageDto {
         this.content = content;
         this.recommendCount = recommendCount;
         this.notRecommendCount = notRecommendCount;
+        this.myRecommendStatus = myRecommendStatus;
     }
 }

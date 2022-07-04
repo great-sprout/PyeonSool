@@ -6,12 +6,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.support.PageableExecutionUtils;
+import toyproject.pyeonsool.domain.QRecommendedReview;
 import toyproject.pyeonsool.service.QReviewImageDto;
 import toyproject.pyeonsool.service.ReviewImageDto;
 
 import java.util.List;
 
 import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
+import static toyproject.pyeonsool.domain.QRecommendedReview.*;
 import static toyproject.pyeonsool.domain.QReview.review;
 
 @RequiredArgsConstructor
@@ -39,9 +41,11 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
                         review.grade,
                         review.content,
                         review.recommendCount,
-                        review.notRecommendCount))
+                        review.notRecommendCount,
+                        recommendedReview.status))
                 .from(review)
                 .join(review.alcohol, alcohol)
+                .leftJoin(review, recommendedReview.review)
                 .where(review.member.id.eq(memberId))
                 .limit(pageable.getPageSize())
                 .offset(pageable.getOffset())

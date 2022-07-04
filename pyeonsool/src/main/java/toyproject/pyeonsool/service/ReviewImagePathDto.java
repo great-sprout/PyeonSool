@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.domain.RecommendStatus;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +20,7 @@ public class ReviewImagePathDto {
     private String content;
     private Long recommendCount;
     private Long notRecommendCount;
+    private RecommendStatus myRecommendStatus;
 
     public static ReviewImagePathDto of(ReviewImageDto reviewImageDto, String imagePath) {
         return new ReviewImagePathDto(reviewImageDto.getReviewId(),
@@ -29,7 +31,8 @@ public class ReviewImagePathDto {
                 reviewImageDto.getGrade(),
                 reviewImageDto.getContent(),
                 reviewImageDto.getRecommendCount(),
-                reviewImageDto.getNotRecommendCount()
+                reviewImageDto.getNotRecommendCount(),
+                reviewImageDto.getMyRecommendStatus()
         );
     }
 }
