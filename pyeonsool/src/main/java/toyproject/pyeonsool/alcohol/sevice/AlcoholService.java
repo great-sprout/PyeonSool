@@ -34,29 +34,33 @@ public class AlcoholService {
     private final FileManager fileManager;
 
 
-    public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long memberId) {
+    public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long loginMemberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
         String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
-        List<String> alcoholKeywords = new ArrayList<>();
-        Map<String, String> keywordMap = createKeywordMap();
-        for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcoholId)) {
-            alcoholKeywords.add(keywordMap.get(keyword));
-        }
-
+        List<String> alcoholKeywords = getAlcoholKeywords(alcoholId);
         List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId);
         String grade = getFormattedTotalGrade(reviewRepository.getReviewGrades(alcoholId));
 
-        if (isNull(memberId)) {
+        if (isNull(loginMemberId)) {
             return AlcoholDetailsDto.of(alcohol, alcoholImagePath, grade, alcoholKeywords, alcoholVendors);
         }
 
-        Member member = memberRepository.findById(memberId)
+        Member member = memberRepository.findById(loginMemberId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
 
         return AlcoholDetailsDto.of(alcohol, alcoholImagePath, grade, alcoholKeywords, alcoholVendors,
                 preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
 
+    }
+
+    private List<String> getAlcoholKeywords(Long alcoholId) {
+        List<String> alcoholKeywords = new ArrayList<>();
+        Map<String, String> keywordMap = createKeywordMap();
+        for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcoholId)) {
+            alcoholKeywords.add(keywordMap.get(keyword));
+        }
+        return alcoholKeywords;
     }
 
     private String getFormattedTotalGrade(List<Byte> reviewGrades) {
@@ -102,13 +106,9 @@ public class AlcoholService {
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
         // TODO 술, 회원 예외처리 필요
 
-
-
         PreferredAlcohol preferredAlcohol = new PreferredAlcohol(member, alcohol);
         preferredAlcoholRepository.save(preferredAlcohol);
         alcohol.plusLikeCount();
-        System.out.println("plus : " + alcohol.getName() + "cnt : " +alcohol.getLikeCount());
-
 
         return preferredAlcohol.getId();
     }
@@ -123,7 +123,6 @@ public class AlcoholService {
         if (preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol)) {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
             alcohol.minusLikeCount();
-            System.out.println("minus : " + alcohol.getName()+"cnt : "+alcohol.getLikeCount());
         }
     }
 
@@ -183,11 +182,7 @@ public class AlcoholService {
             Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
             String alcoholImagePath = fileManager.getAlcoholImagePath(alcoholType, alcohol.getFileName());
 
-            List<String> alcoholKeywords = new ArrayList<>(); //keyword List
-            Map<String, String> keywordMap = createKeywordMap(); //keyword Map(key, Value)
-            for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcoholId)) {
-                alcoholKeywords.add(keywordMap.get(keyword)); //영어로 된 key를 통해 value를 가져온다
-            }
+            List<String> alcoholKeywords = getAlcoholKeywords(alcoholId);
 
             alcoholTypeDetailsList.add(BestLikeDto.of(alcohol, alcoholImagePath, alcoholKeywords,
                     preferredAlcoholRepository.getLikeCount(alcoholId)));

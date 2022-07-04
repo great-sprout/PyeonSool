@@ -90,10 +90,9 @@ public class AlcoholController {
             @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
 
-        AlcoholDetailsDto alcoholDetails =
-                alcoholService.getAlcoholDetails(alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("alcoholId", alcoholId);
-        model.addAttribute("alcoholDetails", alcoholDetails);
+        model.addAttribute("alcoholDetails",
+                alcoholService.getAlcoholDetails(alcoholId, getLoginMemberId(loginMember)));
         model.addAttribute("reviewSaveForm", new ReviewSaveForm(alcoholId));
         Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
