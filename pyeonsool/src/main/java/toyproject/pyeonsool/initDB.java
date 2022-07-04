@@ -1,6 +1,7 @@
 package toyproject.pyeonsool;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import toyproject.pyeonsool.domain.*;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
 
 
+@Profile("local")
 @Component
 @RequiredArgsConstructor
 public class initDB {
