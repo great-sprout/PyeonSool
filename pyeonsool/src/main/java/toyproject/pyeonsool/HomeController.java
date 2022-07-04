@@ -20,11 +20,9 @@ public class HomeController {
 
     private final AlcoholService alcoholService;
     private final MemberService memberService;
-    private final PreferredAlcoholCustomRepositoryImpl preferAlcohol;
 
 
     @GetMapping("/")
-    //로그인 세션값 필요함 -> 당신의 편술 블럭처리
     public String home(
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
             Model model) {
@@ -39,7 +37,6 @@ public class HomeController {
         //당신의 편술
         if (loginMember == null) {
             model.addAttribute("isLogin", false);
-            model.addAttribute("pyeonsools", alcoholService.getMonthAlcohols()); // 수정 필요
             return "mainPage";
         }
         model.addAttribute("isLogin", true);
