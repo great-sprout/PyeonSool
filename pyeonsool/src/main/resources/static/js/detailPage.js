@@ -292,7 +292,45 @@ function addReviewEditStateEvent() {
     });
 }
 
+function addReviewDeleteClickEvent() {
+    document.addEventListener("click", function (event) {
+
+        if (!event.target.classList.contains("review__delete")) {
+            console.log(event.target)
+            return;
+        }
+
+        deleteReviewAjax(event.target.closest(".review"));
+    });
+
+    function deleteReviewAjax(review) {
+        const request = new XMLHttpRequest();
+        if (!request) {
+            alert("XMLHTTP 인스턴스 생성 불가");
+            return false;
+        }
+
+        request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    window.location.reload();
+                } else if (request.status === 401) {
+                    alert("로그인 후 이용해주세요")
+                } else {
+                    alert(request.response.message);
+                }
+            }
+        }
+
+        request.open("DELETE", "/reviews/" + review.getAttribute("number") + "/delete")
+        request.responseType = "json";
+        request.send();
+    }
+}
+
+
 addLikeClickEvent();
 addReviewRecommendationEvent();
 addRecommendationSlidingEvent();
 addReviewEditStateEvent();
+addReviewDeleteClickEvent();
