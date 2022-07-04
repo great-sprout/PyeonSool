@@ -1,17 +1,13 @@
 package toyproject.pyeonsool.service;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
 
 import java.util.List;
 
-@Getter
+@Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-@ToString
 public class AlcoholDetailsDto {
     private AlcoholType type;
     private String imagePath;

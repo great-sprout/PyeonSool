@@ -65,8 +65,8 @@
                     <span class="alcohol-info__body-key">바디</span>
 
                     <div class="alcohol-info__body-values">
-                      <div class="alcohol-info__body-value-value"
-                           th:each="num : ${#numbers.sequence(1, alcoholDetails.sugarContent)}"></div>
+                      <div class="alcohol-info__body-value"
+                           th:each="num : ${#numbers.sequence(1, alcoholDetails.body)}"></div>
                     </div>
                   </div>
                 </div>
@@ -169,7 +169,7 @@
             <h2 class="alcohol-review__title">
               한줄 리뷰
               <span class="alcohol-review__count-wrap"
-                >(<span class="alcohol-review__count">143</span>개)</span
+                >(<span class="alcohol-review__count" th:text="${reviewPagination.totalElements}">143</span>개)</span
               >
             </h2>
 
