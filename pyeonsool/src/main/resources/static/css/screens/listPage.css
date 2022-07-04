@@ -78,6 +78,7 @@
     margin-left: 10px;
     border-radius:18px;
     cursor: pointer;
+    transform:scale(0.8);
 }/*베스트 리스트 카드 안 이미지*/
 .best-list__mark{
     background-color: black;
@@ -247,6 +248,7 @@
     object-fit: cover;
     border-radius: 15px;
     object-fit: contain;
+    transform:scale(0.8);
 }/*알콜 리스트 이미지 */
 
 .alcohol-info p{
