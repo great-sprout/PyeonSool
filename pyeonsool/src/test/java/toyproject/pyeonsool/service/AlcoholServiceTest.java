@@ -6,13 +6,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import toyproject.pyeonsool.alcohol.sevice.AlcoholDto;
+import toyproject.pyeonsool.alcohol.sevice.AlcoholImageDto;
+import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.domain.*;
-import toyproject.pyeonsool.repository.AlcoholSearchConditionDto;
-import toyproject.pyeonsool.repository.PreferredAlcoholRepository;
+import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
+import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

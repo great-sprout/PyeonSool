@@ -1,6 +1,5 @@
 package toyproject.pyeonsool.repository;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -12,12 +11,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.AppConfig;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.review.repository.ReviewRepository;
 
 import javax.persistence.EntityManager;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 

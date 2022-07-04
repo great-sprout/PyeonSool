@@ -1,6 +1,7 @@
 package toyproject.pyeonsool;
 
 import org.junit.jupiter.api.Test;
+import toyproject.pyeonsool.common.FileManager;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.*;

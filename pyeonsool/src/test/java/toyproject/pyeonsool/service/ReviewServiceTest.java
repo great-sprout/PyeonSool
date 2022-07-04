@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import toyproject.pyeonsool.domain.*;
-import toyproject.pyeonsool.repository.RecommendedReviewRepository;
-import toyproject.pyeonsool.repository.ReviewRepository;
+import toyproject.pyeonsool.recommendedreview.repository.RecommendedReviewRepository;
+import toyproject.pyeonsool.review.repository.ReviewRepository;
+import toyproject.pyeonsool.review.sevice.ReviewDto;
+import toyproject.pyeonsool.review.sevice.ReviewService;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;

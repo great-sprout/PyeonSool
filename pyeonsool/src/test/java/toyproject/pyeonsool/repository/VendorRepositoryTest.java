@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.vendor.repository.VendorRepository;
 
 import javax.persistence.EntityManager;
 

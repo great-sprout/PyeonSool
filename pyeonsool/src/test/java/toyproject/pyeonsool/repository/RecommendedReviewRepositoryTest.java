@@ -1,17 +1,16 @@
 package toyproject.pyeonsool.repository;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
 import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.recommendedreview.repository.RecommendedReviewRepository;
 
 import javax.persistence.EntityManager;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 @DataJpaTest

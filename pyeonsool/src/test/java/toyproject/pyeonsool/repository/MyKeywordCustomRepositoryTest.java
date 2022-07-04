@@ -8,6 +8,7 @@ import toyproject.pyeonsool.AppConfig;
 import toyproject.pyeonsool.domain.Keyword;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.MyKeyword;
+import toyproject.pyeonsool.mykeyword.repository.MyKeywordRepository;
 
 import javax.persistence.EntityManager;
 import java.util.List;

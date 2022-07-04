@@ -1,6 +1,5 @@
 package toyproject.pyeonsool.repository;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -9,14 +8,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import toyproject.pyeonsool.AppConfig;
 import toyproject.pyeonsool.domain.*;
-import toyproject.pyeonsool.service.ReviewImageDto;
+import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholRepository;
+import toyproject.pyeonsool.review.repository.ReviewRepository;
+import toyproject.pyeonsool.review.repository.ReviewImageDto;
 
 import javax.persistence.EntityManager;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 @DataJpaTest
 @Import(AppConfig.class)

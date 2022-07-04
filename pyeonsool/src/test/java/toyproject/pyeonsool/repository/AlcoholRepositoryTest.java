@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.AppConfig;
+import toyproject.pyeonsool.alcohol.repository.AlcoholRepository;
+import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.domain.*;
 
 import javax.persistence.EntityManager;
@@ -17,7 +19,6 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
-import static toyproject.pyeonsool.domain.VendorName.CU;
 import static toyproject.pyeonsool.domain.VendorName.GS25;
 
 @DataJpaTest

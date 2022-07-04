@@ -1,18 +1,17 @@
 package toyproject.pyeonsool.service;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import toyproject.pyeonsool.LoginMember;
+import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.domain.*;
-import toyproject.pyeonsool.repository.MyKeywordRepository;
+import toyproject.pyeonsool.member.sevice.MemberService;
+import toyproject.pyeonsool.mykeyword.repository.MyKeywordRepository;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
