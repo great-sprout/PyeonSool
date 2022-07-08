@@ -174,7 +174,7 @@
             </h2>
 
             <form action="/reviews/add" method="post" class="review-form" th:object="${reviewSaveForm}">
-              <input type="hidden" th:field="*{alcoholId}">
+              <input type="hidden" class="review-form__hidden" th:field="*{alcoholId}">
 
               <div class="stars review-form__stars">
                 <th:block th:each="num : ${#numbers.sequence(5, 1)}">
@@ -200,7 +200,7 @@
               ></textarea>
 
               <div class="review-form__submit-wrap">
-                <input type="submit" value="등록" class="review-form__submit" />
+                <input type="button" value="등록" class="review-form__submit" />
               </div>
             </form>
 

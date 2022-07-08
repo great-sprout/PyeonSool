@@ -296,7 +296,6 @@ function addReviewDeleteClickEvent() {
     document.addEventListener("click", function (event) {
 
         if (!event.target.classList.contains("review__delete")) {
-            console.log(event.target)
             return;
         }
 
@@ -328,9 +327,53 @@ function addReviewDeleteClickEvent() {
     }
 }
 
+function addReviewEvent() {
+    const reviewForm = document.querySelector(".review-form");
+    reviewForm.querySelector(".review-form__submit").addEventListener("click", function () {
+        addReviewAjax(createReviewSaveRequest());
+    });
 
+    function addReviewAjax(reviewSaveRequest) {
+        const request = new XMLHttpRequest();
+        if (!request) {
+            alert("XMLHTTP 인스턴스 생성 불가");
+            return false;
+        }
+
+        request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    window.location.reload();
+                } else if (request.status === 401) {
+                    alert("로그인 후 이용해주세요")
+                } else {
+                    alert(request.response.message);
+                }
+            }
+        }
+
+        request.open("POST", "/reviews/add");
+        request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.send(JSON.stringify(reviewSaveRequest));
+    }
+
+    function createReviewSaveRequest() {
+        const grade = reviewForm.querySelector(".stars__radio:checked").value;
+        const content = reviewForm.querySelector(".review-form__textarea").value;
+        const uri = window.location.href.split("/");
+        const alcoholId = uri[uri.length - 1];
+        const reviewSaveRequest = new Object();
+        reviewSaveRequest.alcoholId = alcoholId;
+        reviewSaveRequest.content = content;
+        reviewSaveRequest.grade = grade;
+        return reviewSaveRequest;
+    }
+
+}
 addLikeClickEvent();
 addReviewRecommendationEvent();
 addRecommendationSlidingEvent();
 addReviewEditStateEvent();
 addReviewDeleteClickEvent();
+addReviewEvent();
