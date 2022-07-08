@@ -1,14 +1,17 @@
 package toyproject.pyeonsool.review.web;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
-public class ReviewSaveForm {
+@NoArgsConstructor
+public class ReviewSaveRequest {
+
     private Long alcoholId;
     private Byte grade;
     private String content;
 
-    public ReviewSaveForm(Long alcoholId) {
+    public ReviewSaveRequest(Long alcoholId) {
         this.alcoholId = alcoholId;
     }
 }
