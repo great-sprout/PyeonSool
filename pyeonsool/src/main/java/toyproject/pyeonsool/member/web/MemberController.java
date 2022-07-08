@@ -81,15 +81,14 @@ public class MemberController {
     @PostMapping("/login")
     public String login(@Valid LoginForm loginForm, @RequestParam(defaultValue = "/") String redirectURL,
                         HttpServletRequest request, BindingResult bindingResult) {
-        LoginMember loginMember = null;
         if (!bindingResult.hasFieldErrors()) {
             try {
-                loginMember = memberService.findLoginMember(loginForm.getUserId(), loginForm.getPassword());
                 HttpSession session = request.getSession(true);
-                session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-            } catch (PyeonSoolFieldException e) {
+                session.setAttribute(SessionConst.LOGIN_MEMBER,
+                        memberService.findLoginMember(loginForm.getUserId(), loginForm.getPassword()));
+            } catch (PyeonSoolFieldException e) { // PyeonSoolFormException의 자식 클래스로, service에서 던진 에외로 rejectValue가 가능해짐
                 bindingResult.rejectValue(e.getField(), e.getErrorCode(), e.getMessage());
-            } catch (PyeonSoolFormException e) {
+            } catch (PyeonSoolFormException e) { // PyeonSoolException의 자식 클래스로, 글로벌 에러 잡기용. 다중 catch에서는 상위 클래스가 나중에 와야함
                 bindingResult.reject(e.getErrorCode(), e.getMessage());
             }
         }
