@@ -13,6 +13,9 @@ import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.Pagination;
 import toyproject.pyeonsool.common.SessionConst;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
+import toyproject.pyeonsool.common.exception.PyeonSoolException;
+import toyproject.pyeonsool.common.exception.form.PyeonSoolFieldException;
+import toyproject.pyeonsool.common.exception.form.PyeonSoolFormException;
 import toyproject.pyeonsool.member.sevice.MemberService;
 import toyproject.pyeonsool.review.sevice.ReviewImagePathDto;
 import toyproject.pyeonsool.review.sevice.ReviewService;
@@ -84,8 +87,10 @@ public class MemberController {
                 loginMember = memberService.findLoginMember(loginForm.getUserId(), loginForm.getPassword());
                 HttpSession session = request.getSession(true);
                 session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-            } catch (Exception e) {
-                bindingResult.reject("globalError", e.getMessage());//?
+            } catch (PyeonSoolFieldException e) {
+                bindingResult.rejectValue(e.getField(), e.getErrorCode(), e.getMessage());
+            } catch (PyeonSoolFormException e) {
+                bindingResult.reject(e.getErrorCode(), e.getMessage());
             }
         }
 
