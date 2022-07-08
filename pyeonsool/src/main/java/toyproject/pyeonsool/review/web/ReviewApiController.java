@@ -18,6 +18,22 @@ public class ReviewApiController {
 
     private final ReviewService reviewService;
 
+    @PostMapping("/add")
+    public ResponseEntity<Void> addReview(
+            @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
+            @RequestBody ReviewSaveRequest reviewSaveRequest) {
+        if (isNull(loginMember)) {
+            // TODO advice 클래스 생성 후 예외 통합 관리
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // TODO reviewSaveRequest 필드값 예외처리 필요
+
+        reviewService.addReview(loginMember.getId(), reviewSaveRequest.getAlcoholId(), reviewSaveRequest.getGrade(),
+                reviewSaveRequest.getContent());
+
+        return ResponseEntity.ok().build();
+    }
+
     @PostMapping("/{reviewId}/recommend")
     public ResponseEntity<Void> recommendReview(
             @PathVariable Long reviewId,

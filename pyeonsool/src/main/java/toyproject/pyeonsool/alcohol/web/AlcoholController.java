@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.Pagination;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholDetailsDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.domain.AlcoholType;
@@ -21,7 +20,7 @@ import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.member.sevice.MemberService;
 import toyproject.pyeonsool.review.sevice.ReviewDto;
 import toyproject.pyeonsool.review.sevice.ReviewService;
-import toyproject.pyeonsool.review.web.ReviewSaveForm;
+import toyproject.pyeonsool.review.web.ReviewSaveRequest;
 
 import java.util.List;
 
@@ -93,7 +92,7 @@ public class AlcoholController {
         model.addAttribute("alcoholId", alcoholId);
         model.addAttribute("alcoholDetails",
                 alcoholService.getAlcoholDetails(alcoholId, getLoginMemberId(loginMember)));
-        model.addAttribute("reviewSaveForm", new ReviewSaveForm(alcoholId));
+        model.addAttribute("reviewSaveForm", new ReviewSaveRequest(alcoholId));
         Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
         model.addAttribute("reviews", reviewPage.getContent());
