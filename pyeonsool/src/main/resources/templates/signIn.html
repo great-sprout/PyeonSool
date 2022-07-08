@@ -38,7 +38,10 @@
                   maxlength="20"
                   required
                   th:field="*{userId}"
+                  th:errorclass = "field-error"
                 />
+                <div class="field-error-message" th:errors="*{userId}">
+                </div>
               </div>
 
               <div class="sign-in__password-wrap">
@@ -52,7 +55,10 @@
                   minlength="4"
                   maxlength="20"
                   th:field="*{password}"
+                  th:errorclass = "field-error"
                 />
+                <div class="field-error-message" th:errors="*{password}">
+                </div>
               </div>
 
               <div th:if="${#fields.hasGlobalErrors()}" class="error-msg">

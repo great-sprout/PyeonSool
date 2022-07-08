@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
+import toyproject.pyeonsool.common.exception.form.FormExceptionType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.MyKeyword;
 import toyproject.pyeonsool.keyword.repository.KeywordRepository;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static toyproject.pyeonsool.common.exception.form.FormExceptionType.*;
 
 @Service
 @RequiredArgsConstructor
@@ -38,16 +41,16 @@ public class MemberService {
     }
 
     public LoginMember findLoginMember(String userId, String password) {
-        Member findMember = memberRepository.findByUserId(userId)
-                .orElseThrow(() -> new IllegalArgumentException("잘못된 아이디입니다."));
-
-        if (!findMember.getPassword().equals(password)) {
-            throw new IllegalArgumentException("잘못된 비밀번호입니다.");
-        }
-
-        // TODO 예외처리 필요
+        Member findMember = memberRepository.findByUserId(userId).orElseThrow(INCORRECT_USER_ID::getException);
+        validatePassword(password, findMember);
 
         return new LoginMember(findMember.getId(), findMember.getNickname());
+    }
+
+    private void validatePassword(String password, Member findMember) {
+        if (!findMember.getPassword().equals(password)) {
+            throw INCORRECT_PASSWORD.getException();
+        }
     }
 
     public Long signup(String nickname, String userId, String password, String phoneNumber, List<String> keywordNames) {
