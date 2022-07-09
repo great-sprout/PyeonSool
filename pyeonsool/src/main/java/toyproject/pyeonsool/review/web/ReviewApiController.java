@@ -3,13 +3,16 @@ package toyproject.pyeonsool.review.web;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.SessionConst;
+import toyproject.pyeonsool.common.exception.api.httpstatus.ApiExceptionType;
 import toyproject.pyeonsool.domain.RecommendStatus;
 import toyproject.pyeonsool.review.sevice.ReviewService;
 
 import static java.util.Objects.isNull;
+import static toyproject.pyeonsool.common.exception.api.httpstatus.ApiExceptionType.*;
 
 @RestController
 @RequestMapping("/reviews")
@@ -22,16 +25,38 @@ public class ReviewApiController {
     public ResponseEntity<Void> addReview(
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
             @RequestBody ReviewSaveRequest reviewSaveRequest) {
-        if (isNull(loginMember)) {
-            // TODO advice 클래스 생성 후 예외 통합 관리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        // TODO reviewSaveRequest 필드값 예외처리 필요
+
+        validateLogin(loginMember);
+        validateReviewSaveRequest(reviewSaveRequest);
 
         reviewService.addReview(loginMember.getId(), reviewSaveRequest.getAlcoholId(), reviewSaveRequest.getGrade(),
                 reviewSaveRequest.getContent());
 
         return ResponseEntity.ok().build();
+    }
+
+    private void validateLogin(LoginMember loginMember) {
+        if (isNull(loginMember)) {
+            throw MUST_LOGIN.getException();
+        }
+    }
+
+    private void validateReviewSaveRequest(ReviewSaveRequest reviewSaveRequest) {
+        if (isNull(reviewSaveRequest.getAlcoholId())) {
+            throw REQUIRED_ALCOHOL_ID.getException();
+        }
+
+        if (isNull(reviewSaveRequest.getGrade())) {
+            throw REQUIRED_GRADE.getException();
+        }
+
+        if (!StringUtils.hasText(reviewSaveRequest.getContent())) {
+            throw NON_BLANK_REVIEW.getException();
+        }
+
+        if (reviewSaveRequest.getContent().length() > 300) {
+            throw MAX_LENGTH_REVIEW.getException();
+        }
     }
 
     @PostMapping("/{reviewId}/recommend")
