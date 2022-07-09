@@ -68,7 +68,7 @@ class ReviewServiceTest {
         em.clear();
 
         //when
-        reviewService.editReview(review.getId(), (byte)3, "수정댓글");
+        reviewService.editReview(review.getId(), member.getId(), (byte)3, "수정댓글");
         em.flush();
         em.clear();
 

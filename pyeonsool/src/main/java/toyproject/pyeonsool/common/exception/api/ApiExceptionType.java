@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import toyproject.pyeonsool.common.exception.api.PyeonSoolApiException;
 import toyproject.pyeonsool.common.exception.api.httpstatus.BadRequestException;
+import toyproject.pyeonsool.common.exception.api.httpstatus.ForbiddenException;
 import toyproject.pyeonsool.common.exception.api.httpstatus.UnauthorizedException;
 
 @Getter
@@ -22,7 +23,9 @@ public enum ApiExceptionType {
 
     // 기타 예외
     NOT_EXIST_ALCOHOL(new BadRequestException("존재하지 않는 술입니다.")),
-    NOT_EXIST_MEMBER(new BadRequestException("존재하지 않는 회원"));
+    NOT_EXIST_MEMBER(new BadRequestException("존재하지 않는 회원입니다.")),
+    NOT_EXIST_REVIEW(new BadRequestException("존재하지 않는 리뷰입니다.")),
+    FORBIDDEN_REVIEW(new ForbiddenException("해당 리뷰에 대한 접근 권한이 없습니다."));
 
 
     private final PyeonSoolApiException exception;

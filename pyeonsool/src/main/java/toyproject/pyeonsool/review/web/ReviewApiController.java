@@ -44,7 +44,8 @@ public class ReviewApiController {
         validateReviewId(reviewId);
         validateReviewEditRequest(reviewEditRequest);
 
-        reviewService.editReview(reviewId,reviewEditRequest.getGrade(), reviewEditRequest.getContent());
+        reviewService.editReview(
+                reviewId, loginMember.getId(), reviewEditRequest.getGrade(), reviewEditRequest.getContent());
 
         return ResponseEntity.ok().build();
     }
