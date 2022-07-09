@@ -64,12 +64,14 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
     @Override
     public Page<Review> findReviewsByAlcohol(Alcohol alcohol, Pageable pageable) {
         JPAQuery<Review> query = queryFactory.selectFrom(review)
+                .where(review.alcohol.eq(alcohol))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize());
 
         JPAQuery<Long> countQuery = queryFactory
                 .select(review.count())
-                .from(review);
+                .from(review)
+                .where(review.alcohol.eq(alcohol));
 
         return PageableExecutionUtils.getPage(
                 setReviewOrder(query, pageable.getSort()).fetch(), pageable, countQuery::fetchOne);
