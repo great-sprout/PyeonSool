@@ -31,39 +31,36 @@ public class ReviewService {
     private final FileManager fileManager;
 
     public Long addReview(long memberId, long alcoholId, byte grade, String content) {
-        return reviewRepository.save(
-                new Review(getMemberOrElseThrow(memberId), getAlcoholOrElseThrow(alcoholId), grade, content))
+        return reviewRepository
+                .save(new Review(getMemberOrElseThrow(memberId), getAlcoholOrElseThrow(alcoholId), grade, content))
                 .getId();
-    }
-
-    private Alcohol getAlcoholOrElseThrow(long alcoholId) {
-        return alcoholRepository.findById(alcoholId).orElseThrow(NOT_EXIST_ALCOHOL::getException);
     }
 
     private Member getMemberOrElseThrow(long memberId) {
         return memberRepository.findById(memberId).orElseThrow(NOT_EXIST_MEMBER::getException);
     }
 
-    //리뷰 수정
-    public void editReview(long reviewId, byte grade, String content) {
-        Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
+    private Alcohol getAlcoholOrElseThrow(long alcoholId) {
+        return alcoholRepository.findById(alcoholId).orElseThrow(NOT_EXIST_ALCOHOL::getException);
+    }
 
-        // TODO 술, 회원 예외처리 필요
-        // save함수는 id를 전달하지 않으면 insert를 해준다
-        // save함수는 id를 전달하면 해당 id에 대한 데이터가 있으면 update를 해준다
-        // save함수는 id를 전달하면 해당 id에 대한 데이터가 없으면 insert를 한다.
+    public void editReview(long reviewId, long memberId, byte grade, String content) {
+        Review review = getReviewOrElseThrow(reviewId);
 
-        //유지할 내용들
-        /*review.getMember();
-        review.getAlcohol();
-        review.getRecommendCount();
-        review.getNotRecommendCount();*/
+        validateReviewAccess(memberId, review);
 
         review.changeGrade(grade);
         review.changeContent(content);
+    }
 
+    private Review getReviewOrElseThrow(long reviewId) {
+        return reviewRepository.findById(reviewId).orElseThrow(NOT_EXIST_REVIEW::getException);
+    }
 
+    private void validateReviewAccess(Long memberId, Review review) {
+        if (!review.getMember().getId().equals(memberId)) {
+            throw FORBIDDEN_REVIEW.getException();
+        }
     }
 
     //리뷰 삭제
