@@ -17,6 +17,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static java.util.Objects.*;
+import static toyproject.pyeonsool.common.exception.api.httpstatus.ApiExceptionType.*;
 
 @Service
 @RequiredArgsConstructor
@@ -29,22 +30,22 @@ public class ReviewService {
     private final RecommendedReviewRepository recommendedReviewRepository;
     private final FileManager fileManager;
 
+    public Long addReview(long memberId, long alcoholId, byte grade, String content) {
+        return reviewRepository.save(
+                new Review(getMemberOrElseThrow(memberId), getAlcoholOrElseThrow(alcoholId), grade, content))
+                .getId();
+    }
 
-    public long addReview(long memberId, long alcoholId, byte grade, String content) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
-        // TODO 술, 회원 예외처리 필요
+    private Alcohol getAlcoholOrElseThrow(long alcoholId) {
+        return alcoholRepository.findById(alcoholId).orElseThrow(NOT_EXIST_ALCOHOL::getException);
+    }
 
-        Review review = new Review(member, alcohol, grade, content);
-        reviewRepository.save(review);
-
-        return review.getId();
+    private Member getMemberOrElseThrow(long memberId) {
+        return memberRepository.findById(memberId).orElseThrow(NOT_EXIST_MEMBER::getException);
     }
 
     //리뷰 수정
-    public void editReview(long reviewId, byte grade, String content){
+    public void editReview(long reviewId, byte grade, String content) {
         Review review = reviewRepository.findById(reviewId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
 
@@ -66,8 +67,8 @@ public class ReviewService {
     }
 
     //리뷰 삭제
-    public void deleteReview(long reviewId){
-        reviewRepository.findById(reviewId).ifPresent(review ->reviewRepository.delete(review) );
+    public void deleteReview(long reviewId) {
+        reviewRepository.findById(reviewId).ifPresent(review -> reviewRepository.delete(review));
     }
 
     public Page<ReviewDto> getReviewPage(Pageable pageable, Long alcoholId, Long memberId) {
