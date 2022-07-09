@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import toyproject.pyeonsool.common.LoginMember;
+import toyproject.pyeonsool.common.exception.form.IncorrectPasswordException;
+import toyproject.pyeonsool.common.exception.form.IncorrectUserIdException;
 import toyproject.pyeonsool.domain.*;
 import toyproject.pyeonsool.member.sevice.MemberService;
 import toyproject.pyeonsool.mykeyword.repository.MyKeywordRepository;
@@ -52,9 +54,9 @@ class MemberServiceTest {
             //given
             //when
             //then
-            assertThrowsExactly(IllegalArgumentException.class,
+            assertThrowsExactly(IncorrectUserIdException.class,
                     () -> memberService.findLoginMember("userId", "password"),
-                    "잘못된 아이디입니다.");
+                    "입력한 아이디를 사용하는 계정을 찾을 수 없습니다.");
         }
 
         @Test
@@ -64,9 +66,10 @@ class MemberServiceTest {
             String password = "password";
             Member member = new Member("nickname", userId, password, "01012345678");
 
+            em.persist(member);
             //when
             //then
-            assertThrowsExactly(IllegalArgumentException.class,
+            assertThrowsExactly(IncorrectPasswordException.class,
                     () -> memberService.findLoginMember("userId", "wrongPassword"),
                     "잘못된 비밀번호입니다.");
         }
