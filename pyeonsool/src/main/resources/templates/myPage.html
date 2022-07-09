@@ -201,8 +201,7 @@
             <h2 class="mypage-review__title">내 리뷰 리스트</h2>
             <div class="myreviews">
               <th:block th:each="myReview : ${myReviewList}">
-            <form th:action="@{/reviews/{reviewId}/edit?requestURI=members/(reviewId=${myReview.reviewId})}"
-                  method="post" class="my-review" th:number="${myReview.reviewId}"th:object="${myReview}">
+            <form class="my-review" th:number="${myReview.reviewId}"th:object="${myReview}">
             <!--내 리뷰 리스트 이미지-->
             <div class="mypage-review__item">
               <div class="mypage-review__images">
@@ -300,11 +299,7 @@
 
               <!--수정 눌렀을 때 수정|삭제 -> 등록|취소 부분-->
               <div class="my-review__editor unvisible">
-                <input
-                  type="submit"
-                  value="등록"
-                  class="my-review__edit"
-                />
+                <span class="my-review__edit">등록</span>
                 <div class="my-review__divider"></div>
                 <span class="my-review__cancel">취소</span>
               </div>

@@ -7,12 +7,11 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.common.exception.api.httpstatus.ApiExceptionType;
 import toyproject.pyeonsool.domain.RecommendStatus;
 import toyproject.pyeonsool.review.sevice.ReviewService;
 
 import static java.util.Objects.isNull;
-import static toyproject.pyeonsool.common.exception.api.httpstatus.ApiExceptionType.*;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.*;
 
 @RestController
 @RequestMapping("/reviews")
@@ -35,27 +34,64 @@ public class ReviewApiController {
         return ResponseEntity.ok().build();
     }
 
+    @PatchMapping("/{reviewId}/edit")
+    public ResponseEntity<Void> editReview(
+            @PathVariable Long reviewId,
+            @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
+            @RequestBody ReviewEditRequest reviewEditRequest) {
+
+        validateLogin(loginMember);
+        validateReviewId(reviewId);
+        validateReviewEditRequest(reviewEditRequest);
+
+        reviewService.editReview(
+                reviewId, loginMember.getId(), reviewEditRequest.getGrade(), reviewEditRequest.getContent());
+
+        return ResponseEntity.ok().build();
+    }
+
     private void validateLogin(LoginMember loginMember) {
         if (isNull(loginMember)) {
             throw MUST_LOGIN.getException();
         }
     }
 
+    private void validateReviewEditRequest(ReviewEditRequest reviewEditRequest) {
+        validateGrade(reviewEditRequest.getGrade());
+        validateReviewContent(reviewEditRequest.getContent());
+    }
+
     private void validateReviewSaveRequest(ReviewSaveRequest reviewSaveRequest) {
-        if (isNull(reviewSaveRequest.getAlcoholId())) {
+        validateAlcoholId(reviewSaveRequest.getAlcoholId());
+        validateGrade(reviewSaveRequest.getGrade());
+        validateReviewContent(reviewSaveRequest.getContent());
+    }
+
+    private void validateAlcoholId(Long alcoholId) {
+        if (isNull(alcoholId)) {
             throw REQUIRED_ALCOHOL_ID.getException();
         }
+    }
 
-        if (isNull(reviewSaveRequest.getGrade())) {
-            throw REQUIRED_GRADE.getException();
-        }
-
-        if (!StringUtils.hasText(reviewSaveRequest.getContent())) {
+    private void validateReviewContent(String content) {
+        if (!StringUtils.hasText(content)) {
             throw NON_BLANK_REVIEW.getException();
-        }
-
-        if (reviewSaveRequest.getContent().length() > 300) {
+        } else if (content.length() > 300) {
             throw MAX_LENGTH_REVIEW.getException();
+        }
+    }
+
+    private void validateGrade(Byte grade) {
+        if (isNull(grade)) {
+            throw REQUIRED_GRADE.getException();
+        } else if (grade < 1 || grade > 5) {
+            throw LIMITED_RANGE_GRADE.getException();
+        }
+    }
+
+    private void validateReviewId(Long reviewId) {
+        if (isNull(reviewId)) {
+            throw REQUIRED_REVIEW_ID.getException();
         }
     }
 

@@ -357,16 +357,6 @@
   cursor: pointer;
 }
 
-.my-review__edit {
-  border: none;
-  background-color: white;
-  padding: 0px;
-  font-size: 12px;
-  color: rgb(102, 102, 102);
-  font-weight: bold;
-  margin-top: -10px;
-}
-
 /*삭제|수정에서 |이 부분 */
 .my-review__divider {
     width: 0.5px;

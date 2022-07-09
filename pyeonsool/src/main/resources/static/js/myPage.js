@@ -142,9 +142,52 @@ function addReviewDeleteClickEvent() {
     }
 }
 
+function editReviewEvent() {
+    document.addEventListener("click", function (event) {
+        if (!event.target.classList.contains("my-review__edit")) {
+            return;
+        }
 
+        const review = event.target.closest(".my-review");
+        const reviewId = review.getAttribute("number");
+        editReviewAjax(createReviewEditRequest(review), reviewId);
+    });
+
+    function editReviewAjax(reviewEditRequest, reviewId) {
+        const request = new XMLHttpRequest();
+        if (!request) {
+            alert("XMLHTTP 인스턴스 생성 불가");
+            return false;
+        }
+
+        request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    window.location.reload();
+                } else {
+                    alert(request.response.message);
+                }
+            }
+        }
+
+        request.open("PATCH", `/reviews/${reviewId}/edit`);
+        request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.send(JSON.stringify(reviewEditRequest));
+    }
+
+    function createReviewEditRequest(review) {
+        const grade = review.querySelector(".stars__radio:checked").value;
+        const content = review.querySelector(".my-review__textarea").value;
+        const reviewEditRequest = new Object();
+        reviewEditRequest.content = content;
+        reviewEditRequest.grade = grade;
+        return reviewEditRequest;
+    }
+}
 //호출
 //addMystyleSlidingEvent();
 addMyReviewEditStateEvent();
 addDisLikeClickEvent();
 addReviewDeleteClickEvent();
+editReviewEvent();

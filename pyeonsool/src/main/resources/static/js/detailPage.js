@@ -43,8 +43,6 @@ function addLikeClickEvent() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     alcoholInfoLikeButton.classList.remove(LIKE_STATUS_CLASS);
-                } else if (request.status === 401) {
-                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -70,9 +68,7 @@ function addLikeClickEvent() {
                     alcoholInfoLikeButton.classList.add(LIKE_STATUS_CLASS);
                 } else if (request.status === 400) {
                     alert("Like 술은 12개까지 가능합니다.");
-                } else if (request.status === 401) {
-                    alert("로그인 후 이용해주세요.");
-                }else {
+                } else {
                     alert(request.response.message);
                 }
             }
@@ -140,8 +136,6 @@ function addReviewRecommendationEvent() {
 
                     clearClickState(target, ".no-recommendation__icon", ".no-recommendation__icon--clicked");
                     changeToClickState(target);
-                } else if (request.status === 401) {
-                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -166,8 +160,6 @@ function addReviewRecommendationEvent() {
                 if (request.status === 200) {
                     changeLikeCount(target.closest(".review__preference"), -1);
                     changeToUnclickState(target);
-                } else if (request.status === 401) {
-                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -197,8 +189,6 @@ function addReviewRecommendationEvent() {
                     }
                     clearClickState(target, ".recommendation__icon", ".recommendation__icon--clicked");
                     changeToClickState(target);
-                } else if (request.status === 401) {
-                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -223,8 +213,6 @@ function addReviewRecommendationEvent() {
                 if (request.status === 200) {
                     changeDislikeCount(target.closest(".review__preference"), -1);
                     changeToUnclickState(target);
-                } else if (request.status === 401) {
-                    alert("로그인 후 이용해주세요.");
                 } else {
                     alert(request.response.message);
                 }
@@ -313,8 +301,6 @@ function addReviewDeleteClickEvent() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     window.location.reload();
-                } else if (request.status === 401) {
-                    alert("로그인 후 이용해주세요")
                 } else {
                     alert(request.response.message);
                 }
@@ -344,8 +330,6 @@ function addReviewEvent() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     window.location.reload();
-                } else if (request.status === 401) {
-                    alert("로그인 후 이용해주세요")
                 } else {
                     alert(request.response.message);
                 }
@@ -369,7 +353,50 @@ function addReviewEvent() {
         reviewSaveRequest.grade = grade;
         return reviewSaveRequest;
     }
+}
 
+function editReviewEvent() {
+    document.addEventListener("click", function (event) {
+        if (!event.target.classList.contains("review__edit")) {
+            return;
+        }
+
+        const review = event.target.closest(".review");
+        const reviewId = review.getAttribute("number");
+        editReviewAjax(createReviewEditRequest(review), reviewId);
+    });
+
+    function editReviewAjax(reviewEditRequest, reviewId) {
+        const request = new XMLHttpRequest();
+        if (!request) {
+            alert("XMLHTTP 인스턴스 생성 불가");
+            return false;
+        }
+
+        request.onreadystatechange = function () {
+            if (request.readyState === XMLHttpRequest.DONE) {
+                if (request.status === 200) {
+                    window.location.reload();
+                } else {
+                    alert(request.response.message);
+                }
+            }
+        }
+
+        request.open("PATCH", `/reviews/${reviewId}/edit`);
+        request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
+        request.send(JSON.stringify(reviewEditRequest));
+    }
+
+    function createReviewEditRequest(review) {
+        const grade = review.querySelector(".stars__radio:checked").value;
+        const content = review.querySelector(".review__textarea").value;
+        const reviewEditRequest = new Object();
+        reviewEditRequest.content = content;
+        reviewEditRequest.grade = grade;
+        return reviewEditRequest;
+    }
 }
 addLikeClickEvent();
 addReviewRecommendationEvent();
@@ -377,3 +404,4 @@ addRecommendationSlidingEvent();
 addReviewEditStateEvent();
 addReviewDeleteClickEvent();
 addReviewEvent();
+editReviewEvent();
