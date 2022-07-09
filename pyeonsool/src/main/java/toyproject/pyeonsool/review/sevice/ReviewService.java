@@ -17,7 +17,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static java.util.Objects.*;
-import static toyproject.pyeonsool.common.exception.api.httpstatus.ApiExceptionType.*;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.*;
 
 @Service
 @RequiredArgsConstructor
