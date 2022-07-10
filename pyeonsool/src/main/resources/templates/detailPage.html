@@ -206,16 +206,16 @@
 
             <div class="review-area">
               <div class="review-area__order">
-                <a
-                  href="#"
-                  th:href="|/alcohols/${alcoholId}|"
-                  class="review-area__latest-order review-area__selected-order"
+                <a th:href="|/alcohols/${alcoholId}|"
+                  class="review-area__latest-order"
+                  th:classappend="${reviewPagination.sortField == 'id'} ? 'review-area__selected-order'"
                   >최신순</a
                 >
                 <div class="review-area__order-divider"></div>
-                <a href="#"
-                   th:href="|/alcohols/${alcoholId}?sort=recommendCount,DESC|"
-                   class="review-area__recommended-order">추천순</a>
+                <a th:href="|/alcohols/${alcoholId}?sort=recommendCount,DESC|"
+                   class="review-area__recommended-order"
+                   th:classappend="${reviewPagination.sortField == 'recommendCount'} ? 'review-area__selected-order'"
+                    >추천순</a>
               </div>
 
               <div class="reviews">
