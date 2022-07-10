@@ -8,6 +8,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class LoginMember {
-    private Long id;
+    private long id;
     private String nickname;
 }
