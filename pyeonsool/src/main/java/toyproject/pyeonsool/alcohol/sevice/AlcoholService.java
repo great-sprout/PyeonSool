@@ -19,6 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.*;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.*;
 
 @Service
 @RequiredArgsConstructor
@@ -34,24 +35,30 @@ public class AlcoholService {
     private final FileManager fileManager;
 
 
-    public AlcoholDetailsDto getAlcoholDetails(Long alcoholId, Long loginMemberId) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
-        String alcoholImagePath = fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
-        List<String> alcoholKeywords = getAlcoholKeywords(alcoholId);
-        List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcoholId);
-        String grade = getFormattedTotalGrade(reviewRepository.getReviewGrades(alcoholId));
+    public AlcoholDetailsDto getAlcoholDetails(long alcoholId, Long memberId) {
+        Alcohol alcohol = getAlcoholOrElseThrow(alcoholId);
 
-        if (isNull(loginMemberId)) {
-            return AlcoholDetailsDto.of(alcohol, alcoholImagePath, grade, alcoholKeywords, alcoholVendors);
+        return AlcoholDetailsDto.of(alcohol,
+                getAlcoholImagePath(alcohol),
+                getTotalGrade(alcoholId),
+                getAlcoholKeywords(alcoholId),
+                vendorRepository.getAlcoholVendors(alcoholId),
+                likeCurrentAlcohol(alcohol, memberId));
+    }
+
+    private Alcohol getAlcoholOrElseThrow(long alcoholId) {
+        return alcoholRepository.findById(alcoholId).orElseThrow(NOT_EXIST_ALCOHOL::getException);
+    }
+
+    private String getTotalGrade(long alcoholId) {
+        List<Byte> reviewGrades = reviewRepository.getReviewGrades(alcoholId);
+
+        if (reviewGrades.size() != 0) {
+            double ratingAvg = (double) reviewGrades.stream().mapToLong(rating -> rating).sum() / reviewGrades.size();
+            return String.format("%.1f", ratingAvg);
         }
 
-        Member member = memberRepository.findById(loginMemberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
-        // TODO 술, 회원 예외처리 필요
-
-        return AlcoholDetailsDto.of(alcohol, alcoholImagePath, grade, alcoholKeywords, alcoholVendors,
-                preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol));
-
+        return "-";
     }
 
     private List<String> getAlcoholKeywords(Long alcoholId) {
@@ -61,15 +68,6 @@ public class AlcoholService {
             alcoholKeywords.add(keywordMap.get(keyword));
         }
         return alcoholKeywords;
-    }
-
-    private String getFormattedTotalGrade(List<Byte> reviewGrades) {
-        if (reviewGrades.size() != 0) {
-            double ratingAvg = (double) reviewGrades.stream().mapToLong(rating -> rating).sum() / reviewGrades.size();
-            return String.format("%.1f", ratingAvg);
-        }
-
-        return "-";
     }
 
     public static Map<String, String> createKeywordMap() {
@@ -99,6 +97,18 @@ public class AlcoholService {
         return keywordMap;
     }
 
+    private boolean likeCurrentAlcohol(Alcohol alcohol, Long memberId) {
+        if (isNull(memberId)) {
+            return false;
+        }
+        return preferredAlcoholRepository.existsByMemberAndAlcohol(getMemberOrElseThrow(memberId), alcohol);
+    }
+
+    private Member getMemberOrElseThrow(Long memberId) {
+        return memberRepository.findById(memberId)
+                .orElseThrow(NOT_EXIST_MEMBER::getException);
+    }
+
     public Long likeAlcohol(Long alcoholId, Long memberId) {
         Alcohol alcohol = alcoholRepository.findById(alcoholId)
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
@@ -126,12 +136,10 @@ public class AlcoholService {
         }
     }
 
-    //내 Like 리스트 부분 서비스
     public List<AlcoholImageDto> getAlcoholImages(Long memberId) {
         return convertToAlcoholImage(preferredAlcoholRepository.getAlcohols(memberId, 12L));
     }
 
-    //내 Like 리스트 부분 서비스
     private List<AlcoholImageDto> convertToAlcoholImage(List<Alcohol> alcohols) {
         List<AlcoholImageDto> alcoholImages = new ArrayList<>();
         for (Alcohol alcohol : alcohols) {
