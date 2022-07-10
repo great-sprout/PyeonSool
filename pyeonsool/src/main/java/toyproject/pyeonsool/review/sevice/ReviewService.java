@@ -63,9 +63,8 @@ public class ReviewService {
         }
     }
 
-    //리뷰 삭제
     public void deleteReview(long reviewId) {
-        reviewRepository.findById(reviewId).ifPresent(review -> reviewRepository.delete(review));
+        reviewRepository.findById(reviewId).ifPresent(reviewRepository::delete);
     }
 
     public Page<ReviewDto> getReviewPage(Pageable pageable, long alcoholId, Long memberId) {
@@ -130,16 +129,13 @@ public class ReviewService {
         return recommendedReview.getId();
     }
 
-    public void cancelRecommendation(Long memberId, Long reviewId, RecommendStatus status) {
-        Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
-        // TODO 술, 회원 예외처리 필요
+    public void cancelRecommendation(long memberId, long reviewId, RecommendStatus status) {
+        Review review = getReviewOrElseThrow(reviewId);
 
-        recommendedReviewRepository.findByMemberAndReviewAndStatus(member, review, status)
-                .ifPresent(entity -> {
-                    recommendedReviewRepository.delete(entity);
+        recommendedReviewRepository.findByMemberAndReviewAndStatus(getMemberOrElseThrow(memberId), review, status)
+                .ifPresent(recommendedReview -> {
+                    recommendedReviewRepository.delete(recommendedReview);
+
                     if (status == RecommendStatus.LIKE) {
                         review.minusRecommendCount();
                     } else {
