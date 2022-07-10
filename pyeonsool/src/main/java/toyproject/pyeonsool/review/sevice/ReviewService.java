@@ -77,12 +77,10 @@ public class ReviewService {
         if (isNull(memberId)) {
             return RecommendStatus.NORMAL;
         }
-
         Member member = memberRepository.findById(memberId).orElse(null);
         if (isNull(member)) {
             return RecommendStatus.NORMAL;
         }
-
 
         RecommendedReview recommendedReview =
                 recommendedReviewRepository.findByMemberAndReview(member, review).orElse(null);

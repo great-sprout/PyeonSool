@@ -199,14 +199,10 @@ public class AlcoholService {
         return alcoholTypeDetailsList;
     }
 
-    public List<AlcoholImageDto> getRelatedAlcohols(Long alcoholId) {
-        int RELATED_ALCOHOLS_LIMIT = 12;
+    public List<AlcoholImageDto> getRelatedAlcohols(long alcoholId) {
+        final int RELATED_ALCOHOLS_LIMIT = 12;
         return alcoholRepository.findRelatedAlcohols(alcoholId, RELATED_ALCOHOLS_LIMIT).stream()
-                .map(alcohol -> new AlcoholImageDto(alcohol.getId(), getImagePath(alcohol)))
+                .map(alcohol -> new AlcoholImageDto(alcohol.getId(), getAlcoholImagePath(alcohol)))
                 .collect(Collectors.toList());
-    }
-
-    private String getImagePath(Alcohol alcohol) {
-        return fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName());
     }
 }
