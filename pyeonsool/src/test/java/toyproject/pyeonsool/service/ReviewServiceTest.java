@@ -176,7 +176,7 @@ class ReviewServiceTest {
                     .getContent().get(0);
 
             //then
-            assertThat(reviewDto.getMyRecommendStatus()).isNull();
+            assertThat(reviewDto.getMyRecommendStatus()).isEqualTo(RecommendStatus.NORMAL);
             assertThat(reviewDto.getNotRecommendCount()).isEqualTo(0);
             assertThat(reviewDto.getRecommendCount()).isEqualTo(0);
         }

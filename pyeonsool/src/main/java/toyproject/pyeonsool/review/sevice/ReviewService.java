@@ -68,35 +68,30 @@ public class ReviewService {
         reviewRepository.findById(reviewId).ifPresent(review -> reviewRepository.delete(review));
     }
 
-    public Page<ReviewDto> getReviewPage(Pageable pageable, Long alcoholId, Long memberId) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
-
-        return reviewRepository.findReviewsByAlcohol(alcohol, pageable)
-                .map(review -> ReviewDto.of(review, getMyRecommendStatus(review, getMember(memberId))));
+    public Page<ReviewDto> getReviewPage(Pageable pageable, long alcoholId, Long memberId) {
+        return reviewRepository.findReviewsByAlcohol(getAlcoholOrElseThrow(alcoholId), pageable)
+                .map(review -> ReviewDto.of(review, getMyRecommendStatus(review, memberId)));
     }
 
-    private RecommendStatus getMyRecommendStatus(Review review, Member member) {
-        if (isNull(member)) {
-            return null;
-        }
-
-        Optional<RecommendedReview> optionalRecommendedReview =
-                recommendedReviewRepository.findByMemberAndReview(member, review);
-
-        if (optionalRecommendedReview.isEmpty()) {
-            return null;
-        }
-
-        return optionalRecommendedReview.get().getStatus();
-    }
-
-    private Member getMember(Long memberId) {
+    private RecommendStatus getMyRecommendStatus(Review review, Long memberId) {
         if (isNull(memberId)) {
-            return null;
+            return RecommendStatus.NORMAL;
         }
 
-        return memberRepository.findById(memberId).orElse(null);
+        Member member = memberRepository.findById(memberId).orElse(null);
+        if (isNull(member)) {
+            return RecommendStatus.NORMAL;
+        }
+
+
+        RecommendedReview recommendedReview =
+                recommendedReviewRepository.findByMemberAndReview(member, review).orElse(null);
+
+        if (isNull(recommendedReview)) {
+            return RecommendStatus.NORMAL;
+        }
+
+        return recommendedReview.getStatus();
     }
 
     public Long recommendReview(Long memberId, Long reviewId, RecommendStatus status) {
