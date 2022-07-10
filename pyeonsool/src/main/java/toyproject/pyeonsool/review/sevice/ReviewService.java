@@ -92,12 +92,9 @@ public class ReviewService {
         return recommendedReview.getStatus();
     }
 
-    public Long recommendReview(Long memberId, Long reviewId, RecommendStatus status) {
-        Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
-        // TODO 술, 회원 예외처리 필요
+    public Long recommendReview(long memberId, long reviewId, RecommendStatus status) {
+        Review review = getReviewOrElseThrow(reviewId);
+        Member member = getMemberOrElseThrow(memberId);
 
         RecommendedReview recommendedReview = recommendedReviewRepository.findByMemberAndReview(member, review)
                 .orElseGet(() -> new RecommendedReview(member, review, status));
@@ -106,18 +103,29 @@ public class ReviewService {
             recommendedReviewRepository.save(recommendedReview);
         } else {
             recommendedReview.changeStatus(status);
-            if (status == RecommendStatus.LIKE) {
-                review.minusNotRecommendCount();
-            } else {
-                review.minusRecommendCount();
-            }
+            review.minusNotRecommendCount();
         }
 
-        if (status == RecommendStatus.LIKE) {
-            review.plusRecommendCount();
+        review.plusRecommendCount();
+
+        return recommendedReview.getId();
+    }
+
+    public Long notRecommendReview(long memberId, long reviewId, RecommendStatus status) {
+        Review review = getReviewOrElseThrow(reviewId);
+        Member member = getMemberOrElseThrow(memberId);
+
+        RecommendedReview recommendedReview = recommendedReviewRepository.findByMemberAndReview(member, review)
+                .orElseGet(() -> new RecommendedReview(member, review, status));
+
+        if (isNull(recommendedReview.getId())) {
+            recommendedReviewRepository.save(recommendedReview);
         } else {
-            review.plusNotRecommendCount();
+            recommendedReview.changeStatus(status);
+            review.minusRecommendCount();
         }
+
+        review.plusNotRecommendCount();
 
         return recommendedReview.getId();
     }
