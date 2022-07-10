@@ -61,9 +61,8 @@ public class AlcoholController {
         //베스트 상품 목록 ( 아직 4개)
 
         /*마이 키워드*/
-        if (loginMember!=null) {
-            List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
-            model.addAttribute("personalKeywords", myKeywords);
+        if (nonNull(loginMember)) {
+            model.addAttribute("personalKeywords", memberService.getMyKeywordsKOR(loginMember.getId()));
         }
 
         return "listPage";
@@ -106,8 +105,7 @@ public class AlcoholController {
 
         /*마이 키워드*/
         if (nonNull(loginMember)) {
-            List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
-            model.addAttribute("personalKeywords", myKeywords);
+            model.addAttribute("personalKeywords", memberService.getMyKeywordsKOR(loginMember.getId()));
         }
 
         return "detailPage";

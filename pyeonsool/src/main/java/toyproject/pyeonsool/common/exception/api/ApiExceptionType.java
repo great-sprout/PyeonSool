@@ -17,9 +17,10 @@ public enum ApiExceptionType {
     NON_BLANK_REVIEW(new BadRequestException("리뷰는 공백일 수 없습니다.")),
     MAX_LENGTH_REVIEW(new BadRequestException("리뷰는 300자 이내로 작성하세요.")),
     REQUIRED_REVIEW_ID(new BadRequestException("리뷰 고유 번호는 필수입니다.")),
+    MAX_PREFERRED_ALCOHOL_COUNT(new BadRequestException("선호하는 술은 최대 12개까지 지정할 수 있습니다.")),
 
     // 로그인 관련 예외
-    MUST_LOGIN(new UnauthorizedException("로그인 후 이용해주세요")),
+    MUST_LOGIN(new UnauthorizedException("로그인 후 이용해주세요.")),
 
     // 기타 예외
     NOT_EXIST_ALCOHOL(new BadRequestException("존재하지 않는 술입니다.")),

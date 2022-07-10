@@ -100,10 +100,8 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        if (isNull(loginMember)) {
-            // TODO advice 클래스 생성 후 예외 통합 관리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        validateLogin(loginMember);
+        validateReviewId(reviewId);
         reviewService.recommendReview(loginMember.getId(), reviewId, RecommendStatus.LIKE);
 
         return ResponseEntity.ok().build();
@@ -114,11 +112,9 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        if (isNull(loginMember)) {
-            // TODO advice 클래스 생성 후 예외 통합 관리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        reviewService.recommendReview(loginMember.getId(), reviewId, RecommendStatus.DISLIKE);
+        validateLogin(loginMember);
+        validateReviewId(reviewId);
+        reviewService.notRecommendReview(loginMember.getId(), reviewId, RecommendStatus.DISLIKE);
 
         return ResponseEntity.ok().build();
     }
@@ -128,10 +124,8 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        if (isNull(loginMember)) {
-            // TODO advice 클래스 생성 후 예외 통합 관리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        validateLogin(loginMember);
+        validateReviewId(reviewId);
         reviewService.cancelRecommendation(loginMember.getId(), reviewId, RecommendStatus.LIKE);
 
         return ResponseEntity.ok().build();
@@ -142,10 +136,8 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        if (isNull(loginMember)) {
-            // TODO advice 클래스 생성 후 예외 통합 관리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        validateLogin(loginMember);
+        validateReviewId(reviewId);
         reviewService.cancelRecommendation(loginMember.getId(), reviewId, RecommendStatus.DISLIKE);
 
         return ResponseEntity.ok().build();
@@ -157,10 +149,8 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        if (isNull(loginMember)) {
-            // TODO advice 클래스 생성 후 예외 통합 관리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        validateLogin(loginMember);
+        validateReviewId(reviewId);
         reviewService.deleteReview(reviewId);
 
         return ResponseEntity.ok().build();

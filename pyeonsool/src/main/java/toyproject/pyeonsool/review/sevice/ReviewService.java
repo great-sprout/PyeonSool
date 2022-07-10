@@ -63,9 +63,8 @@ public class ReviewService {
         }
     }
 
-    //리뷰 삭제
     public void deleteReview(long reviewId) {
-        reviewRepository.findById(reviewId).ifPresent(review -> reviewRepository.delete(review));
+        reviewRepository.findById(reviewId).ifPresent(reviewRepository::delete);
     }
 
     public Page<ReviewDto> getReviewPage(Pageable pageable, long alcoholId, Long memberId) {
@@ -77,12 +76,10 @@ public class ReviewService {
         if (isNull(memberId)) {
             return RecommendStatus.NORMAL;
         }
-
         Member member = memberRepository.findById(memberId).orElse(null);
         if (isNull(member)) {
             return RecommendStatus.NORMAL;
         }
-
 
         RecommendedReview recommendedReview =
                 recommendedReviewRepository.findByMemberAndReview(member, review).orElse(null);
@@ -94,12 +91,9 @@ public class ReviewService {
         return recommendedReview.getStatus();
     }
 
-    public Long recommendReview(Long memberId, Long reviewId, RecommendStatus status) {
-        Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
-        // TODO 술, 회원 예외처리 필요
+    public Long recommendReview(long memberId, long reviewId, RecommendStatus status) {
+        Review review = getReviewOrElseThrow(reviewId);
+        Member member = getMemberOrElseThrow(memberId);
 
         RecommendedReview recommendedReview = recommendedReviewRepository.findByMemberAndReview(member, review)
                 .orElseGet(() -> new RecommendedReview(member, review, status));
@@ -108,32 +102,40 @@ public class ReviewService {
             recommendedReviewRepository.save(recommendedReview);
         } else {
             recommendedReview.changeStatus(status);
-            if (status == RecommendStatus.LIKE) {
-                review.minusNotRecommendCount();
-            } else {
-                review.minusRecommendCount();
-            }
+            review.minusNotRecommendCount();
         }
 
-        if (status == RecommendStatus.LIKE) {
-            review.plusRecommendCount();
-        } else {
-            review.plusNotRecommendCount();
-        }
+        review.plusRecommendCount();
 
         return recommendedReview.getId();
     }
 
-    public void cancelRecommendation(Long memberId, Long reviewId, RecommendStatus status) {
-        Review review = reviewRepository.findById(reviewId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 리뷰입니다."));
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
-        // TODO 술, 회원 예외처리 필요
+    public Long notRecommendReview(long memberId, long reviewId, RecommendStatus status) {
+        Review review = getReviewOrElseThrow(reviewId);
+        Member member = getMemberOrElseThrow(memberId);
 
-        recommendedReviewRepository.findByMemberAndReviewAndStatus(member, review, status)
-                .ifPresent(entity -> {
-                    recommendedReviewRepository.delete(entity);
+        RecommendedReview recommendedReview = recommendedReviewRepository.findByMemberAndReview(member, review)
+                .orElseGet(() -> new RecommendedReview(member, review, status));
+
+        if (isNull(recommendedReview.getId())) {
+            recommendedReviewRepository.save(recommendedReview);
+        } else {
+            recommendedReview.changeStatus(status);
+            review.minusRecommendCount();
+        }
+
+        review.plusNotRecommendCount();
+
+        return recommendedReview.getId();
+    }
+
+    public void cancelRecommendation(long memberId, long reviewId, RecommendStatus status) {
+        Review review = getReviewOrElseThrow(reviewId);
+
+        recommendedReviewRepository.findByMemberAndReviewAndStatus(getMemberOrElseThrow(memberId), review, status)
+                .ifPresent(recommendedReview -> {
+                    recommendedReviewRepository.delete(recommendedReview);
+
                     if (status == RecommendStatus.LIKE) {
                         review.minusRecommendCount();
                     } else {

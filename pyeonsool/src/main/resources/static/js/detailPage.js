@@ -23,10 +23,8 @@ function addLikeClickEvent() {
     alcoholInfoLikeButton.addEventListener("click", function () {
         const LIKE_STATUS_CLASS = "alcohol-info__like-button--liked";
         if (alcoholInfoLikeButton.classList.contains(LIKE_STATUS_CLASS)) {
-            // dislike ajax
             dislikeAlcoholAjax(LIKE_STATUS_CLASS);
         } else {
-            // like ajax
             likeAlcoholAjax(LIKE_STATUS_CLASS);
         }
     })
@@ -66,8 +64,6 @@ function addLikeClickEvent() {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
                     alcoholInfoLikeButton.classList.add(LIKE_STATUS_CLASS);
-                } else if (request.status === 400) {
-                    alert("Like 술은 12개까지 가능합니다.");
                 } else {
                     alert(request.response.message);
                 }
@@ -90,14 +86,10 @@ function addReviewRecommendationEvent() {
 
         } else if (target.classList.contains("recommendation__icon--clicked")) {
             cancelRecommendReviewAjax(target, reviewId);
-            // 추천 카운트 - 1
         } else if (target.classList.contains("no-recommendation__icon")) {
             notRecommendReviewAjax(target, reviewId);
-            // 비추천 카운트 + 1
-            // 추천 클릭되어 있었다면 추천 카운트 - 1, 아니면 그대로
         } else if (target.classList.contains("no-recommendation__icon--clicked")) {
             cancelNotRecommendReviewAjax(target, reviewId);
-            // 비추천 카운트 - 1
         }
     });
 
@@ -126,8 +118,6 @@ function addReviewRecommendationEvent() {
         request.onreadystatechange = function () {
             if (request.readyState === XMLHttpRequest.DONE) {
                 if (request.status === 200) {
-                    // 추천 카운트 +1
-                    // 비추천 클릭되어 있었다면 비추천 카운트 - 1, 아니면 그대로
                     const reviewPreference = target.closest(".review__preference");
                     changeLikeCount(reviewPreference, 1);
                     if (!isClicked(reviewPreference, ".no-recommendation__icon--clicked")) {
@@ -254,23 +244,21 @@ function addReviewEditStateEvent() {
         const reviewButtons = review.querySelector(".review__buttons");
         const reviewEditor = review.querySelector(".review__editor");
         const fixedStars = review.querySelector(".review__fixed-stars");
-        const revieStars = review.querySelector(".review__stars");
+        const reviewStars = review.querySelector(".review__stars");
 
         if (event.target.classList.contains("review__edit-status")) {
-            // 수정 가능 상태
             reviewTextarea.textContent = reviewContent.innerText;
 
             fixedStars.classList.add("unvisible");
-            revieStars.classList.remove("unvisible");
+            reviewStars.classList.remove("unvisible");
             reviewContent.classList.add("unvisible");
             reviewTextarea.classList.remove("unvisible");
             reviewButtons.classList.add("unvisible");
             reviewEditor.classList.remove("unvisible");
 
         } else if (event.target.classList.contains("review__cancel")) {
-            // 수정 불가능 상태
             fixedStars.classList.remove("unvisible");
-            revieStars.classList.add("unvisible");
+            reviewStars.classList.add("unvisible");
             reviewContent.classList.remove("unvisible");
             reviewTextarea.classList.add("unvisible");
             reviewButtons.classList.remove("unvisible");
