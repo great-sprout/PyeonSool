@@ -1,5 +1,5 @@
 package toyproject.pyeonsool.domain;
 
 public enum RecommendStatus {
-    LIKE, DISLIKE
+    LIKE, DISLIKE, NORMAL
 }

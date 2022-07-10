@@ -25,6 +25,9 @@ import toyproject.pyeonsool.review.web.ReviewSaveRequest;
 import java.util.List;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.REQUIRED_ALCOHOL_ID;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.REQUIRED_REVIEW_ID;
 
 @Controller
 @RequestMapping("/alcohols")
@@ -89,21 +92,31 @@ public class AlcoholController {
             @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
             Model model) {
 
+        validateAlcoholId(alcoholId);
+
         model.addAttribute("alcoholId", alcoholId);
         model.addAttribute("alcoholDetails",
                 alcoholService.getAlcoholDetails(alcoholId, getLoginMemberId(loginMember)));
         model.addAttribute("reviewSaveForm", new ReviewSaveRequest(alcoholId));
+
         Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
         model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
         model.addAttribute("reviews", reviewPage.getContent());
         model.addAttribute("relatedAlcohols", alcoholService.getRelatedAlcohols(alcoholId));
 
         /*마이 키워드*/
-        if (loginMember!=null) {
+        if (nonNull(loginMember)) {
             List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
             model.addAttribute("personalKeywords", myKeywords);
         }
+
         return "detailPage";
+    }
+
+    private void validateAlcoholId(Long alcoholId) {
+        if (isNull(alcoholId)) {
+            throw REQUIRED_ALCOHOL_ID.getException();
+        }
     }
 
     private Long getLoginMemberId(LoginMember loginMember) {

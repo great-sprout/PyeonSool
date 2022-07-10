@@ -70,7 +70,7 @@ class ReviewRepositoryTest {
             em.persist(alcohol);
 
             for (int i = 0; i < 24; i++) {
-                em.persist(new Review(member, alcohol, (byte)(i % 5 + 1), "테스트 리뷰 " + i));
+                em.persist(new Review(member, alcohol, (byte) (i % 5 + 1), "테스트 리뷰 " + i));
             }
 
             em.persist(new Review(member, alcohol, (byte) 4, "테스트 리뷰", 10L, 0L));
@@ -103,10 +103,9 @@ class ReviewRepositoryTest {
             em.persist(alcohol);
 
             for (int i = 0; i < 24; i++) {
-                em.persist(new Review(member, alcohol, (byte)(i % 5 + 1), "테스트 리뷰 " + i));
+                em.persist(new Review(member, alcohol, (byte) (i % 5 + 1), "테스트 리뷰 " + i,
+                        (long) i, (long) (24 - i)));
             }
-
-            em.persist(new Review(member, alcohol, (byte) 4, "테스트 리뷰", 10L, 0L));
 
             int SIZE = 10;
 
@@ -116,9 +115,9 @@ class ReviewRepositoryTest {
             List<Review> recommendedOrderReviews = reviewPage.getContent();
 
             //then
-            assertThat(recommendedOrderReviews).isSortedAccordingTo((o1, o2) -> o2.getRecommendCount().compareTo(o1.getRecommendCount()));
-            assertThat(recommendedOrderReviews.get(0).getRecommendCount()).isEqualTo(10);
-            assertThat(recommendedOrderReviews.get(0).getNotRecommendCount()).isEqualTo(0);
+            assertThat(recommendedOrderReviews).isSortedAccordingTo((o1, o2) ->
+                    (int) ((o2.getRecommendCount() - o2.getNotRecommendCount()) -
+                            (o1.getRecommendCount() - o1.getNotRecommendCount())));
             assertThat(reviewPage.isFirst()).isTrue();
             assertThat(reviewPage.hasNext()).isTrue();
         }
