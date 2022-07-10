@@ -10,27 +10,23 @@ import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholReposito
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 
 import static java.util.Objects.isNull;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.MUST_LOGIN;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.REQUIRED_ALCOHOL_ID;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/alcohols")
 public class AlcoholApiController {
     private final AlcoholService alcoholService;
-    private final PreferredAlcoholRepository preferredAlcoholRepository;
 
     @PostMapping("/{alcoholId}/like")
     public ResponseEntity<Void> likeAlcohol(
             @PathVariable Long alcoholId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        if (isNull(loginMember)) {
-            // TODO advice 클래스 생성 후 예외 통합 관리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        validateLogin(loginMember);
+        validateAlcoholId(alcoholId);
 
-        if (preferredAlcoholRepository.countByMemberId(loginMember.getId()) >= 12) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
         alcoholService.likeAlcohol(alcoholId, loginMember.getId());
 
         return ResponseEntity.ok().build();
@@ -41,14 +37,23 @@ public class AlcoholApiController {
             @PathVariable Long alcoholId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        if (isNull(loginMember)) {
-            // TODO advice 클래스 생성 후 예외 통합 관리
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
+        validateLogin(loginMember);
+        validateAlcoholId(alcoholId);
+
         alcoholService.dislikeAlcohol(alcoholId, loginMember.getId());
 
         return ResponseEntity.ok().build();
     }
 
+    private void validateLogin(LoginMember loginMember) {
+        if (isNull(loginMember)) {
+            throw MUST_LOGIN.getException();
+        }
+    }
 
+    private void validateAlcoholId(Long alcoholId) {
+        if (isNull(alcoholId)) {
+            throw REQUIRED_ALCOHOL_ID.getException();
+        }
+    }
 }

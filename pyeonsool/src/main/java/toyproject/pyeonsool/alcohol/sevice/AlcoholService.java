@@ -104,31 +104,31 @@ public class AlcoholService {
         return preferredAlcoholRepository.existsByMemberAndAlcohol(getMemberOrElseThrow(memberId), alcohol);
     }
 
-    private Member getMemberOrElseThrow(Long memberId) {
+    private Member getMemberOrElseThrow(long memberId) {
         return memberRepository.findById(memberId)
                 .orElseThrow(NOT_EXIST_MEMBER::getException);
     }
 
-    public Long likeAlcohol(Long alcoholId, Long memberId) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
-        // TODO 술, 회원 예외처리 필요
+    public Long likeAlcohol(long alcoholId, long memberId) {
+        validateMaxPreferredAlcoholCount(memberId);
 
-        PreferredAlcohol preferredAlcohol = new PreferredAlcohol(member, alcohol);
-        preferredAlcoholRepository.save(preferredAlcohol);
+        Alcohol alcohol = getAlcoholOrElseThrow(alcoholId);
         alcohol.plusLikeCount();
 
-        return preferredAlcohol.getId();
+        return preferredAlcoholRepository
+                .save(new PreferredAlcohol(getMemberOrElseThrow(memberId), alcohol))
+                .getId();
     }
 
-    public void dislikeAlcohol(Long alcoholId, Long memberId) {
-        Alcohol alcohol = alcoholRepository.findById(alcoholId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 술입니다."));
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(() -> new RuntimeException("존재하지 않는 회원입니다."));
-        // TODO 술, 회원 예외처리 필요
+    private void validateMaxPreferredAlcoholCount(long memberId) {
+        if (preferredAlcoholRepository.countByMemberId(memberId) >= 12) {
+            throw MAX_PREFERRED_ALCOHOL_COUNT.getException();
+        }
+    }
+
+    public void dislikeAlcohol(long alcoholId, long memberId) {
+        Alcohol alcohol = getAlcoholOrElseThrow(alcoholId);
+        Member member = getMemberOrElseThrow(memberId);
 
         if (preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol)) {
             preferredAlcoholRepository.removeByMemberAndAlcohol(member, alcohol);
