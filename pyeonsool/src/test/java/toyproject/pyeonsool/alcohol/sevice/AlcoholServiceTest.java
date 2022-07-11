@@ -147,4 +147,14 @@ class AlcoholServiceTest {
         }
     }
 
+    @Test
+    void should_NoException_When_relatedAlcoholsAreObtained() {
+        //given
+        when(alcoholRepository.findRelatedAlcohols(anyLong(), anyInt()))
+                .thenReturn(List.of());
+
+        //when
+        //then
+        assertThatNoException().isThrownBy(() -> alcoholService.getRelatedAlcohols(1L));
+    }
 }
