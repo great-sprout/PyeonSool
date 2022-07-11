@@ -121,7 +121,7 @@ class AlcoholRepositoryTest {
     }
 
     @Test
-    void findRelatedAlcohols() {
+    void should_Success_When_RelatedAlcoholsAreObtained() {
         //given
         List<Member> members = List.of(
                 new Member("준영이", "chlwnsdud121", "1234", "01012345678"),
