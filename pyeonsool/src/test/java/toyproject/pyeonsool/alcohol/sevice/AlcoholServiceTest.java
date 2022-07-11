@@ -157,4 +157,42 @@ class AlcoholServiceTest {
         //then
         assertThatNoException().isThrownBy(() -> alcoholService.getRelatedAlcohols(1L));
     }
+
+    @Nested
+    class likeAlcoholTest {
+        @Test
+        void should_Success_When_AlcoholIsLiked() {
+            //given
+            Member member = new Member("nickname", "userId", "password", "01012345678");
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국");
+
+            when(preferredAlcoholRepository.countByMemberId(anyLong())).thenReturn(0L);
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.of(alcohol));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(preferredAlcoholRepository.save(any())).thenReturn(new PreferredAlcohol(member, alcohol));
+
+            //when
+            alcoholService.likeAlcohol(1L, 2L);
+
+            //then
+            assertThat(alcohol.getLikeCount()).isEqualTo(1);
+        }
+
+        @Test
+        void should_ThrowException_When_preferredAlcoholsCountGreaterThan12() {
+            //given
+            Member member = new Member("nickname", "userId", "password", "01012345678");
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국", 12L);
+
+            when(preferredAlcoholRepository.countByMemberId(anyLong())).thenReturn(12L);
+
+            //when
+            //then
+            assertThatThrownBy(() -> alcoholService.likeAlcohol(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+    }
+
 }
