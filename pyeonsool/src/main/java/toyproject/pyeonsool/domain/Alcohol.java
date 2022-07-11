@@ -54,11 +54,13 @@ public class Alcohol {
         this.likeCount = likeCount;
     }
 
-    public void plusLikeCount(){this.likeCount +=1;}
-    public void minusLikeCount(){
-        if(this.likeCount != 0){
-            this.likeCount -=1;
-        }
+    public void plusLikeCount() {
+        this.likeCount += 1;
+    }
 
+    public void minusLikeCount() {
+        if (this.likeCount != 0) {
+            this.likeCount -= 1;
+        }
     }
 }
