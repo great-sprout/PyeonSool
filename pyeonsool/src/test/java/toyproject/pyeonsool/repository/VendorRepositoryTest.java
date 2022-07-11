@@ -27,7 +27,7 @@ class VendorRepositoryTest {
     EntityManager em;
 
     @Test
-    void getAlcoholVendors() {
+    void should_Success_When_VendorsAreObtained() {
         //given
         Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
                 5f, null, null, "산미구엘 브루어리", "필리핀");
