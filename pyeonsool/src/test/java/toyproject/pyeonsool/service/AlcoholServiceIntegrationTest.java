@@ -1,17 +1,18 @@
 package toyproject.pyeonsool.service;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholImageDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.domain.*;
-import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
-import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholRepository;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -19,16 +20,14 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
-import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 import static toyproject.pyeonsool.domain.VendorName.GS25;
 
 @SpringBootTest
 @Transactional
-class AlcoholServiceTest {
+class AlcoholServiceIntegrationTest {
 
     @Autowired
     AlcoholService alcoholService;
-    PreferredAlcoholRepository preferredAlcoholRepository;
 
     @Autowired
     EntityManager em;
