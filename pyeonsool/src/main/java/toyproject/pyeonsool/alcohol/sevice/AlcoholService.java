@@ -54,8 +54,8 @@ public class AlcoholService {
         List<Byte> reviewGrades = reviewRepository.getReviewGrades(alcoholId);
 
         if (reviewGrades.size() != 0) {
-            double ratingAvg = (double) reviewGrades.stream().mapToLong(rating -> rating).sum() / reviewGrades.size();
-            return String.format("%.1f", ratingAvg);
+            long gradeSum = reviewGrades.stream().mapToLong(rating -> rating).sum();
+            return String.format("%.1f", (double) gradeSum / reviewGrades.size());
         }
 
         return "-";

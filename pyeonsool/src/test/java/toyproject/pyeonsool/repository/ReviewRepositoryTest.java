@@ -30,30 +30,52 @@ class ReviewRepositoryTest {
     @Autowired
     EntityManager em;
 
-    @Test
-    void getReviewRatings() {
-        //given
-        Member member =
-                new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-        em.persist(member);
+    @Nested
+    class getReviewGradesTest {
+        @Test
+        void should_Success_When_TotalGradeCalculated() {
+            //given
+            Member member =
+                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+            em.persist(member);
 
-        Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                5f, null, null, "산미구엘 브루어리", "필리핀");
-        em.persist(alcohol);
+            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
+                    5f, null, null, "산미구엘 브루어리", "필리핀");
+            em.persist(alcohol);
 
-        em.persist(new Review(member, alcohol, (byte) 5, ""));
-        em.persist(new Review(member, alcohol, (byte) 3, ""));
-        em.persist(new Review(member, alcohol, (byte) 2, ""));
+            em.persist(new Review(member, alcohol, (byte) 5, ""));
+            em.persist(new Review(member, alcohol, (byte) 3, ""));
+            em.persist(new Review(member, alcohol, (byte) 2, ""));
 
-        //when
-        List<Byte> reviewRatings = reviewRepository.getReviewGrades(alcohol.getId());
-        long sum = reviewRatings.stream()
-                .mapToLong(rating -> rating).sum();
+            //when
+            List<Byte> reviewRatings = reviewRepository.getReviewGrades(alcohol.getId());
+            long gradeSum = reviewRatings.stream()
+                    .mapToLong(rating -> rating).sum();
 
-        //then
-        assertThat(sum).isEqualTo(10);
-        assertThat(reviewRatings.size()).isEqualTo(3);
+            //then
+            assertThat(gradeSum).isEqualTo(10);
+            assertThat(reviewRatings.size()).isEqualTo(3);
+        }
+
+        @Test
+        void should_Success_When_GradeIsNotExist() {
+            //given
+            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
+                    5f, null, null, "산미구엘 브루어리", "필리핀");
+            em.persist(alcohol);
+
+            //when
+            List<Byte> reviewRatings = reviewRepository.getReviewGrades(alcohol.getId());
+            long sum = reviewRatings.stream()
+                    .mapToLong(rating -> rating).sum();
+
+            //then
+            assertThat(sum).isEqualTo(0);
+            assertThat(reviewRatings.size()).isEqualTo(0);
+        }
     }
+
+
 
     @Nested
     class findReviewsByAlcoholTest {
