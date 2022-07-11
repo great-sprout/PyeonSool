@@ -173,14 +173,13 @@ class AlcoholServiceTest {
             when(preferredAlcoholRepository.save(any())).thenReturn(new PreferredAlcohol(member, alcohol));
 
             //when
-            alcoholService.likeAlcohol(1L, 2L);
-
             //then
+            assertThatNoException().isThrownBy(() -> alcoholService.likeAlcohol(1L, 2L));
             assertThat(alcohol.getLikeCount()).isEqualTo(1);
         }
 
         @Test
-        void should_ThrowException_When_preferredAlcoholsCountGreaterThan12() {
+        void should_ThrowException_When_PreferredAlcoholsCountGreaterThan12() {
             //given
             Member member = new Member("nickname", "userId", "password", "01012345678");
             Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
@@ -193,6 +192,96 @@ class AlcoholServiceTest {
             assertThatThrownBy(() -> alcoholService.likeAlcohol(1L, 2L))
                     .isExactlyInstanceOf(BadRequestException.class);
         }
+
+        @Test
+        void should_ThrowException_When_AlcoholDoNotExist() {
+            //given
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> alcoholService.likeAlcohol(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+
+        @Test
+        void should_ThrowException_When_MemberDoNotExist() {
+            //given
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국");
+
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.of(alcohol));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> alcoholService.likeAlcohol(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
     }
 
+    @Nested
+    class dislikeAlcoholTest {
+        @Test
+        void should_Success_When_PreferredAlcoholExists() {
+            //given
+            Member member = new Member("nickname", "userId", "password", "01012345678");
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국", 1L);
+
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.of(alcohol));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol))
+                    .thenReturn(true);
+
+            //when
+            //then
+            assertThatNoException().isThrownBy(() -> alcoholService.dislikeAlcohol(1L, 2L));
+            assertThat(alcohol.getLikeCount()).isEqualTo(0);
+        }
+
+        @Test
+        void should_Success_When_PreferredAlcoholDoNotExist() {
+            //given
+            Member member = new Member("nickname", "userId", "password", "01012345678");
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국");
+
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.of(alcohol));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol))
+                    .thenReturn(false);
+
+            //when
+            //then
+            assertThatNoException().isThrownBy(() -> alcoholService.dislikeAlcohol(1L, 2L));
+            assertThat(alcohol.getLikeCount()).isEqualTo(0);
+        }
+
+        @Test
+        void should_ThrowException_When_AlcoholDoNotExist() {
+            //given
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> alcoholService.dislikeAlcohol(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+
+        @Test
+        void should_ThrowException_When_MemberDoNotExist() {
+            //given
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국");
+
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.of(alcohol));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> alcoholService.dislikeAlcohol(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+    }
 }
