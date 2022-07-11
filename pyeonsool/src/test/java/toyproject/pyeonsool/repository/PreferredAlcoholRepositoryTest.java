@@ -24,7 +24,7 @@ class PreferredAlcoholRepositoryTest {
     EntityManager em;
 
     @Test
-    void existsByMemberAndAlcohol() {
+    void should_Exist_When_PreferredAlcoholIsObtained() {
         //given
         Member member = new Member(null, null, null, null);
         em.persist(member);
