@@ -33,41 +33,6 @@ class AlcoholServiceIntegrationTest {
     EntityManager em;
 
     @Test
-    void getAlcoholDetails() {
-        //given
-        Member member = new Member("nickname", "userId", "password", "01012345678");
-        em.persist(member);
-
-        Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
-                (byte) 3, (byte) 2, "우리집", "대한민국");
-        em.persist(alcohol);
-        em.persist(new PreferredAlcohol(member, alcohol));
-
-        em.persist(new Review(member, alcohol, (byte) 5, ""));
-        em.persist(new Review(member, alcohol, (byte) 3, ""));
-        em.persist(new Review(member, alcohol, (byte) 2, ""));
-
-        Keyword[] keywords = new Keyword[3];
-        String[] keywordNames = {"sweet", "cool", "heavy"};
-
-        for (int i = 0; i < keywords.length; i++) {
-            keywords[i] = new Keyword(keywordNames[i]);
-            em.persist(keywords[i]);
-            em.persist(new AlcoholKeyword(keywords[i], alcohol));
-        }
-
-        //when
-        //AlcoholDetailsDto alcoholDetails = alcoholService.getAlcoholDetails(alcohol.getId(), member.getId());
-
-        //then
-       /* assertThat(alcoholService.getAlcoholDetails(alcohol.getId(), null))
-                .as("로그인 상태가 아닌경우").isNotNull();
-        assertThat(alcoholDetails.getGrade()).isEqualTo("3.3");
-        assertThat(alcoholDetails.getKeywords()).containsOnly("달콤함", "청량함", "무거움");
-   */
-    }
-
-    @Test
     void likeAlcohol() {
         //given
         Member member = new Member("nickname", "userId", "password", "01012345678");
