@@ -3,7 +3,6 @@ package toyproject.pyeonsool.review.sevice;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.Extensions;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -21,8 +20,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
@@ -286,6 +285,100 @@ class ReviewServiceTest {
             //when
             //then
             assertThatNoException().isThrownBy(() -> reviewService.deleteReview(1L));
+        }
+    }
+
+    @Nested
+    class RecommendReviewTest {
+        @Test
+        void should_Success_When_ReviewWasNotRecommended() {
+            //given
+            Member member = createMember();
+            Review review = new Review(member, createAlcohol(), (byte) (3), "테스트 리뷰",
+                    0L, 0L);
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+            when(recommendedReviewRepository.findByMemberAndReview(member, review))
+                    .thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatNoException()
+                    .isThrownBy(() -> reviewService.recommendReview(1L, 2L));
+            assertThat(review.getRecommendCount()).isEqualTo(1);
+            assertThat(review.getNotRecommendCount()).isEqualTo(0);
+        }
+
+        @Test
+        void should_ThrowException_When_ReviewDoNotExist() {
+            //given
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.recommendReview(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+
+        @Test
+        void should_ThrowException_When_MemberDoNotExist() {
+            //given
+            Review review = new Review(createMember(), createAlcohol(), (byte) (3), "테스트 리뷰",
+                    0L, 0L);
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.recommendReview(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+    }
+
+    @Nested
+    class NotRecommendReviewTest {
+        @Test
+        void should_Success_When_ReviewWasNotRecommended() {
+            //given
+            Member member = createMember();
+            Review review = new Review(member, createAlcohol(), (byte) (3), "테스트 리뷰",
+                    0L, 0L);
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+            when(recommendedReviewRepository.findByMemberAndReview(member, review))
+                    .thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatNoException()
+                    .isThrownBy(() -> reviewService.notRecommendReview(1L, 2L));
+            assertThat(review.getRecommendCount()).isEqualTo(0);
+            assertThat(review.getNotRecommendCount()).isEqualTo(1);
+        }
+
+        @Test
+        void should_ThrowException_When_ReviewDoNotExist() {
+            //given
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.notRecommendReview(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+
+        @Test
+        void should_ThrowException_When_MemberDoNotExist() {
+            //given
+            Review review = new Review(createMember(), createAlcohol(), (byte) (3), "테스트 리뷰",
+                    0L, 0L);
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.notRecommendReview(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
         }
     }
 }
