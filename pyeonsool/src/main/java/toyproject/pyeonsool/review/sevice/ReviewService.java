@@ -91,17 +91,17 @@ public class ReviewService {
         return recommendedReview.getStatus();
     }
 
-    public Long recommendReview(long memberId, long reviewId, RecommendStatus status) {
+    public Long recommendReview(long memberId, long reviewId) {
         Review review = getReviewOrElseThrow(reviewId);
         Member member = getMemberOrElseThrow(memberId);
 
         RecommendedReview recommendedReview = recommendedReviewRepository.findByMemberAndReview(member, review)
-                .orElseGet(() -> new RecommendedReview(member, review, status));
+                .orElseGet(() -> new RecommendedReview(member, review, RecommendStatus.LIKE));
 
         if (isNull(recommendedReview.getId())) {
             recommendedReviewRepository.save(recommendedReview);
         } else {
-            recommendedReview.changeStatus(status);
+            recommendedReview.changeStatus(RecommendStatus.LIKE);
             review.minusNotRecommendCount();
         }
 
@@ -110,17 +110,17 @@ public class ReviewService {
         return recommendedReview.getId();
     }
 
-    public Long notRecommendReview(long memberId, long reviewId, RecommendStatus status) {
+    public Long notRecommendReview(long memberId, long reviewId) {
         Review review = getReviewOrElseThrow(reviewId);
         Member member = getMemberOrElseThrow(memberId);
 
         RecommendedReview recommendedReview = recommendedReviewRepository.findByMemberAndReview(member, review)
-                .orElseGet(() -> new RecommendedReview(member, review, status));
+                .orElseGet(() -> new RecommendedReview(member, review, RecommendStatus.DISLIKE));
 
         if (isNull(recommendedReview.getId())) {
             recommendedReviewRepository.save(recommendedReview);
         } else {
-            recommendedReview.changeStatus(status);
+            recommendedReview.changeStatus(RecommendStatus.DISLIKE);
             review.minusRecommendCount();
         }
 
