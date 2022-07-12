@@ -1,86 +1,86 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org/">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>헤더, 푸터</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/styles.css" />
-  </head>
-  <body>
-    <div id="wrap">
-      <header class="header" th:fragment="header">
+    <link rel="stylesheet" type="text/css" href="../../static/css/styles.css"/>
+</head>
+<body>
+<div id="wrap">
+    <header class="header" th:fragment="header">
         <nav class="header__nav">
-          <i class="fas fa-bars"></i>
-          <i class="fas fa-times unvisible"></i>
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-times unvisible"></i>
 
-          <ul class="list-nav unvisible">
-            <li class="list-nav__item">
-              <a href="/alcohols?alcoholType=SOJU">소주</a>
-            </li>
-            <li class="list-nav__item">
-              <a href="/alcohols?alcoholType=BEER">맥주</a>
-            </li>
-            <li class="list-nav__item">
-              <a href="/alcohols?alcoholType=WINE">와인</a>
-            </li>
-          </ul>
+            <ul class="list-nav unvisible">
+                <li class="list-nav__item">
+                    <a href="/alcohols?alcoholType=SOJU">소주</a>
+                </li>
+                <li class="list-nav__item">
+                    <a href="/alcohols?alcoholType=BEER">맥주</a>
+                </li>
+                <li class="list-nav__item">
+                    <a href="/alcohols?alcoholType=WINE">와인</a>
+                </li>
+            </ul>
         </nav>
 
         <div class="header__logo">
-          <a href="/" class="logo-link">
-            <img
-              src="/image/components/pyeonsool-logo.svg"
-              alt="편술 로고"
-              class="logo"
-            />
-          </a>
+            <a href="/" class="logo-link">
+                <img
+                        src="/image/components/pyeonsool-logo.svg"
+                        alt="편술 로고"
+                        class="logo"
+                />
+            </a>
         </div>
 
         <div class="header__profile">
             <th:block th:if="${session.loginMember != null}">
-              <i class="far fa-user-circle"></i>
+                <i class="far fa-user-circle"></i>
 
-              <div class="header-profile unvisible">
-              <div class="header-profile__triangle"></div>
+                <div class="header-profile unvisible">
+                    <div class="header-profile__triangle"></div>
 
-              <div class="header-profile__content">
-                <div class="header-profile__link">
-                  <a class="header-profile__mypage"
-                     th:href="@{/members/{nickname}(nickname=${session.loginMember.nickname})}">
-                    마이페이지</a>
-                  <div class="header-profile__divider"></div>
-                  <form method="post" action="/members/logout">
-                    <input type="submit" class="header-profile__logout" value="로그아웃">
-                  </form>
+                    <div class="header-profile__content">
+                        <div class="header-profile__link">
+                            <a class="header-profile__mypage"
+                               th:href="@{/members/{nickname}(nickname=${session.loginMember.nickname})}">
+                                마이페이지</a>
+                            <div class="header-profile__divider"></div>
+                            <form method="post" action="/members/logout">
+                                <input type="submit" class="header-profile__logout" value="로그아웃">
+                            </form>
+                        </div>
+
+                        <div class="header-profile__keywords">
+                            <th:blcok th:each="keyword:${personalKeywords}">
+                                <span class="keyword" th:text="${keyword}">#달콤함</span>
+                            </th:blcok>
+                        </div>
+
+                        <div class="header-profile__select-again-keyword-wrap">
+                            <span class="header-profile__select-again-keyword"
+                            >다시 고르기</span
+                            >
+                        </div>
+                    </div>
                 </div>
-
-                <div class="header-profile__keywords" >
-                  <th:blcok th:each="keyword:${personalKeywords}">
-                  <span class="keyword" th:text="${keyword}">#달콤함</span>
-                  </th:blcok>
-                </div>
-
-                <div class="header-profile__select-again-keyword-wrap">
-                <span class="header-profile__select-again-keyword"
-                >다시 고르기</span
-                >
-                </div>
-              </div>
-              </div>
             </th:block>
             <th:block th:if="${session.loginMember == null}">
-              <i class="far fa-user-circle" onclick="location.href='/members/login'"></i>
+                <i class="far fa-user-circle" onclick="location.href='/members/login'"></i>
             </th:block>
 
         </div>
-      </header>
-    </div>
+    </header>
+</div>
 
-    <script
-      src="https://kit.fontawesome.com/b17793764c.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="../../static/js/header.js"></script>
-  </body>
+<script
+        src="https://kit.fontawesome.com/b17793764c.js"
+        crossorigin="anonymous"
+></script>
+<script src="../../static/js/header.js"></script>
+</body>
 </html>
