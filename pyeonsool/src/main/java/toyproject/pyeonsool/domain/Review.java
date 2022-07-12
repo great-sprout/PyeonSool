@@ -63,15 +63,14 @@ public class Review {
         this(member, alcohol, grade, content, 0L, 0L);
     }
 
-    public Review(Long id){
-        this.id = id;
-    }
-
-    public void plusRecommendCount() { this.recommendCount += 1;
+    public void plusRecommendCount() {
+        this.recommendCount += 1;
     }
 
     public void minusRecommendCount() {
-        this.recommendCount -= 1;
+        if (this.recommendCount >= 1) {
+            this.recommendCount -= 1;
+        }
     }
 
     public void plusNotRecommendCount() {
@@ -79,7 +78,9 @@ public class Review {
     }
 
     public void minusNotRecommendCount() {
-        this.notRecommendCount -= 1;
+        if (this.notRecommendCount >= 1) {
+            this.notRecommendCount -= 1;
+        }
     }
 
     public void changeContent(String content){
