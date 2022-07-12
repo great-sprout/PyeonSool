@@ -20,8 +20,7 @@ import toyproject.pyeonsool.review.repository.ReviewRepository;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
@@ -216,4 +215,51 @@ class ReviewServiceTest {
                     .isExactlyInstanceOf(BadRequestException.class);
         }
     }
+
+    @Nested
+    class addReviewTest {
+        @Test
+        void should_Success_When_AlcoholIsLiked() {
+            //given
+            Member member = new Member("nickname", "userId", "password", "01012345678");
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국");
+            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰",
+                    0L, 1L);
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.of(alcohol));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(reviewRepository.save(any())).thenReturn(review);
+
+            //when
+            //then
+            assertThatNoException().isThrownBy(() ->
+                    reviewService.addReview(1L, 2L, (byte)3, "테스트 리뷰"));
+        }
+
+        @Test
+        void should_ThrowException_When_AlcoholDoNotExist() {
+            //given
+            Member member = new Member("nickname", "userId", "password", "01012345678");
+
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(alcoholRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.addReview(1L, 2L, (byte)3, "테스트 리뷰"))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+
+        @Test
+        void should_ThrowException_When_MemberDoNotExist() {
+            //given
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.addReview(1L, 2L, (byte)3, "테스트 리뷰"))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+    }
+
 }
