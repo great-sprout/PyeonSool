@@ -76,12 +76,10 @@ class ReviewRepositoryTest {
     }
 
 
-
     @Nested
     class findReviewsByAlcoholTest {
         @Test
-        @DisplayName("최신순 리뷰 목록 조회")
-        void success_latest_order() {
+        void should_Success_When_ReviewsAreObtainedInTheLatestOrder() {
             //given
             Member member =
                     new Member("준영이", "chlwnsdud121", "1234", "01012345678");
@@ -108,13 +106,13 @@ class ReviewRepositoryTest {
             assertThat(latestOrderReviews).isSortedAccordingTo((o1, o2) -> o2.getId().compareTo(o1.getId()));
             assertThat(latestOrderReviews.get(0).getRecommendCount()).isEqualTo(10);
             assertThat(latestOrderReviews.get(0).getNotRecommendCount()).isEqualTo(0);
+            assertThat(reviewPage.getTotalElements()).isEqualTo(25);
             assertThat(reviewPage.isFirst()).isTrue();
             assertThat(reviewPage.hasNext()).isTrue();
         }
 
         @Test
-        @DisplayName("추천순 리뷰 목록 조회")
-        void success_recommended_order() {
+        void should_Success_When_ReviewsAreObtainedInTheRecommendedOrder() {
             //given
             Member member =
                     new Member("준영이", "chlwnsdud121", "1234", "01012345678");
@@ -137,8 +135,8 @@ class ReviewRepositoryTest {
             List<Review> recommendedOrderReviews = reviewPage.getContent();
 
             //then
-            assertThat(recommendedOrderReviews).isSortedAccordingTo((o1, o2) ->
-                    (int) ((o2.getRecommendCount() - o2.getNotRecommendCount()) -
+            assertThat(recommendedOrderReviews).describedAs("추천개수 - 비추천개수 순서로 정렬")
+                    .isSortedAccordingTo((o1, o2) -> (int) ((o2.getRecommendCount() - o2.getNotRecommendCount()) -
                             (o1.getRecommendCount() - o1.getNotRecommendCount())));
             assertThat(reviewPage.isFirst()).isTrue();
             assertThat(reviewPage.hasNext()).isTrue();
