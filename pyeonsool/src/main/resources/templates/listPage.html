@@ -400,7 +400,7 @@
                     <span>조회된 술이 없습니다.</span>
                 </div>
               <li th:each="type :${typeList}">
-                <div class="alcohol-list__card" >
+                <div class="alcohol-list__card" th:action="@{/typeList/}">
                   <div class="alcohol-card__vendor">
                       <th:block th:each="vendor : ${type.vendors}" th:switch="${vendor}">
                         <img class="vendor-mark__gs25"src="/image/components/gs25-logo.png" th:case="GS25"/>
@@ -441,7 +441,7 @@
                       <th:block
                               th:each="page : ${#numbers.sequence(typeListPagination.startPagePerBlock,
                     typeListPagination.isLastBlock() ? typeListPagination.totalPages : typeListPagination.endPagePerBlock)}">
-                          <a th:href="|/alcohols?alcoholType=${typeList[0].type}&page=${page - 1}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|" class="page__number"
+                          <a th:href="|/alcohols?alcoholType=${typeList[0].type}&page=${page - 1}&search=${alcoholSearchForm.search}&keywords=${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords[0] :null}&vendorName=${alcoholSearchForm.vendorName}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|" class="page__number"
                              th:text="${page}" th:classappend="${typeListPagination.currentPage == page} ? 'page__number--clicked'">1</a>
                       </th:block>
 

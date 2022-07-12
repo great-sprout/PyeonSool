@@ -90,31 +90,6 @@ public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {
                 .join(alcoholKeyword.keyword, keyword)
                 .where(alcoholKeyword.keyword.name.in(keywords)));
     }
-    private OrderSpecifier<String> bySort(String sort){
-        OrderSpecifier o = alcohol.likeCount.desc();
-        if(sort=="abvDesc"){
-            o = alcohol.abv.desc();
-
-        }
-        else if(sort=="abvAsc"){
-            o = alcohol.abv.asc();
-        }
-        else if(sort=="priceAsc"){
-            o = alcohol.price.asc();
-        }
-        else if(sort=="priceDesc"){
-            o = alcohol.price.desc();
-        }
-        else if(sort=="likeCount"){
-            o = alcohol.likeCount.desc();
-        }
-        else if (sort==null)
-        {
-            o = alcohol.likeCount.desc();
-        }
-        return o ;
-    }
-
 
 
     @Override
