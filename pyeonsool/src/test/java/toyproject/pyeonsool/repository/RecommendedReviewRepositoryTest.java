@@ -24,7 +24,7 @@ class RecommendedReviewRepositoryTest {
     EntityManager em;
 
     @Test
-    void findByMemberAndReview() {
+    void should_Success_When_RecommendedReviewIsObtained_ByMemberAndReview() {
         //given
         Member member =
                 new Member("준영이", "chlwnsdud121", "1234", "01012345678");
@@ -46,7 +46,7 @@ class RecommendedReviewRepositoryTest {
     }
 
     @Test
-    void findByMemberAndReviewAndStatus() {
+    void should_Success_When_RecommendedReviewIsObtained_ByMemberAndReviewAndStatus() {
         //given
         Member member =
                 new Member("준영이", "chlwnsdud121", "1234", "01012345678");
