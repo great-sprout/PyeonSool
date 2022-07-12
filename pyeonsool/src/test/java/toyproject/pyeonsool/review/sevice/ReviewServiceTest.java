@@ -42,9 +42,6 @@ class ReviewServiceTest {
     @Mock
     RecommendedReviewRepository recommendedReviewRepository;
 
-    @Mock
-    FileManager fileManager;
-
     @Nested
     class GetReviewPageTest {
         @Test
@@ -353,6 +350,94 @@ class ReviewServiceTest {
             assertThatNoException()
                     .isThrownBy(() -> reviewService.notRecommendReview(1L, 2L));
             assertThat(review.getRecommendCount()).isEqualTo(0);
+            assertThat(review.getNotRecommendCount()).isEqualTo(1);
+        }
+
+        @Test
+        void should_ThrowException_When_ReviewDoNotExist() {
+            //given
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.notRecommendReview(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+
+        @Test
+        void should_ThrowException_When_MemberDoNotExist() {
+            //given
+            Review review = new Review(createMember(), createAlcohol(), (byte) (3), "테스트 리뷰",
+                    0L, 0L);
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.notRecommendReview(1L, 2L))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+    }
+
+    @Nested
+    class CancelRecommendationTest {
+        @Test
+        void should_Success_When_RecommendStatusIsLIKE() {
+            //given
+            Member member = createMember();
+            Review review = new Review(member, createAlcohol(), (byte) (3), "테스트 리뷰",
+                    1L, 0L);
+
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+            when(recommendedReviewRepository.findByMemberAndReviewAndStatus(member, review, RecommendStatus.LIKE))
+                    .thenReturn(Optional.of(new RecommendedReview(member, review, RecommendStatus.LIKE)));
+
+            //when
+            //then
+            assertThatNoException()
+                    .isThrownBy(() -> reviewService.cancelRecommendation(1L, 2L, RecommendStatus.LIKE));
+            assertThat(review.getRecommendCount()).isEqualTo(0);
+            assertThat(review.getNotRecommendCount()).isEqualTo(0);
+        }
+
+        @Test
+        void should_Success_When_RecommendStatusIsDISLIKE() {
+            //given
+            Member member = createMember();
+            Review review = new Review(member, createAlcohol(), (byte) (3), "테스트 리뷰",
+                    0L, 1L);
+
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+            when(recommendedReviewRepository.findByMemberAndReviewAndStatus(member, review, RecommendStatus.DISLIKE))
+                    .thenReturn(Optional.of(new RecommendedReview(member, review, RecommendStatus.DISLIKE)));
+
+            //when
+            //then
+            assertThatNoException()
+                    .isThrownBy(() -> reviewService.cancelRecommendation(1L, 2L, RecommendStatus.DISLIKE));
+            assertThat(review.getRecommendCount()).isEqualTo(0);
+            assertThat(review.getNotRecommendCount()).isEqualTo(0);
+        }
+
+        @Test
+        void should_Success_When_RecommendStatusDoNotExist() {
+            //given
+            Member member = createMember();
+            Review review = new Review(member, createAlcohol(), (byte) (3), "테스트 리뷰",
+                    1L, 1L);
+
+            when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+            when(recommendedReviewRepository.findByMemberAndReviewAndStatus(member, review, RecommendStatus.LIKE))
+                    .thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatNoException()
+                    .isThrownBy(() -> reviewService.cancelRecommendation(1L, 2L, RecommendStatus.LIKE));
+            assertThat(review.getRecommendCount()).isEqualTo(1);
             assertThat(review.getNotRecommendCount()).isEqualTo(1);
         }
 
