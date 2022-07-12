@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
+import toyproject.pyeonsool.common.exception.api.httpstatus.BadRequestException;
+import toyproject.pyeonsool.common.exception.api.httpstatus.ForbiddenException;
 import toyproject.pyeonsool.domain.*;
 import toyproject.pyeonsool.recommendedreview.repository.RecommendedReviewRepository;
 import toyproject.pyeonsool.review.repository.ReviewRepository;
@@ -33,36 +35,51 @@ class ReviewServiceIntegrationTest {
     @Autowired
     EntityManager em;
 
-    //수정 서비스 테스트
-    @Test
-    void editReview() {
-        //given
-        Member member = new Member("nickname", "userId", "password", "01012345678");
-        em.persist(member);
+    // 단위 테스트로는 review.getMember가 null인 상황을 해결할 방법이 떠오르지 않아서 통합 테스트 실행
+    @Nested
+    class editReviewTest {
+        @Test
+        void should_Success_When_reviewIsEdited() {
+            //given
+            Member member = new Member("nickname", "userId", "password", "01012345678");
+            em.persist(member);
 
-        Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
-                (byte) 3, (byte) 2, "우리집", "대한민국");
-        em.persist(alcohol);
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국");
+            em.persist(alcohol);
 
-        Review review = new Review(member, alcohol, (byte)5, "댓글");
-        em.persist(review);
+            Review review = new Review(member, alcohol, (byte) 5, "댓글");
+            em.persist(review);
 
-        em.flush();
-        em.clear();
+            //when
+            //then
+            assertThatNoException().isThrownBy(() ->
+                    reviewService.editReview(review.getId(), member.getId(), (byte) 3, "수정댓글"));
+        }
 
-        //when
-        reviewService.editReview(review.getId(), member.getId(), (byte)3, "수정댓글");
-        em.flush();
-        em.clear();
+        @Test
+        void should_ThrowException_When_MemberIdAndLoginMemberIdAreNotSame() {
+            //given
+            Member member = new Member("nickname", "userId", "password", "01012345678");
+            em.persist(member);
 
-        //then
-        assertThat(em.find(Review.class, review.getId()).getContent()).isEqualTo("수정댓글");
-        assertThat(em.find(Review.class, review.getId()).getGrade()).isEqualTo((byte)3);
+            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
+                    (byte) 3, (byte) 2, "우리집", "대한민국");
+            em.persist(alcohol);
+
+            Review review = new Review(member, alcohol, (byte) 5, "댓글");
+            em.persist(review);
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.editReview(review.getId(), 10L, (byte) 3, "수정댓글"))
+                    .isExactlyInstanceOf(ForbiddenException.class);
+        }
     }
 
     //리뷰 삭제 테스트
     @Test
-    void deleteReview(){
+    void deleteReview() {
 
         //given
         Member member = new Member("nickname", "userId", "password", "01012345678");
@@ -72,7 +89,7 @@ class ReviewServiceIntegrationTest {
                 (byte) 3, (byte) 2, "우리집", "대한민국");
         em.persist(alcohol);
 
-        Review review = new Review(member, alcohol, (byte)5, "댓글");
+        Review review = new Review(member, alcohol, (byte) 5, "댓글");
         em.persist(review);
 
         //when
@@ -82,7 +99,6 @@ class ReviewServiceIntegrationTest {
         assertThat(em.find(Review.class, review.getId())).isNull();
 
     }
-
 
 
     @Nested

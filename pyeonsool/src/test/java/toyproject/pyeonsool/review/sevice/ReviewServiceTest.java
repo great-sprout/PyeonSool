@@ -47,16 +47,12 @@ class ReviewServiceTest {
     FileManager fileManager;
 
     @Nested
-    class getReviewPageTest {
+    class GetReviewPageTest {
         @Test
         void should_Success_When_MyRecommendStatusIsDISLIKE() {
             //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
-
+            Member member = createMember();
+            Alcohol alcohol = createAlcohol();
             Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰",
                     0L, 1L);
 
@@ -83,12 +79,8 @@ class ReviewServiceTest {
         @Test
         void should_Success_When_MyRecommendStatusIsLIKE() {
             //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
-
+            Member member = createMember();
+            Alcohol alcohol = createAlcohol();
             Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰",
                     1L, 0L);
 
@@ -115,12 +107,8 @@ class ReviewServiceTest {
         @Test
         void should_Success_When_MemberIdIsNull() {
             //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
-
+            Member member = createMember();
+            Alcohol alcohol = createAlcohol();
             Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰",
                     0L, 0L);
 
@@ -144,12 +132,8 @@ class ReviewServiceTest {
         @Test
         void should_Success_When_MemberDoNotExist() {
             //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
-
+            Member member = createMember();
+            Alcohol alcohol = createAlcohol();
             Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰",
                     0L, 0L);
 
@@ -174,12 +158,8 @@ class ReviewServiceTest {
         @Test
         void should_Success_When_RecommendedReviewDoNotExist() {
             //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
-
+            Member member = createMember();
+            Alcohol alcohol = createAlcohol();
             Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰",
                     0L, 0L);
 
@@ -216,14 +196,22 @@ class ReviewServiceTest {
         }
     }
 
+    private Alcohol createAlcohol() {
+        return new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
+                5f, null, null, "산미구엘 브루어리", "필리핀");
+    }
+
+    private Member createMember() {
+        return new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+    }
+
     @Nested
-    class addReviewTest {
+    class AddReviewTest {
         @Test
         void should_Success_When_AlcoholIsLiked() {
             //given
-            Member member = new Member("nickname", "userId", "password", "01012345678");
-            Alcohol alcohol = new Alcohol(AlcoholType.WINE, "test.jpg", "옐로우테일", 35000, 13.5f,
-                    (byte) 3, (byte) 2, "우리집", "대한민국");
+            Member member = createMember();
+            Alcohol alcohol = createAlcohol();
             Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰",
                     0L, 1L);
             when(alcoholRepository.findById(anyLong())).thenReturn(Optional.of(alcohol));
@@ -233,20 +221,20 @@ class ReviewServiceTest {
             //when
             //then
             assertThatNoException().isThrownBy(() ->
-                    reviewService.addReview(1L, 2L, (byte)3, "테스트 리뷰"));
+                    reviewService.addReview(1L, 2L, (byte) 3, "테스트 리뷰"));
         }
 
         @Test
         void should_ThrowException_When_AlcoholDoNotExist() {
             //given
-            Member member = new Member("nickname", "userId", "password", "01012345678");
+            Member member = createMember();
 
             when(memberRepository.findById(anyLong())).thenReturn(Optional.of(member));
             when(alcoholRepository.findById(anyLong())).thenReturn(Optional.empty());
 
             //when
             //then
-            assertThatThrownBy(() -> reviewService.addReview(1L, 2L, (byte)3, "테스트 리뷰"))
+            assertThatThrownBy(() -> reviewService.addReview(1L, 2L, (byte) 3, "테스트 리뷰"))
                     .isExactlyInstanceOf(BadRequestException.class);
         }
 
@@ -257,9 +245,22 @@ class ReviewServiceTest {
 
             //when
             //then
-            assertThatThrownBy(() -> reviewService.addReview(1L, 2L, (byte)3, "테스트 리뷰"))
+            assertThatThrownBy(() -> reviewService.addReview(1L, 2L, (byte) 3, "테스트 리뷰"))
                     .isExactlyInstanceOf(BadRequestException.class);
         }
     }
 
+    @Nested
+    class EditReviewTest {
+        @Test
+        void should_ThrowException_When_ReviewDoNotExist() {
+            //given
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatThrownBy(() -> reviewService.editReview(1L, 2L, (byte) 1, "리뷰 수정"))
+                    .isExactlyInstanceOf(BadRequestException.class);
+        }
+    }
 }
