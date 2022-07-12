@@ -102,7 +102,7 @@ public class ReviewApiController {
 
         validateLogin(loginMember);
         validateReviewId(reviewId);
-        reviewService.recommendReview(loginMember.getId(), reviewId, RecommendStatus.LIKE);
+        reviewService.recommendReview(loginMember.getId(), reviewId);
 
         return ResponseEntity.ok().build();
     }
@@ -114,7 +114,7 @@ public class ReviewApiController {
 
         validateLogin(loginMember);
         validateReviewId(reviewId);
-        reviewService.notRecommendReview(loginMember.getId(), reviewId, RecommendStatus.DISLIKE);
+        reviewService.notRecommendReview(loginMember.getId(), reviewId);
 
         return ResponseEntity.ok().build();
     }
