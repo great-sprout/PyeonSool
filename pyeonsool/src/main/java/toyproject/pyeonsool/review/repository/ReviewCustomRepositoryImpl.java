@@ -74,10 +74,10 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
                 .where(review.alcohol.eq(alcohol));
 
         return PageableExecutionUtils.getPage(
-                setReviewOrder(query, pageable.getSort()).fetch(), pageable, countQuery::fetchOne);
+                getSortedReviewQuery(query, pageable.getSort()).fetch(), pageable, countQuery::fetchOne);
     }
 
-    private JPAQuery<Review> setReviewOrder(JPAQuery<Review> query, Sort sort) {
+    private JPAQuery<Review> getSortedReviewQuery(JPAQuery<Review> query, Sort sort) {
         for (Sort.Order o : sort) {
             if (o.getProperty().equals("recommendCount")) {
                 if (o.isAscending()) {
