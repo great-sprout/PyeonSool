@@ -37,7 +37,7 @@ class ReviewServiceIntegrationTest {
 
     // 단위 테스트로는 review.getMember가 null인 상황을 해결할 방법이 떠오르지 않아서 통합 테스트 실행
     @Nested
-    class editReviewTest {
+    class EditReviewTest {
         @Test
         void should_Success_When_reviewIsEdited() {
             //given

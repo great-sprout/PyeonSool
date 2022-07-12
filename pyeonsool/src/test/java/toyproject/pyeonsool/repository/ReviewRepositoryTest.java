@@ -31,16 +31,14 @@ class ReviewRepositoryTest {
     EntityManager em;
 
     @Nested
-    class getReviewGradesTest {
+    class GetReviewGradesTest {
         @Test
         void should_Success_When_TotalGradeCalculated() {
             //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+            Member member = createMember();
             em.persist(member);
 
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
+            Alcohol alcohol = createAlcohol();
             em.persist(alcohol);
 
             em.persist(new Review(member, alcohol, (byte) 5, ""));
@@ -60,8 +58,7 @@ class ReviewRepositoryTest {
         @Test
         void should_Success_When_GradeIsNotExist() {
             //given
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
+            Alcohol alcohol = createAlcohol();
             em.persist(alcohol);
 
             //when
@@ -75,18 +72,25 @@ class ReviewRepositoryTest {
         }
     }
 
+    private Member createMember() {
+        return new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+    }
+
+
+    private Alcohol createAlcohol() {
+        return new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
+                5f, null, null, "산미구엘 브루어리", "필리핀");
+    }
 
     @Nested
-    class findReviewsByAlcoholTest {
+    class FindReviewsByAlcoholTest {
         @Test
         void should_Success_When_ReviewsAreObtainedInTheLatestOrder() {
             //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+            Member member = createMember();
             em.persist(member);
 
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
+            Alcohol alcohol = createAlcohol();
             em.persist(alcohol);
 
             for (int i = 0; i < 24; i++) {
@@ -114,12 +118,10 @@ class ReviewRepositoryTest {
         @Test
         void should_Success_When_ReviewsAreObtainedInTheRecommendedOrder() {
             //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
+            Member member = createMember();
             em.persist(member);
 
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
+            Alcohol alcohol = createAlcohol();
             em.persist(alcohol);
 
             for (int i = 0; i < 24; i++) {

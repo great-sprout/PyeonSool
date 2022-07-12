@@ -263,4 +263,29 @@ class ReviewServiceTest {
                     .isExactlyInstanceOf(BadRequestException.class);
         }
     }
+
+    @Nested
+    class DeleteReviewTest {
+        @Test
+        void should_Success_When_ReviewExists() {
+            //given
+            Review review = new Review(createMember(), createAlcohol(), (byte) (3), "테스트 리뷰",
+                    0L, 1L);
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.of(review));
+
+            //when
+            //then
+            assertThatNoException().isThrownBy(() -> reviewService.deleteReview(1L));
+        }
+
+        @Test
+        void should_Success_When_ReviewDoNotExist() {
+            //given
+            when(reviewRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+            //when
+            //then
+            assertThatNoException().isThrownBy(() -> reviewService.deleteReview(1L));
+        }
+    }
 }
