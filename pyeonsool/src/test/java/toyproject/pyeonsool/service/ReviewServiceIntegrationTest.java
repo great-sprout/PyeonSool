@@ -19,7 +19,7 @@ import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
 @SpringBootTest
 @Transactional
-class ReviewServiceTest {
+class ReviewServiceIntegrationTest {
 
     @Autowired
     ReviewService reviewService;
@@ -100,87 +100,7 @@ class ReviewServiceTest {
 
     }
 
-    @Nested
-    class getReviewPageTest {
-        @Test
-        void success_not_recommend() {
-            //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-            em.persist(member);
 
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
-            em.persist(alcohol);
-
-            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰", 0L, 1L);
-            em.persist(review);
-
-            em.persist(new RecommendedReview(member, review, RecommendStatus.DISLIKE));
-            //when
-            ReviewDto reviewDto = reviewService
-                    .getReviewPage(PageRequest.of(0, 1), alcohol.getId(), member.getId())
-                    .getContent().get(0);
-
-            //then
-            assertThat(reviewDto.getMyRecommendStatus()).isEqualTo(RecommendStatus.DISLIKE);
-            assertThat(reviewDto.getNotRecommendCount()).isEqualTo(1);
-            assertThat(reviewDto.getRecommendCount()).isEqualTo(0);
-        }
-
-        @Test
-        void success_recommend() {
-            //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-            em.persist(member);
-
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
-            em.persist(alcohol);
-
-            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰", 1L, 0L);
-            em.persist(review);
-
-            RecommendedReview recommendedReview = new RecommendedReview(member, review, RecommendStatus.LIKE);
-            em.persist(recommendedReview);
-
-            //when
-            ReviewDto reviewDto = reviewService
-                    .getReviewPage(PageRequest.of(0, 1), alcohol.getId(), member.getId())
-                    .getContent().get(0);
-
-            //then
-            assertThat(reviewDto.getMyRecommendStatus()).isEqualTo(RecommendStatus.LIKE);
-            assertThat(reviewDto.getNotRecommendCount()).isEqualTo(0);
-            assertThat(reviewDto.getRecommendCount()).isEqualTo(1);
-        }
-
-        @Test
-        void success_not_exist_recommend() {
-            //given
-            Member member =
-                    new Member("준영이", "chlwnsdud121", "1234", "01012345678");
-            em.persist(member);
-
-            Alcohol alcohol = new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀");
-            em.persist(alcohol);
-
-            Review review = new Review(member, alcohol, (byte) (3), "테스트 리뷰");
-            em.persist(review);
-
-            //when
-            ReviewDto reviewDto = reviewService
-                    .getReviewPage(PageRequest.of(0, 1), alcohol.getId(), member.getId())
-                    .getContent().get(0);
-
-            //then
-            assertThat(reviewDto.getMyRecommendStatus()).isEqualTo(RecommendStatus.NORMAL);
-            assertThat(reviewDto.getNotRecommendCount()).isEqualTo(0);
-            assertThat(reviewDto.getRecommendCount()).isEqualTo(0);
-        }
-    }
 
     @Nested
     class recommendReviewTest {

@@ -106,6 +106,7 @@ class ReviewRepositoryTest {
             assertThat(latestOrderReviews).isSortedAccordingTo((o1, o2) -> o2.getId().compareTo(o1.getId()));
             assertThat(latestOrderReviews.get(0).getRecommendCount()).isEqualTo(10);
             assertThat(latestOrderReviews.get(0).getNotRecommendCount()).isEqualTo(0);
+            assertThat(reviewPage.getTotalElements()).isEqualTo(25);
             assertThat(reviewPage.isFirst()).isTrue();
             assertThat(reviewPage.hasNext()).isTrue();
         }
