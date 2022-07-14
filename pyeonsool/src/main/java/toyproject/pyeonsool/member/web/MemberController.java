@@ -86,9 +86,9 @@ public class MemberController {
                 HttpSession session = request.getSession(true);
                 session.setAttribute(SessionConst.LOGIN_MEMBER,
                         memberService.findLoginMember(loginForm.getUserId(), loginForm.getPassword()));
-            } catch (PyeonSoolFieldException e) { // PyeonSoolFormException의 자식 클래스로, service에서 던진 에외로 rejectValue가 가능해짐
+            } catch (PyeonSoolFieldException e) {
                 bindingResult.rejectValue(e.getField(), e.getErrorCode(), e.getMessage());
-            } catch (PyeonSoolFormException e) { // PyeonSoolException의 자식 클래스로, 글로벌 에러 잡기용. 다중 catch에서는 상위 클래스가 나중에 와야함
+            } catch (PyeonSoolFormException e) {
                 bindingResult.reject(e.getErrorCode(), e.getMessage());
             }
         }
