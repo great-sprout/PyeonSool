@@ -11,6 +11,8 @@ import toyproject.pyeonsool.member.repository.MemberRepository;
 
 import javax.persistence.EntityManager;
 
+import static org.assertj.core.api.Assertions.*;
+
 @DataJpaTest
 @Import(AppConfig.class)
 class MemberRepositoryTest {
@@ -22,7 +24,7 @@ class MemberRepositoryTest {
     EntityManager em;
 
     @Test
-    void findByUserId() {
+    void should_Success_When_MemberIsObtained() {
         //given
         String userId = "userId";
         Member member = new Member("nickname", userId, "password", "01012345678");
@@ -32,6 +34,6 @@ class MemberRepositoryTest {
         Member findMember = memberRepository.findByUserId(userId).get();
 
         //then
-        Assertions.assertThat(findMember.getUserId()).isEqualTo(userId);
+        assertThat(findMember.getUserId()).isEqualTo(userId);
     }
 }
