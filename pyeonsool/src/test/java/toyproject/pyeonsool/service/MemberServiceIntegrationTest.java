@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-class MemberServiceTest {
+class MemberServiceIntegrationTest {
 
     @Autowired
     MemberService memberService;
@@ -31,10 +31,11 @@ class MemberServiceTest {
     @Autowired
     EntityManager em;
 
+    // loginMember.getId()가 null이면 예외가 발생하므로 통합 테스트 진행
     @Nested
-    class findLoginMemberTest {
+    class FindLoginMemberTest {
         @Test
-        void success() {
+        void should_Success_When_LoginMemberIsObtained() {
             //given
             String userId = "userId";
             String password = "password";
@@ -50,17 +51,16 @@ class MemberServiceTest {
         }
 
         @Test
-        void fail_id() {
+        void should_ThrowException_When_IncorrectUserId() {
             //given
             //when
             //then
-            assertThrowsExactly(IncorrectUserIdException.class,
-                    () -> memberService.findLoginMember("userId", "password"),
-                    "입력한 아이디를 사용하는 계정을 찾을 수 없습니다.");
+            assertThatThrownBy(() -> memberService.findLoginMember("userId", "password"))
+                    .isExactlyInstanceOf(IncorrectUserIdException.class);
         }
 
         @Test
-        void fail_password() {
+        void should_ThrowException_When_IncorrectPassword() {
             //given
             String userId = "userId";
             String password = "password";
@@ -69,51 +69,11 @@ class MemberServiceTest {
             em.persist(member);
             //when
             //then
-            assertThrowsExactly(IncorrectPasswordException.class,
-                    () -> memberService.findLoginMember("userId", "wrongPassword"),
-                    "잘못된 비밀번호입니다.");
+            assertThatThrownBy(() -> memberService.findLoginMember("userId", "wrongPassword"))
+                    .isExactlyInstanceOf(IncorrectPasswordException.class);
         }
     }
 
-    @Nested
-    class signupTest {
-        @BeforeEach
-        void init() {
-            em.persist(new Member("nickname", "userId", "password", "01012345678"));
-            em.flush();
-            em.clear();
-        }
-
-        @Test
-        void fail_by_nickname() {
-            //given
-            //when
-            //then
-            assertThrowsExactly(IllegalArgumentException.class, () -> memberService.signup("nickname",
-                            "userId2", "password", "01012345678", null),
-                    "이미 사용중인 닉네임입니다.");
-        }
-
-        @Test
-        void fail_by_userId() {
-            //given
-            //when
-            //then
-            assertThrowsExactly(IllegalArgumentException.class, () -> memberService.signup("nickname2",
-                            "userId", "password", "01011111111", null),
-                    "이미 사용중인 아이디입니다.");
-        }
-
-        @Test
-        void fail_by_phoneNumber() {
-            //given
-            //when
-            //then
-            assertThrowsExactly(IllegalArgumentException.class, () -> memberService.signup("nickname2",
-                            "userId2", "password2", "01012345678", null),
-                    "이미 사용중인 핸드폰 번호입니다.");
-        }
-    }
     @Test
     void kroMyKeyword(){
         Keyword[] keywords = new Keyword[5];

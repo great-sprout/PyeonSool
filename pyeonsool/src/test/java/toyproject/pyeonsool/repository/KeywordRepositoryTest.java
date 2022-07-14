@@ -24,7 +24,7 @@ class KeywordRepositoryTest {
     EntityManager em;
 
     @Test
-    void findByName() {
+    void should_Success_When_KeywordsAreObtainedByNames() {
         //given
         Keyword[] keywords = new Keyword[5];
         String[] keywordNames = {"sweet", "cool", "high", "low", "fresh"};
