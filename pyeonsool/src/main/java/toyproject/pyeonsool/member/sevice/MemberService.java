@@ -42,15 +42,9 @@ public class MemberService {
 
     public LoginMember findLoginMember(String userId, String password) {
         Member findMember = memberRepository.findByUserId(userId).orElseThrow(INCORRECT_USER_ID::getException);
-        validatePassword(password, findMember);
+        findMember.validatePassword(password);
 
         return new LoginMember(findMember.getId(), findMember.getNickname());
-    }
-
-    private void validatePassword(String password, Member findMember) {
-        if (!findMember.getPassword().equals(password)) {
-            throw INCORRECT_PASSWORD.getException();
-        }
     }
 
     public Long signup(String nickname, String userId, String password, String phoneNumber, List<String> keywordNames) {

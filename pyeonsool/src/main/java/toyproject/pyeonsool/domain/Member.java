@@ -6,6 +6,8 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static toyproject.pyeonsool.common.exception.form.FormExceptionType.INCORRECT_PASSWORD;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -37,5 +39,11 @@ public class Member {
         this.userId = userId;
         this.password = password;
         this.phoneNumber = phoneNumber;
+    }
+
+    public void validatePassword(String password) {
+        if (!this.getPassword().equals(password)) {
+            throw INCORRECT_PASSWORD.getException();
+        }
     }
 }
