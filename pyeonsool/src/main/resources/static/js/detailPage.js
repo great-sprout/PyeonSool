@@ -393,3 +393,15 @@ addReviewEditStateEvent();
 addReviewDeleteClickEvent();
 addReviewEvent();
 editReviewEvent();
+Kakao.init('ea22081b74dd373b6a9ce2ed00f3213d');
+
+function shareMessage(title) {
+    Kakao.Share.sendDefault({
+        objectType: 'text',
+        text: '편술에서 ' + title + '에 대한 정보를 확인해보세요!',
+        link: {
+            mobileWebUrl: 'https://developers.kakao.com',
+            webUrl: 'https://developers.kakao.com',
+        },
+    })
+}

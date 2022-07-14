@@ -129,7 +129,8 @@
                   <i class="fas fa-heart"></i>
                 </button>
 
-                <button class="alcohol-info__share-button">
+                <button class="alcohol-info__share-button"
+                        th:onclick="shareMessage([[${alcoholDetails.name}]])">
                   <span class="alcohol-info__share-text">공유하기</span>
                   <i class="fas fa-comment"></i>
                 </button>
@@ -357,6 +358,7 @@
       <footer th:replace="~{fragment/footer :: footer}"></footer>
     </div>
 
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script
       src="https://kit.fontawesome.com/b17793764c.js"
       crossorigin="anonymous"
