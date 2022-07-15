@@ -5,7 +5,7 @@
 
 <p align="center">
     <img src="pyeonsool/src/main/resources/static/image/components/pyeonsool-logo.svg"
-        alt="편술" width="300">
+        alt="편술" width="450">
 </p>
 
 - 편술은 편의점 술 정보 제공, 추천 및 검색 서비스 입니다.
