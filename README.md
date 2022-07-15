@@ -51,10 +51,10 @@
 - MySQL 8.0.28
 - H2
 
-## 3) Infra
+### 3) Infra
 - AWS EC2
 
-## 4) Front-end
+### 4) Front-end
 - HTML
 - CSS
 - JavaScript
