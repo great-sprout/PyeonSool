@@ -1,4 +1,4 @@
-package toyproject.pyeonsool.repository;
+package toyproject.pyeonsool.mykeyword.repository;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

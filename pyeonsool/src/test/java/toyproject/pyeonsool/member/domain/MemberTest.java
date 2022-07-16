@@ -1,7 +1,8 @@
-package toyproject.pyeonsool.domain;
+package toyproject.pyeonsool.member.domain;
 
 import org.junit.jupiter.api.Test;
 import toyproject.pyeonsool.common.exception.form.IncorrectPasswordException;
+import toyproject.pyeonsool.domain.Member;
 
 import static org.assertj.core.api.Assertions.assertThatNoException;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;

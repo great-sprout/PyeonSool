@@ -1,6 +1,10 @@
-package toyproject.pyeonsool.domain;
+package toyproject.pyeonsool.review.domain;
 
 import org.junit.jupiter.api.Test;
+import toyproject.pyeonsool.domain.Alcohol;
+import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.domain.Member;
+import toyproject.pyeonsool.domain.Review;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

@@ -1,4 +1,4 @@
-package toyproject.pyeonsool.repository;
+package toyproject.pyeonsool.alcoholkeyword.repository;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

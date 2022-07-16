@@ -34,7 +34,7 @@ class MemberServiceTest {
     MyKeywordRepository myKeywordRepository;
 
     @Nested
-    class signupTest {
+    class SignupTest {
         @Test
         void should_Success_When_Signup() {
             //given

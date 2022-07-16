@@ -54,7 +54,7 @@ class AlcoholServiceTest {
     FileManager fileManager;
 
     @Nested
-    class getAlcoholDetailsTest {
+    class GetAlcoholDetailsTest {
         @Test
         void should_Success_When_AlcoholDetailsIsObtained() {
             //given
@@ -159,7 +159,7 @@ class AlcoholServiceTest {
     }
 
     @Nested
-    class likeAlcoholTest {
+    class LikeAlcoholTest {
         @Test
         void should_Success_When_AlcoholIsLiked() {
             //given
@@ -221,7 +221,7 @@ class AlcoholServiceTest {
     }
 
     @Nested
-    class dislikeAlcoholTest {
+    class DislikeAlcoholTest {
         @Test
         void should_Success_When_PreferredAlcoholExists() {
             //given

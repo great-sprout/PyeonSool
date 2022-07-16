@@ -1,7 +1,9 @@
-package toyproject.pyeonsool.domain;
+package toyproject.pyeonsool.alcohol.domain;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+import toyproject.pyeonsool.domain.Alcohol;
+import toyproject.pyeonsool.domain.AlcoholType;
 
 class AlcoholTest {
 
