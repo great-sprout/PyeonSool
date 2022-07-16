@@ -7,10 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.exception.form.IncorrectPasswordException;
 import toyproject.pyeonsool.common.exception.form.IncorrectUserIdException;
-import toyproject.pyeonsool.domain.Keyword;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.MyKeyword;
-import toyproject.pyeonsool.member.sevice.MemberService;
+import toyproject.pyeonsool.keyword.domain.Keyword;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.mykeyword.domain.MyKeyword;
 import toyproject.pyeonsool.mykeyword.repository.MyKeywordRepository;
 
 import javax.persistence.EntityManager;

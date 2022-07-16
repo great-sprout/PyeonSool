@@ -1,7 +1,7 @@
 package toyproject.pyeonsool.common;
 
 import org.springframework.stereotype.Component;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 
 @Component
 public class FileManager {

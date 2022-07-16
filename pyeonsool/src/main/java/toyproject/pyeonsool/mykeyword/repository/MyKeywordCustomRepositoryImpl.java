@@ -2,12 +2,13 @@ package toyproject.pyeonsool.mykeyword.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import toyproject.pyeonsool.member.domain.QMember;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.QKeyword.keyword;
-import static toyproject.pyeonsool.domain.QMember.member;
-import static toyproject.pyeonsool.domain.QMyKeyword.myKeyword;
+import static toyproject.pyeonsool.keyword.domain.QKeyword.keyword;
+import static toyproject.pyeonsool.member.domain.QMember.*;
+import static toyproject.pyeonsool.mykeyword.domain.QMyKeyword.myKeyword;
 
 @RequiredArgsConstructor
 public class MyKeywordCustomRepositoryImpl implements MyKeywordCustomRepository {

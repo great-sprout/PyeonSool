@@ -5,11 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.PreferredAlcohol;
-import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholRepository;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.preferredalcohol.domain.PreferredAlcohol;
 
 import javax.persistence.EntityManager;
 

@@ -1,8 +1,10 @@
-package toyproject.pyeonsool.domain;
+package toyproject.pyeonsool.alcoholkeyword.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.keyword.domain.Keyword;
 
 import javax.persistence.*;
 

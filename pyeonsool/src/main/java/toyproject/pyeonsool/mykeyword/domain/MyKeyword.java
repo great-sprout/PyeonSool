@@ -1,8 +1,10 @@
-package toyproject.pyeonsool.domain;
+package toyproject.pyeonsool.mykeyword.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import toyproject.pyeonsool.keyword.domain.Keyword;
+import toyproject.pyeonsool.member.domain.Member;
 
 import javax.persistence.*;
 

@@ -10,13 +10,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.support.PageableExecutionUtils;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.Review;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.review.domain.Review;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
-import static toyproject.pyeonsool.domain.QReview.review;
+import static toyproject.pyeonsool.alcohol.domain.QAlcohol.alcohol;
+import static toyproject.pyeonsool.review.domain.QReview.review;
 
 @RequiredArgsConstructor
 public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {

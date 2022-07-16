@@ -1,7 +1,7 @@
 package toyproject.pyeonsool.member.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import toyproject.pyeonsool.domain.Member;
+import toyproject.pyeonsool.member.domain.Member;
 
 import java.util.Optional;
 

@@ -13,15 +13,20 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.support.PageableExecutionUtils;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.QAlcohol;
+import toyproject.pyeonsool.alcoholkeyword.domain.QAlcoholKeyword;
+import toyproject.pyeonsool.vendor.domain.QVendor;
+import toyproject.pyeonsool.vendor.domain.VendorName;
 
 import java.util.List;
 
-import static org.springframework.util.StringUtils.*;
-import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
-import static toyproject.pyeonsool.domain.QAlcoholKeyword.alcoholKeyword;
-import static toyproject.pyeonsool.domain.QKeyword.keyword;
-import static toyproject.pyeonsool.domain.QVendor.vendor;
+import static org.springframework.util.StringUtils.hasText;
+import static toyproject.pyeonsool.alcohol.domain.QAlcohol.*;
+import static toyproject.pyeonsool.alcoholkeyword.domain.QAlcoholKeyword.alcoholKeyword;
+import static toyproject.pyeonsool.keyword.domain.QKeyword.keyword;
+import static toyproject.pyeonsool.vendor.domain.QVendor.*;
 
 @RequiredArgsConstructor
 public class AlcoholCustomRepositoryImpl implements AlcoholCustomRepository {

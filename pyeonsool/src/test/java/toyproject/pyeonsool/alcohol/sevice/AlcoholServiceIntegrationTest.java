@@ -7,21 +7,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholDto;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholImageDto;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.PreferredAlcohol;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.preferredalcohol.domain.PreferredAlcohol;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static toyproject.pyeonsool.domain.AlcoholType.*;
-import static toyproject.pyeonsool.domain.VendorName.GS25;
+import static toyproject.pyeonsool.alcohol.domain.AlcoholType.*;
+import static toyproject.pyeonsool.vendor.domain.VendorName.GS25;
 
 @SpringBootTest
 @Transactional

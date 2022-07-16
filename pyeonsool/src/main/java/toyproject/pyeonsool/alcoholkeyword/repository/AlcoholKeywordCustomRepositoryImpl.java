@@ -5,8 +5,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.QAlcoholKeyword.alcoholKeyword;
-import static toyproject.pyeonsool.domain.QKeyword.keyword;
+import static toyproject.pyeonsool.alcoholkeyword.domain.QAlcoholKeyword.alcoholKeyword;
+import static toyproject.pyeonsool.keyword.domain.QKeyword.keyword;
 
 @RequiredArgsConstructor
 public class AlcoholKeywordCustomRepositoryImpl implements AlcoholKeywordCustomRepository {

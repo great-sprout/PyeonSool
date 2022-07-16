@@ -1,7 +1,7 @@
 package toyproject.pyeonsool.preferredalcohol.repository;
 
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 
 import java.util.List;
 

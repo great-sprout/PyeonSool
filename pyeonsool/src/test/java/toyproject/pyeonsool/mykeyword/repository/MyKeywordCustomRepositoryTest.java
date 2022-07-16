@@ -5,10 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.Keyword;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.MyKeyword;
-import toyproject.pyeonsool.mykeyword.repository.MyKeywordRepository;
+import toyproject.pyeonsool.keyword.domain.Keyword;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.mykeyword.domain.MyKeyword;
 
 import javax.persistence.EntityManager;
 import java.util.List;

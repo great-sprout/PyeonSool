@@ -4,17 +4,21 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 import toyproject.pyeonsool.common.exception.api.httpstatus.ForbiddenException;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendedReview;
 import toyproject.pyeonsool.recommendedreview.repository.RecommendedReviewRepository;
+import toyproject.pyeonsool.review.domain.Review;
 import toyproject.pyeonsool.review.repository.ReviewRepository;
-import toyproject.pyeonsool.review.sevice.ReviewService;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import static org.assertj.core.api.Assertions.*;
-import static toyproject.pyeonsool.domain.AlcoholType.BEER;
+import static toyproject.pyeonsool.alcohol.domain.AlcoholType.BEER;
 
 @SpringBootTest
 @Transactional

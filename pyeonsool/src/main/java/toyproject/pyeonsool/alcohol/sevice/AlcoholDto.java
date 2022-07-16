@@ -5,8 +5,8 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 
 import java.util.List;
 

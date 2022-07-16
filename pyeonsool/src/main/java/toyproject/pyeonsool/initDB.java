@@ -3,7 +3,17 @@ package toyproject.pyeonsool;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcoholkeyword.domain.AlcoholKeyword;
+import toyproject.pyeonsool.keyword.domain.Keyword;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.mykeyword.domain.MyKeyword;
+import toyproject.pyeonsool.preferredalcohol.domain.PreferredAlcohol;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendedReview;
+import toyproject.pyeonsool.review.domain.Review;
+import toyproject.pyeonsool.vendor.domain.Vendor;
+import toyproject.pyeonsool.vendor.domain.VendorName;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -13,7 +23,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.AlcoholType.*;
+import static toyproject.pyeonsool.alcohol.domain.AlcoholType.*;
 
 
 @Profile("local")

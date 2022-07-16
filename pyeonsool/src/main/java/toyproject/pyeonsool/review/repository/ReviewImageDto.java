@@ -2,7 +2,7 @@ package toyproject.pyeonsool.review.repository;
 
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Data;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 
 import java.time.LocalDateTime;
 

@@ -2,8 +2,8 @@ package toyproject.pyeonsool.review.sevice;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import toyproject.pyeonsool.domain.RecommendStatus;
-import toyproject.pyeonsool.domain.Review;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
+import toyproject.pyeonsool.review.domain.Review;
 
 import java.time.LocalDateTime;
 

@@ -8,11 +8,15 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
 import toyproject.pyeonsool.alcohol.repository.AlcoholRepository;
 import toyproject.pyeonsool.common.exception.api.httpstatus.BadRequestException;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.member.domain.Member;
 import toyproject.pyeonsool.member.repository.MemberRepository;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendedReview;
 import toyproject.pyeonsool.recommendedreview.repository.RecommendedReviewRepository;
+import toyproject.pyeonsool.review.domain.Review;
 import toyproject.pyeonsool.review.repository.ReviewRepository;
 
 import java.util.List;
@@ -22,7 +26,7 @@ import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
-import static toyproject.pyeonsool.domain.AlcoholType.BEER;
+import static toyproject.pyeonsool.alcohol.domain.AlcoholType.BEER;
 
 @ExtendWith(MockitoExtension.class)
 class ReviewServiceTest {

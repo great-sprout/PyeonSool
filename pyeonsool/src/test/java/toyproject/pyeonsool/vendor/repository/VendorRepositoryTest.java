@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.*;
-import toyproject.pyeonsool.vendor.repository.VendorRepository;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.vendor.domain.Vendor;
 
 import javax.persistence.EntityManager;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.AlcoholType.BEER;
-import static toyproject.pyeonsool.domain.VendorName.*;
+import static toyproject.pyeonsool.alcohol.domain.AlcoholType.BEER;
+import static toyproject.pyeonsool.vendor.domain.VendorName.*;
 
 @DataJpaTest
 @Import(AppConfig.class)

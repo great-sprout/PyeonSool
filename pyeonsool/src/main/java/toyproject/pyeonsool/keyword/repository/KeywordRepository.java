@@ -1,7 +1,7 @@
 package toyproject.pyeonsool.keyword.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import toyproject.pyeonsool.domain.Keyword;
+import toyproject.pyeonsool.keyword.domain.Keyword;
 
 import java.util.List;
 

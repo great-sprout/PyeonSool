@@ -10,10 +10,10 @@ import toyproject.pyeonsool.alcohol.repository.AlcoholRepository;
 import toyproject.pyeonsool.alcoholkeyword.repository.AlcoholKeywordRepository;
 import toyproject.pyeonsool.common.FileManager;
 import toyproject.pyeonsool.common.exception.api.httpstatus.BadRequestException;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.PreferredAlcohol;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.preferredalcohol.domain.PreferredAlcohol;
 import toyproject.pyeonsool.member.repository.MemberRepository;
 import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholRepository;
 import toyproject.pyeonsool.review.repository.ReviewRepository;
@@ -24,7 +24,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static toyproject.pyeonsool.domain.VendorName.*;
+import static toyproject.pyeonsool.vendor.domain.VendorName.*;
 
 @ExtendWith(MockitoExtension.class)
 class AlcoholServiceTest {

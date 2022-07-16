@@ -1,10 +1,10 @@
 package toyproject.pyeonsool.recommendedreview.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.RecommendStatus;
-import toyproject.pyeonsool.domain.RecommendedReview;
-import toyproject.pyeonsool.domain.Review;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendedReview;
+import toyproject.pyeonsool.review.domain.Review;
 
 import java.util.Optional;
 

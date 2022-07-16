@@ -1,4 +1,4 @@
-package toyproject.pyeonsool.domain;
+package toyproject.pyeonsool.alcohol.domain;
 
 public enum AlcoholType {
     BEER, SOJU, WINE

@@ -8,9 +8,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.alcohol.repository.AlcoholRepository;
-import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcoholkeyword.domain.AlcoholKeyword;
+import toyproject.pyeonsool.keyword.domain.Keyword;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.preferredalcohol.domain.PreferredAlcohol;
+import toyproject.pyeonsool.vendor.domain.Vendor;
+import toyproject.pyeonsool.vendor.domain.VendorName;
 
 import javax.persistence.EntityManager;
 
@@ -18,8 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
-import static toyproject.pyeonsool.domain.AlcoholType.*;
-import static toyproject.pyeonsool.domain.VendorName.GS25;
+import static toyproject.pyeonsool.alcohol.domain.AlcoholType.*;
+import static toyproject.pyeonsool.vendor.domain.VendorName.GS25;
 
 @DataJpaTest
 @Import(AppConfig.class)

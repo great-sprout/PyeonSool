@@ -3,15 +3,15 @@ package toyproject.pyeonsool.preferredalcohol.repository;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
-import static toyproject.pyeonsool.domain.QAlcoholKeyword.*;
-import static toyproject.pyeonsool.domain.QMyKeyword.*;
-import static toyproject.pyeonsool.domain.QPreferredAlcohol.preferredAlcohol;
+import static toyproject.pyeonsool.alcohol.domain.QAlcohol.alcohol;
+import static toyproject.pyeonsool.alcoholkeyword.domain.QAlcoholKeyword.alcoholKeyword;
+import static toyproject.pyeonsool.mykeyword.domain.QMyKeyword.myKeyword;
+import static toyproject.pyeonsool.preferredalcohol.domain.QPreferredAlcohol.preferredAlcohol;
 
 @RequiredArgsConstructor
 public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCustomRepository {

@@ -2,8 +2,8 @@ package toyproject.pyeonsool.review.repository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.Review;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.review.domain.Review;
 
 import java.util.List;
 

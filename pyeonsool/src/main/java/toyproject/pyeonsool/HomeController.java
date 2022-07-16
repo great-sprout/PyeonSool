@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 import toyproject.pyeonsool.member.sevice.MemberService;
 
 import java.util.List;

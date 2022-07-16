@@ -4,11 +4,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
 import toyproject.pyeonsool.alcohol.repository.AlcoholRepository;
 import toyproject.pyeonsool.common.FileManager;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.member.domain.Member;
 import toyproject.pyeonsool.member.repository.MemberRepository;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendedReview;
 import toyproject.pyeonsool.recommendedreview.repository.RecommendedReviewRepository;
+import toyproject.pyeonsool.review.domain.Review;
 import toyproject.pyeonsool.review.repository.ReviewImageDto;
 import toyproject.pyeonsool.review.repository.ReviewRepository;
 

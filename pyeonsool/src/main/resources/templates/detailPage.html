@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="alcohol-info__taste"
-                     th:if="${alcoholDetails.type eq T(toyproject.pyeonsool.domain.AlcoholType).WINE}">
+                     th:if="${alcoholDetails.type eq T(toyproject.pyeonsool.alcohol.domain.AlcoholType).WINE}">
                   <div class="alcohol-info__sugar">
                     <span class="alcohol-info__sugar-key">당도</span>
 
@@ -302,10 +302,10 @@
                       <div class="review__preference">
                         <div class="recommendation">
                           <i class="far fa-thumbs-up recommendation__icon"
-                             th:classappend="${review.myRecommendStatus == T(toyproject.pyeonsool.domain.RecommendStatus).LIKE} ? 'unvisible'"></i>
+                             th:classappend="${review.myRecommendStatus == T(toyproject.pyeonsool.recommendedreview.domain.RecommendStatus).LIKE} ? 'unvisible'"></i>
                           <i
                               class="fas fa-thumbs-up recommendation__icon--clicked"
-                              th:classappend="${review.myRecommendStatus != T(toyproject.pyeonsool.domain.RecommendStatus).LIKE} ? 'unvisible'"
+                              th:classappend="${review.myRecommendStatus != T(toyproject.pyeonsool.recommendedreview.domain.RecommendStatus).LIKE} ? 'unvisible'"
                           ></i>
                           <span class="recommendation__count" th:text="*{getRecommendCount}">40</span>
                         </div>
@@ -313,11 +313,11 @@
                         <div class="no-recommendation">
                           <i
                                   class="far fa-thumbs-down no-recommendation__icon"
-                                  th:classappend="${review.myRecommendStatus == T(toyproject.pyeonsool.domain.RecommendStatus).DISLIKE} ? 'unvisible'"
+                                  th:classappend="${review.myRecommendStatus == T(toyproject.pyeonsool.recommendedreview.domain.RecommendStatus).DISLIKE} ? 'unvisible'"
                           ></i>
                           <i
                                   class="fas fa-thumbs-down no-recommendation__icon--clicked"
-                                  th:classappend="${review.myRecommendStatus != T(toyproject.pyeonsool.domain.RecommendStatus).DISLIKE} ? 'unvisible'"
+                                  th:classappend="${review.myRecommendStatus != T(toyproject.pyeonsool.recommendedreview.domain.RecommendStatus).DISLIKE} ? 'unvisible'"
 
                           ></i>
                           <span class="no-recommendation__count" th:text="*{getNotRecommendCount}">15</span>

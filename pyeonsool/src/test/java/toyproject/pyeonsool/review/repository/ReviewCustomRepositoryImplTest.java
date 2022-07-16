@@ -7,10 +7,11 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
+import toyproject.pyeonsool.member.domain.Member;
 import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholRepository;
-import toyproject.pyeonsool.review.repository.ReviewRepository;
-import toyproject.pyeonsool.review.repository.ReviewImageDto;
+import toyproject.pyeonsool.review.domain.Review;
 
 import javax.persistence.EntityManager;
 

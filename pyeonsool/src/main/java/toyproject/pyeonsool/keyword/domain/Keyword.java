@@ -1,4 +1,4 @@
-package toyproject.pyeonsool.domain;
+package toyproject.pyeonsool.keyword.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;

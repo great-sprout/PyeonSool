@@ -2,7 +2,7 @@ package toyproject.pyeonsool.review.sevice;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 import toyproject.pyeonsool.review.repository.ReviewImageDto;
 
 import java.time.LocalDateTime;

@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.member.repository.MemberRepository;
+import toyproject.pyeonsool.member.domain.Member;
 
 import javax.persistence.EntityManager;
 

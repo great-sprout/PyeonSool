@@ -9,16 +9,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.Member;
-import toyproject.pyeonsool.domain.Review;
-import toyproject.pyeonsool.review.repository.ReviewRepository;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.review.domain.Review;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static toyproject.pyeonsool.domain.AlcoholType.BEER;
+import static toyproject.pyeonsool.alcohol.domain.AlcoholType.BEER;
 
 @DataJpaTest
 @Import(AppConfig.class)
