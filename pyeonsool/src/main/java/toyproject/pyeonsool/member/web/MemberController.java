@@ -122,9 +122,13 @@ public class MemberController {
             try {
                 memberService.signup(memberSaveForm.getNickname(), memberSaveForm.getUserId(),
                         memberSaveForm.getPassword(), memberSaveForm.getPhoneNumber(), memberSaveForm.getKeywords());
-            } catch (Exception e) {
-                bindingResult.reject("globalError", e.getMessage());//?
             }
+            catch (PyeonSoolFieldException e) {
+                bindingResult.rejectValue(e.getField(), e.getErrorCode(), e.getMessage());
+            }//field
+            catch (PyeonSoolFormException e) {
+                bindingResult.reject(e.getErrorCode(), e.getMessage());
+            }//global
         }
 
         if (bindingResult.hasErrors()) {
