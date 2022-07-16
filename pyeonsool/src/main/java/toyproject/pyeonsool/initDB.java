@@ -3,7 +3,17 @@ package toyproject.pyeonsool;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcoholkeyword.domain.AlcoholKeyword;
+import toyproject.pyeonsool.keyword.domain.Keyword;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.mykeyword.domain.MyKeyword;
+import toyproject.pyeonsool.preferredalcohol.domain.PreferredAlcohol;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendedReview;
+import toyproject.pyeonsool.review.domain.Review;
+import toyproject.pyeonsool.vendor.domain.Vendor;
+import toyproject.pyeonsool.vendor.domain.VendorName;
 
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
@@ -13,7 +23,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.AlcoholType.*;
+import static toyproject.pyeonsool.alcohol.domain.AlcoholType.*;
 
 
 @Profile("local")
@@ -101,18 +111,18 @@ public class initDB {
                     em.persist(new RecommendedReview(members[i], reviews.get(j), RecommendStatus.DISLIKE));
                 }
             }
-            MyKeyword memberKeyword1 = new MyKeyword(members[0],keywords[0]);
-            MyKeyword memberKeyword2 = new MyKeyword(members[0],keywords[1]);
-            MyKeyword memberKeyword3 = new MyKeyword(members[0],keywords[2]);
-            MyKeyword memberKeyword4 = new MyKeyword(members[1],keywords[3]);
-            MyKeyword memberKeyword5 = new MyKeyword(members[1],keywords[4]);
-            MyKeyword memberKeyword6 = new MyKeyword(members[1],keywords[5]);
-            MyKeyword memberKeyword7 = new MyKeyword(members[2],keywords[6]);
-            MyKeyword memberKeyword8 = new MyKeyword(members[2],keywords[7]);
-            MyKeyword memberKeyword9 = new MyKeyword(members[2],keywords[8]);
-            MyKeyword memberKeyword10 = new MyKeyword(members[3],keywords[9]);
-            MyKeyword memberKeyword11 = new MyKeyword(members[3],keywords[10]);
-            MyKeyword memberKeyword12 = new MyKeyword(members[3],keywords[11]);
+            MyKeyword memberKeyword1 = new MyKeyword(members[0], keywords[0]);
+            MyKeyword memberKeyword2 = new MyKeyword(members[0], keywords[1]);
+            MyKeyword memberKeyword3 = new MyKeyword(members[0], keywords[2]);
+            MyKeyword memberKeyword4 = new MyKeyword(members[1], keywords[3]);
+            MyKeyword memberKeyword5 = new MyKeyword(members[1], keywords[4]);
+            MyKeyword memberKeyword6 = new MyKeyword(members[1], keywords[5]);
+            MyKeyword memberKeyword7 = new MyKeyword(members[2], keywords[6]);
+            MyKeyword memberKeyword8 = new MyKeyword(members[2], keywords[7]);
+            MyKeyword memberKeyword9 = new MyKeyword(members[2], keywords[8]);
+            MyKeyword memberKeyword10 = new MyKeyword(members[3], keywords[9]);
+            MyKeyword memberKeyword11 = new MyKeyword(members[3], keywords[10]);
+            MyKeyword memberKeyword12 = new MyKeyword(members[3], keywords[11]);
 
             em.persist(memberKeyword1);
             em.persist(memberKeyword2);
@@ -195,46 +205,46 @@ public class initDB {
 
         private void setSojuList(ArrayList<Alcohol> sojus) {
             sojus.add(new Alcohol(SOJU, "jinro.jpg",
-                    "진로 이즈 백", 1800, 16.5f, null, null, "하이트 진로(주)", "대한민국",3L));
+                    "진로 이즈 백", 1800, 16.5f, null, null, "하이트 진로(주)", "대한민국", 3L));
             sojus.add(new Alcohol(SOJU, "jamong-chamisul.jpg",
-                    "자몽에 이슬", 1900, 13f, null, null, "하이트 진로(주)", "대한민국",2L));
+                    "자몽에 이슬", 1900, 13f, null, null, "하이트 진로(주)", "대한민국", 2L));
             sojus.add(new Alcohol(SOJU, "chamisul.png",
-                    "참이슬", 1950, 16.5f, null, null, "하이트 진로(주)", "대한민국",0L));
+                    "참이슬", 1950, 16.5f, null, null, "하이트 진로(주)", "대한민국", 0L));
             sojus.add(new Alcohol(SOJU, "like-first.jpg",
-                    "처음처럼", 1950, 16.5f, null, null, "롯데칠성음료(주)", "대한민국",1L));
+                    "처음처럼", 1950, 16.5f, null, null, "롯데칠성음료(주)", "대한민국", 1L));
             sojus.add(new Alcohol(SOJU, "hanlla.png",
-                    "한라산", 1900, 17.5f, null, null, "(주)한라산", "대한민국",0L));
+                    "한라산", 1900, 17.5f, null, null, "(주)한라산", "대한민국", 0L));
             sojus.add(new Alcohol(SOJU, "rabbit-white.jpg",
-                    "토끼 소주 화이트", 38000, 23f, null, null, "농업회사법인 토끼소주(주)", "대한민국",1L));
+                    "토끼 소주 화이트", 38000, 23f, null, null, "농업회사법인 토끼소주(주)", "대한민국", 1L));
             sojus.add(new Alcohol(SOJU, "munbae.jpg",
-                    "문배술", 10260, 40f, null, null, "문배주양조원", "대한민국",1L));
+                    "문배술", 10260, 40f, null, null, "문배주양조원", "대한민국", 1L));
             sojus.add(new Alcohol(SOJU, "gosori.png",
-                    "제주 고소리술", 22800, 29f, null, null, "제주샘영농조합", "대한민국",2L));
+                    "제주 고소리술", 22800, 29f, null, null, "제주샘영농조합", "대한민국", 2L));
             sojus.add(new Alcohol(SOJU, "hwayo.jpg",
-                    "화요", 8500, 25f, null, null, "(주)화요", "대한민국",0L));
+                    "화요", 8500, 25f, null, null, "(주)화요", "대한민국", 0L));
 
             sojus.add(new Alcohol(SOJU, "grape-chamisul.png",
-                    "청포도에 이슬", 1900,13f, null, null, "하이트진로(주)", "대한민국"));
+                    "청포도에 이슬", 1900, 13f, null, null, "하이트진로(주)", "대한민국"));
             sojus.add(new Alcohol(SOJU, "merona-chamisul.png",
-                    "메로나에 이슬", 1700,12f, null, null, "하이트진로(주)", "대한민국"));
+                    "메로나에 이슬", 1700, 12f, null, null, "하이트진로(주)", "대한민국"));
             sojus.add(new Alcohol(SOJU, "rabbit-black.jpg",
-                    "토기 소주 블랙", 40000,40f, null, null, "농업회사법인 토끼소주(주)", "대한민국"));
+                    "토기 소주 블랙", 40000, 40f, null, null, "농업회사법인 토끼소주(주)", "대한민국"));
             sojus.add(new Alcohol(SOJU, "secret-talk-24.jpg",
-                    "밀담 24도 ", 11500,24f, null, null, "농업회사법인 (주)착한농부", "대한민국"));
+                    "밀담 24도 ", 11500, 24f, null, null, "농업회사법인 (주)착한농부", "대한민국"));
             sojus.add(new Alcohol(SOJU, "ryeo.jpg",
-                    "국순당려", 15000,25f, null, null, "국순당여주명주", "대한민국"));
+                    "국순당려", 15000, 25f, null, null, "국순당여주명주", "대한민국"));
             sojus.add(new Alcohol(SOJU, "barracks.png",
-                    "병영 소주", 36960,40f, null, null, "병영양조장", "대한민국"));
+                    "병영 소주", 36960, 40f, null, null, "병영양조장", "대한민국"));
             sojus.add(new Alcohol(SOJU, "andong.jpg",
-                    "안동 소주 일품", 22800,21f, null, null, "안동소주일품(주)", "대한민국"));
+                    "안동 소주 일품", 22800, 21f, null, null, "안동소주일품(주)", "대한민국"));
             sojus.add(new Alcohol(SOJU, "chungha.jpg",
-                    "청하", 2750,13f, null, null, "롯데칠성음료(주)", "대한민국"));
+                    "청하", 2750, 13f, null, null, "롯데칠성음료(주)", "대한민국"));
             sojus.add(new Alcohol(SOJU, "seoul-night.png",
-                    "서울의밤", 7200,13f, null, null, "(주)더한주류", "대한민국"));
+                    "서울의밤", 7200, 13f, null, null, "(주)더한주류", "대한민국"));
             sojus.add(new Alcohol(SOJU, "myeongin-andong.jpg",
-                    "명인안동소주", 8500,35f, null, null, "명인안동소주", "대한민국"));
+                    "명인안동소주", 8500, 35f, null, null, "명인안동소주", "대한민국"));
             sojus.add(new Alcohol(SOJU, "gold-barley.png",
-                    "황금보리", 6200,17f, null, null, "황금보리(유)", "대한민국"));
+                    "황금보리", 6200, 17f, null, null, "황금보리(유)", "대한민국"));
         }
 
         private void persistSojuKeywords(Keyword[] keywords, ArrayList<Alcohol> sojus) {
@@ -378,53 +388,53 @@ public class initDB {
 
         private void setBeers(ArrayList<Alcohol> beers) {
             beers.add(new Alcohol(BEER, "san-miguel.png", "산미구엘 페일필젠", 3000,
-                    5f, null, null, "산미구엘 브루어리", "필리핀",2L));
+                    5f, null, null, "산미구엘 브루어리", "필리핀", 2L));
             beers.add(new Alcohol(BEER, "tiger.jpg", "타이거 아시안 라거", 2500,
-                    5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르",1L));
+                    5f, null, null, "아시아 퍼시픽 브루어리", "싱가포르", 1L));
             beers.add(new Alcohol(BEER, "budweiser.png", "버드와이저", 2500,
-                    5f, null, null, "앤하이저부시", "미국",2L));
+                    5f, null, null, "앤하이저부시", "미국", 2L));
             beers.add(new Alcohol(BEER, "gompyo.png", "곰표 밀맥주", 2500,
-                    4.5f, null, null, "세븐브로이맥주", "대한민국",0L));
+                    4.5f, null, null, "세븐브로이맥주", "대한민국", 0L));
             beers.add(new Alcohol(BEER, "hite-extra-cold.png", "하이트 엑스트라 콜드", 2800,
-                    4.5f, null, null, "하이트진로", "대한민국",0L));
+                    4.5f, null, null, "하이트진로", "대한민국", 0L));
             beers.add(new Alcohol(BEER, "kozel-premium-lager.png", "코젤 프리미엄 라거", 2500,
-                    4.6f, null, null, "필젠스키 프레즈드로이", "체코",0L));
+                    4.6f, null, null, "필젠스키 프레즈드로이", "체코", 0L));
             beers.add(new Alcohol(BEER, "somersby.png", "서머스비(사과)", 4200,
-                    4.5f, null, null, "칼스버그 서플라이", "덴마크",2L));
+                    4.5f, null, null, "칼스버그 서플라이", "덴마크", 2L));
             beers.add(new Alcohol(BEER, "stella-artois.png", "스텔라 아르투아", 3000,
-                    5f, null, null, "스텔라 아르투아 브루어리", "벨기에",0L));
+                    5f, null, null, "스텔라 아르투아 브루어리", "벨기에", 0L));
             beers.add(new Alcohol(BEER, "guinness-draught.png", "기네스 드래프트", 3000,
-                    4.2f, null, null, "디아지오 아일랜드", "아일랜드",0L));
+                    4.2f, null, null, "디아지오 아일랜드", "아일랜드", 0L));
             beers.add(new Alcohol(BEER, "heineken.png", "하이네켄 오리지널", 3900,
-                    5f, null, null, "하이네켄 네덜란트 서플라이", "네덜란드",0L));
+                    5f, null, null, "하이네켄 네덜란트 서플라이", "네덜란드", 0L));
             beers.add(new Alcohol(BEER, "malpyo-greengrape.png", "말표 청포도", 3500,
-                    4f, null, null, "스퀴즈 브루어리", "대한민국",0L));
+                    4f, null, null, "스퀴즈 브루어리", "대한민국", 0L));
             beers.add(new Alcohol(BEER, "malpyo-dark.png", "말표 흑맥주", 3500,
-                    4.5f, null, null, "스퀴즈 브루어리", "대한민국",0L));
+                    4.5f, null, null, "스퀴즈 브루어리", "대한민국", 0L));
             beers.add(new Alcohol(BEER, "lets.png", "레츠", 1800,
-                    4.5f, null, null, "신세계L&B", "대한민국",0L));
+                    4.5f, null, null, "신세계L&B", "대한민국", 0L));
             beers.add(new Alcohol(BEER, "cass-fresh.png", "카스 프레쉬", 2700,
-                    4.5f, null, null, "오비맥주", "대한민국",0L));
+                    4.5f, null, null, "오비맥주", "대한민국", 0L));
             beers.add(new Alcohol(BEER, "terra.png", "테라", 2500,
-                    4.6f, null, null, "하이트진로", "대한민국",0L));
+                    4.6f, null, null, "하이트진로", "대한민국", 0L));
             beers.add(new Alcohol(BEER, "hanmac.png", "한맥", 2700,
-                    4.6f, null, null, "오비맥주", "대한민국",0L));
+                    4.6f, null, null, "오비맥주", "대한민국", 0L));
             beers.add(new Alcohol(BEER, "hoegaarden.png", "호가든", 3000,
-                    4.9f, null, null, "오비맥주", "벨기에",0L));
+                    4.9f, null, null, "오비맥주", "벨기에", 0L));
             beers.add(new Alcohol(BEER, "kronenbourg-1664-blanc.png", "크로넨버그 1664 블랑", 3200,
-                    5f, null, null, "칼스버그 서플라이", "덴마크",0L));
+                    5f, null, null, "칼스버그 서플라이", "덴마크", 0L));
             beers.add(new Alcohol(BEER, "edelweiss-snowfresh.png", "에델바이스 스노우프레쉬", 4000,
-                    5f, null, null, "하이네켄 네덜란드 서플라이", "네덜란드",0L));
+                    5f, null, null, "하이네켄 네덜란드 서플라이", "네덜란드", 0L));
             beers.add(new Alcohol(BEER, "paulaner-munich-lager.png", "파울라너 뮌헨 라거", 3900,
-                    4.9f, null, null, "파울라너 브루어리", "독일",0L));
+                    4.9f, null, null, "파울라너 브루어리", "독일", 0L));
             beers.add(new Alcohol(BEER, "carlsberg.png", "칼스버그", 3000,
-                    5f, null, null, "칼스버그 서플라이", "덴마크",0L));
+                    5f, null, null, "칼스버그 서플라이", "덴마크", 0L));
             beers.add(new Alcohol(BEER, "tsingtao.png", "칭따오", 3200,
-                    4.7f, null, null, "칭따오 브루어리", "중국",0L));
+                    4.7f, null, null, "칭따오 브루어리", "중국", 0L));
             beers.add(new Alcohol(BEER, "kozel-dark.png", "코젤 다크", 4000,
-                    3.8f, null, null, "필젠스키 프레즈드로이", "체코",0L));
+                    3.8f, null, null, "필젠스키 프레즈드로이", "체코", 0L));
             beers.add(new Alcohol(BEER, "hoegaarden.png", "호가든 포멜로", 3000,
-                    3f, null, null, "오비맥주", "벨기에",0L));
+                    3f, null, null, "오비맥주", "벨기에", 0L));
         }
 
         private void persistBeerKeywords(Keyword[] keywords, ArrayList<Alcohol> beers) {
@@ -536,65 +546,65 @@ public class initDB {
 
         private void setWines(ArrayList<Alcohol> wines) {
             wines.add(new Alcohol(WINE, "louis-jadot.png", "루이자도 부르고뉴 샤르도네", 35000,
-                    13f, (byte) 1, (byte) 3, "루이 자도", "프랑스 부르고뉴",0L));
+                    13f, (byte) 1, (byte) 3, "루이 자도", "프랑스 부르고뉴", 0L));
             wines.add(new Alcohol(WINE, "michele-le-orme.png", "미켈레 레오르메", 40000,
-                    13f, (byte) 0, (byte) 5, "프레스코발디", "이탈리아",0L));
+                    13f, (byte) 0, (byte) 5, "프레스코발디", "이탈리아", 0L));
             wines.add(new Alcohol(WINE, "frescobaldi-remole-bianco.png", "프레스코발디 레몰레 비앙코", 29000,
-                    12.5f, (byte) 0, (byte) 2, "미켈레 끼아를로", "이탈리아",1L));
+                    12.5f, (byte) 0, (byte) 2, "미켈레 끼아를로", "이탈리아", 1L));
             wines.add(new Alcohol(WINE, "tignanello-grappa.png", "티냐넬로그라파", 190000,
-                    42f, (byte) 1, (byte) 5, "마르케시 안토리니", "이탈리아",1L));
+                    42f, (byte) 1, (byte) 5, "마르케시 안토리니", "이탈리아", 1L));
             wines.add(new Alcohol(WINE, "della-trappola.png", "리카솔리 안티코 페우도 델라 트라폴라 토스카나 IGT", 50000,
-                    14f, (byte) 1, (byte) 5, "리카솔리", "이탈리아",1L));
+                    14f, (byte) 1, (byte) 5, "리카솔리", "이탈리아", 1L));
             wines.add(new Alcohol(WINE, "gancia-moscato-dasti.png", "간치아 모스카토 다스티 DO", 20680,
-                    7.5f, (byte) 3, (byte) 2, "간치아", "이탈리아",0L));
+                    7.5f, (byte) 3, (byte) 2, "간치아", "이탈리아", 0L));
             wines.add(new Alcohol(WINE, "nederburg-duet-shiraz-pinotage.png", "니더버그듀엣 쉬라즈 & 피노타지", 16280,
-                    14.5f, (byte) 1, (byte) 4, "니더버그", "남아프리카공화국",1L));
+                    14.5f, (byte) 1, (byte) 4, "니더버그", "남아프리카공화국", 1L));
             wines.add(new Alcohol(WINE, "canti-moscato-dasti.png", "칸티 모스카토 다스티", 22000,
-                    7f, (byte) 4, (byte) 2, "칸티", "이탈리아",0L));
+                    7f, (byte) 4, (byte) 2, "칸티", "이탈리아", 0L));
             wines.add(new Alcohol(WINE, "sierra-cantabria-rose.png", "시에라 칸따브리아 로제", 30000,
-                    13.5f, (byte) 1, (byte) 3, "시에라", "스페인",0L));
+                    13.5f, (byte) 1, (byte) 3, "시에라", "스페인", 0L));
             wines.add(new Alcohol(WINE, "brown-brothers-moonstruck.png", "브라운 브라더스 문스트록 모스카토", 16390,
-                    5.5f, (byte) 3, (byte) 2, "브라운 브라더스", "호주",0L));
+                    5.5f, (byte) 3, (byte) 2, "브라운 브라더스", "호주", 0L));
             wines.add(new Alcohol(WINE, "michele-chiarlo-cipressi-nizza.png", "미켈레 끼아를로 치프레스 니짜", 60000,
-                    14f, (byte) 1, (byte) 4, "미켈레 끼아를로", "이탈리아",0L));
+                    14f, (byte) 1, (byte) 4, "미켈레 끼아를로", "이탈리아", 0L));
             wines.add(new Alcohol(WINE, "gato-negro-cabernet.png", "가또 네그로 카베르네", 18000,
-                    13f, (byte) 1, (byte) 4, "산 페드로", "칠레",0L));
+                    13f, (byte) 1, (byte) 4, "산 페드로", "칠레", 0L));
             wines.add(new Alcohol(WINE, "novibolle-romagna.png", "노비볼레 로마냐 비앙코", 19000,
-                    12f, (byte) 1, (byte) 2, "까비로", "이탈리아",0L));
+                    12f, (byte) 1, (byte) 2, "까비로", "이탈리아", 0L));
             wines.add(new Alcohol(WINE, "babich.png", "배비치, 블랙 라벨 말보로 피노 누아", 23900,
-                    13.5f, (byte) 1, (byte) 4, "배비치", "뉴질랜드 사우스 아일랜드 말보로",0L));
+                    13.5f, (byte) 1, (byte) 4, "배비치", "뉴질랜드 사우스 아일랜드 말보로", 0L));
             wines.add(new Alcohol(WINE, "kilikannon.jpg", "킬리카눈 킬러맨즈런 쉬라즈", 25900,
-                    15f, (byte) 1, (byte) 4, "킬리카눈", "호주 남호주",0L));
+                    15f, (byte) 1, (byte) 4, "킬리카눈", "호주 남호주", 0L));
             wines.add(new Alcohol(WINE, "madame.jpg", "마담 드 레인", 72900,
-                    13.5f, (byte) 5, (byte) 4, "사또 레인 비뇨", "프랑스 보르도 소테른",0L));
+                    13.5f, (byte) 5, (byte) 4, "사또 레인 비뇨", "프랑스 보르도 소테른", 0L));
             wines.add(new Alcohol(WINE, "montalto.jpg", "몬탈토 아쿠아렐로 네로다볼라 DOC", 20000,
-                    13f, (byte) 2, (byte) 4, "바론 몬탈토", "이탈리아 시칠리아",0L));
+                    13f, (byte) 2, (byte) 4, "바론 몬탈토", "이탈리아 시칠리아", 0L));
             wines.add(new Alcohol(WINE, "the-seasons-vivaldi-spring.png", "더시즌스 비발디 봄", 28000,
-                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
+                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께", 0L));
             wines.add(new Alcohol(WINE, "the-seasons-vivaldi-summer.png", "더시즌스 비발디 여름", 28000,
-                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
+                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께", 0L));
             wines.add(new Alcohol(WINE, "the-seasons-vivaldi-autumn.png", "더시즌스 비발디 가을", 28000,
-                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
+                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께", 0L));
             wines.add(new Alcohol(WINE, "the-seasons-vivaldi-winter.png", "더시즌스 비발디 겨울", 28000,
-                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께",0L));
+                    13.5f, (byte) 1, (byte) 3, "우마니론끼", "이탈리아 마르께", 0L));
             wines.add(new Alcohol(WINE, "Golden-Blanc-Brut.png", "골든블랑 브뤼", 118900,
-                    12f, (byte) 1, (byte) 3, "볼레로", "프랑스 샹빠뉴",0L));
+                    12f, (byte) 1, (byte) 3, "볼레로", "프랑스 샹빠뉴", 0L));
             wines.add(new Alcohol(WINE, "Golden-Blanc-Brut-Rose.png", "골든블랑 로제", 145900,
-                    12f, (byte) 1, (byte) 3, "볼레로", "프랑스 샹빠뉴",0L));
+                    12f, (byte) 1, (byte) 3, "볼레로", "프랑스 샹빠뉴", 0L));
             wines.add(new Alcohol(WINE, "yellow-tail-shiraz.png", "옐로우테일 쉬라즈", 20000,
-                    13.5f, (byte) 1, (byte) 3, "옐로우 테일", "호주 뉴 사우스 웨일즈",0L));
+                    13.5f, (byte) 1, (byte) 3, "옐로우 테일", "호주 뉴 사우스 웨일즈", 0L));
             wines.add(new Alcohol(WINE, "blumoon-moscato.jpg", "아바찌아, 블루문 모스카토", 15000,
-                    7f, (byte) 3, (byte) 1, "아바찌아", "이탈리아 피에몬테",0L));
+                    7f, (byte) 3, (byte) 1, "아바찌아", "이탈리아 피에몬테", 0L));
             wines.add(new Alcohol(WINE, "louis-m.jpg", "루이스 엠 마티니, 소노마 카운티", 27900,
-                    13f, (byte) 1, (byte) 5, "루이 마티니", "미국 캘리포니아 소노마 카운티",0L));
+                    13f, (byte) 1, (byte) 5, "루이 마티니", "미국 캘리포니아 소노마 카운티", 0L));
             wines.add(new Alcohol(WINE, "bread-and-butter.png", "브레드 앤 버터 피노누아", 34500,
-                    13.5f, (byte) 1, (byte) 5, "브레드 앤 버터", "미국 캘리포니아 나파 밸리",0L));
+                    13.5f, (byte) 1, (byte) 5, "브레드 앤 버터", "미국 캘리포니아 나파 밸리", 0L));
             wines.add(new Alcohol(WINE, "joseph-drouhin.png", "조셉 드루앙, 라포레 부르고뉴 블랑", 34900,
-                    13.5f, (byte) 1, (byte) 3, "조셉 드루앙", "프랑스",0L));
+                    13.5f, (byte) 1, (byte) 3, "조셉 드루앙", "프랑스", 0L));
             wines.add(new Alcohol(WINE, "misty-cove-estate.png", "미스티 코브 에스테이브 소비뇽 블랑", 23900,
-                    14f, (byte) 1, (byte) 2, "미스티 코브 와인즈", "뉴질랜드",0L));
+                    14f, (byte) 1, (byte) 2, "미스티 코브 와인즈", "뉴질랜드", 0L));
             wines.add(new Alcohol(WINE, "bodegas-lan-reserva.png", "보데가스 란 리제르바", 34000,
-                    13f, (byte) 1, (byte) 4, "보데가스 란", "스페인",0L));
+                    13f, (byte) 1, (byte) 4, "보데가스 란", "스페인", 0L));
         }
 
         private void persistWineKeywords(Keyword[] keywords, ArrayList<Alcohol> wines) {

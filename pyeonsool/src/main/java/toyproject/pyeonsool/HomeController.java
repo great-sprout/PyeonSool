@@ -5,11 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholCustomRepositoryImpl;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 import toyproject.pyeonsool.member.sevice.MemberService;
 
 import java.util.List;
@@ -43,7 +42,7 @@ public class HomeController {
         model.addAttribute("pyeonsools", alcoholService.getYourAlcohols(loginMember.getId()));
 
         /*마이 키워드*/
-        if (loginMember!=null) {
+        if (loginMember != null) {
             List<String> myKeywords = memberService.getMyKeywordsKOR(loginMember.getId());
             model.addAttribute("personalKeywords", myKeywords);
         }

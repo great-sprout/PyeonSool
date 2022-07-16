@@ -1,13 +1,12 @@
 package toyproject.pyeonsool.review.web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.domain.RecommendStatus;
+import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
 import toyproject.pyeonsool.review.sevice.ReviewService;
 
 import static java.util.Objects.isNull;

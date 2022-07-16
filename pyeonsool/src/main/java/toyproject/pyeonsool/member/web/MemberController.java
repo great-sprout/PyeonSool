@@ -9,11 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.Pagination;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
-import toyproject.pyeonsool.common.exception.PyeonSoolException;
 import toyproject.pyeonsool.common.exception.form.PyeonSoolFieldException;
 import toyproject.pyeonsool.common.exception.form.PyeonSoolFormException;
 import toyproject.pyeonsool.member.sevice.MemberService;
@@ -25,11 +24,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import java.io.IOException;
 import java.util.List;
 
-import static java.util.Objects.*;
+import static java.util.Objects.nonNull;
 
 @Controller
 @RequestMapping("/members")
@@ -122,8 +120,7 @@ public class MemberController {
             try {
                 memberService.signup(memberSaveForm.getNickname(), memberSaveForm.getUserId(),
                         memberSaveForm.getPassword(), memberSaveForm.getPhoneNumber(), memberSaveForm.getKeywords());
-            }
-            catch (PyeonSoolFieldException e) {
+            } catch (PyeonSoolFieldException e) {
                 bindingResult.rejectValue(e.getField(), e.getErrorCode(), e.getMessage());
             }//field
             catch (PyeonSoolFormException e) {

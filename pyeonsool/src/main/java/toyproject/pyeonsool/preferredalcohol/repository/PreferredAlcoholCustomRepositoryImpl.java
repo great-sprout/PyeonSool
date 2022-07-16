@@ -3,23 +3,22 @@ package toyproject.pyeonsool.preferredalcohol.repository;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
-import static toyproject.pyeonsool.domain.QAlcoholKeyword.*;
-import static toyproject.pyeonsool.domain.QMyKeyword.*;
-import static toyproject.pyeonsool.domain.QPreferredAlcohol.preferredAlcohol;
+import static toyproject.pyeonsool.alcohol.domain.QAlcohol.alcohol;
+import static toyproject.pyeonsool.alcoholkeyword.domain.QAlcoholKeyword.alcoholKeyword;
+import static toyproject.pyeonsool.mykeyword.domain.QMyKeyword.myKeyword;
+import static toyproject.pyeonsool.preferredalcohol.domain.QPreferredAlcohol.preferredAlcohol;
 
 @RequiredArgsConstructor
 public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCustomRepository {
 
     private final JPAQueryFactory queryFactory;
 
-
-    @Override //모두가 좋아하는 술(Alcohol)
+    @Override
     public List<Alcohol> getMonthAlcohols() {
         return queryFactory
                 .select(preferredAlcohol.alcohol)
@@ -30,8 +29,8 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetch();
     }
 
-    @Override //타입별 좋아하는 술(alcohol_id)
-    public List<Long> getAlcoholByType(AlcoholType type,int count) {
+    @Override
+    public List<Long> getAlcoholByType(AlcoholType type, int count) {
         return queryFactory
                 .select(preferredAlcohol.alcohol.id)
                 .from(preferredAlcohol)
@@ -52,7 +51,6 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetchOne();
     }
 
-    //마이페이지 내Like 리스트 쿼리dsl문
     @Override
     public List<Alcohol> getAlcohols(Long memberId, Long limit) {
         return queryFactory.select(alcohol)
@@ -63,12 +61,6 @@ public class PreferredAlcoholCustomRepositoryImpl implements PreferredAlcoholCus
                 .fetch();
     }
 
-    //select pa.alcohol_id from preferred_alcohol pa left join alcohol_keyword ak
-    //on pa.alcohol_id = ak.alcohol_id
-    //where pa.alcohol_id in (select alcohol_id from alcohol_keyword
-    //where keyword_id in (select keyword_id from my_keyword where member_id=1))
-    //group by pa.alcohol_id
-    //limit 12;
     @Override //나의 키워드가 포함된 알콜과 일치하는 선호하는 알콜 조회
     public List<Alcohol> getPreferredAlcoholByKeyword(Long loginMember) {
         return queryFactory

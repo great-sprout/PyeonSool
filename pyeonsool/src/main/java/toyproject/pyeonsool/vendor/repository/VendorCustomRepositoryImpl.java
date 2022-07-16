@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.List;
 
-import static toyproject.pyeonsool.domain.QVendor.vendor;
+import static toyproject.pyeonsool.vendor.domain.QVendor.vendor;
 
 @RequiredArgsConstructor
 public class VendorCustomRepositoryImpl implements VendorCustomRepository {

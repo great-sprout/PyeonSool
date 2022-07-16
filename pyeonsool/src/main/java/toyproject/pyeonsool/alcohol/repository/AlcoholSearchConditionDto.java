@@ -2,8 +2,8 @@ package toyproject.pyeonsool.alcohol.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import toyproject.pyeonsool.domain.AlcoholType;
-import toyproject.pyeonsool.domain.VendorName;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
+import toyproject.pyeonsool.vendor.domain.VendorName;
 
 import java.util.List;
 

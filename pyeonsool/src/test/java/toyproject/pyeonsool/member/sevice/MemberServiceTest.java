@@ -1,29 +1,22 @@
 package toyproject.pyeonsool.member.sevice;
 
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.exception.form.DuplicateNicknameException;
 import toyproject.pyeonsool.common.exception.form.DuplicatePhoneException;
 import toyproject.pyeonsool.common.exception.form.DuplicateUserIdException;
-import toyproject.pyeonsool.common.exception.form.FormExceptionType;
-import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.keyword.repository.KeywordRepository;
 import toyproject.pyeonsool.member.repository.MemberRepository;
 import toyproject.pyeonsool.mykeyword.repository.MyKeywordRepository;
 
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.assertj.core.api.Assertions.assertThatNoException;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.Mockito.anyString;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class MemberServiceTest {
@@ -41,7 +34,7 @@ class MemberServiceTest {
     MyKeywordRepository myKeywordRepository;
 
     @Nested
-    class signupTest {
+    class SignupTest {
         @Test
         void should_Success_When_Signup() {
             //given

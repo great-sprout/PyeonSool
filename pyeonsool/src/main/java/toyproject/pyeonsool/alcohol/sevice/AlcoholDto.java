@@ -5,10 +5,11 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import toyproject.pyeonsool.domain.Alcohol;
-import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 
 import java.util.List;
+
 @Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
@@ -39,9 +40,9 @@ public class AlcoholDto {
             this.keywords = alcoholKeywords;
             this.vendors = alcoholVendors;
     }*/
-@QueryProjection
-    public AlcoholDto(Alcohol alcohol, String imagePath, List<String> alcoholKeywords, List<String> alcoholVendors, Long prferredMembers){
-        type= alcohol.getType();
+    @QueryProjection
+    public AlcoholDto(Alcohol alcohol, String imagePath, List<String> alcoholKeywords, List<String> alcoholVendors, Long prferredMembers) {
+        type = alcohol.getType();
         id = alcohol.getId();
         image = imagePath;
         name = alcohol.getName();
@@ -50,11 +51,8 @@ public class AlcoholDto {
         keywords = alcoholKeywords;
         vendors = alcoholVendors;
         members = prferredMembers;
-        likeCount=alcohol.getLikeCount();
+        likeCount = alcohol.getLikeCount();
     }
-
-
-
 
 
 }

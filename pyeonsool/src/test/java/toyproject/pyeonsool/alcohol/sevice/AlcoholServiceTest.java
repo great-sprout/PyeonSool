@@ -1,18 +1,19 @@
 package toyproject.pyeonsool.alcohol.sevice;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import toyproject.pyeonsool.alcohol.repository.AlcoholRepository;
 import toyproject.pyeonsool.alcoholkeyword.repository.AlcoholKeywordRepository;
 import toyproject.pyeonsool.common.FileManager;
 import toyproject.pyeonsool.common.exception.api.httpstatus.BadRequestException;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
+import toyproject.pyeonsool.member.domain.Member;
+import toyproject.pyeonsool.preferredalcohol.domain.PreferredAlcohol;
 import toyproject.pyeonsool.member.repository.MemberRepository;
 import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholRepository;
 import toyproject.pyeonsool.review.repository.ReviewRepository;
@@ -22,9 +23,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import static toyproject.pyeonsool.domain.VendorName.*;
+import static toyproject.pyeonsool.vendor.domain.VendorName.*;
 
 @ExtendWith(MockitoExtension.class)
 class AlcoholServiceTest {
@@ -54,7 +54,7 @@ class AlcoholServiceTest {
     FileManager fileManager;
 
     @Nested
-    class getAlcoholDetailsTest {
+    class GetAlcoholDetailsTest {
         @Test
         void should_Success_When_AlcoholDetailsIsObtained() {
             //given
@@ -159,7 +159,7 @@ class AlcoholServiceTest {
     }
 
     @Nested
-    class likeAlcoholTest {
+    class LikeAlcoholTest {
         @Test
         void should_Success_When_AlcoholIsLiked() {
             //given
@@ -221,7 +221,7 @@ class AlcoholServiceTest {
     }
 
     @Nested
-    class dislikeAlcoholTest {
+    class DislikeAlcoholTest {
         @Test
         void should_Success_When_PreferredAlcoholExists() {
             //given
