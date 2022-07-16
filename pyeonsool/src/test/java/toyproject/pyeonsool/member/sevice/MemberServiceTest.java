@@ -10,6 +10,10 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import toyproject.pyeonsool.common.LoginMember;
+import toyproject.pyeonsool.common.exception.form.DuplicateNicknameException;
+import toyproject.pyeonsool.common.exception.form.DuplicatePhoneException;
+import toyproject.pyeonsool.common.exception.form.DuplicateUserIdException;
+import toyproject.pyeonsool.common.exception.form.FormExceptionType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.keyword.repository.KeywordRepository;
 import toyproject.pyeonsool.member.repository.MemberRepository;
@@ -60,7 +64,7 @@ class MemberServiceTest {
             //then
             assertThatThrownBy(() -> memberService.signup("nickname", "userId2", "password",
                     "01012345678", null))
-                    .isExactlyInstanceOf(IllegalArgumentException.class);
+                    .isExactlyInstanceOf(DuplicateNicknameException.class);
         }
 
         @Test
@@ -73,7 +77,7 @@ class MemberServiceTest {
             //then
             assertThatThrownBy(() -> memberService.signup("nickname", "userId2", "password",
                     "01012345678", null))
-                    .isExactlyInstanceOf(IllegalArgumentException.class);
+                    .isExactlyInstanceOf(DuplicateUserIdException.class);
         }
 
         @Test
@@ -86,7 +90,7 @@ class MemberServiceTest {
             //then
             assertThatThrownBy(() -> memberService.signup("nickname", "userId2", "password",
                     "01012345678", null))
-                    .isExactlyInstanceOf(IllegalArgumentException.class);
+                    .isExactlyInstanceOf(DuplicatePhoneException.class);
         }
     }
 }

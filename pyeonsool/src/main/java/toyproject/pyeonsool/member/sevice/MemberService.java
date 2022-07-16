@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
+import toyproject.pyeonsool.common.exception.form.DuplicateNicknameException;
 import toyproject.pyeonsool.common.exception.form.FormExceptionType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.MyKeyword;
@@ -61,15 +62,15 @@ public class MemberService {
 
     private void validateSignup(String nickname, String userId, String phoneNumber) {
         if (memberRepository.existsByNickname(nickname)) {
-            throw new IllegalArgumentException("이미 사용중인 닉네임입니다.");
+            throw DUPLICATE_NICKNAME.getException();
         }
 
         if (memberRepository.existsByUserId(userId)) {
-            throw new IllegalArgumentException("이미 사용중인 아이디입니다.");
+            throw DUPLICATE_USER_ID.getException();
         }
 
         if (memberRepository.existsByPhoneNumber(phoneNumber)) {
-            throw new IllegalArgumentException("이미 사용중인 핸드폰 번호입니다.");
+            throw DUPLICATE_PHONENUM.getException();
         }
     }
 
