@@ -1,6 +1,5 @@
 package toyproject.pyeonsool.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +7,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.exception.form.IncorrectPasswordException;
 import toyproject.pyeonsool.common.exception.form.IncorrectUserIdException;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.domain.Keyword;
+import toyproject.pyeonsool.domain.Member;
+import toyproject.pyeonsool.domain.MyKeyword;
 import toyproject.pyeonsool.member.sevice.MemberService;
 import toyproject.pyeonsool.mykeyword.repository.MyKeywordRepository;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
-
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 @Transactional
@@ -75,7 +76,7 @@ class MemberServiceIntegrationTest {
     }
 
     @Test
-    void kroMyKeyword(){
+    void kroMyKeyword() {
         Keyword[] keywords = new Keyword[5];
         String[] keywordNames = {"sweet", "cool", "strong", "middle", "fresh"};
         Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
@@ -89,20 +90,20 @@ class MemberServiceIntegrationTest {
             keywords[i] = new Keyword(keywordNames[i]);
             em.persist(keywords[i]);
         }
-        MyKeyword memberKeyword1 = new MyKeyword(member,keywords[1]);
-        MyKeyword memberKeyword2 = new MyKeyword(member,keywords[3]);
-        MyKeyword memberKeyword3 = new MyKeyword(member,keywords[4]);
+        MyKeyword memberKeyword1 = new MyKeyword(member, keywords[1]);
+        MyKeyword memberKeyword2 = new MyKeyword(member, keywords[3]);
+        MyKeyword memberKeyword3 = new MyKeyword(member, keywords[4]);
         em.persist(memberKeyword1);
         em.persist(memberKeyword2);
         em.persist(memberKeyword3);
 
 
-        List<String> memberKeywords1= memberService.getMyKeywordsKOR(member.getId());
+        List<String> memberKeywords1 = memberService.getMyKeywordsKOR(member.getId());
         assertThat(memberKeywords1.get(1)).isEqualTo("도수 중간");
     }
 
     @Test
-    void editMemberKeywords(){
+    void editMemberKeywords() {
         //given
         Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
         em.persist(member);

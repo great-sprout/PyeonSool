@@ -9,7 +9,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import toyproject.pyeonsool.alcohol.repository.AlcoholRepository;
-import toyproject.pyeonsool.common.FileManager;
 import toyproject.pyeonsool.common.exception.api.httpstatus.BadRequestException;
 import toyproject.pyeonsool.domain.*;
 import toyproject.pyeonsool.member.repository.MemberRepository;

@@ -17,7 +17,6 @@ import java.util.List;
 
 import static toyproject.pyeonsool.domain.AlcoholType.BEER;
 
-
 @DataJpaTest
 @Import(AppConfig.class)
 class AlcoholKeywordRepositoryTest {

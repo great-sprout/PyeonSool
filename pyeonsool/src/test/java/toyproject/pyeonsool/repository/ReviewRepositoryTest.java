@@ -1,6 +1,5 @@
 package toyproject.pyeonsool.repository;
 
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +9,12 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import toyproject.pyeonsool.AppConfig;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.domain.Alcohol;
+import toyproject.pyeonsool.domain.Member;
+import toyproject.pyeonsool.domain.Review;
 import toyproject.pyeonsool.review.repository.ReviewRepository;
 
 import javax.persistence.EntityManager;
-
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;

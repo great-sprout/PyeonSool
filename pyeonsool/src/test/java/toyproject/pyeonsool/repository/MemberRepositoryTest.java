@@ -1,6 +1,5 @@
 package toyproject.pyeonsool.repository;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -11,7 +10,7 @@ import toyproject.pyeonsool.member.repository.MemberRepository;
 
 import javax.persistence.EntityManager;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @Import(AppConfig.class)

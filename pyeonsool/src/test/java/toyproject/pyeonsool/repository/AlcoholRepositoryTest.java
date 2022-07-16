@@ -89,8 +89,8 @@ class AlcoholRepositoryTest {
                 new AlcoholSearchConditionDto(BEER, typeKeyword, null, GS25),
                 new AlcoholSearchConditionDto(BEER, typeKeyword, "리", null),
                 new AlcoholSearchConditionDto(BEER, null, "리", GS25),
-                new AlcoholSearchConditionDto(BEER, null, null, null ),
-                new AlcoholSearchConditionDto(BEER, null, null, null )
+                new AlcoholSearchConditionDto(BEER, null, null, null),
+                new AlcoholSearchConditionDto(BEER, null, null, null)
 
         };
 
@@ -105,8 +105,8 @@ class AlcoholRepositoryTest {
         for (Page<Alcohol> a : alcoholPages) {
             System.out.println(i);
 
-            for(Alcohol s : a) {
-                System.out.println("hello = " + s.getName() +" abv : " + s.getAbv()+ " price : " + s.getPrice()+" likecount : " + s.getLikeCount()) ;
+            for (Alcohol s : a) {
+                System.out.println("hello = " + s.getName() + " abv : " + s.getAbv() + " price : " + s.getPrice() + " likecount : " + s.getLikeCount());
 
             }
             i++;
@@ -177,7 +177,7 @@ class AlcoholRepositoryTest {
         assertThat(relatedAlcohols.size()).isEqualTo(3);
         assertThat(relatedAlcohols).extracting("name")
                 .containsExactly("자몽에 이슬", "참이슬", "처음처럼");
-        assertThat(relatedAlcohols).isSortedAccordingTo((o1, o2) -> (int)(o2.getLikeCount() - o1.getLikeCount()));
+        assertThat(relatedAlcohols).isSortedAccordingTo((o1, o2) -> (int) (o2.getLikeCount() - o1.getLikeCount()));
     }
 
 

@@ -26,7 +26,7 @@ class MyKeywordCustomRepositoryTest {
     EntityManager em;
 
     @Test
-    void getMemberKeywords(){
+    void getMemberKeywords() {
         Keyword[] keywords = new Keyword[5];
         String[] keywordNames = {"sweet", "cool", "high", "low", "fresh"};
         Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
@@ -40,15 +40,15 @@ class MyKeywordCustomRepositoryTest {
             keywords[i] = new Keyword(keywordNames[i]);
             em.persist(keywords[i]);
         }
-        MyKeyword memberKeyword1 = new MyKeyword(member,keywords[1]);
-        MyKeyword memberKeyword2 = new MyKeyword(member,keywords[3]);
-        MyKeyword memberKeyword3 = new MyKeyword(member,keywords[4]);
+        MyKeyword memberKeyword1 = new MyKeyword(member, keywords[1]);
+        MyKeyword memberKeyword2 = new MyKeyword(member, keywords[3]);
+        MyKeyword memberKeyword3 = new MyKeyword(member, keywords[4]);
         em.persist(memberKeyword1);
         em.persist(memberKeyword2);
         em.persist(memberKeyword3);
 
 
-        List<String> memberKeywords= myKeywordRepository.myKeywordList(member.getId());
+        List<String> memberKeywords = myKeywordRepository.myKeywordList(member.getId());
 
         assertThat(memberKeywords.size()).isEqualTo(3);
     }

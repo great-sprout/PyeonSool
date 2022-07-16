@@ -1,8 +1,6 @@
 package toyproject.pyeonsool.service;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
@@ -12,7 +10,10 @@ import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholImageDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
-import toyproject.pyeonsool.domain.*;
+import toyproject.pyeonsool.domain.Alcohol;
+import toyproject.pyeonsool.domain.AlcoholType;
+import toyproject.pyeonsool.domain.Member;
+import toyproject.pyeonsool.domain.PreferredAlcohol;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
@@ -130,27 +131,24 @@ class AlcoholServiceIntegrationTest {
         Page<AlcoholDto> alcoholType = alcoholService.findAlcoholPage(
                 PageRequest.of(0, SIZE, getSortTypeSelect("abvDesc")),
                 new AlcoholSearchConditionDto(BEER, List.of("nutty"), "선", GS25));
-        for (AlcoholDto a: alcoholType) {
+        for (AlcoholDto a : alcoholType) {
             System.out.println("hello name  = " + a.getName() + "abv = " + a.getAbv()
-                    + "price = " + a.getPrice()+ "likeCount = " + a.getLikeCount());
+                    + "price = " + a.getPrice() + "likeCount = " + a.getLikeCount());
         }
         //then
         assertThat(alcoholType.isLast()).isTrue();
     }
+
     private Sort getSortTypeSelect(String sort) {
-        if(sort==null){
+        if (sort == null) {
             return Sort.by(Sort.Direction.DESC, "likeCount");
-        }
-        else if(sort.equals("abvDesc")) {
+        } else if (sort.equals("abvDesc")) {
             return Sort.by(Sort.Direction.DESC, "abv");
-        }
-        else if(sort.equals("abvAsc")) {
+        } else if (sort.equals("abvAsc")) {
             return Sort.by(Sort.Direction.ASC, "abv");
-        }
-        else if(sort.equals("priceDesc")) {
+        } else if (sort.equals("priceDesc")) {
             return Sort.by(Sort.Direction.DESC, "price");
-        }
-        else if(sort.equals("priceAsc")) {
+        } else if (sort.equals("priceAsc")) {
             return Sort.by(Sort.Direction.ASC, "price");
         }
 

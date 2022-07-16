@@ -12,13 +12,8 @@ import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholReposito
 
 import javax.persistence.EntityManager;
 
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.domain.AlcoholType.*;
-import static toyproject.pyeonsool.domain.QAlcohol.alcohol;
-import static toyproject.pyeonsool.domain.QPreferredAlcohol.preferredAlcohol;
-
 
 @DataJpaTest
 @Import(AppConfig.class)
@@ -51,7 +46,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
         em.persist(new PreferredAlcohol(member, alcoholTwo));
 
         //then
-        Assertions.assertThat(preferredAlcoholRepository.getAlcohols(member.getId(),12L).size())
+        Assertions.assertThat(preferredAlcoholRepository.getAlcohols(member.getId(), 12L).size())
                 .isEqualTo(3);
     }
 
@@ -102,7 +97,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
         Alcohol alcohol2 = new Alcohol(AlcoholType.BEER, "tiger.jpg", "타이거",
                 2500, 5f, null, null, "아시아 퍼시픽 브루어리(주)", "싱가포르");
         Alcohol alcohol3 = new Alcohol(AlcoholType.WINE, "louis-jadot.png", "루이자도 부르고뉴 샤르도네",
-                35000, 13f, (byte)1, (byte)3, "루이 자도", "프랑스 부르고뉴");
+                35000, 13f, (byte) 1, (byte) 3, "루이 자도", "프랑스 부르고뉴");
 
         em.persist(alcohol);
         em.persist(alcohol1);
@@ -124,7 +119,7 @@ class PreferredAlcoholCustomRepositoryImplTest {
     }
 
     @Test
-    void getMemberIds(){
+    void getMemberIds() {
         Member member = new Member("준영이", "chlwnsdud121", "1234", "01012345678");
         Member member1 = new Member("영준이", "chldudwns121", "1234", "01012341234");
         Member member2 = new Member("춘향이", "cnsgiddl121", "1234", "01055556666");
