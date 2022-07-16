@@ -1,4 +1,4 @@
-package toyproject.pyeonsool.service;
+package toyproject.pyeonsool.integration;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
