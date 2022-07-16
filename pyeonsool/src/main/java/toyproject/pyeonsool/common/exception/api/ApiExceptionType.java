@@ -2,7 +2,6 @@ package toyproject.pyeonsool.common.exception.api;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import toyproject.pyeonsool.common.exception.api.PyeonSoolApiException;
 import toyproject.pyeonsool.common.exception.api.httpstatus.BadRequestException;
 import toyproject.pyeonsool.common.exception.api.httpstatus.ForbiddenException;
 import toyproject.pyeonsool.common.exception.api.httpstatus.UnauthorizedException;

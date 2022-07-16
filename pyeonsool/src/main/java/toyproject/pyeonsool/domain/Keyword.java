@@ -1,13 +1,10 @@
 package toyproject.pyeonsool.domain;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -18,7 +15,7 @@ public class Keyword {
 
     @Id
     @GeneratedValue
-    @Column(name="keyword_id")
+    @Column(name = "keyword_id")
     private Long id;
 
     @Column(length = 16)

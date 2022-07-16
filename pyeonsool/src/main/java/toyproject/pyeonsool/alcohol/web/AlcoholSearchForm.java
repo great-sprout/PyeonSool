@@ -1,7 +1,6 @@
 package toyproject.pyeonsool.alcohol.web;
 
 import lombok.Data;
-import toyproject.pyeonsool.domain.AlcoholType;
 
 import java.util.List;
 

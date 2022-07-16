@@ -11,6 +11,7 @@ public interface ReviewCustomRepository {
     List<Byte> getReviewGrades(Long alcoholId);
 
     Page<ReviewImageDto> getReviewImage(Long memberId, Pageable pageable);
+
     Page<Review> findReviewsByAlcohol(Alcohol alcohol, Pageable pageable);
 
 }

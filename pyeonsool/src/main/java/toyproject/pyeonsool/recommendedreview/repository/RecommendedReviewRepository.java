@@ -8,8 +8,7 @@ import toyproject.pyeonsool.domain.Review;
 
 import java.util.Optional;
 
-public interface RecommendedReviewRepository
-        extends JpaRepository<RecommendedReview, Long> {
+public interface RecommendedReviewRepository extends JpaRepository<RecommendedReview, Long> {
     Optional<RecommendedReview> findByMemberAndReview(Member member, Review review);
 
     Optional<RecommendedReview> findByMemberAndReviewAndStatus(Member member, Review review, RecommendStatus status);

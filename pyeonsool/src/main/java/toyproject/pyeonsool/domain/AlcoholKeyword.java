@@ -1,7 +1,6 @@
 package toyproject.pyeonsool.domain;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,15 +13,15 @@ public class AlcoholKeyword {
 
     @Id
     @GeneratedValue
-    @Column(name="alcohol_keyword_id")
+    @Column(name = "alcohol_keyword_id")
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="keyword_id")
+    @JoinColumn(name = "keyword_id")
     private Keyword keyword;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="alcohol_id")
+    @JoinColumn(name = "alcohol_id")
     private Alcohol alcohol;
 
     public AlcoholKeyword(Keyword keyword, Alcohol alcohol) {

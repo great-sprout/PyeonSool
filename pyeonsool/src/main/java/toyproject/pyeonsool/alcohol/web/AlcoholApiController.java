@@ -1,13 +1,11 @@
 package toyproject.pyeonsool.alcohol.web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholRepository;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 
 import static java.util.Objects.isNull;
 import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.MUST_LOGIN;

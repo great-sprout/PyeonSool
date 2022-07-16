@@ -1,7 +1,6 @@
 package toyproject.pyeonsool.domain;
 
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -83,11 +82,11 @@ public class Review {
         }
     }
 
-    public void changeContent(String content){
+    public void changeContent(String content) {
         this.content = content;
     }
 
-    public void changeGrade(Byte grade){
+    public void changeGrade(Byte grade) {
         this.grade = grade;
     }
 }

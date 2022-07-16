@@ -9,25 +9,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
+import toyproject.pyeonsool.alcohol.sevice.AlcoholDto;
+import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.Pagination;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholDto;
-import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.domain.AlcoholType;
 import toyproject.pyeonsool.domain.VendorName;
-import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.member.sevice.MemberService;
 import toyproject.pyeonsool.review.sevice.ReviewDto;
 import toyproject.pyeonsool.review.sevice.ReviewService;
 import toyproject.pyeonsool.review.web.ReviewSaveRequest;
 
-import java.util.List;
-
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.REQUIRED_ALCOHOL_ID;
-import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.REQUIRED_REVIEW_ID;
 
 @Controller
 @RequestMapping("/alcohols")

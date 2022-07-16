@@ -1,10 +1,10 @@
 package toyproject.pyeonsool.domain;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import static toyproject.pyeonsool.common.exception.form.FormExceptionType.INCORRECT_PASSWORD;
 
@@ -19,7 +19,7 @@ public class Member {
 
     @Id
     @GeneratedValue
-    @Column(name ="member_id")
+    @Column(name = "member_id")
     private Long id;
 
     @Column(length = 40)

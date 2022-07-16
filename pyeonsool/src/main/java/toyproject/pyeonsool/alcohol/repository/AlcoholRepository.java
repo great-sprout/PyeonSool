@@ -7,7 +7,7 @@ import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.AlcoholType;
 
 
-public interface AlcoholRepository  extends JpaRepository<Alcohol, Long> ,AlcoholCustomRepository{
+public interface AlcoholRepository extends JpaRepository<Alcohol, Long>, AlcoholCustomRepository {
     Page<Alcohol> findAllByType(AlcoholType alcoholType, Pageable pageable);
 
 }

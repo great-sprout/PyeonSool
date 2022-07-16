@@ -13,7 +13,6 @@ import org.springframework.data.support.PageableExecutionUtils;
 import toyproject.pyeonsool.domain.Alcohol;
 import toyproject.pyeonsool.domain.Review;
 
-
 import java.util.List;
 
 import static toyproject.pyeonsool.domain.QAlcohol.alcohol;

@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
-import toyproject.pyeonsool.common.exception.form.DuplicateNicknameException;
-import toyproject.pyeonsool.common.exception.form.FormExceptionType;
 import toyproject.pyeonsool.domain.Member;
 import toyproject.pyeonsool.domain.MyKeyword;
 import toyproject.pyeonsool.keyword.repository.KeywordRepository;
@@ -70,7 +68,7 @@ public class MemberService {
         }
 
         if (memberRepository.existsByPhoneNumber(phoneNumber)) {
-            throw DUPLICATE_PHONENUM.getException();
+            throw DUPLICATE_PHONE_NUMBER.getException();
         }
     }
 
