@@ -37,6 +37,13 @@
 </br>
 
 ## 4. 기술 스택
+
+</br>
+<p align="left">
+<img src="pyeonsool/src/main/resources/static/image/components/backend-icon.png"
+    width="1000" height ="100">
+</p>
+
 ### 1) Back-end
 - Java 11
 - Spring Boot 2.7.0
@@ -47,12 +54,32 @@
 - Junit5
 - Mockito
 
+</br>
+<p align="left">
+<img src="pyeonsool/src/main/resources/static/image/components/db-icon.png"
+    width="300" height ="80">
+</p>
+
 ### 2) DB
 - MySQL 8.0.28
 - H2
 
+</br>
+<p align="left">
+<img src="pyeonsool/src/main/resources/static/image/components/infra-icon.png"
+    width="100" height ="60">
+</p>
+
+
 ### 3) Infra
 - AWS EC2
+
+</br>
+<p align="left">
+<img src="pyeonsool/src/main/resources/static/image/components/frontend-icon.png"
+    width="280" height ="90">
+</p>
+
 
 ### 4) Front-end
 - HTML
