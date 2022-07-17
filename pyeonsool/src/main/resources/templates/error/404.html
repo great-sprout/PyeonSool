@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+          href="/image/components/pyeonsool-icon.svg"
+          rel="icon"
+          type="image/x-icon"
+  />
+  <title>에러 페이지</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+  <link
+          rel="stylesheet"
+          type="text/css"
+          href="/css/screens/error.css"
+  />
+</head>
+<body>
+<div id="wrap">
+  <header th:replace="~{fragment/header :: header}"></header>
+
+  <div id="container">
+    <main>
+      <article class="client-error">
+        <span>요청하신 페이지가 존재하지 않습니다.</span>
+      </article>
+    </main>
+  </div>
+  <aside th:replace="~{fragment/keywordModal :: keywordModal}"></aside>
+
+  <footer th:replace="~{fragment/footer :: footer}"></footer>
+</div>
+
+  <script
+          src="https://kit.fontawesome.com/b17793764c.js"
+          crossorigin="anonymous"
+  ></script>
+  <script src="/js/header.js"></script>
+</body>
+</html>

@@ -1,0 +1,291 @@
+
+#container{
+    padding: 100px 150px 50px 150px; /*상 우 하 좌*/
+    width: 1500px;
+    /* margin:auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alcohol-title{
+    font-size: 34px;
+    padding-bottom: 100px;
+    text-align: center;
+    font-weight:800 ;
+}
+
+.best-text{
+    font-size: 20px;
+    font-weight: 500;
+    align-items: start;
+    width:92%;
+    display:inline-block;
+}/* 주류 종류 title*/
+.best-buttons{
+    width: 10%;
+    display: inline-block;
+}/*베스트 버튼 묶음*/
+.best-button__left,
+.best-button__right{
+    background-color: white ;
+    color: rgb(117, 59, 252);
+    border: 1px solid rgb(117, 59, 252);
+    width: 23px;
+    height: 23px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    outline: none;
+    cursor: pointer;
+}/* 베스트 움직임 버튼*/
+
+.best-list{
+    display: flex;
+    justify-content: center;
+}
+
+.best-list__wrap{
+    height: 350px;
+    width: 1200px;
+    overflow: hidden;
+    margin-top: 20px;
+    position: relative;
+}/*베스트 리스트 박스*/
+.best-list__ul{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 33px;
+    position: absolute;
+    /* left: 40px; */
+}/*베스트 리스트 ul*/
+.best-list__li{
+    width: 272px;
+    height: 323.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid var(--light-gray);
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+}/*베스트 리스트 하나의 카드 li*/
+.best-list__image{
+    position: absolute;
+    max-height: 300px;
+    max-width:250px;
+    margin-left: 10px;
+    border-radius:18px;
+    cursor: pointer;
+    transform:scale(0.8);
+}/*베스트 리스트 카드 안 이미지*/
+.best-list__mark{
+    background-color: black;
+    color: white;
+    width: 50px;
+    height: 20px;
+    text-align: center;
+    padding-top: 3px;
+    margin-left: 25px;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}/*베스트 리스트 카드 안 베스트 마크*/
+
+.alcohol-list__text{
+    font-size: 20px;
+    font-weight: 450;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.sort-list{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: flex-start;
+
+}/*알콜 리스트 정렬에 관련된 기능 묶음*/
+.sort-list__find {
+    display: flex;
+    align-items: center;
+    background-color: rgba(117, 59, 252,0.33);
+    width: 193px;
+    height: 28px;
+    border-radius: 7px;
+}
+.sort-list__find input{
+    background-color: transparent;
+    width: 170px;
+    height: 28px;
+    border-radius: 7px;
+    border: 0px solid ;
+    padding:10px;
+    outline: none;
+}/*알콜 검색 창*/
+.sort-list__find i{
+    padding-top: 2px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.sort-list__keyword{
+    width: 65%;
+    margin-left: 1%;
+    /*height:28px;*/
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}/*알콜 키워드 묶음 */
+.sort-choice__keyword{
+    padding-top:7px;
+    margin-bottom: 8px;
+}/*알콜 키워드 버튼 input & label*/
+.sort-choice__keyword-input {
+  display: none;
+}/*알콜 키워드 버튼 체크박스*/
+.sort-choice__keyword-label {
+  width: 70px;
+  height: 28px;
+  border: 0.5px solid rgba(117, 59, 252, 0.53);
+  font-size: 14px;
+  font-weight: bolder;
+  color: rgba(117, 59, 252, 0.53);
+  padding: 5px;
+  border-radius: 7px;
+  cursor: pointer;
+}/*알콜 키워드 버튼 레이블*/
+.sort-choice__keyword-input:checked + .sort-choice__keyword-label {
+  background-color: var(--main-color);
+  color: white;
+}
+/*키워드 박스 선택시 변경*/
+.sort-list__select select{
+    height: 34px;
+    border-radius: 5px;
+    padding:4px 3px 4px 3px;
+    margin-right: 7px;
+    text-align-last: center;
+    text-align: center;
+    -ms-text-align-last: center;
+    -moz-text-align-last: center;
+    font-size: 12.5px;
+}/*알콜 키워드 정렬 셀렉트 박스*/
+
+
+.alcohol-list{
+    padding-top: 20px;
+    display: inline-flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    width: auto;
+    gap: 53px;
+    margin-bottom:40px;
+} /*알콜 리스트 */
+
+.alcohol-list__card{
+   align-items: center;
+   width: 250px;
+}/*알콜 리스트 카드*/
+
+.alcohol-card__box{
+    position: relative;
+    cursor: pointer;
+}/*알콜 리스트 카드 안 박스*/
+.alcohol-card__vendor{
+    width: 31px;
+    position: absolute;
+    padding-top: 17px;
+    padding-left: 30px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}/*알콜 리스트 카드안 편의점 박스*/
+.vendor-mark__gs25{
+    width: 33px;
+    height:20px;
+    padding-bottom: 5px;
+}/*알콜 리스트 편의점 박스 gs 편의점 마크*/
+.vendor-mark__cu{
+    width: 38px;
+    height:32px;
+    padding-bottom: 5px;
+}/*알콜 리스트 편의점 박스 cu 편의점 마크*/
+.vendor-mark__7eleven{
+    width: 20px;
+    height:25px;
+    padding-bottom: 5px;
+}/*알콜 리스트 편의점 박스 7eleven 편의점 마크*/
+.alcohol-card__image{
+    width: 255px;
+    height: 255px;
+    border: 0.5px solid rgb(204, 204, 204);
+    border-radius: 15px;
+}/*알콜 리스트 이미지 밖 div*/
+.alcohol-card__like p{
+    border: 1px solid gray;
+    font-size: 15px;
+    font-weight: 700;
+
+    padding: 3px 3px 3px 3px;
+    text-align: center;
+    border-radius: 15px;
+    bottom: 8px;
+    right: 15px;
+    position:absolute;  
+    
+}/*알콜 리스트 이미지 안 좋아요*/
+.alcohol-card__like i{
+    color: var(--heart-color);
+    margin-left:3px;
+    margin-right:3px;
+}
+.alcohol-card__image img{
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 15px;
+    object-fit: contain;
+    transform:scale(0.8);
+}/*알콜 리스트 이미지 */
+
+.alcohol-info p{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+.alcohol-info__name{
+    font-size: 17px;
+    font-weight: 800;
+    height: 34px;
+}
+.alcohol-info__cost{
+    font-size: 15px;
+    font-weight:600;
+}
+.alcohol-info__abv{
+    font-size: 13px;
+}
+.alcohol-info__keyword button{
+    height: 28px;
+    background-color: white;
+    border:1px solid rgb(117, 59, 252);
+    color:rgb(117, 59, 252);
+    border-radius: 5px;
+    margin-right:5px;
+    margin-top:5px;
+}
+.alcohol-list__total{
+    width:1200px;
+}
+
+.alcohol-list__no-exist {
+    display: flex;
+    width: 1200px;
+    margin-top: 50px;
+    justify-content: center;
+    font-size: 30px;
+    font-weight: bold;
+}

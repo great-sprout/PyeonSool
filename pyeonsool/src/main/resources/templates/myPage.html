@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="/image/components/pyeonsool-icon.svg"
+      rel="icon"
+      type="image/x-icon"
+    />
+    <title>마이페이지</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/screens/myPage.css" />
+  </head>
+
+  <body>
+    <div id="wrap">
+      <header th:replace="~{fragment/header :: header}"></header>
+
+      <div id="container">
+        <section>
+          <!--유저 환영-->
+          <article class="mypage-hello">
+            <div class="mypage-hello__user">
+              <h2 class="mypage-hello__hi">
+                <!-- <th:block th:if="${session.loginMember != null and session.loginMember.id eq review.writerId}">-->
+                <span th:text="${session.loginMember.nickname}"class="mypage-hello__user-nickname">알콜홀릭</span>
+                님 안녕하세요.
+              </h2>
+            </div>
+          </article>
+
+          <!--내 Like 리스트-->
+          <article class="mypage-like">
+            <div class="mypage-like__title">
+              <h1 class="mypage-like__title-name">내 Like 리스트</h1>
+            </div>
+
+            <div class="mypage-like__body">
+              <ul class="mypage-like__items">
+                <th:block th:each="myLike : ${myLikeList}">
+                  <li class="mypage-like__item" th:number="${myLike.alcoholId}">
+                    <a href = "#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${myLike.alcoholId})}">
+                    <img
+                    src="/image/alcohol/calsberg.jpg" th:src="${myLike.imagePath}"
+                    alt=""
+                    class="mypage-like__item-image"
+                    onclick="location.href='#'"
+                  />
+                    </a>
+
+                  <!--이미지위에 x버튼-->
+                  <div class="mypage-like__delete">
+                    <div class="mypage-like__delete-button">
+                      <button class="mypage-like__delete-dislikebutton">
+                      <i class="fa fa-x mypage-like__delete-icon"></i>
+                      </button>
+                    </div>
+                  </div>
+                </li>
+                </th:block>
+              </ul>
+            </div>
+          </article>
+
+         <!-- &lt;!&ndash;취향저격 편술&ndash;&gt;
+          <article class="mypage-mystyle">
+            <div class="mypage-mystyle__title">
+              <h1 class="mypage-mystyle__title-name">취향저격 편술</h1>
+            </div>
+
+            &lt;!&ndash;슬라이드 버튼&ndash;&gt;
+            <div class="slide-button slide-button&#45;&#45;left">&lt;</div>
+            <div class="slide-button slide-button&#45;&#45;right">&gt;</div>
+            <div class="mypage-mystyle__body">
+              &lt;!&ndash;취향저격 편술 이미지&ndash;&gt;
+              <ul class="mypage-mystyle__items">
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/chamisul.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/cass.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/guinness.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/warka.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+
+                <li class="mypage-mystyle__item">
+                  <img
+                    src="/image/alcohol/surfing-high.png"
+                    alt=""
+                    class="mypage-mystyle__item-image"
+                    onclick="location.href='#'"
+                  />
+                </li>
+              </ul>
+            </div>
+          </article>-->
+
+          <!--내 리뷰 리스트 -->
+          <article class="mypage-review">
+            <h2 class="mypage-review__title">내 리뷰 리스트</h2>
+            <div class="myreviews">
+              <th:block th:each="myReview : ${myReviewList}">
+            <form class="my-review" th:number="${myReview.reviewId}"th:object="${myReview}">
+            <!--내 리뷰 리스트 이미지-->
+            <div class="mypage-review__item">
+              <div class="mypage-review__images">
+                <a href = "#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${myReview.alcoholId})}">
+                <img
+                  src="/image/alcohol/chamisul.png" th:src="${myReview.imagePath}"
+                  alt=""
+                  class="mypage-review__image"
+                  onclick="location.href='#'"
+                />
+                </a>
+              </div>
+
+              <div class="mypage-info">
+                <!--내 리뷰 리스트 정보-->
+                <!--날짜-->
+                <div class="mypage-review__date">
+                  <h2
+                          class="mypage-review__edite-date"
+                          th:text="${#temporals.format(myReview.lastModifiedDate, 'yyyy.MM.dd')}"
+                  >2022.01.29</h2>
+                </div>
+
+
+                <!--고정 별점-->
+                <div class="my-review__fixed-stars">
+                  <span
+                    class="my-review__fixed-star my-review__fixed-star--selected"
+                    th:each="num : ${#numbers.sequence(1, myReview.grade)}"
+                    >★</span
+                  >
+                  <span
+                          class="my-review__fixed-star"
+                          th:if="${myReview.grade < 5}" ? th:each="num : ${#numbers.sequence(myReview.grade + 1, 5)}"
+                  >★</span>
+                </div>
+
+                <!-- 리뷰마다 id, for 값 다름에 유의 -->
+                <!--선택 별점-->
+                <div class="stars my-review__stars unvisible">
+                <th:block th:each="num : ${#numbers.sequence(5, 1)}">
+                  <input
+                          type="radio"
+                          id="5-star--id-1"
+                          name="grade"
+                          th:value="${num}"
+                          class="stars__radio"
+                          required
+                          th:id="|${num}-star-id-*{reviewId}|"
+                  />
+                  <label
+                          for="5-star--id-1"
+                          th:for="|${num}-star-id-*{reviewId}|"
+                          class="stars__star review__star"
+                  >★</label
+                  >
+              </th:block>
+                </div>
+
+                <!--내용-->
+                <div class="my-review__content" th:text="*{content}">
+                  내용
+                </div>
+                  <textarea
+                  class="my-review__textarea unvisible"
+                  maxlength="300"
+                  name="content"
+                  required
+                ></textarea>
+
+
+                <!--추천,비추천-->
+
+                <div class="mypage-review__preference">
+                  <div class="mypage-recommendation">
+                    <i class="far fa-thumbs-up recommendation__icon"></i>
+                    </i>
+                    <span class="recommendation__count" th:text="*{getRecommendCount}">40</span>
+                  </div>
+
+                  <div class="mypage-norecommendation">
+                    <i class="far fa-thumbs-down no-recommendation__icon"></i>
+                    <span class="no-recommendation__count" th:text="*{getNotRecommendCount}">15</span>
+                  </div>
+                </div>
+              </div>
+
+              <!--수정,삭제-->
+
+              <div class="my-review__buttons">
+                <span class="my-review__edit-status">수정</span>
+                <div class="my-review__divider"></div>
+                <span class="my-review__delete">삭제</span>
+              </div>
+
+              <!--수정 눌렀을 때 수정|삭제 -> 등록|취소 부분-->
+              <div class="my-review__editor unvisible">
+                <span class="my-review__edit">등록</span>
+                <div class="my-review__divider"></div>
+                <span class="my-review__cancel">취소</span>
+              </div>
+            </div>
+          </form>
+        </th:block>
+     </div>
+
+          
+       
+
+            <div class="mypage__page">
+              <div class="mypage__page__no-review" th:if="${MyReviewPagination.totalElements == 0}">
+                <span>등록한 리뷰가 없습니다.</span>
+              </div>
+              <div class="page" th:if="${MyReviewPagination.totalElements != 0}">
+                <a class="page__left" th:if="${!MyReviewPagination.isFirstBlock()}"
+                   th:href="|/members/${nickname}?page=${MyReviewPagination.startPagePerBlock - MyReviewPagination.blockSize - 1}&sort=${MyReviewPagination.sortField},${MyReviewPagination.sortDirection}|">&lt;</a>
+                <th:block
+                        th:each="page : ${#numbers.sequence(MyReviewPagination.startPagePerBlock,
+                    MyReviewPagination.isLastBlock() ? MyReviewPagination.totalPages : MyReviewPagination.endPagePerBlock)}">
+                  <a th:href="|/members/${nickname}?page=${page - 1}&sort=${MyReviewPagination.sortField},${MyReviewPagination.sortDirection}|" class="page__number"
+                     th:text="${page}" th:classappend="${MyReviewPagination.currentPage == page} ? 'page__number&#45;&#45;clicked'">1</a>
+                </th:block>
+
+                <a class="page__right" th:if="${!MyReviewPagination.isLastBlock()}"
+                   th:href="|/members/${nickname}?page=${MyReviewPagination.endPagePerBlock}&sort=${MyReviewPagination.sortField},${MyReviewPagination.sortDirection}|">&gt;</a>
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <aside th:replace="~{fragment/keywordModal :: keywordModal}"></aside>
+
+      <footer th:replace="~{fragment/footer :: footer}"></footer>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/b17793764c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/f6608f1ef9.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/SlideController.js"></script>
+    <script src="/js/myPage.js"></script>
+  </body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+<head>
+
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css"/>
+    <link
+            href="/image/components/pyeonsool-icon.svg"
+            rel="icon"
+            type="image/x-icon"
+    />
+    <link
+            rel="stylesheet"
+            type="text/css"
+            href="../css/components/header.css"
+    />
+    <link rel="stylesheet" type="text/css" href="/css/screens/listPage.css"/>
+    <title>상품 목록</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/screens/myPage.css"/>
+</head>
+<body>
+<div id="wrap">
+    <header th:replace="~{fragment/header :: header}"></header>
+
+    <div id="container">
+        <main>
+            <article>
+                <p class="alcohol-title" id="alcoholTitle" ></p>
+                <div class="best-group">
+                    <span class="best-text">추천베스트</span>
+                    <span clas="best-buttons">
+                <button class="best-button__left"><</button>
+                <button class="best-button__right">></button>
+              </span>
+                </div>
+            </article>
+
+            <article class="best-list">
+                <div class="best-list__wrap">
+                    <ul class="best-list__ul">
+                        <li th:each="best:${bestList}">
+                            <a href = "#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${best.alcoholId})}">
+                                <div class="best-list__li">
+                                <p class="best-list__mark">best</p>
+                                        <img
+                                                class="best-list__image"
+                                                src="/image/alcohol/cass.png"
+                                                th:src="${best.imagePath}"
+                                        />
+
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </main>
+
+        <section class="alcohol-list__total">
+            <h2 class="alcohol-list__text">상품 목록</h2>
+            <article class="alcohol-sort__list">
+                <form method="GET" action="/alcohols" th:object="${alcoholSearchForm}" class="sort-list">
+                    <input type="hidden" th:field="*{alcoholType}">
+                    <span class="sort-list__find">
+                        <input type="text" th:field="*{search}">
+                        <input id="alcohol-sort__submit" type="submit" style="display:none">
+                        <label for="alcohol-sort__submit"><i class="fas fa-search"></i></label>
+                    </span>
+
+                    <div class="sort-list__keyword">
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-1"
+                                    type="checkbox"
+                                    value="sweet"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('sweet') : false}"
+                            />
+                            <label
+                                    for="keyword-1"
+                                    class="sort-choice__keyword-label"
+                            >달콤함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-2"
+                                    type="checkbox"
+                                    value="clear"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('clear') : false}"
+                            />
+                            <label
+                                    for="keyword-2"
+                                    class="sort-choice__keyword-label"
+                            >깔끔함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-3"
+                                    type="checkbox"
+                                    value="cool"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('cool') : false}"
+                            />
+                            <label
+                                    for="keyword-3"
+                                    class="sort-choice__keyword-label"
+                            >청량함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-4"
+                                    type="checkbox"
+                                    value="heavy"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('heavy') : false}"
+                            />
+                            <label
+                                    for="keyword-4"
+                                    class="sort-choice__keyword-label"
+                            >무거움</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-5"
+                                    type="checkbox"
+                                    value="light"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('light') : false}"
+                            />
+                            <label
+                                    for="keyword-5"
+                                    class="sort-choice__keyword-label"
+                            >가벼움</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-6"
+                                    type="checkbox"
+                                    value="nutty"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('nutty') : false}"
+                            />
+                            <label
+                                    for="keyword-6"
+                                    class="sort-choice__keyword-label"
+                            >고소함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-7"
+                                    type="checkbox"
+                                    value="fresh"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('fresh') : false}"
+                            />
+                            <label
+                                    for="keyword-7"
+                                    class="sort-choice__keyword-label"
+                            >상큼함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-8"
+                                    type="checkbox"
+                                    value="flower"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('flower') : false}"
+                            />
+                            <label
+                                    for="keyword-8"
+                                    class="sort-choice__keyword-label"
+                            >꽃향</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-9"
+                                    type="checkbox"
+                                    value="bitter"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('bitter') : false}"
+                            />
+                            <label
+                                    for="keyword-9"
+                                    class="sort-choice__keyword-label"
+                            >쌉싸름함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-10"
+                                    type="checkbox"
+                                    value="unique"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('unique') : false}"
+                            />
+                            <label
+                                    for="keyword-10"
+                                    class="sort-choice__keyword-label"
+                            >독특함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-11"
+                                    type="checkbox"
+                                    value="strong"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('strong') : false}"
+                            />
+                            <label
+                                    for="keyword-11"
+                                    class="sort-choice__keyword-label"
+                            >도수 독함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-12"
+                                    type="checkbox"
+                                    value="middle"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('middle') : false}"
+                            />
+                            <label
+                                    for="keyword-12"
+                                    class="sort-choice__keyword-label"
+                            >도수 중간</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-13"
+                                    type="checkbox"
+                                    value="mild"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('mild') : false}"
+                            />
+                            <label
+                                    for="keyword-13"
+                                    class="sort-choice__keyword-label"
+                            >도수 순함</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-14"
+                                    type="checkbox"
+                                    value="white"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('white') : false}"
+                            />
+                            <label
+                                    for="keyword-14"
+                                    class="sort-choice__keyword-label"
+                            >화이트</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-15"
+                                    type="checkbox"
+                                    value="red"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('red') : false}"
+                            />
+                            <label
+                                    for="keyword-15"
+                                    class="sort-choice__keyword-label"
+                            >레드</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-16"
+                                    type="checkbox"
+                                    value="astringent"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('astringent') : false}"
+                            />
+                            <label
+                                    for="keyword-16"
+                                    class="sort-choice__keyword-label"
+                            >떫음</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-17"
+                                    type="checkbox"
+                                    value="fruit"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('fruit') : false}"
+                            />
+                            <label
+                                    for="keyword-17"
+                                    class="sort-choice__keyword-label"
+                            >과일향</label
+                            >
+                        </div>
+
+                        <div class="sort-choice__keyword">
+                            <input
+                                    id="keyword-18"
+                                    type="checkbox"
+                                    value="nonAlcoholic"
+                                    name="keywords"
+                                    class="sort-choice__keyword-input"
+                                    th:checked="${alcoholSearchForm.keywords != null ? alcoholSearchForm.keywords.contains('nonAlcoholic') : false}"
+                            />
+                            <label
+                                    for="keyword-18"
+                                    class="sort-choice__keyword-label"
+                            >무알콜</label
+                            >
+                        </div>
+                    </div>
+
+                    <span class="sort-list__select">
+                        <select class="vendor-List" name="vendorName">
+                          <option value="CU" data-image="/image/components/cu-logo.png"
+                                  th:selected="${alcoholSearchForm.vendorName} == 'CU'">
+                            cu
+                          </option>
+                          <option
+                                  value="GS25"
+                                  data-image="/image/components/cu-logo.png"
+                                  th:selected="${alcoholSearchForm.vendorName} == 'GS25'"
+                          >
+                            gs25
+                          </option>
+                          <option
+                                  value="SEVEN_ELEVEN"
+                                  data-image="/image/components/cu-logo.png"
+                                  th:selected="${alcoholSearchForm.vendorName} == 'SEVEN_ELEVEN'"
+                          >
+                            7-eleven
+                          </option>
+                </select>
+                        <select class="sort-option" name="sort">
+                          <option value="likeCount,DESC" th:selected="${typeListPagination.sortField}=='likeCount'">좋아요순</option>
+                          <option value="price,ASC" th:selected="${typeListPagination.sortField}=='price' and ${typeListPagination.sortDirection} =='ASC'">낮은 가격순</option>
+                          <option value="price,DESC" th:selected="${typeListPagination.sortField}=='price' and ${typeListPagination.sortDirection} =='DESC'">높은 가격순</option>
+                          <option value="abv,ASC" th:selected="${typeListPagination.sortField}=='abv' and ${typeListPagination.sortDirection} =='ASC'">낮은 도수순</option>
+                          <option value="abv,DESC" th:selected="${typeListPagination.sortField}=='abv' and ${typeListPagination.sortDirection} =='DESC'">높은 도수순</option>
+                        </select>
+                    </span>
+
+                </form>
+          </article>
+
+          <article>
+            <ul class="alcohol-list">
+                <div class="alcohol-list__no-exist" th:if="${typeList.isEmpty()}">
+                    <span>조회된 술이 없습니다.</span>
+                </div>
+              <li th:each="type :${typeList}">
+                <div class="alcohol-list__card" th:action="@{/typeList/}">
+                  <div class="alcohol-card__vendor">
+                      <th:block th:each="vendor : ${type.vendors}" th:switch="${vendor}">
+                        <img class="vendor-mark__gs25"src="/image/components/gs25-logo.png" th:case="GS25"/>
+                        <img class="vendor-mark__cu" src="/image/components/cu-logo.png" th:case="CU" />
+                        <img class="vendor-mark__7eleven" src="/image/components/7eleven-logo.png" th:case="SEVEN_ELEVEN" />
+                      </th:block>
+                  </div>
+                  <div class="alcohol-card__box">
+                    <div class="alcohol-card__image">
+                        <a href = "#" th:href="@{/alcohols/{alcoholId}(alcoholId = ${type.id})}">
+                            <img src="/image/alcohol/calsberg.jpg" th:src="${type.image}" alt="i"/>
+                        </a>
+                    </div>
+                    <div class="alcohol-card__like">
+                      <p><i class="fab fa-gratipay"></i><a th:text="${type.members}">></a>
+                        </p>
+                    </div>
+                  </div>
+                  <div class="alcohol-info">
+                      <div class="alcohol-info__name"><p  th:text="${type.name}" >테라 500mL</p></div>
+                    <p class="alcohol-info__cost" th:text="${#numbers.formatInteger(type.price,3,'COMMA')+'원'}">4,400원</p>
+                    <p class="alcohol-info__abv" th:text="${#numbers.formatInteger(type.abv,1,'COMMA')+'도'}">도</p>
+                  </div>
+                    <div class="alcohol-info__keyword" >
+                        <button th:each ="keyword:${type.keywords}" th:text="${keyword}">heavy</button>
+                    </div>
+                </div>
+              </li>
+            </ul>
+
+
+              <div class="listpage__page">
+                  <div class="page" th:if="${!typeList.isEmpty()}">
+                      <a class="page__left" th:if="${!typeListPagination.isFirstBlock()}"
+                         th:href ="|/alcohols?alcoholType=${typeList[0].type}&page=${typeListPagination.startPagePerBlock - typeListPagination.blockSize -1}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|"
+                      >&lt;</a>
+
+                      <th:block
+                              th:each="page : ${#numbers.sequence(typeListPagination.startPagePerBlock,
+                    typeListPagination.isLastBlock() ? typeListPagination.totalPages : typeListPagination.endPagePerBlock)}">
+                          <a th:href="|/alcohols?alcoholType=${typeList[0].type}&page=${page - 1}&search=${alcoholSearchForm.search}${keywordQueryParameters}&vendorName=${alcoholSearchForm.vendorName != null ? alcoholSearchForm.vendorName:''}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|" class="page__number"
+                             th:text="${page}" th:classappend="${typeListPagination.currentPage == page} ? 'page__number--clicked'">1</a>
+                      </th:block>
+
+                      <a class="page__right" th:if="${!typeListPagination.isLastBlock()}"
+                         th:href="|/alcohols?alcoholType=${typeList[0].type}&page=${typeListPagination.endPagePerBlock}&sort=${typeListPagination.sortField},${typeListPagination.sortDirection}|">&gt;</a>
+                  </div>
+              </div>
+          </article>
+        </section>
+
+        <aside></aside>
+    </div>
+
+    <aside th:replace="~{fragment/keywordModal :: keywordModal}"></aside>
+
+    <footer th:replace="~{fragment/footer :: footer}"></footer>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<script
+        src="https://kit.fontawesome.com/b17793764c.js"
+        crossorigin="anonymous"
+></script>
+<script src="/js/header.js"></script>
+<script src="/js/SlideController.js"></script>
+<script src="/js/listPage.js"></script>
+</body>
+</html>

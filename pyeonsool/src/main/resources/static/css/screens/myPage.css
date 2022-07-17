@@ -1,0 +1,380 @@
+@import url('../components/stars.css');
+@import url('../components/page.css');
+
+#container {
+  padding: 100px 150px 50px 150px; /*상 우 하 좌*/
+  width: 1500px;
+  margin: auto;
+}
+
+  .mypage-hello{
+    position: relative;
+    margin-left:-5px;
+   }
+.mypage-hello__user-nickname{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.mypage-hello__hi{
+  font-size: 25px;
+}
+   
+  /*내 Like 리스트 시작*/
+.mypage-like{
+  position: relative;
+  margin-top: 50px;
+}
+
+.mypage-like__title-name{
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 50px;
+  border-bottom: 1px solid var(--black);
+}
+
+
+.mypage-like__body{
+    width: 1180px;
+    padding: 10px 10px 0 10px;
+    margin-top: 15px;
+    margin-left:-5px;
+}
+
+
+.mypage-like__items {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 45px;
+    left: 10px;
+    transition: left 0.2s ease-in-out;
+    margin-top: 10px;
+}
+
+
+.mypage-like__item {
+    width: 255px;
+    height: 255px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 0.5px solid var(--light-gray);
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.mypage-like__item-image {
+    width: 50px;
+    height: 150px;
+}
+
+/*이미지에 마우스 올릴시 약간 커지는 효과 */
+.mypage-like__item:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+}
+
+.mypage-like__delete{
+  position: absolute;
+  margin-top: -190px;
+  margin-left: 190px;
+  z-index: 1;
+}
+
+.mypage-like__delete-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+}
+.mypage-like__delete-dislikebutton{
+    background: white;
+    border: none;
+}
+.mypage-like__delete-dislikebuttonstatus{
+
+}
+
+.mypage-like__delete-icon{
+  visibility: hidden;
+  border: none;
+  font-size: 20px;
+  color: rgb(117, 59, 252);
+  cursor: pointer;
+}
+
+.mypage-like__delete-icon:hover{
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/*이미지에 마우스 올릴시 x버튼 표시 */
+.mypage-like__item:hover i{
+  visibility: visible;
+  
+}
+
+
+
+
+/*내 Like 리스트 끝*/
+
+
+/*취향저격 편술 시작*/
+.mypage-mystyle{
+    position: relative;
+    margin-top: 50px;
+  }
+
+.mypage-mystyle__title-name{
+  font-size: 16px;
+  font-weight: bold;
+}
+
+
+.mypage-mystyle__body{
+      border-top: 1px solid var(--black);
+      position: relative;
+      width: 1180px;
+      height: 250px;
+      overflow: hidden;
+      padding: 10px 10px 0 10px;
+      margin-top: 15px;
+      margin-left:-5px;
+  }
+  
+  
+  .mypage-mystyle__items {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 30px;
+      position: absolute;
+      left: 10px;
+      transition: left 0.2s ease-in-out;
+      margin-top: 10px;
+  }
+  
+  
+  .mypage-mystyle__item {
+      width: 208px;
+      height: 208px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 0.5px solid var(--light-gray);
+      border-radius: 15px;
+      cursor: pointer;
+  }
+  
+  .mypage-mystyle__item-image {
+      width: 50px;
+      height: 150px;
+  }
+
+  /*이미지에 마우스 올릴시 약간 커지는 효과  */
+.mypage-mystyle__item:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+
+}
+
+/*슬라이드 버튼*/
+.slide-button {
+  position: absolute;
+  font-size: 30px;
+  color: var(--main-color);
+  font-weight: 900;
+  top: 51%;
+  cursor: pointer;
+}
+
+.slide-button--left {
+  left: -40px;
+}
+
+.slide-button--right {
+  right: -40px;
+}
+
+.mypage-mystyle__item:hover {
+  opacity: 0.8;
+  transform: scale(1.1);
+}
+/*취향저격 편술 끝*/
+
+
+/*내리뷰 리스트 시작*/
+.mypage-review {
+    position: relative;
+    width: 1180px;
+    margin-top: 70px;
+
+  }
+
+  /*내 리뷰 리스트 제목*/
+.mypage-review__title {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 50px;
+    border-bottom: 1px solid var(--black);
+  }
+
+/*내 리뷰 리스트 이미지*/
+.mypage-review__item{
+    display: flex;
+    gap: 30px;
+}
+
+.mypage-review__images{
+      display: flex;
+      width: 128px;
+      height: 128px;
+      justify-content: center;
+      align-items: center;
+      border: 0.5px solid var(--light-gray);
+      border-radius: 15px;
+      cursor: pointer;
+      margin-top: 20px;
+}
+
+.mypage-review__image {
+    width: 25px;
+    height: 75px;
+
+}
+
+/*이미지에 마우스 올릴시 약간 커지는 효과*/
+.mypage-review__images:hover {
+    opacity: 0.8;
+    border: 0.5px solid var(--black);
+    transform: scale(1.1);
+
+}
+
+/*내 리뷰 리스트 상품 정보*/
+.mypage-info{
+    width: 900px;
+    line-height: 30px;
+    margin-top: 30px;
+}
+
+.mypage-info{
+  display: flex;
+  flex-direction: column;
+}
+
+/*날짜*/
+
+/*고정 별점*/
+.my-review__fixed-stars {
+  display: flex;
+}
+
+.my-review__fixed-star {
+  color: var(--light-gray);
+}
+
+.my-review__fixed-star--selected {
+  color: rgb(252, 238, 33);
+} 
+
+/*수정시 나타나는 별점*/
+.my-review__stars{
+  width: 72px;
+}
+
+/*리뷰 내용*/
+
+/*리뷰 내용*/ 
+/*리뷰 내용textarea*/
+.my-review__textarea,
+.my-review__content {
+  width: 1030px;
+  resize: none;
+  border: none;
+  outline: none;
+  margin: 17px 0 0 2px;
+  font-size: 15px;
+}
+
+.my-review__textarea {
+  border: 0.5px solid black;
+  height: 120px;
+  border-radius: 5px;
+  padding: 5px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  line-height: 20px;
+}
+
+.my-review__textarea::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.my-review__content {
+  margin-left: -5px;
+  line-height: 25px;
+}
+
+/*추천,비추천*/
+.mypage-review__preference {
+    display: flex;
+    gap: 15px;
+    font-size: 13px;
+  }
+  
+  .mypage-recommendation,
+  .mypage-norecommendation {
+
+    font-weight: bold;
+  }
+
+/*내 리뷰 리스트 수정 삭제 등록 취소*/
+.my-review__buttons,
+.my-review__editor {
+    display: flex;
+    gap: 5px;
+    height: 20px;
+    margin-top: 37px;
+}
+
+.my-review__editor{
+  width: 100px;
+  margin-left: 10px;
+
+}
+
+.my-review__edit-status,
+.my-review__delete,
+.my-review__edit,
+.my-review__cancel {
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/*삭제|수정에서 |이 부분 */
+.my-review__divider {
+    width: 0.5px;
+    height: 13px;
+    background-color: rgb(102, 102, 102);;
+}
+
+/*페이징*/
+.mypage__page {
+    margin-top: 70px;
+    margin-left: 20px;
+}
+
+.mypage__page__no-review {
+    display: flex;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: bolder;
+    margin-bottom: 20px;
+}
+/*내리뷰 리스트 끝*/

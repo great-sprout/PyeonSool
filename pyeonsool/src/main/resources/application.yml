@@ -1,0 +1,19 @@
+spring:
+  profiles:
+    active: prod
+
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        default_batch_fetch_size: 500
+
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+server:
+  servlet:
+    session:
+      tracking-modes: COOKIE

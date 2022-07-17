@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>키워드 모달</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="container">
+        <aside class="modal unvisible" th:fragment="keywordModal">
+          <form action="/keywords/edit" method="post" class="keyword-choice">
+            <div class="keyword-choice__cancel-wrap">
+              <i class="fas fa-times keyword-choice__cancel"></i>
+            </div>
+
+            <div class="keyword-choice__title">
+              <img
+                src="/image/components/pyeonsool-logo.svg"
+                alt="편술"
+                class="keyword-choice__logo"
+              />
+
+              <span class="keyword-choice__title-text"
+                >에 오신 것을 환영합니다</span
+              >
+            </div>
+
+            <div class="keyword-choice__description">
+              <span>당신만을 위한 편술,</span>
+              <span
+                >본인의 취향을
+                <span class="keyword-choice__choice-count">3가지</span>
+                선택해주세요</span
+              >
+            </div>
+
+            <div class="keyword-choice__keywords">
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-one"
+                        type="checkbox"
+                        value="sweet"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-one"
+                        class="keyword-choice__keyword-label"
+                >달콤함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-two"
+                        type="checkbox"
+                        value="clear"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-two"
+                        class="keyword-choice__keyword-label"
+                >깥끔함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-three"
+                        type="checkbox"
+                        value="cool"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-three"
+                        class="keyword-choice__keyword-label"
+                >청량함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-four"
+                        type="checkbox"
+                        value="heavy"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-four"
+                        class="keyword-choice__keyword-label"
+                >무거움</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-five"
+                        type="checkbox"
+                        value="light"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-five"
+                        class="keyword-choice__keyword-label"
+                >가벼움</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-six"
+                        type="checkbox"
+                        value="nutty"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-six"
+                        class="keyword-choice__keyword-label"
+                >고소함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-seven"
+                        type="checkbox"
+                        value="fresh"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-seven"
+                        class="keyword-choice__keyword-label"
+                >상큼함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-eight"
+                        type="checkbox"
+                        value="flower"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-eight"
+                        class="keyword-choice__keyword-label"
+                >꽃향</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-nine"
+                        type="checkbox"
+                        value="bitter"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-nine"
+                        class="keyword-choice__keyword-label"
+                >쌉싸름함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-ten"
+                        type="checkbox"
+                        value="unique"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-ten"
+                        class="keyword-choice__keyword-label"
+                >독특함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-eleven"
+                        type="checkbox"
+                        value="strong"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-eleven"
+                        class="keyword-choice__keyword-label"
+                >도수 독함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-twelve"
+                        type="checkbox"
+                        value="middle"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-twelve"
+                        class="keyword-choice__keyword-label"
+                >도수 중간</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-thirteen"
+                        type="checkbox"
+                        value="mild"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-thirteen"
+                        class="keyword-choice__keyword-label"
+                >도수 순함</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-fourteen"
+                        type="checkbox"
+                        value="white"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-fourteen"
+                        class="keyword-choice__keyword-label"
+                >화이트</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-fifteen"
+                        type="checkbox"
+                        value="red"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-fifteen"
+                        class="keyword-choice__keyword-label"
+                >레드</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-sixteen"
+                        type="checkbox"
+                        value="astringent"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-sixteen"
+                        class="keyword-choice__keyword-label"
+                >떫음</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-seventeen"
+                        type="checkbox"
+                        value="fruit"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-seventeen"
+                        class="keyword-choice__keyword-label"
+                >과일향</label
+                >
+              </div>
+
+              <div class="keyword-choice__keyword">
+                <input
+                        id="keyword-eighteen"
+                        type="checkbox"
+                        value="nonAlcoholic"
+                        name="keywords"
+                        class="keyword-choice__keyword-input"
+                />
+                <label
+                        for="keyword-eighteen"
+                        class="keyword-choice__keyword-label"
+                >무알콜</label
+                >
+              </div>
+            </div>
+
+            <input type="submit" value="확인" class="keyword-choice__confirm" />
+          </form>
+        </aside>
+      </div>
+
+    </div>
+  </body>
+</html>

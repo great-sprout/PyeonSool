@@ -1,0 +1,310 @@
+#container {
+    padding: 100px 120px 50px 120px;
+    width: 1500px;
+    margin: auto;
+}
+
+/** 편술에 대한 소개 **/
+.introduction {
+    display: flex;
+    justify-content: center;
+    gap: 250px;
+}
+.introduction__intro-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+}
+.introduction__p--header-text {
+    font-size: 77px;
+}
+.introduction__p--sub-text {
+    font-size: 23px;
+    margin: 10px;
+}
+.introduction__font-color {
+    color: var(--main-color);
+}
+
+/** 이달의 추천, 당신의 편술 **/
+.recommend {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.recommend__title {
+    padding: 200px 0px 50px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+.recommend h2 {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 28px;
+    font-weight: 800;
+}
+.recommend__month-title,
+.recommend__yours-title {
+    color: var(--dark-gray);
+}
+
+.recommend__selected-title {
+    color: var(--main-color);
+
+}
+
+/* 추천,편술 리스트 */
+.recommend__items-wrap {
+  width: 1140px;
+  height: 255px;
+  overflow: hidden;
+  position: relative;
+}
+
+.recommend__list {
+  position: relative;
+}
+
+.slide-button {
+    position: absolute;
+    font-size: 30px;
+    color: var(--main-color);
+    font-weight: 900;
+    top: 30%;
+    cursor: pointer;
+}
+
+.slide-button--left {
+  left: -40px;
+}
+
+.slide-button--right {
+  right: -40px;
+}
+
+.recommend__items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+  position: absolute;
+  left: 10px;
+  transition: left 0.2s ease-in-out;
+  padding-left: 8px;
+}
+
+.recommend__item {
+  width: 255px;
+  height: 255px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--light-gray);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.recommend__image {
+  height: 206px;
+}
+
+/*.blur {
+  filter: blur(15px);
+  -webkit-filter: blur(15px);
+}*/
+
+.recommend__view-hidden {
+    width: 1120px;
+    height: 248px;
+    background-image: url("../../image/components/blur-pyeonsool.png");
+}
+
+.recommend__button-box {
+    position: absolute;
+    top: 50px;
+    left: 385px;
+    border: 1px solid #999;
+    border-radius: 3px;
+    width: 350px;
+    height: 129px;
+    text-align: center;
+    padding: 40px;
+    background: white;
+}
+
+.recommend__button--login {
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 14px;
+    padding: 13px 25px 10px 25px;
+    text-align: center;
+    color: white;
+    line-height: 22px;
+    background: #753BFC;
+    font-family: 'NanumSquareRound',sans-serif;
+}
+
+.recommend__button--login:hover {
+    background: #600FFF;
+}
+
+.recommend__count-circles {
+    margin: 50px 0px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.recommend__count-circle {
+    width: 10px;
+    height: 10px;
+    background-color: var(--light-gray);
+    border-radius: 50%;
+}
+
+.recommend__count-circle--selected {
+    background-color: var(--main-color);
+}
+/** 베스트 Like **/
+.best-like {
+    padding-top: 50px;
+}
+
+.best-like__title{
+    width: 1350px;
+}
+
+.best-like__h1--main-title {
+    font-size: 34px;
+    font-weight: bold;
+    margin-left: 60px;
+}
+.best-like__sub-title {
+    display: flex;
+    gap:900px;
+    padding-top: 30px;
+    margin-left: 60px;
+}
+.best-like__category {
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+}
+.best-like h2 {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'NanumSquareRound',sans-serif;
+}
+.best-like__category h2 {
+    padding: 0px;
+    font-size: 22px;
+}
+.best-like__soju-title,
+.best-like__beer-title,
+.best-like__wine-title
+{
+    color: var(--dark-gray);
+}
+.best-like__selected-title{
+    color: var(--main-color);
+}
+.best-like__see-all a {
+    font-size: 14px;
+}
+
+/* 베스트 Like alcohol리스트 */
+.best-like__list {
+    display: flex;
+    flex-direction: column;
+}
+.best-like__list-first-row {
+    margin-top: 50px;
+    margin-left: 60px;
+    display: flex;
+    gap: 200px;
+}
+.best-like__list-second-row {
+    margin-top: 50px;
+    margin-left: 60px;
+    padding-bottom: 40px;
+    display: flex;
+    gap: 200px;
+}
+.best-like__item {
+    display: flex;
+}
+
+/* 베스트 Like 이미지 */
+.best-like__image-box {
+    display: flex;
+    border: 1px solid var(--light-gray);
+    border-radius: 15px;
+    width: 255px;
+    height: 255px;
+    align-items: center;
+    justify-content: center;
+}
+.best-like__image {
+    max-height: 206px;
+}
+
+/* 베스트 Like 술 관련정보 */
+.best-like__alcohol-info {
+    padding-left: 20px;
+}
+.best-like__alcohol-name {
+    margin: 10px;
+    font-size: 15px;
+    width: 150px;
+    height: 40px;
+}
+.best-like__alcohol-price {
+    margin: 10px;
+    font-size: 13px;
+}
+.best-like__alcohol-abv {
+    margin: 10px;
+    font-size: 13px;
+}
+.best-like__alcohol-like {
+    margin: 10px;
+}
+.best-like__alcohol-like-image {
+    vertical-align: middle;
+}
+.best-like__alcohol-like-count {
+    padding-left: 5px;
+    font-size: 13px;
+}
+.best-like__alcohol-tag {
+    padding-top: 90px;
+    padding-left: 5px;
+    display: flex;
+    gap: 5px;
+}
+.best-like__alcohol-tag-box {
+    display: table;
+    width: 53px;
+    height: 28px;
+    border: 1px solid var(--main-color);
+    border-radius: 5px;
+    text-align: center;
+}
+.best-like__alcohol-tag-name {
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--main-color);
+}

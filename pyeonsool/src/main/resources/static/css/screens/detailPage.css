@@ -1,0 +1,478 @@
+@import url('../components/stars.css');
+@import url('../components/page.css');
+
+#container {
+  padding: 100px 120px 50px 120px;
+  width: 1500px;
+  margin: auto;
+}
+
+main {
+  margin-bottom: 80px;
+}
+.alcohol-info {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  height: 560px;
+}
+
+/* alcohol-info__left-column 시작 */
+.alcohol-info__image-wrap {
+  width: 467px;
+  height: 504px;
+  border: 1px solid var(--light-gray);
+  border-radius: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.alcohol-info__image {
+  width: 100px;
+  height: 350px;
+}
+/* alcohol-info__left-column 끝 */
+/* alcohol-info__right-column 시작 */
+/* alcohol-info 시작 */
+.alcohol-info__right-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.alcohol-info__name {
+  margin-top: 20px;
+  font-size: 27px;
+  font-weight: bold;
+}
+
+.alcohol-info__contents {
+  width: 525px;
+  border-top: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--light-gray);
+  line-height: 50px;
+  font-size: 20px;
+  padding: 10px 0;
+  margin: 17px 0px 24px 0;
+}
+
+.alcohol-info__price,
+.alcohol-info__content,
+.alcohol-info__taste,
+.alcohol-info__sugar,
+.alcohol-info__body,
+.alcohol-info__rating,
+.alcohol-info__vendor,
+.alcohol-info__manufacturer,
+.alcohol-info__origin {
+  display: flex;
+  align-items: center;
+}
+
+.alcohol-info__price-key,
+.alcohol-info__content-key,
+.alcohol-info__sugar-key,
+.alcohol-info__body-key,
+.alcohol-info__rating-key,
+.alcohol-info__vendor-key,
+.alcohol-info__manufacturer-key,
+.alcohol-info__origin-key {
+  display: block;
+  width: 60px;
+  text-align: center;
+  margin-right: 25px;
+  font-weight: bold;
+}
+
+.alcohol-info__taste {
+  gap: 70px;
+}
+
+.alcohol-info__sugar-values,
+.alcohol-info__body-values {
+  width: 135px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.alcohol-info__sugar-value,
+.alcohol-info__body-value {
+  background-color: var(--main-color);
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+}
+
+.alcohol-info__sugar-value:first-child,
+.alcohol-info__body-value:first-child {
+  opacity: 0.2;
+}
+
+.alcohol-info__sugar-value:nth-child(2),
+.alcohol-info__body-value:nth-child(2) {
+  opacity: 0.4;
+}
+
+.alcohol-info__sugar-value:nth-child(3),
+.alcohol-info__body-value:nth-child(3) {
+  opacity: 0.6;
+}
+
+.alcohol-info__sugar-value:nth-child(4),
+.alcohol-info__body-value:nth-child(4) {
+  opacity: 0.8;
+}
+
+.alcohol-info__vendor-values {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.alcohol-info__vendor-value--cu {
+  width: 50px;
+  height: 40px;
+}
+
+.alcohol-info__vendor-value--gs25 {
+  width: 60px;
+  height: 24px;
+}
+
+.alcohol-info__vendor-value--7eleven {
+  width: 20px;
+  height: 25px;
+}
+
+.alcohol-info__keywords {
+  margin: 20px 0px;
+  color: var(--main-color);
+  font-weight: 900;
+  font-size: 19px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  line-height: 15px;
+}
+
+.alcohol-info__buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.alcohol-info__buttons > button:active {
+  opacity: 0.8;
+}
+
+.alcohol-info__like-button {
+  width: 307px;
+  height: 54px;
+  border-radius: 20px;
+  border: 1px solid var(--heart-color);
+  background-color: white;
+  font-size: 23px;
+  cursor: pointer;
+}
+
+.alcohol-info__like-button .fas {
+  font-size: 20px;
+  color: var(--heart-color);
+}
+
+.alcohol-info__like-button--liked {
+  background-color: var(--heart-color);
+  color: white;
+}
+
+.alcohol-info__like-button--liked > .fas {
+  color: white;
+}
+
+.alcohol-info__share-button {
+  width: 202px;
+  height: 54px;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: 600;
+  border: none;
+  background-color: var(--yellow);
+  cursor: pointer;
+}
+/* alcohol-info 끝 */
+/* alcohol-info__right-column 끝 */
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+/* alcohol-recommendation 시작 */
+.alcohol-recommendation {
+  position: relative;
+}
+
+.alcohol-recommendation__title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+.slide-button {
+  position: absolute;
+  font-size: 30px;
+  color: var(--main-color);
+  font-weight: 900;
+  top: 51%;
+  cursor: pointer;
+}
+
+.slide-button--left {
+  left: -40px;
+}
+
+.slide-button--right {
+  right: -40px;
+}
+
+.alcohol-recommendation__body {
+  width: 1180px;
+  height: 230px;
+  overflow: hidden;
+  position: relative;
+  padding: 10px 10px 0 10px;
+}
+
+.alcohol-recommendation__items {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  position: absolute;
+  left: 10px;
+  transition: left 0.2s ease-in-out;
+}
+
+.alcohol-recommendation__item {
+  width: 208px;
+  height: 208px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.5px solid var(--light-gray);
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.alcohol-recommendation__item:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+
+.alcohol-recommendation__image {
+  width: 50px;
+  height: 150px;
+}
+/* alcohol-recommendation 끝 */
+/* alcohol-review 시작 */
+.alcohol-review {
+  width: 1160px;
+  margin-top: 70px;
+}
+
+.alcohol-review__title {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.review-form__stars {
+  gap: 5px;
+  justify-content: flex-end;
+  margin: 20px 0 10px 0;
+}
+
+.review-form__star {
+  font-size: 26px;
+}
+
+.review-form__textarea {
+  width: 100%;
+  height: 92px;
+  border-radius: 7px;
+  outline: none;
+  resize: none;
+  padding: 5px;
+}
+
+.review-form__submit-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+
+.review-form__submit {
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  width: 74px;
+  height: 29px;
+  border-radius: 3px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.review-area {
+  margin-top: 20px;
+}
+
+.review-area__order {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.review-area__selected-order {
+  color: var(--main-color);
+}
+
+.review-area__order-divider {
+  width: 1px;
+  height: 20px;
+  background-color: black;
+}
+
+.reviews {
+  border-bottom: 0.5px solid rgb(153, 153, 153);
+  margin-top: 15px;
+}
+
+.review {
+  border-top: 0.5px solid rgb(153, 153, 153);
+  padding: 15px 0 15px 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.review__row:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 5px;
+}
+
+.review__nickname,
+.review__buttons,
+.review__editor {
+  font-size: 13px;
+  color: rgb(102, 102, 102);
+  font-weight: bold;
+}
+
+.review__fixed-stars {
+  display: flex;
+}
+
+.review__fixed-star {
+  color: var(--light-gray);
+}
+
+.review__fixed-star--selected {
+  color: rgb(252, 238, 33);
+} 
+
+.review__buttons,
+.review__editor {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.review__edit-status,
+.review__delete,
+.review__edit,
+.review__cancel {
+  cursor: pointer;
+}
+
+.review__divider {
+  width: 0.5px;
+  height: 13px;
+  background-color: rgb(102, 102, 102);;
+}
+
+.review__textarea,
+.review__content {
+  width: 1050px;
+  resize: none;
+  border: none;
+  outline: none;
+  margin: 17px 0 0 2px;
+  font-size: 15px;
+}
+
+.review__textarea {
+  border: 0.5px solid black;
+  height: 120px;
+  border-radius: 5px;
+  padding: 5px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  line-height: 20px;
+}
+
+.review__textarea::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera*/
+}
+
+.review__content {
+  margin-left: 5px;
+  line-height: 25px;
+}
+
+.review__last-updated-date {
+  color: rgb(102, 102, 102);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.review__right-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.review__preference {
+  display: flex;
+  gap: 15px;
+  font-size: 13px;
+}
+
+.recommendation,
+.no-recommendation {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.review-area__page {
+  margin-top: 70px;
+}
+
+.review-area__no-review {
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+}
+/* alcohol-review 끝 */

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="/image/components/pyeonsool-icon.svg"
+      rel="icon"
+      type="image/x-icon"
+    />
+    <title>로그인</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="/css/screens/signIn.css" />
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="container">
+        <main>
+          <article class="sign-in">
+            <h1 class="sign-in__title">
+              <img
+                class="sign-in__logo"
+                src="/image/components/pyeonsool-logo.svg"
+                alt="pyeonsool-logo"
+                onclick="location.href='/'"
+              />
+            </h1>
+
+            <form th:action method="post" class="sign-in__form" th:object="${loginForm}">
+              <div class="sign-in__id-wrap">
+                <h2 class="sign-in__id">아이디</h2>
+
+                <input
+                  type="text"
+                  placeholder="아이디"
+                  class="sign-in__id-input"
+                  maxlength="20"
+                  required
+                  th:field="*{userId}"
+                  th:errorclass = "field-error"
+                />
+                <div class="field-error-message" th:errors="*{userId}">
+                </div>
+              </div>
+
+              <div class="sign-in__password-wrap">
+                <h2 class="sign-in__password">비밀번호</h2>
+
+                <input
+                  type="password"
+                  placeholder="비밀번호"
+                  class="sign-in__password-input"
+                  required
+                  minlength="4"
+                  maxlength="20"
+                  th:field="*{password}"
+                  th:errorclass = "field-error"
+                />
+                <div class="field-error-message" th:errors="*{password}">
+                </div>
+              </div>
+
+              <div th:if="${#fields.hasGlobalErrors()}" class="error-msg">
+                <p th:each="err : ${#fields.globalErrors()}" th:text="${err}">aaaaa</p>
+              </div>
+
+              <input type="submit" value="로그인" class="sign-in__submit" />
+
+              <div class="sign-in__find-account">
+                <a class="sign-in__find-id">아이디 찾기</a>
+
+                <div class="sign-in__find-account-divider"></div>
+
+                <a class="sign-in__find-password">비밀번호 찾기</a>
+              </div>
+            </form>
+
+            <div class="sign-in__confirm-member">
+              <span class="sign-in__member-question"
+                >아직 회원이 아니세요?</span
+              >
+
+              <a href="/members/add" class="sign-in__sign-up-link">회원가입</a>
+            </div>
+          </article>
+        </main>
+      </div>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/b17793764c.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

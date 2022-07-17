@@ -1,0 +1,141 @@
+@import url('../components/keyword.css');
+
+.header {
+  height: 105px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 54px;
+  border-bottom: 0.25pt solid rgba(145, 145, 145, 0.60);
+}
+
+.unvisible {
+  display: none !important;
+}
+
+.header i {
+  cursor: pointer;
+}
+
+.header__nav,
+.header__profile {
+  position: relative;
+}
+
+.list-nav,
+.header-profile {
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 0px 5px 1px var(--light-gray);
+  border-radius: 10px;
+  font-weight: 900;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  top: 50px;
+}
+
+.list-nav {
+  width: 96px;
+  height: 118px;
+  font-size: 13px;
+  gap: 16px;
+  left: -40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__nav > .fa-times {
+  color: var(--main-color);
+  font-size: 24px;
+}
+
+.header__nav > .fa-bars {
+  font-size: 22px;
+}
+
+.header__profile > .fa-user-circle {
+  font-size: 25px;
+}
+
+.logo {
+  width: 85px;
+  height: 32px;
+}
+
+.header-profile {
+  width: 190px;
+  height: 101px;
+  right: -26px;
+}
+
+.header-profile__triangle {
+  width: 20px;
+  height: 20px;
+  transform: rotate(45deg);
+  background-color: white;
+  position: absolute;
+  top: -8px;
+  right: 28px;
+  box-shadow: -3px -3px 0.8px 0.2px rgb(225, 225, 225);
+}
+
+.header-profile__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-profile__link {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 5px;
+  margin-bottom: 11px;
+}
+
+.header-profile__divider {
+  width: 0.25pt;
+  height: 13px;
+  background-color: rgb(102, 102, 102);
+}
+
+.header-profile__mypage,
+.header-profile__logout {
+  cursor: pointer;
+}
+
+.header-profile__logout {
+  background: white;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-size: 12px;
+  font-weight: bolder;
+  font-family: inherit;
+}
+
+.header-profile__keywords {
+  font-size: 10px;
+  color: white;
+  display: flex;
+  gap: 5px;
+}
+
+.header-profile__select-again-keyword-wrap {
+  width: 100%;
+  font-size: 4px;
+  color: var(--gray);
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 7px;
+  margin-right: 40px;
+}
+
+.header-profile__select-again-keyword {
+  border-bottom: 0.5px solid var(--gray);
+  cursor: pointer;
+}

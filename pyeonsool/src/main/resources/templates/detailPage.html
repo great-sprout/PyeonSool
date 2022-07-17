@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="/image/components/pyeonsool-icon.svg"
+      rel="icon"
+      type="image/x-icon"
+    />
+    <title>상세 페이지</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/css/screens/detailPage.css"
+    />
+  </head>
+  <body>
+    <div id="wrap">
+      <header th:replace="~{fragment/header :: header}"></header>
+
+      <div id="container">
+        <main>
+          <article class="alcohol-info">
+            <div class="alcohol-info__left-column">
+              <div class="alcohol-info__image-wrap">
+                <img
+                  src="/image/alcohol/chamisul.png"
+                  th:src="${alcoholDetails.imagePath}"
+                  alt="술 이미지"
+                  class="alcohol-info__image"
+                />
+              </div>
+            </div>
+
+            <div class="alcohol-info__right-column">
+              <h1 class="alcohol-info__name" th:text="${alcoholDetails.name}">참이슬 360mL</h1>
+
+              <div class="alcohol-info__contents">
+                <div class="alcohol-info__row alcohol-info__price">
+                  <span class="alcohol-info__price-key">가격</span>
+                  <span class="alcohol-info__price-value" th:text="${alcoholDetails.price}">1,190원</span>
+                </div>
+
+                <div class="alcohol-info__content">
+                  <span class="alcohol-info__content-key">도수</span>
+                  <span class="alcohol-info__content-value" th:text="${alcoholDetails.abv}">17.8도</span>
+                </div>
+
+                <div class="alcohol-info__taste"
+                     th:if="${alcoholDetails.type eq T(toyproject.pyeonsool.alcohol.domain.AlcoholType).WINE}">
+                  <div class="alcohol-info__sugar">
+                    <span class="alcohol-info__sugar-key">당도</span>
+
+                    <div class="alcohol-info__sugar-values">
+                      <div class="alcohol-info__sugar-value"
+                           th:each="num : ${#numbers.sequence(1, alcoholDetails.sugarContent)}"></div>
+
+                    </div>
+                  </div>
+
+                  <div class="alcohol-info__body">
+                    <span class="alcohol-info__body-key">바디</span>
+
+                    <div class="alcohol-info__body-values">
+                      <div class="alcohol-info__body-value"
+                           th:each="num : ${#numbers.sequence(1, alcoholDetails.body)}"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="alcohol-info__rating">
+                  <span class="alcohol-info__rating-key">별점</span>
+                  <span class="alcohol-info__rating-value" th:text="${alcoholDetails.grade}">4.3</span>
+                </div>
+
+                <div class="alcohol-info__vendor">
+                  <span class="alcohol-info__vendor-key">판매처</span>
+                  <span class="alcohol-info__vendor-values">
+                    <th:block th:each="vendor : ${alcoholDetails.vendors}" th:switch="${vendor}">
+                      <img
+                              src="/image/components/cu-logo.png"
+                              alt="cu"
+                              class="alcohol-info__vendor-value--cu"
+                              th:case="CU"
+                      />
+
+                      <img
+                              src="/image/components/gs25-logo.png"
+                              alt="gs25"
+                              class="alcohol-info__vendor-value--gs25"
+                              th:case="GS25"
+                      />
+
+                      <img
+                              src="/image/components/7eleven-logo.png"
+                              alt="7-eleven"
+                              class="alcohol-info__vendor-value--7eleven"
+                              th:case="SEVEN_ELEVEN"
+                      />
+                    </th:block>
+
+                  </span>
+                </div>
+
+                <div class="alcohol-info__manufacturer">
+                  <span class="alcohol-info__manufacturer-key">제조사</span>
+                  <span class="alcohol-info__manufacturer-value" th:text="${alcoholDetails.manufacturer}">(주)쌍용</span>
+                </div>
+
+                <div class="alcohol-info__origin">
+                  <span class="alcohol-info__origin-key">원산지</span>
+                  <span class="alcohol-info__origin-value" th:text="${alcoholDetails.origin}">대한민국</span>
+                </div>
+
+                <div class="alcohol-info__keywords">
+                  <span class="alcohol-info__keyword" th:each="keyword : ${alcoholDetails.keywords}"
+                        th:text="|#${keyword}|">#달콤함</span>
+
+                </div>
+              </div>
+
+              <div class="alcohol-info__buttons">
+                <button class="alcohol-info__like-button"
+                        th:classappend="${alcoholDetails.likeCurrentAlcohol} ? 'alcohol-info__like-button--liked'">
+                  <span class="alcohol-info__like-text">Like</span>
+                  <i class="fas fa-heart"></i>
+                </button>
+
+                <button class="alcohol-info__share-button"
+                        th:onclick="shareMessage([[${alcoholDetails.name}]])">
+                  <span class="alcohol-info__share-text">공유하기</span>
+                  <i class="fas fa-comment"></i>
+                </button>
+              </div>
+            </div>
+          </article>
+        </main>
+
+        <section>
+          <article class="alcohol-recommendation">
+            <h2 class="alcohol-recommendation__title">관련 추천</h2>
+
+            <div class="slide-button slide-button--left">&lt;</div>
+            <div class="slide-button slide-button--right">&gt;</div>
+
+            <div class="alcohol-recommendation__body">
+              <ul class="alcohol-recommendation__items">
+                <th:block th:each="relatedAlcohol : ${relatedAlcohols}">
+                <li
+                  class="alcohol-recommendation__item"
+                  onclick="location.href='#'"
+                  th:onclick="|location.href='@{/alcohols/{alcoholId}(alcoholId=${relatedAlcohol.alcoholId})}'|"
+                >
+                  <img
+                    src="/image/alcohol/chamisul.png"
+                    th:src="${relatedAlcohol.imagePath}"
+                    alt="alcohol"
+                    class="alcohol-recommendation__image"
+                  />
+                </li>
+                </th:block>
+              </ul>
+            </div>
+          </article>
+
+          <article class="alcohol-review">
+            <h2 class="alcohol-review__title">
+              한줄 리뷰
+              <span class="alcohol-review__count-wrap"
+                >(<span class="alcohol-review__count" th:text="${reviewPagination.totalElements}">143</span>개)</span
+              >
+            </h2>
+
+            <form action="/reviews/add" method="post" class="review-form" th:object="${reviewSaveForm}">
+              <input type="hidden" class="review-form__hidden" th:field="*{alcoholId}">
+
+              <div class="stars review-form__stars">
+                <th:block th:each="num : ${#numbers.sequence(5, 1)}">
+                  <input
+                          type="radio"
+                          value="5"
+                          class="stars__radio"
+                          required
+                          th:field="*{grade}"
+                          th:value="${num}"
+                  />
+                  <label th:for="${#ids.prev('grade')}" class="stars__star review-form__star"
+                  >★</label
+                  >
+                </th:block>
+              </div>
+
+              <textarea
+                class="review-form__textarea"
+                maxlength="300"
+                required
+                th:field="*{content}"
+              ></textarea>
+
+              <div class="review-form__submit-wrap">
+                <input type="button" value="등록" class="review-form__submit" />
+              </div>
+            </form>
+
+            <div class="review-area">
+              <div class="review-area__order">
+                <a th:href="|/alcohols/${alcoholId}|"
+                  class="review-area__latest-order"
+                  th:classappend="${reviewPagination.sortField == 'id'} ? 'review-area__selected-order'"
+                  >최신순</a
+                >
+                <div class="review-area__order-divider"></div>
+                <a th:href="|/alcohols/${alcoholId}?sort=recommendCount,DESC|"
+                   class="review-area__recommended-order"
+                   th:classappend="${reviewPagination.sortField == 'recommendCount'} ? 'review-area__selected-order'"
+                    >추천순</a>
+              </div>
+
+              <div class="reviews">
+                <th:block th:each="review : ${reviews}">
+                  <form class="review" th:number="${review.reviewId}" th:object="${review}">
+                    <div class="review__left-column">
+                      <div class="review__row">
+                        <span class="review__nickname" th:text="*{nickname}">알코홀릭</span>
+
+                        <div class="review__fixed-stars">
+                        <span
+                                class="review__fixed-star review__fixed-star--selected"
+                                th:each="num : ${#numbers.sequence(1, review.grade)}"
+                        >★</span
+                        >
+                          <span
+                                  class="review__fixed-star"
+                                  th:if="${review.grade < 5}" ? th:each="num : ${#numbers.sequence(review.grade + 1, 5)}"
+                          >★</span
+                          >
+                        </div>
+
+                        <div class="stars review__stars unvisible">
+                          <th:block th:each="num : ${#numbers.sequence(5, 1)}">
+                            <input
+                                    type="radio"
+                                    id="5-star--id-1"
+                                    name="grade"
+                                    th:value="${num}"
+                                    class="stars__radio"
+                                    required
+                                    th:id="|${num}-star-id-*{reviewId}|"
+                            />
+                            <label
+                                    for="5-star--id-1"
+                                    th:for="|${num}-star-id-*{reviewId}|"
+                                    class="stars__star review__star"
+                            >★</label
+                            >
+                          </th:block>
+                        </div>
+
+                        <th:block th:if="${session.loginMember != null and session.loginMember.id eq review.writerId}">
+                          <div class="review__buttons">
+                            <span class="review__edit-status">수정</span>
+                            <div class="review__divider"></div>
+                            <span class="review__delete">삭제</span>
+                          </div>
+
+                          <div class="review__editor unvisible">
+                            <span class="review__edit">등록</span>
+                            <div class="review__divider"></div>
+                            <span class="review__cancel">취소</span>
+                          </div>
+                        </th:block>
+                      </div>
+
+                      <div class="review__content" th:text="*{content}">
+                        역시 소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시
+                        소주는 참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                        참이슬이죠ㅎㅎ역시 소주는 참이슬이죠ㅎㅎ역시 소주는
+                      </div>
+
+                      <textarea
+                              class="review__textarea unvisible"
+                              name="content"
+                              maxlength="300"
+                              required
+                      ></textarea>
+                    </div>
+
+                    <div class="review__right-column">
+                      <span class="review__last-updated-date"
+                            th:text="${#temporals.format(review.lastModifiedDate, 'yyyy.MM.dd')}">2022.01.29</span>
+
+                      <div class="review__preference">
+                        <div class="recommendation">
+                          <i class="far fa-thumbs-up recommendation__icon"
+                             th:classappend="${review.myRecommendStatus == T(toyproject.pyeonsool.recommendedreview.domain.RecommendStatus).LIKE} ? 'unvisible'"></i>
+                          <i
+                              class="fas fa-thumbs-up recommendation__icon--clicked"
+                              th:classappend="${review.myRecommendStatus != T(toyproject.pyeonsool.recommendedreview.domain.RecommendStatus).LIKE} ? 'unvisible'"
+                          ></i>
+                          <span class="recommendation__count" th:text="*{getRecommendCount}">40</span>
+                        </div>
+
+                        <div class="no-recommendation">
+                          <i
+                                  class="far fa-thumbs-down no-recommendation__icon"
+                                  th:classappend="${review.myRecommendStatus == T(toyproject.pyeonsool.recommendedreview.domain.RecommendStatus).DISLIKE} ? 'unvisible'"
+                          ></i>
+                          <i
+                                  class="fas fa-thumbs-down no-recommendation__icon--clicked"
+                                  th:classappend="${review.myRecommendStatus != T(toyproject.pyeonsool.recommendedreview.domain.RecommendStatus).DISLIKE} ? 'unvisible'"
+
+                          ></i>
+                          <span class="no-recommendation__count" th:text="*{getNotRecommendCount}">15</span>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </th:block>
+
+              </div>
+
+              <div class="review-area__page">
+                <div class="review-area__no-review" th:if="${reviewPagination.totalElements == 0}">
+                  <span>등록된 리뷰가 없습니다.</span>
+                </div>
+                <div class="page" th:if="${reviewPagination.totalElements != 0}">
+                  <a class="page__left" th:if="${!reviewPagination.isFirstBlock()}"
+                     th:href="|/alcohols/${alcoholId}?page=${reviewPagination.startPagePerBlock - reviewPagination.blockSize - 1}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&lt;</a>
+                  <th:block
+                    th:each="page : ${#numbers.sequence(reviewPagination.startPagePerBlock,
+                    reviewPagination.isLastBlock() ? reviewPagination.totalPages : reviewPagination.endPagePerBlock)}">
+                    <a th:href="|/alcohols/${alcoholId}?page=${page - 1}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|" class="page__number"
+                       th:text="${page}" th:classappend="${reviewPagination.currentPage == page} ? 'page__number--clicked'">1</a>
+                  </th:block>
+
+                  <a class="page__right" th:if="${!reviewPagination.isLastBlock()}"
+                     th:href="|/alcohols/${alcoholId}?page=${reviewPagination.endPagePerBlock}&sort=${reviewPagination.sortField},${reviewPagination.sortDirection}|">&gt;</a>
+                </div>
+
+              </div>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <aside th:replace="~{fragment/keywordModal :: keywordModal}"></aside>
+
+      <footer th:replace="~{fragment/footer :: footer}"></footer>
+    </div>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script
+      src="https://kit.fontawesome.com/b17793764c.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/js/header.js"></script>
+    <script src="/js/SlideController.js"></script>
+    <script src="/js/detailPage.js"></script>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+.client-error,
+.server-error{
+    font-size: 30px;
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.server-error{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.server-error__texts {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    gap: 20px;
+}
+
+.server-error__status-code {
+    font-size: 25px;
+    color: #999999;
+}
+
+.server-error__status-message {
+    font-size: 30px;
+}

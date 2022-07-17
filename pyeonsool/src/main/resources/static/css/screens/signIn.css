@@ -1,0 +1,101 @@
+.sign-in {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.sign-in__title {
+  margin-bottom: 30px;
+}
+
+.sign-in__logo {
+  width: 125px;
+  height: 47px;
+  cursor: pointer;
+}
+
+.sign-in__form {
+  width: 452px;
+}
+
+.sign-in__id,
+.sign-in__password {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 8px;
+}
+
+.sign-in__id-input,
+.sign-in__password-input {
+  width: 452px;
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid rgb(34, 36, 51);
+  font-size: 15px;
+  padding: 0 10px;
+}
+
+.sign-in__id-input:focus,
+.sign-in__password-input:focus {
+  outline: 2px solid var(--main-color);
+  background-color: rgba(117, 59, 252, 0.07);
+}
+
+.sign-in__id-wrap {
+  margin-bottom: 30px;
+}
+
+.sign-in__password-wrap {
+  margin-bottom: 22.5px;
+}
+
+.sign-in__submit {
+  margin-top: 22.5px;
+  width: 452px;
+  height: 45px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  font-size: 16px;
+  font-weight: bolder;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.sign-in__find-account {
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: rgb(102, 102, 102);
+  gap: 10px;
+  margin-bottom: 50px;
+  font-weight: bold;
+}
+
+.sign-in__find-account-divider {
+  width: 1.5px;
+  height: 14px;
+  background-color: rgb(102, 102, 102);
+}
+
+.sign-in__confirm-member {
+  display: flex;
+  gap: 30px;
+  font-size: 14px;
+}
+
+.field-error-message {
+  margin-top: 10px;
+  margin-left: 5px;
+  color: var(--error-color);
+}
+
+.error-msg {
+  text-align: center;
+  color: var(--error-color);
+}
