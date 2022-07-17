@@ -383,12 +383,12 @@
                           </option>
                 </select>
                         <select class="sort-option" name="sort">
-                          <option value="likeCount,DESC" th:selected="${alcoholSearchForm.bySort} == 'likeCount,DESC'">좋아요순</option>
-                          <option value="price,ASC" th:selected="${alcoholSearchForm.bySort} == 'price,ASC'">낮은 가격순</option>
-                          <option value="price,DESC" th:selected="${alcoholSearchForm.bySort} == 'price,DESC'">높은 가격순</option>
-                          <option value="abv,ASC" th:selected="${alcoholSearchForm.bySort} == 'abv,ASC'">낮은 도수순</option>
-                          <option value="abv,DESC" th:selected="${alcoholSearchForm.bySort} == 'abv,DESC'">높은 도수순</option>
-                        </select  >
+                          <option value="likeCount,DESC" th:selected="${typeListPagination.sortField}=='likeCount'">좋아요순</option>
+                          <option value="price,ASC" th:selected="${typeListPagination.sortField}=='price' and ${typeListPagination.sortDirection} =='ASC'">낮은 가격순</option>
+                          <option value="price,DESC" th:selected="${typeListPagination.sortField}=='price' and ${typeListPagination.sortDirection} =='DESC'">높은 가격순</option>
+                          <option value="abv,ASC" th:selected="${typeListPagination.sortField}=='abv' and ${typeListPagination.sortDirection} =='ASC'">낮은 도수순</option>
+                          <option value="abv,DESC" th:selected="${typeListPagination.sortField}=='abv' and ${typeListPagination.sortDirection} =='DESC'">높은 도수순</option>
+                        </select>
                     </span>
 
                 </form>
