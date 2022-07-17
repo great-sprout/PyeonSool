@@ -62,6 +62,12 @@ public class AlcoholController {
             model.addAttribute("personalKeywords", memberService.getMyKeywordsKOR(loginMember.getId()));
         }
 
+        String keywordQueryParameters = "";
+        for (String keyword : alcoholSearchForm.getKeywords()) {
+            keywordQueryParameters += "&keywords=" + keyword;
+        }
+        model.addAttribute("keywordQueryParameters", keywordQueryParameters);
+
         return "listPage";
     }
 
