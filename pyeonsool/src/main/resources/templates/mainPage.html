@@ -126,14 +126,12 @@
                             <h2 class="best-like__wine-title">와인</h2>
                         </span>
                         <span class="best-like__see-all">
-                            <!-- TODO alcohol.type값을 넘겨주어야 함 -->
                             <a href="/alcohols?alcoholType=SOJU" class="best-like__button--see-all">모두보기 &gt;</a>
                         </span>
                     </div>
                 </div>
                 <!-- 베스트 Like 리스트 소주 부분 -->
                 <div class="best-like__list-soju">
-                    <!-- TODO thymeleaf: 타입별로 데이터 받기 -->
                     <div class="best-like__list-first-row">
                         <th:block th:each="soju : ${sojus}" th:if="${sojuStat.index}<2">
                             <div class="best-like__item">
@@ -174,7 +172,6 @@
                             </div>
                         </th:block>
                     </div>
-                    <!--second-row-->
                     <div class="best-like__list-second-row">
                         <th:block th:each="soju : ${sojus}" th:if="${sojuStat.index}>1">
                             <div class="best-like__item">
@@ -260,7 +257,6 @@
                             </div>
                         </th:block>
                     </div>
-                    <!--second-row-->
                     <div class="best-like__list-second-row">
                         <th:block th:each="beer : ${beers}" th:if="${beerStat.index}>1">
                             <div class="best-like__item">
@@ -345,7 +341,6 @@
                             </div>
                         </th:block>
                     </div>
-                    <!--second-row-->
                     <div class="best-like__list-second-row">
                         <th:block th:each="wine : ${wines}" th:if="${wineStat.index}>1">
                             <div class="best-like__item">
