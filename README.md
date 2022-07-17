@@ -12,6 +12,18 @@
 
 </br>
 
+<p align="center">
+<img src="https://img.shields.io/badge/JAVA-v11-blue">
+<img src="https://img.shields.io/badge/Spring_Boot-v2.7.0-green?logo=springboot">
+<img src="https://img.shields.io/badge/Spring_Data_JPA-green">
+<img src="https://img.shields.io/badge/Querydsl-blue">
+<img src="https://img.shields.io/badge/Thymeleaf-005F0F?logo=thymeleaf">
+<img src="https://img.shields.io/badge/Gradle-02303A?logo=gradle">
+<img src="https://img.shields.io/badge/JUnit5-gray?logo=junit5">
+<img src="https://img.shields.io/badge/Mockito-green">
+</p>
+
+
 ## 2. 제작 기간 & 참여 인원
 ### 1) 프로젝트 설계 및 개발
   - 기간 : 2022.6.2 ~ 7.5
