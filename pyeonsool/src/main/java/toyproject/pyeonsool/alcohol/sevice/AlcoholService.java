@@ -179,16 +179,15 @@ public class AlcoholService {
         return convertToAlcoholImage(preferredAlcoholRepository.getMonthAlcohols());
     }
 
-    //나의 키워드가 포함된 추천 알콜 조회
     public List<AlcoholImageDto> getYourAlcohols(Long loginMember) {
         return convertToAlcoholImage(preferredAlcoholRepository.getPreferredAlcoholByKeyword(loginMember));
     }
 
-    public List<BestLikeDto> getBestLike(AlcoholType alcoholType, int count) { //베스트 Like
-        List<BestLikeDto> alcoholTypeDetailsList = new ArrayList<>(); //해당 술 DTO List
+    public List<BestLikeDto> getBestLike(AlcoholType alcoholType, int count) {
+        List<BestLikeDto> alcoholTypeDetailsList = new ArrayList<>();
 
-        List<Long> preferList = preferredAlcoholRepository.getAlcoholByType(alcoholType, count); //alcohol_id List
-        //각각의 alcoholType에 맞는 DTO를 찾아 List에 담는다
+        List<Long> preferList = preferredAlcoholRepository.getAlcoholByType(alcoholType, count);
+
         for (Long alcoholId : preferList) {
             Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
             String alcoholImagePath = fileManager.getAlcoholImagePath(alcoholType, alcohol.getFileName());
