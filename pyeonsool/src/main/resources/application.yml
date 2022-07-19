@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    include: prod, prod-db
 
   jpa:
     open-in-view: false
