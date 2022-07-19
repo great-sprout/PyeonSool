@@ -11,13 +11,6 @@ plugins {
 	id 'java'
 }
 
-// Build executable jar
-tasks.jar {
-	enabled = true
-	// Remove `plain` postfix from jar file name
-	archiveClassifier.set("")
-}
-
 group = 'toy-project'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -73,3 +66,13 @@ compileQuerydsl {
 	options.annotationProcessorPath = configurations.querydsl
 }
 //querydsl 추가 끝
+
+
+jar {
+	enabled = false
+	manifest {
+		attributes(
+				'Main-Class': 'com.mypackage.MyClass'
+		)
+	}
+}
