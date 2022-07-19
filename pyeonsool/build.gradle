@@ -11,8 +11,11 @@ plugins {
 	id 'java'
 }
 
-jar {
-	enabled = false
+// Build executable jar
+tasks.jar {
+	enabled = true
+	// Remove `plain` postfix from jar file name
+	archiveClassifier.set("")
 }
 
 group = 'toy-project'
