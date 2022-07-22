@@ -31,7 +31,7 @@
   - 인원 : [최준영](https://github.com/JunYoung-C), [장수빈](https://github.com/Jangsue), [신지환](https://github.com/sjihwan), [원연욱](https://github.com/wyu950)
 
 ### 2) 프로젝트 보완 및 배포
-  - 기간 : 2022.7.6 ~ 7.17
+  - 기간 : 2022.7.6 ~ 7.21
   - 인원 : [최준영](https://github.com/JunYoung-C), [장수빈](https://github.com/Jangsue), [신지환](https://github.com/sjihwan)
 
 </br>
@@ -50,6 +50,7 @@
 </br>
 
 ## 4. 기술 스택
+### 1) Back-end
 
 </br>
 <p align="left">
@@ -59,7 +60,6 @@
     width="500" height ="100">
 </p>
 
-### 1) Back-end
 - Java 11
 - Spring Boot 2.7.0
 - Spring Data JPA
@@ -69,15 +69,18 @@
 - Junit5
 - Mockito
 
+### 2) DB
+
 </br>
 <p align="left">
 <img src="pyeonsool/src/main/resources/static/image/components/db-icon.png"
     width="300" height ="80">
 </p>
 
-### 2) DB
 - MySQL 8.0.28
 - H2
+
+### 3) Infra
 
 </br>
 <p align="left">
@@ -85,9 +88,9 @@
     width="100" height ="60">
 </p>
 
-
-### 3) Infra
 - AWS EC2
+
+### 4) Front-end
 
 </br>
 <p align="left">
@@ -95,8 +98,6 @@
     width="280" height ="90">
 </p>
 
-
-### 4) Front-end
 - HTML
 - CSS
 - JavaScript
