@@ -9,7 +9,7 @@
 </p>
 
 - 편술은 편의점 술 정보 제공, 추천 및 검색 서비스 입니다.
-
+- [편술 링크](http://ec2-3-34-208-247.ap-northeast-2.compute.amazonaws.com:8080/)
 </br>
 
 <p align="center">
@@ -52,7 +52,6 @@
 ## 4. 기술 스택
 ### 1) Back-end
 
-</br>
 <p align="left">
 <img src="pyeonsool/src/main/resources/static/image/components/backend-icon1.png"
     width="500" height ="100">
@@ -71,7 +70,6 @@
 
 ### 2) DB
 
-</br>
 <p align="left">
 <img src="pyeonsool/src/main/resources/static/image/components/db-icon.png"
     width="300" height ="80">
@@ -82,7 +80,6 @@
 
 ### 3) Infra
 
-</br>
 <p align="left">
 <img src="pyeonsool/src/main/resources/static/image/components/infra-icon.png"
     width="100" height ="60">
@@ -92,7 +89,6 @@
 
 ### 4) Front-end
 
-</br>
 <p align="left">
 <img src="pyeonsool/src/main/resources/static/image/components/frontend-icon.png"
     width="280" height ="90">
@@ -101,3 +97,8 @@
 - HTML
 - CSS
 - JavaScript
+
+</br>
+
+## 5. ERD 설계
+![pyeonsool-table.png](pyeonsool-table.png)
