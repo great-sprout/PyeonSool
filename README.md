@@ -101,3 +101,6 @@
 - HTML
 - CSS
 - JavaScript
+
+## 5. ERD 설계
+![pyeonsool-table.png](pyeonsool-table.png)
