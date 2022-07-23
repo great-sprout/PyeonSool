@@ -9,7 +9,7 @@
 </p>
 
 - 편술은 편의점 술 정보 제공, 추천 및 검색 서비스 입니다.
-
+- [편술 링크](http://ec2-3-34-208-247.ap-northeast-2.compute.amazonaws.com:8080/)
 </br>
 
 <p align="center">
