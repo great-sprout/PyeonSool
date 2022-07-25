@@ -334,7 +334,10 @@ function addReviewEvent() {
         const grade = reviewForm.querySelector(".stars__radio:checked").value;
         const content = reviewForm.querySelector(".review-form__textarea").value;
         const uri = window.location.href.split("/");
-        const alcoholId = uri[uri.length - 1];
+        let alcoholId = uri[uri.length - 1];
+        if (alcoholId.includes("?")) {
+            alcoholId = alcoholId.substring(0, alcoholId.indexOf("?"));
+        }
         const reviewSaveRequest = new Object();
         reviewSaveRequest.alcoholId = alcoholId;
         reviewSaveRequest.content = content;
