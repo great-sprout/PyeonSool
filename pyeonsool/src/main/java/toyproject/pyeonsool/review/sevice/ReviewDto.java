@@ -15,7 +15,7 @@ public class ReviewDto {
     private String nickname;
     private Byte grade;
     private String content;
-    private LocalDateTime lastModifiedDate;
+    private LocalDateTime createdDate;
     private Long recommendCount;
     private Long notRecommendCount;
     private RecommendStatus myRecommendStatus;
@@ -26,7 +26,7 @@ public class ReviewDto {
                 review.getMember().getNickname(),
                 review.getGrade(),
                 review.getContent(),
-                review.getLastModifiedDate(),
+                review.getCreatedDate(),
                 review.getRecommendCount(),
                 review.getNotRecommendCount(),
                 status);
