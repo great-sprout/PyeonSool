@@ -86,6 +86,7 @@
 </p>
 
 - AWS EC2
+- AWS RDS
 
 ### 4) Front-end
 
