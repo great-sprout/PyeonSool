@@ -49,7 +49,7 @@ public class AlcoholApiController {
     }
 
     private void validateAlcoholId(Long alcoholId) {
-        if (alcoholId < 0) {
+        if (alcoholId <= 0) {
             throw MUST_BE_POSITIVE_ALCOHOL_ID.getException();
         }
     }
