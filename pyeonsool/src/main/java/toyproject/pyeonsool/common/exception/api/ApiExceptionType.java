@@ -11,12 +11,13 @@ import toyproject.pyeonsool.common.exception.api.httpstatus.UnauthorizedExceptio
 public enum ApiExceptionType {
     // 요청 파라미터 관련 예외
     REQUIRED_ALCOHOL_ID(new BadRequestException("술 고유 번호는 필수입니다.")),
-    MUST_BE_POSITIVE_ALCOHOL_ID(new BadRequestException("유효하지 않은 술 고유 번호입니다.")),
+    MUST_BE_POSITIVE_ALCOHOL_ID(new BadRequestException("술 고유 번호는 0보다 커야합니다.")),
     REQUIRED_GRADE(new BadRequestException("평점은 필수입니다.")),
     LIMITED_RANGE_GRADE(new BadRequestException("평점은 1 ~ 5 사이로 선택하세요.")),
     NON_BLANK_REVIEW(new BadRequestException("리뷰는 공백일 수 없습니다.")),
     MAX_LENGTH_REVIEW(new BadRequestException("리뷰는 300자 이내로 작성하세요.")),
     REQUIRED_REVIEW_ID(new BadRequestException("리뷰 고유 번호는 필수입니다.")),
+    MUST_BE_POSITIVE_REVIEW_ID(new BadRequestException("리뷰 고유 번호는 0보다 커야합니다.")),
     MAX_PREFERRED_ALCOHOL_COUNT(new BadRequestException("선호하는 술은 최대 12개까지 지정할 수 있습니다.")),
 
     // 로그인 관련 예외
