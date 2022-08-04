@@ -41,7 +41,7 @@ class AlcoholApiControllerTest {
     }
 
     @Nested
-    class likeAlcoholTest {
+    class LikeAlcoholTest {
         @Test
         void should_Success() throws Exception {
             //given
@@ -92,7 +92,7 @@ class AlcoholApiControllerTest {
     }
 
     @Nested
-    class dislikeAlcoholTest {
+    class DislikeAlcoholTest {
         @Test
         void should_Success() throws Exception {
             //given
