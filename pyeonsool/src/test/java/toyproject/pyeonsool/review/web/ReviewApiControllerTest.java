@@ -441,12 +441,106 @@ class ReviewApiControllerTest {
         }
     }
 
-    @Test
-    void cancelRecommendation() {
+    @Nested
+    class CancelRecommendReviewTest {
+        @Test
+        void should_Success() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(delete("/reviews/2/recommend")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8"))
+                    .andExpect(status().isOk());
+        }
+
+        @Test
+        void should_Fail_When_DoNotLogin() throws Exception {
+            //given
+            //when
+            //then
+            mvc.perform(delete("/reviews/2/recommend")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8"))
+                    .andExpect(status().isUnauthorized())
+                    .andExpect(jsonPath("$.status").value("401"))
+                    .andExpect(jsonPath("$.message").value("로그인 후 이용해주세요."));
+        }
+
+        @Test
+        void should_Fail_When_ReviewIdIsNotPositive() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(delete("/reviews/0/recommend")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8"))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.status").value("400"))
+                    .andExpect(jsonPath("$.message").value("리뷰 고유 번호는 0보다 커야합니다."));
+        }
     }
 
-    @Test
-    void cancelNotRecommendation() {
+    @Nested
+    class CancelNotRecommendReviewTest {
+        @Test
+        void should_Success() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(delete("/reviews/2/not-recommend")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8"))
+                    .andExpect(status().isOk());
+        }
+
+        @Test
+        void should_Fail_When_DoNotLogin() throws Exception {
+            //given
+            //when
+            //then
+            mvc.perform(delete("/reviews/2/not-recommend")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8"))
+                    .andExpect(status().isUnauthorized())
+                    .andExpect(jsonPath("$.status").value("401"))
+                    .andExpect(jsonPath("$.message").value("로그인 후 이용해주세요."));
+        }
+
+        @Test
+        void should_Fail_When_ReviewIdIsNotPositive() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(delete("/reviews/0/not-recommend")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8"))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.status").value("400"))
+                    .andExpect(jsonPath("$.message").value("리뷰 고유 번호는 0보다 커야합니다."));
+        }
     }
 
     @Nested
