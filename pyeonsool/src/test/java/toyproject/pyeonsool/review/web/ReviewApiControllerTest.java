@@ -22,6 +22,7 @@ import toyproject.pyeonsool.review.sevice.ReviewService;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -100,7 +101,7 @@ class ReviewApiControllerTest {
         }
 
         @Test
-        void should_Fail_When_AlcoholIdIsInvalid() throws Exception {
+        void should_Fail_When_AlcoholIdIsNotPositive() throws Exception {
             //given
             MockHttpSession session = new MockHttpSession();
             session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
@@ -115,7 +116,7 @@ class ReviewApiControllerTest {
                             .content("{\"alcoholId\" : -1, \"grade\" :  3, \"content\" :  \"테스트 댓글\"}"))
                     .andExpect(status().isBadRequest())
                     .andExpect(jsonPath("$.status").value("400"))
-                    .andExpect(jsonPath("$.message").value("유효하지 않은 술 고유 번호입니다."));
+                    .andExpect(jsonPath("$.message").value("술 고유 번호는 0보다 커야합니다."));
         }
 
         @ParameterizedTest
@@ -202,8 +203,141 @@ class ReviewApiControllerTest {
         }
     }
 
-    @Test
-    void editReview() {
+    @Nested
+    class EditReviewTest {
+        @Test
+        void should_Success() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(patch("/reviews/2/edit")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8")
+                            .content("{\"grade\" :  3, \"content\" :  \"테스트 댓글\"}"))
+                    .andExpect(status().isOk());
+        }
+
+        @Test
+        void should_Fail_When_DoNotLogin() throws Exception {
+            //given
+            //when
+            //then
+            mvc.perform(patch("/reviews/2/edit")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8")
+                            .content("{\"grade\" :  3, \"content\" :  \"테스트 댓글\"}"))
+                    .andExpect(status().isUnauthorized())
+                    .andExpect(jsonPath("$.status").value("401"))
+                    .andExpect(jsonPath("$.message").value("로그인 후 이용해주세요."));
+        }
+
+        @Test
+        void should_Fail_When_ReviewIdIsNotPositive() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(patch("/reviews/0/edit")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8")
+                            .content("{\"grade\" :  3, \"content\" :  \"테스트 댓글\"}"))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.status").value("400"))
+                    .andExpect(jsonPath("$.message").value("리뷰 고유 번호는 0보다 커야합니다."));
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = {0, 6})
+        void should_Fail_When_GradeIsInvalid(int grade) throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(patch("/reviews/2/edit")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8")
+                            .content(String.format(
+                                    "{\"grade\" :  %d, \"content\" :  \"테스트 댓글\"}", grade)))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.status").value("400"))
+                    .andExpect(jsonPath("$.message").value("평점은 1 ~ 5 사이로 선택하세요."));
+        }
+
+        @Test
+        void should_Fail_When_GradeIsNull() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(patch("/reviews/2/edit")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8")
+                            .content("{\"content\" :  \"테스트 댓글\"}"))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.status").value("400"))
+                    .andExpect(jsonPath("$.message").value("평점은 필수입니다."));
+        }
+
+        @Test
+        void should_Fail_When_ContentIsNull() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+
+            //when
+            //then
+            mvc.perform(patch("/reviews/2/edit")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8")
+                            .content("{\"grade\" :  3}"))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.status").value("400"))
+                    .andExpect(jsonPath("$.message").value("리뷰는 공백일 수 없습니다."));
+        }
+
+        @Test
+        void should_Fail_When_ContentLengthIsGreaterThan300() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
+            StringBuilder content = new StringBuilder();
+            for (int i = 0; i < 301; i++) {
+                content.append("ㅁ");
+            }
+
+            //when
+            //then
+            mvc.perform(patch("/reviews/2/edit")
+                            .session(session)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .accept(MediaType.APPLICATION_JSON)
+                            .characterEncoding("UTF-8")
+                            .content(String.format(
+                                    "{\"grade\" :  3, \"content\" :  \"%s\"}", content)))
+                    .andExpect(status().isBadRequest())
+                    .andExpect(jsonPath("$.status").value("400"))
+                    .andExpect(jsonPath("$.message").value("리뷰는 300자 이내로 작성하세요."));
+        }
     }
 
     @Test

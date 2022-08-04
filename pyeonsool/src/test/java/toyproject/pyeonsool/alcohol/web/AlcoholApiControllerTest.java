@@ -73,7 +73,7 @@ class AlcoholApiControllerTest {
         }
 
         @Test
-        void should_Fail_When_AlcoholIdIsInvalid() throws Exception {
+        void should_Fail_When_AlcoholIdIsNotPositive() throws Exception {
             //given
             MockHttpSession session = new MockHttpSession();
             session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
@@ -87,7 +87,7 @@ class AlcoholApiControllerTest {
                             .characterEncoding("UTF-8"))
                     .andExpect(status().isBadRequest())
                     .andExpect(jsonPath("$.status").value("400"))
-                    .andExpect(jsonPath("$.message").value("유효하지 않은 술 고유 번호입니다."));
+                    .andExpect(jsonPath("$.message").value("술 고유 번호는 0보다 커야합니다."));
         }
     }
 
@@ -124,7 +124,7 @@ class AlcoholApiControllerTest {
         }
 
         @Test
-        void should_Fail_When_AlcoholIdIsInvalid() throws Exception {
+        void should_Fail_When_AlcoholIdIsNotPositive() throws Exception {
             //given
             MockHttpSession session = new MockHttpSession();
             session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
@@ -138,7 +138,7 @@ class AlcoholApiControllerTest {
                             .characterEncoding("UTF-8"))
                     .andExpect(status().isBadRequest())
                     .andExpect(jsonPath("$.status").value("400"))
-                    .andExpect(jsonPath("$.message").value("유효하지 않은 술 고유 번호입니다."));
+                    .andExpect(jsonPath("$.message").value("술 고유 번호는 0보다 커야합니다."));
         }
     }
 
