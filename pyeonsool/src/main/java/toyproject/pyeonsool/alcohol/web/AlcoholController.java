@@ -24,7 +24,7 @@ import toyproject.pyeonsool.review.web.ReviewSaveRequest;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.REQUIRED_ALCOHOL_ID;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.INVALID_ALCOHOL_ID;
 
 @Controller
 @RequestMapping("/alcohols")
@@ -115,8 +115,8 @@ public class AlcoholController {
     }
 
     private void validateAlcoholId(Long alcoholId) {
-        if (isNull(alcoholId)) {
-            throw REQUIRED_ALCOHOL_ID.getException();
+        if (alcoholId < 0) {
+            throw INVALID_ALCOHOL_ID.getException();
         }
     }
 
