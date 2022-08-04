@@ -10,7 +10,8 @@ import toyproject.pyeonsool.common.exception.api.httpstatus.UnauthorizedExceptio
 @RequiredArgsConstructor
 public enum ApiExceptionType {
     // 요청 파라미터 관련 예외
-    INVALID_ALCOHOL_ID(new BadRequestException("유효하지 않은 술 고유 번호입니다.")),
+    REQUIRED_ALCOHOL_ID(new BadRequestException("술 고유 번호는 필수입니다.")),
+    MUST_BE_POSITIVE_ALCOHOL_ID(new BadRequestException("유효하지 않은 술 고유 번호입니다.")),
     REQUIRED_GRADE(new BadRequestException("평점은 필수입니다.")),
     LIMITED_RANGE_GRADE(new BadRequestException("평점은 1 ~ 5 사이로 선택하세요.")),
     NON_BLANK_REVIEW(new BadRequestException("리뷰는 공백일 수 없습니다.")),

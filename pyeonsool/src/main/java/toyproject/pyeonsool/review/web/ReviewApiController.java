@@ -67,8 +67,12 @@ public class ReviewApiController {
     }
 
     private void validateAlcoholId(Long alcoholId) {
+        if (isNull(alcoholId)) {
+            throw REQUIRED_ALCOHOL_ID.getException();
+        }
+
         if (alcoholId < 0) {
-            throw INVALID_ALCOHOL_ID.getException();
+            throw MUST_BE_POSITIVE_ALCOHOL_ID.getException();
         }
     }
 
