@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import toyproject.pyeonsool.AppConfig;
+import toyproject.pyeonsool.DBConfig;
 import toyproject.pyeonsool.alcohol.domain.Alcohol;
 import toyproject.pyeonsool.member.domain.Member;
 import toyproject.pyeonsool.review.domain.Review;
@@ -20,7 +20,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static toyproject.pyeonsool.alcohol.domain.AlcoholType.BEER;
 
 @DataJpaTest
-@Import(AppConfig.class)
+@Import(DBConfig.class)
 class ReviewRepositoryTest {
 
     @Autowired

@@ -6,7 +6,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import toyproject.pyeonsool.AppConfig;
+import toyproject.pyeonsool.DBConfig;
 import toyproject.pyeonsool.alcohol.domain.Alcohol;
 import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 import toyproject.pyeonsool.member.domain.Member;
@@ -14,13 +14,12 @@ import toyproject.pyeonsool.preferredalcohol.repository.PreferredAlcoholReposito
 import toyproject.pyeonsool.review.domain.Review;
 
 import javax.persistence.EntityManager;
-
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@Import(AppConfig.class)
+@Import(DBConfig.class)
 public class ReviewCustomRepositoryImplTest {
 
     @Autowired

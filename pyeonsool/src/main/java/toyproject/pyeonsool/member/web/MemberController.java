@@ -77,8 +77,8 @@ public class MemberController {
     }
 
     @PostMapping("/login")
-    public String login(@Valid LoginForm loginForm, @RequestParam(defaultValue = "/") String redirectURL,
-                        HttpServletRequest request, BindingResult bindingResult) {
+    public String login(@Valid LoginForm loginForm, BindingResult bindingResult,
+                        @RequestParam(defaultValue = "/") String redirectURL, HttpServletRequest request) {
         if (!bindingResult.hasFieldErrors()) {
             try {
                 HttpSession session = request.getSession(true);

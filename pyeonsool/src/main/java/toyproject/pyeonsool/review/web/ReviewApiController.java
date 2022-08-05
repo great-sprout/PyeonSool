@@ -70,6 +70,10 @@ public class ReviewApiController {
         if (isNull(alcoholId)) {
             throw REQUIRED_ALCOHOL_ID.getException();
         }
+
+        if (alcoholId <= 0) {
+            throw MUST_BE_POSITIVE_ALCOHOL_ID.getException();
+        }
     }
 
     private void validateReviewContent(String content) {
@@ -89,8 +93,8 @@ public class ReviewApiController {
     }
 
     private void validateReviewId(Long reviewId) {
-        if (isNull(reviewId)) {
-            throw REQUIRED_REVIEW_ID.getException();
+        if (reviewId <= 0) {
+            throw MUST_BE_POSITIVE_REVIEW_ID.getException();
         }
     }
 

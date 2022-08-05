@@ -12,11 +12,6 @@ import javax.persistence.EntityManager;
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
 
-    @Bean
-    public JPAQueryFactory jpaQueryFactory(EntityManager entityManager) {
-        return new JPAQueryFactory(entityManager);
-    }
-
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginCheckInterceptor())

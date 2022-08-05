@@ -8,8 +8,7 @@ import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.SessionConst;
 
 import static java.util.Objects.isNull;
-import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.MUST_LOGIN;
-import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.REQUIRED_ALCOHOL_ID;
+import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -50,8 +49,8 @@ public class AlcoholApiController {
     }
 
     private void validateAlcoholId(Long alcoholId) {
-        if (isNull(alcoholId)) {
-            throw REQUIRED_ALCOHOL_ID.getException();
+        if (alcoholId <= 0) {
+            throw MUST_BE_POSITIVE_ALCOHOL_ID.getException();
         }
     }
 }
