@@ -3,15 +3,12 @@ package toyproject.pyeonsool.alcohol.web;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.BDDMockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.support.PageableExecutionUtils;
-import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -26,18 +23,15 @@ import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.Pagination;
 import toyproject.pyeonsool.common.SessionConst;
 import toyproject.pyeonsool.member.sevice.MemberService;
-import toyproject.pyeonsool.member.web.MemberController;
 import toyproject.pyeonsool.review.sevice.ReviewDto;
 import toyproject.pyeonsool.review.sevice.ReviewService;
 import toyproject.pyeonsool.review.web.ReviewSaveRequest;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
-import static org.springframework.data.domain.Sort.Order.*;
+import static org.springframework.data.domain.Sort.Order.desc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
