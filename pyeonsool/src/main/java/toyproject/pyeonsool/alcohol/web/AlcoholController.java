@@ -9,22 +9,25 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import toyproject.pyeonsool.alcohol.domain.AlcoholType;
 import toyproject.pyeonsool.alcohol.repository.AlcoholSearchConditionDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholDto;
 import toyproject.pyeonsool.alcohol.sevice.AlcoholService;
 import toyproject.pyeonsool.common.LoginMember;
 import toyproject.pyeonsool.common.Pagination;
 import toyproject.pyeonsool.common.SessionConst;
-import toyproject.pyeonsool.alcohol.domain.AlcoholType;
-import toyproject.pyeonsool.vendor.domain.VendorName;
 import toyproject.pyeonsool.member.sevice.MemberService;
 import toyproject.pyeonsool.review.sevice.ReviewDto;
 import toyproject.pyeonsool.review.sevice.ReviewService;
 import toyproject.pyeonsool.review.web.ReviewSaveRequest;
+import toyproject.pyeonsool.vendor.domain.VendorName;
+
+import javax.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.MUST_BE_POSITIVE_ALCOHOL_ID;
 
 @Controller
 @RequestMapping("/alcohols")
@@ -92,9 +95,9 @@ public class AlcoholController {
             @PathVariable Long alcoholId,
             @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
             @PageableDefault(sort = "id", direction = Sort.Direction.DESC) Pageable pageable,
-            Model model) {
+            HttpServletResponse response, Model model) throws IOException {
 
-        validateAlcoholId(alcoholId);
+        validateAlcoholId(alcoholId, response);
 
         model.addAttribute("alcoholId", alcoholId);
         model.addAttribute("alcoholDetails",
@@ -114,9 +117,9 @@ public class AlcoholController {
         return "detailPage";
     }
 
-    private void validateAlcoholId(Long alcoholId) {
-        if (alcoholId < 0) {
-            throw MUST_BE_POSITIVE_ALCOHOL_ID.getException();
+    private void validateAlcoholId(Long alcoholId, HttpServletResponse response) throws IOException {
+        if (alcoholId <= 0) {
+            response.sendError(400, "술 고유 번호는 0보다 커야합니다.");
         }
     }
 

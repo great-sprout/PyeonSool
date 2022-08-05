@@ -1,14 +1,12 @@
 package toyproject.pyeonsool.common;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.domain.Page;
 
 @Getter
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 @ToString
+@EqualsAndHashCode
 public class Pagination {
     private int blockSize; // 한 블록에 존재할 수 있는 페이지 번호 개수
     private int startPagePerBlock; // 페이지 블록에서의 시작 번호. 1부터 시작
