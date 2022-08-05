@@ -1,5 +1,6 @@
 package toyproject.pyeonsool.member.web;
 
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -25,6 +26,7 @@ import toyproject.pyeonsool.common.exception.form.PyeonSoolFormException;
 import toyproject.pyeonsool.member.sevice.MemberService;
 import toyproject.pyeonsool.review.sevice.ReviewService;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -191,5 +193,30 @@ class MemberControllerTest {
         }
     }
 
+    @Nested
+    class LogoutTest {
+        @Test
+        void should_Success_When_SessionExists() throws Exception {
+            //given
+            MockHttpSession session = new MockHttpSession();
+            session.setAttribute(SessionConst.LOGIN_MEMBER, new LoginMember(1L, "nickname"));
 
+            //when
+            //then
+            mvc.perform(post("/members/logout")
+                            .session(session))
+                    .andExpect(redirectedUrl("/"));
+
+            assertThat(session.isInvalid()).isTrue();
+        }
+
+        @Test
+        void should_Success_When_SessionDoesNotExist() throws Exception {
+            //given
+            //when
+            //then
+            mvc.perform(post("/members/logout"))
+                    .andExpect(redirectedUrl("/"));
+        }
+    }
 }
