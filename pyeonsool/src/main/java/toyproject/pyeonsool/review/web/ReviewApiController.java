@@ -34,69 +34,19 @@ public class ReviewApiController {
         return ResponseEntity.ok().build();
     }
 
-    private void validateReviewSaveRequest(ReviewSaveRequest reviewSaveRequest) {
-//        validateAlcoholId(reviewSaveRequest.getAlcoholId());
-        validateGrade(reviewSaveRequest.getGrade());
-        validateReviewContent(reviewSaveRequest.getContent());
-    }
-
     @PatchMapping("/{reviewId}/edit")
     public ResponseEntity<Void> editReview(
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
-            @RequestBody ReviewEditRequest reviewEditRequest) {
+            @RequestBody @Valid ReviewEditRequest reviewEditRequest) {
 
         validateLogin(loginMember);
         validateReviewId(reviewId);
-        validateReviewEditRequest(reviewEditRequest);
 
         reviewService.editReview(
                 reviewId, loginMember.getId(), reviewEditRequest.getGrade(), reviewEditRequest.getContent());
 
         return ResponseEntity.ok().build();
-    }
-
-    private void validateLogin(LoginMember loginMember) {
-        if (isNull(loginMember)) {
-            throw MUST_LOGIN.getException();
-        }
-    }
-
-    private void validateReviewEditRequest(ReviewEditRequest reviewEditRequest) {
-        validateGrade(reviewEditRequest.getGrade());
-        validateReviewContent(reviewEditRequest.getContent());
-    }
-
-    private void validateAlcoholId(Long alcoholId) {
-        if (isNull(alcoholId)) {
-            throw REQUIRED_ALCOHOL_ID.getException();
-        }
-
-        if (alcoholId <= 0) {
-            throw MUST_BE_POSITIVE_ALCOHOL_ID.getException();
-        }
-    }
-
-    private void validateGrade(Byte grade) {
-        if (isNull(grade)) {
-            throw REQUIRED_GRADE.getException();
-        } else if (grade < 1 || grade > 5) {
-            throw LIMITED_RANGE_GRADE.getException();
-        }
-    }
-
-    private void validateReviewContent(String content) {
-        if (!StringUtils.hasText(content)) {
-            throw NON_BLANK_REVIEW.getException();
-        } else if (content.length() > 300) {
-            throw MAX_LENGTH_REVIEW.getException();
-        }
-    }
-
-    private void validateReviewId(Long reviewId) {
-        if (reviewId <= 0) {
-            throw MUST_BE_POSITIVE_REVIEW_ID.getException();
-        }
     }
 
     @PostMapping("/{reviewId}/recommend")
@@ -158,5 +108,17 @@ public class ReviewApiController {
         reviewService.deleteReview(reviewId);
 
         return ResponseEntity.ok().build();
+    }
+
+    private void validateLogin(LoginMember loginMember) {
+        if (isNull(loginMember)) {
+            throw MUST_LOGIN.getException();
+        }
+    }
+
+    private void validateReviewId(Long reviewId) {
+        if (reviewId <= 0) {
+            throw MUST_BE_POSITIVE_REVIEW_ID.getException();
+        }
     }
 }
