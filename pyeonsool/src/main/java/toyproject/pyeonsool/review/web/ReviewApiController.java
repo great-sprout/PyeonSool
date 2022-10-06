@@ -9,6 +9,8 @@ import toyproject.pyeonsool.common.SessionConst;
 import toyproject.pyeonsool.recommendedreview.domain.RecommendStatus;
 import toyproject.pyeonsool.review.sevice.ReviewService;
 
+import javax.validation.Valid;
+
 import static java.util.Objects.isNull;
 import static toyproject.pyeonsool.common.exception.api.ApiExceptionType.*;
 
@@ -22,15 +24,20 @@ public class ReviewApiController {
     @PostMapping("/add")
     public ResponseEntity<Void> addReview(
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
-            @RequestBody ReviewSaveRequest reviewSaveRequest) {
+            @RequestBody @Valid ReviewSaveRequest reviewSaveRequest) {
 
         validateLogin(loginMember);
-        validateReviewSaveRequest(reviewSaveRequest);
 
         reviewService.addReview(loginMember.getId(), reviewSaveRequest.getAlcoholId(), reviewSaveRequest.getGrade(),
                 reviewSaveRequest.getContent());
 
         return ResponseEntity.ok().build();
+    }
+
+    private void validateReviewSaveRequest(ReviewSaveRequest reviewSaveRequest) {
+//        validateAlcoholId(reviewSaveRequest.getAlcoholId());
+        validateGrade(reviewSaveRequest.getGrade());
+        validateReviewContent(reviewSaveRequest.getContent());
     }
 
     @PatchMapping("/{reviewId}/edit")
@@ -60,12 +67,6 @@ public class ReviewApiController {
         validateReviewContent(reviewEditRequest.getContent());
     }
 
-    private void validateReviewSaveRequest(ReviewSaveRequest reviewSaveRequest) {
-        validateAlcoholId(reviewSaveRequest.getAlcoholId());
-        validateGrade(reviewSaveRequest.getGrade());
-        validateReviewContent(reviewSaveRequest.getContent());
-    }
-
     private void validateAlcoholId(Long alcoholId) {
         if (isNull(alcoholId)) {
             throw REQUIRED_ALCOHOL_ID.getException();
@@ -76,19 +77,19 @@ public class ReviewApiController {
         }
     }
 
-    private void validateReviewContent(String content) {
-        if (!StringUtils.hasText(content)) {
-            throw NON_BLANK_REVIEW.getException();
-        } else if (content.length() > 300) {
-            throw MAX_LENGTH_REVIEW.getException();
-        }
-    }
-
     private void validateGrade(Byte grade) {
         if (isNull(grade)) {
             throw REQUIRED_GRADE.getException();
         } else if (grade < 1 || grade > 5) {
             throw LIMITED_RANGE_GRADE.getException();
+        }
+    }
+
+    private void validateReviewContent(String content) {
+        if (!StringUtils.hasText(content)) {
+            throw NON_BLANK_REVIEW.getException();
+        } else if (content.length() > 300) {
+            throw MAX_LENGTH_REVIEW.getException();
         }
     }
 
