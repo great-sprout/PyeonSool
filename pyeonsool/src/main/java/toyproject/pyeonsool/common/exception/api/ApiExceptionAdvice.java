@@ -26,4 +26,9 @@ public class ApiExceptionAdvice {
                         e.getBindingResult().getFieldError().getDefaultMessage()));
     }
 
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ExceptionResponse> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ExceptionResponse(HttpStatus.BAD_REQUEST.value(), "요청 파라미터를 확인해주세요."));
+    }
 }
