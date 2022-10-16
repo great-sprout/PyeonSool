@@ -68,11 +68,11 @@ class AlcoholServiceTest {
             when(fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName()))
                     .thenReturn("/alcohols/test.jpg");
             when(reviewRepository.getReviewGrades(anyLong())).thenReturn(List.of((byte) 3, (byte) 4, (byte) 4));
-            when(alcoholKeywordRepository.getAlcoholKeywords(anyLong()))
+            when(alcoholKeywordRepository.getAlcoholKeywordNames(anyLong()))
                     .thenReturn(List.of("sweet", "cool", "clear", "heavy", "light", "nutty", "fresh",
                             "flower", "bitter", "unique", "strong", "middle", "mild", "white", "red", "astringent",
                             "fruit", "nonAlcoholic", "highAcidity", "middleAcidity", "lowAcidity"));
-            when(vendorRepository.getAlcoholVendors(anyLong()))
+            when(vendorRepository.getAlcoholVendorNames(anyLong()))
                     .thenReturn(List.of(CU.name(), GS25.name(), SEVEN_ELEVEN.name()));
             when(preferredAlcoholRepository.existsByMemberAndAlcohol(member, alcohol))
                     .thenReturn(true);
@@ -99,9 +99,9 @@ class AlcoholServiceTest {
             when(fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName()))
                     .thenReturn("/alcohols/test.jpg");
             when(reviewRepository.getReviewGrades(anyLong())).thenReturn(List.of());
-            when(alcoholKeywordRepository.getAlcoholKeywords(anyLong()))
+            when(alcoholKeywordRepository.getAlcoholKeywordNames(anyLong()))
                     .thenReturn(List.of());
-            when(vendorRepository.getAlcoholVendors(anyLong()))
+            when(vendorRepository.getAlcoholVendorNames(anyLong()))
                     .thenReturn(List.of());
 
             //when
@@ -135,9 +135,9 @@ class AlcoholServiceTest {
             when(fileManager.getAlcoholImagePath(alcohol.getType(), alcohol.getFileName()))
                     .thenReturn("/alcohols/test.jpg");
             when(reviewRepository.getReviewGrades(anyLong())).thenReturn(List.of());
-            when(alcoholKeywordRepository.getAlcoholKeywords(anyLong()))
+            when(alcoholKeywordRepository.getAlcoholKeywordNames(anyLong()))
                     .thenReturn(List.of());
-            when(vendorRepository.getAlcoholVendors(anyLong()))
+            when(vendorRepository.getAlcoholVendorNames(anyLong()))
                     .thenReturn(List.of());
 
             //when

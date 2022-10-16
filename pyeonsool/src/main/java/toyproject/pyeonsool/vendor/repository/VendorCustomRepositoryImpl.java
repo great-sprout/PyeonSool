@@ -13,7 +13,7 @@ public class VendorCustomRepositoryImpl implements VendorCustomRepository {
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<String> getAlcoholVendors(Long alcoholId) {
+    public List<String> getAlcoholVendorNames(Long alcoholId) {
         return queryFactory.select(vendor.name.stringValue())
                 .from(vendor)
                 .where(vendor.alcohol.id.eq(alcoholId))

@@ -44,8 +44,8 @@ public class AlcoholService {
         return AlcoholDetailsDto.of(alcohol,
                 getAlcoholImagePath(alcohol),
                 getTotalGrade(alcoholId),
-                getAlcoholKeywords(alcoholId),
-                vendorRepository.getAlcoholVendors(alcoholId),
+                getAlcoholKeywordNames(alcoholId),
+                vendorRepository.getAlcoholVendorNames(alcoholId),
                 likeCurrentAlcohol(alcohol, memberId));
     }
 
@@ -64,16 +64,16 @@ public class AlcoholService {
         return "-";
     }
 
-    private List<String> getAlcoholKeywords(Long alcoholId) {
-        List<String> alcoholKeywords = new ArrayList<>();
-        Map<String, String> keywordMap = createKeywordMap();
-        for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcoholId)) {
-            alcoholKeywords.add(keywordMap.get(keyword));
+    private List<String> getAlcoholKeywordNames(Long alcoholId) {
+        List<String> alcoholKeywordNames = new ArrayList<>();
+        Map<String, String> keywordNameMap = createKeywordNameMap();
+        for (String engKeywordName : alcoholKeywordRepository.getAlcoholKeywordNames(alcoholId)) {
+            alcoholKeywordNames.add(keywordNameMap.get(engKeywordName));
         }
-        return alcoholKeywords;
+        return alcoholKeywordNames;
     }
 
-    public static Map<String, String> createKeywordMap() {
+    public static Map<String, String> createKeywordNameMap() {
         Map<String, String> keywordMap = new HashMap<>();
         keywordMap.put("sweet", "달콤함");
         keywordMap.put("clear", "깔끔함");
@@ -157,15 +157,15 @@ public class AlcoholService {
         return alcoholRepository.findAllByType(pageable, condition)
                 .map(alcohol -> new AlcoholDto(alcohol,
                         getAlcoholImagePath(alcohol),
-                        getAlcoholKeywords(alcohol),
-                        vendorRepository.getAlcoholVendors(alcohol.getId()),
+                        getAlcoholKeywordNames(alcohol),
+                        vendorRepository.getAlcoholVendorNames(alcohol.getId()),
                         preferredAlcoholRepository.getLikeCount(alcohol.getId())));
     }
 
-    private List<String> getAlcoholKeywords(Alcohol alcohol) {
+    private List<String> getAlcoholKeywordNames(Alcohol alcohol) {
         List<String> alcoholKeywords = new ArrayList<>();
-        for (String keyword : alcoholKeywordRepository.getAlcoholKeywords(alcohol.getId())) {
-            alcoholKeywords.add(createKeywordMap().get(keyword));
+        for (String keyword : alcoholKeywordRepository.getAlcoholKeywordNames(alcohol.getId())) {
+            alcoholKeywords.add(createKeywordNameMap().get(keyword));
         }
 
         return alcoholKeywords;
@@ -192,7 +192,7 @@ public class AlcoholService {
             Alcohol alcohol = alcoholRepository.findById(alcoholId).orElse(null);
             String alcoholImagePath = fileManager.getAlcoholImagePath(alcoholType, alcohol.getFileName());
 
-            List<String> alcoholKeywords = getAlcoholKeywords(alcoholId);
+            List<String> alcoholKeywords = getAlcoholKeywordNames(alcoholId);
 
             alcoholTypeDetailsList.add(BestLikeDto.of(alcohol, alcoholImagePath, alcoholKeywords,
                     preferredAlcoholRepository.getLikeCount(alcoholId)));

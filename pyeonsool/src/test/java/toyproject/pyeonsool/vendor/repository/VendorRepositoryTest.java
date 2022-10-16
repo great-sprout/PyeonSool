@@ -37,9 +37,9 @@ class VendorRepositoryTest {
         em.persist(new Vendor(alcohol, SEVEN_ELEVEN));
 
         //then
-        List<String> alcoholVendors = vendorRepository.getAlcoholVendors(alcohol.getId());
+        List<String> alcoholVendorNames = vendorRepository.getAlcoholVendorNames(alcohol.getId());
 
         //then
-        Assertions.assertThat(alcoholVendors).containsOnly(CU.name(), GS25.name(), SEVEN_ELEVEN.name());
+        Assertions.assertThat(alcoholVendorNames).containsOnly(CU.name(), GS25.name(), SEVEN_ELEVEN.name());
     }
 }

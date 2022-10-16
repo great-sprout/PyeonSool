@@ -14,7 +14,7 @@ public class AlcoholKeywordCustomRepositoryImpl implements AlcoholKeywordCustomR
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<String> getAlcoholKeywords(Long alcoholId) {
+    public List<String> getAlcoholKeywordNames(Long alcoholId) {
         return queryFactory.select(keyword.name)
                 .from(alcoholKeyword)
                 .join(alcoholKeyword.keyword, keyword)

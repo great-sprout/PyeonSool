@@ -45,9 +45,9 @@ class AlcoholKeywordRepositoryTest {
         }
 
         //when
-        List<String> alcoholKeywords = alcoholKeywordRepository.getAlcoholKeywords(alcohol.getId());
+        List<String> alcoholKeywordNames = alcoholKeywordRepository.getAlcoholKeywordNames(alcohol.getId());
 
         //then
-        Assertions.assertThat(alcoholKeywords).containsOnly("sweet", "cool", "high");
+        Assertions.assertThat(alcoholKeywordNames).containsOnly("sweet", "cool", "high");
     }
 }

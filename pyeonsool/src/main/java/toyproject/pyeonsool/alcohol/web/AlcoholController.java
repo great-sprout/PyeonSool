@@ -104,8 +104,9 @@ public class AlcoholController {
                 alcoholService.getAlcoholDetails(alcoholId, getLoginMemberId(loginMember)));
         model.addAttribute("reviewSaveForm", new ReviewSaveRequest(alcoholId));
 
+        final int BLOCK_SIZE = 5;
         Page<ReviewDto> reviewPage = reviewService.getReviewPage(pageable, alcoholId, getLoginMemberId(loginMember));
-        model.addAttribute("reviewPagination", Pagination.of(reviewPage, 5));
+        model.addAttribute("reviewPagination", Pagination.of(reviewPage, BLOCK_SIZE));
         model.addAttribute("reviews", reviewPage.getContent());
         model.addAttribute("relatedAlcohols", alcoholService.getRelatedAlcohols(alcoholId));
 
