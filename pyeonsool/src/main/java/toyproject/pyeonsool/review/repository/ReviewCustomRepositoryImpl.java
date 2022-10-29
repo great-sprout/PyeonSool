@@ -11,11 +11,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.support.PageableExecutionUtils;
 import toyproject.pyeonsool.alcohol.domain.Alcohol;
+import toyproject.pyeonsool.member.domain.QMember;
 import toyproject.pyeonsool.review.domain.Review;
 
 import java.util.List;
 
 import static toyproject.pyeonsool.alcohol.domain.QAlcohol.alcohol;
+import static toyproject.pyeonsool.member.domain.QMember.*;
 import static toyproject.pyeonsool.review.domain.QReview.review;
 
 @RequiredArgsConstructor
@@ -64,6 +66,7 @@ public class ReviewCustomRepositoryImpl implements ReviewCustomRepository {
     public Page<Review> findReviewsByAlcohol(Alcohol alcohol, Pageable pageable) {
         JPAQuery<Review> query = queryFactory.selectFrom(review)
                 .where(review.alcohol.eq(alcohol))
+                .join(review.member, member).fetchJoin()
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize());
 
