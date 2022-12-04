@@ -48,6 +48,7 @@ function addLikeClickEvent() {
         }
 
         request.open("post", window.location.pathname + "/dislike");
+        request.setRequestHeader('Content-Type', 'application/json');
         request.responseType = "json";
         request.send();
     }
@@ -72,6 +73,7 @@ function addLikeClickEvent() {
 
         request.open("post", window.location.pathname + "/like");
         request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
         request.send();
     }
 }
@@ -134,6 +136,7 @@ function addReviewRecommendationEvent() {
 
         request.open("POST", "/reviews/" + reviewId + "/recommend");
         request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
         request.send();
     }
 
@@ -158,6 +161,7 @@ function addReviewRecommendationEvent() {
 
         request.open("DELETE", "/reviews/" + reviewId + "/recommend");
         request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
         request.send();
     }
 
@@ -187,6 +191,7 @@ function addReviewRecommendationEvent() {
 
         request.open("POST", "/reviews/" + reviewId + "/not-recommend");
         request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
         request.send();
     }
 
@@ -211,6 +216,7 @@ function addReviewRecommendationEvent() {
 
         request.open("DELETE", "/reviews/" + reviewId + "/not-recommend");
         request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
         request.send();
     }
 
@@ -297,6 +303,7 @@ function addReviewDeleteClickEvent() {
 
         request.open("DELETE", "/reviews/" + review.getAttribute("number") + "/delete")
         request.responseType = "json";
+        request.setRequestHeader('Content-Type', 'application/json');
         request.send();
     }
 }

@@ -21,7 +21,6 @@ public class AlcoholApiController {
             @PathVariable Long alcoholId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        validateLogin(loginMember);
         validateAlcoholId(alcoholId);
 
         alcoholService.likeAlcohol(alcoholId, loginMember.getId());
@@ -34,18 +33,11 @@ public class AlcoholApiController {
             @PathVariable Long alcoholId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        validateLogin(loginMember);
         validateAlcoholId(alcoholId);
 
         alcoholService.dislikeAlcohol(alcoholId, loginMember.getId());
 
         return ResponseEntity.ok().build();
-    }
-
-    private void validateLogin(LoginMember loginMember) {
-        if (isNull(loginMember)) {
-            throw MUST_LOGIN.getException();
-        }
     }
 
     private void validateAlcoholId(Long alcoholId) {
