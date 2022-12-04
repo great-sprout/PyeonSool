@@ -26,8 +26,6 @@ public class ReviewApiController {
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
             @RequestBody @Valid ReviewSaveRequest reviewSaveRequest) {
 
-        validateLogin(loginMember);
-
         reviewService.addReview(loginMember.getId(), reviewSaveRequest.getAlcoholId(), reviewSaveRequest.getGrade(),
                 reviewSaveRequest.getContent());
 
@@ -40,7 +38,6 @@ public class ReviewApiController {
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember,
             @RequestBody @Valid ReviewEditRequest reviewEditRequest) {
 
-        validateLogin(loginMember);
         validateReviewId(reviewId);
 
         reviewService.editReview(
@@ -54,7 +51,6 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        validateLogin(loginMember);
         validateReviewId(reviewId);
         reviewService.recommendReview(loginMember.getId(), reviewId);
 
@@ -66,7 +62,6 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        validateLogin(loginMember);
         validateReviewId(reviewId);
         reviewService.notRecommendReview(loginMember.getId(), reviewId);
 
@@ -78,7 +73,6 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        validateLogin(loginMember);
         validateReviewId(reviewId);
         reviewService.cancelRecommendation(loginMember.getId(), reviewId, RecommendStatus.LIKE);
 
@@ -90,7 +84,6 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        validateLogin(loginMember);
         validateReviewId(reviewId);
         reviewService.cancelRecommendation(loginMember.getId(), reviewId, RecommendStatus.DISLIKE);
 
@@ -103,17 +96,10 @@ public class ReviewApiController {
             @PathVariable Long reviewId,
             @SessionAttribute(value = SessionConst.LOGIN_MEMBER, required = false) LoginMember loginMember) {
 
-        validateLogin(loginMember);
         validateReviewId(reviewId);
         reviewService.deleteReview(reviewId);
 
         return ResponseEntity.ok().build();
-    }
-
-    private void validateLogin(LoginMember loginMember) {
-        if (isNull(loginMember)) {
-            throw MUST_LOGIN.getException();
-        }
     }
 
     private void validateReviewId(Long reviewId) {
